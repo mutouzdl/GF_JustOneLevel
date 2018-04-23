@@ -1,0 +1,7 @@
+#	场景配置表	
+#	Id	AssetName
+#	int	string
+#	场景编号	资源名称
+	1	Menu
+	2	Main
+	3	Game
