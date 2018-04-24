@@ -1,7 +1,8 @@
 ﻿using GameFramework;
 
 /// <summary>
-/// 对话框显示数据。
+/// 对话框显示数据
+/// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public class DialogParams {
     /// <summary>

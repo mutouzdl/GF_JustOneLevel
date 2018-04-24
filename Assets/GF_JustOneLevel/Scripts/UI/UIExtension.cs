@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public static class UIExtension {
     public static IEnumerator FadeToAlpha (this CanvasGroup canvasGroup, float alpha, float duration) {
         float time = 0f;

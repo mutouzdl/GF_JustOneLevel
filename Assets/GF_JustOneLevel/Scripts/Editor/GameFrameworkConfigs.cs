@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityGameFramework.Editor;
 using UnityGameFramework.Editor.AssetBundleTools;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 namespace Editor {
     public static class GameFrameworkConfigs {
         [BuildSettingsConfigPath]

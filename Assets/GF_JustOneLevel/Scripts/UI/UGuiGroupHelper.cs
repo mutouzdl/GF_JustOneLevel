@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
 /// <summary>
-/// uGUI 界面组辅助器。
+/// uGUI 界面组辅助器
+/// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public class UGuiGroupHelper : UIGroupHelperBase {
     public const int DepthFactor = 10000;

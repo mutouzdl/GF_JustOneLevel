@@ -2,6 +2,9 @@
 using GameFramework;
 using UnityGameFramework.Runtime;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public static class DataTableExtension {
     private const string DataRowClassPrefixName = "DR";
     private static readonly string[] ColumnSplit = new string[] { "\t" };

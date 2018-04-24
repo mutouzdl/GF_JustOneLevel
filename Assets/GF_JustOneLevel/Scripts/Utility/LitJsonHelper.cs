@@ -3,7 +3,8 @@ using GameFramework;
 using LitJson;
 
 /// <summary>
-/// LitJSON 函数集辅助器。
+/// LitJSON 函数集辅助器
+/// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 internal class LitJsonHelper : Utility.Json.IJsonHelper {
     /// <summary>

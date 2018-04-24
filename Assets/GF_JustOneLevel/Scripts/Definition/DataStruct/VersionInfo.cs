@@ -1,4 +1,8 @@
-﻿public class VersionInfo {
+﻿
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
+public class VersionInfo {
     public bool ForceGameUpdate {
         get;
         set;

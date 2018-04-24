@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public abstract class UGuiForm : UIFormLogic {
         public const int DepthFactor = 100;
         private const float FadeTime = 0.3f;

@@ -1,4 +1,8 @@
-﻿public static partial class Constant {
+﻿
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
+public static partial class Constant {
     public static class Setting {
         public const string Language = "Setting.Language";
         public const string QualityLevel = "Setting.QualityLevel";

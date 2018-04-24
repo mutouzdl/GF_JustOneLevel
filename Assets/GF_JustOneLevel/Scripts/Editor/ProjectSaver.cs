@@ -1,6 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 namespace Editor {
     public static class ProjectSaver {
         /// <summary>

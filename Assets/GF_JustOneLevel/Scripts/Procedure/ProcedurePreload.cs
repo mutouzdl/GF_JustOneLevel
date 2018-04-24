@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public class ProcedurePreload : ProcedureBase {
     private Dictionary<string, bool> m_LoadedFlag = new Dictionary<string, bool> ();
 

@@ -4,7 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityGameFramework.Editor.AssetBundleTools;
 
-
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 namespace Editor {
     public sealed class StarForceBuildEventHandler : IBuildEventHandler {
         public void PreProcessBuildAll (string productName, string companyName, string gameIdentifier,

@@ -4,6 +4,9 @@ using GameFramework.Event;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public partial class ProcedureChangeScene : ProcedureBase {
     private bool m_IsChangeSceneComplete = false;
     private int m_BackgroundMusicId = 0;

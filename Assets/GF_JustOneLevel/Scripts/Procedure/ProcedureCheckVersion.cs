@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public class ProcedureCheckVersion : ProcedureBase {
     private bool m_ResourceInitComplete = false;
 

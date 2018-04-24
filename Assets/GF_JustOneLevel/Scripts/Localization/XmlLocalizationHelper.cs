@@ -5,6 +5,7 @@ using UnityGameFramework.Runtime;
 
 /// <summary>
 /// XML 格式的本地化辅助器。
+/// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public class XmlLocalizationHelper : DefaultLocalizationHelper {
     /// <summary>

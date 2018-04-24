@@ -3,6 +3,9 @@ using GameFramework.DataTable;
 using GameFramework.Sound;
 using UnityGameFramework.Runtime;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public static class SoundExtension {
     private const float FadeVolumeDuration = 1f;
     private static int? s_MusicSerialId = null;

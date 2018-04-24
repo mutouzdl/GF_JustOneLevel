@@ -3,6 +3,9 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 namespace Editor {
     public class DeviceModelConfigEditorWindow : EditorWindow {
         private DeviceModelConfig m_Config = null;

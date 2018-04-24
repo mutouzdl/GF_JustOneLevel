@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
 public class ConfigComponent : GameFrameworkComponent {
     [SerializeField]
     private DeviceModelConfig m_DeviceModelConfig = null;

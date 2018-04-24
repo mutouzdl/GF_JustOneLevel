@@ -1,4 +1,8 @@
-﻿public struct ImpactData {
+﻿
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
+public struct ImpactData {
     private readonly CampType m_Camp;
     private readonly int m_HP;
     private readonly int m_Attack;

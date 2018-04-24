@@ -1,4 +1,8 @@
-﻿public static class AssetUtility {
+﻿
+/// <summary>
+/// 参考来源：https://github.com/EllanJiang/StarForce
+/// </summary>
+public static class AssetUtility {
     public static string GetDataTableAsset (string assetName) {
         return string.Format ("Assets/GF_JustOneLevel/DataTables/{0}.csv", assetName);
     }
