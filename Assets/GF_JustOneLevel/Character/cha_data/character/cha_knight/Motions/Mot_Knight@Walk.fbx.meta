@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: afa46a7eafad7874da3988d082799d38
+timeCreated: 1476606175
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: FullBodyIK
+    100002: FullBodyIK (2)
+    100004: Goal
+    100006: Goal (2)
+    100008: Group Locator
+    100010: Locator
+    100012: Locator_Leg_L
+    100014: Locator_Leg_R
+    100016: //RootNode
+    100018: Root
+    100020: Skeleton_Arm_L
+    100022: Skeleton_Arm_R
+    100024: Skeleton_Foot_L
+    100026: Skeleton_Foot_R
+    100028: Skeleton_ForeArm_L
+    100030: Skeleton_ForeArm_R
+    100032: Skeleton_Hand_L
+    100034: Skeleton_Hand_R
+    100036: Skeleton_Head
+    100038: Skeleton_Leg_L
+    100040: Skeleton_Leg_R
+    100042: Skeleton_Root
+    100044: Skeleton_Spine01
+    100046: Skeleton_Spine02
+    100048: Skeleton_UpperLeg_L
+    100050: Skeleton_UpperLeg_R
+    100052: Texture Group
+    100054: UpVector_Leg_L
+    100056: UpVector_Leg_R
+    400000: FullBodyIK
+    400002: FullBodyIK (2)
+    400004: Goal
+    400006: Goal (2)
+    400008: Group Locator
+    400010: Locator
+    400012: Locator_Leg_L
+    400014: Locator_Leg_R
+    400016: //RootNode
+    400018: Root
+    400020: Skeleton_Arm_L
+    400022: Skeleton_Arm_R
+    400024: Skeleton_Foot_L
+    400026: Skeleton_Foot_R
+    400028: Skeleton_ForeArm_L
+    400030: Skeleton_ForeArm_R
+    400032: Skeleton_Hand_L
+    400034: Skeleton_Hand_R
+    400036: Skeleton_Head
+    400038: Skeleton_Leg_L
+    400040: Skeleton_Leg_R
+    400042: Skeleton_Root
+    400044: Skeleton_Spine01
+    400046: Skeleton_Spine02
+    400048: Skeleton_UpperLeg_L
+    400050: Skeleton_UpperLeg_R
+    400052: Texture Group
+    400054: UpVector_Leg_L
+    400056: UpVector_Leg_R
+    7400000: Walk
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group Locator
+        weight: 1
+      - path: Group Locator/Locator
+        weight: 1
+      - path: Group Locator/Root
+        weight: 1
+      - path: Group Locator/Root/Goal
+        weight: 1
+      - path: Group Locator/Root/Goal (2)
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_L/Skeleton_UpperLeg_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_L/Skeleton_UpperLeg_L/FullBodyIK
+          (2)
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_L/Skeleton_UpperLeg_L/Skeleton_Leg_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_L/Skeleton_UpperLeg_L/Skeleton_Leg_L/Skeleton_Foot_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_R/Skeleton_UpperLeg_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_R/Skeleton_UpperLeg_R/FullBodyIK
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_R/Skeleton_UpperLeg_R/Skeleton_Leg_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Locator_Leg_R/Skeleton_UpperLeg_R/Skeleton_Leg_R/Skeleton_Foot_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Arm_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Arm_L/Skeleton_ForeArm_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Arm_L/Skeleton_ForeArm_L/Skeleton_Hand_L
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Arm_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Arm_R/Skeleton_ForeArm_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Arm_R/Skeleton_ForeArm_R/Skeleton_Hand_R
+        weight: 1
+      - path: Group Locator/Root/Skeleton_Root/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Head
+        weight: 1
+      - path: Group Locator/Root/UpVector_Leg_L
+        weight: 1
+      - path: Group Locator/Root/UpVector_Leg_R
+        weight: 1
+      - path: Texture Group
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

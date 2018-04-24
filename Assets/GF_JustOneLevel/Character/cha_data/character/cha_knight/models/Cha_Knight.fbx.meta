@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: df0777a2e75ec7048b28e7c394efbd53
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone
+    100002: //RootNode
+    100004: Knight
+    100006: Locator_Leg_L
+    100008: Locator_Leg_R
+    100010: Skeleton_Arm_L
+    100012: Skeleton_Arm_R
+    100014: Skeleton_Foot_L
+    100016: Skeleton_Foot_R
+    100018: Skeleton_ForeArm_L
+    100020: Skeleton_ForeArm_R
+    100022: Skeleton_Hand_L
+    100024: Skeleton_Hand_R
+    100026: Skeleton_Head
+    100028: Skeleton_Leg_L
+    100030: Skeleton_Leg_R
+    100032: Skeleton_Root
+    100034: Skeleton_Spine01
+    100036: Skeleton_Spine02
+    100038: Skeleton_UpperLeg_L
+    100040: Skeleton_UpperLeg_R
+    100042: Sword02
+    100044: Texture Group
+    100046: FullBodyIK
+    100048: FullBodyIK (2)
+    100050: Goal
+    100052: Goal (2)
+    100054: Mesh
+    100056: Root
+    100058: UpVector_Leg_L
+    100060: UpVector_Leg_R
+    100062: Locator
+    100064: Group Locator
+    100066: Shadow
+    400000: Bone
+    400002: //RootNode
+    400004: Knight
+    400006: Locator_Leg_L
+    400008: Locator_Leg_R
+    400010: Skeleton_Arm_L
+    400012: Skeleton_Arm_R
+    400014: Skeleton_Foot_L
+    400016: Skeleton_Foot_R
+    400018: Skeleton_ForeArm_L
+    400020: Skeleton_ForeArm_R
+    400022: Skeleton_Hand_L
+    400024: Skeleton_Hand_R
+    400026: Skeleton_Head
+    400028: Skeleton_Leg_L
+    400030: Skeleton_Leg_R
+    400032: Skeleton_Root
+    400034: Skeleton_Spine01
+    400036: Skeleton_Spine02
+    400038: Skeleton_UpperLeg_L
+    400040: Skeleton_UpperLeg_R
+    400042: Sword02
+    400044: Texture Group
+    400046: FullBodyIK
+    400048: FullBodyIK (2)
+    400050: Goal
+    400052: Goal (2)
+    400054: Mesh
+    400056: Root
+    400058: UpVector_Leg_L
+    400060: UpVector_Leg_R
+    400062: Locator
+    400064: Group Locator
+    400066: Shadow
+    2300000: Shadow
+    3300000: Shadow
+    4300000: Knight
+    4300002: Sword02
+    4300004: Shadow
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Knight
+    13700002: Sword02
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
