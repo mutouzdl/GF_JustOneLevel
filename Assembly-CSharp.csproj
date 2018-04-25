@@ -59,6 +59,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\DeviceModelConfig.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DataTableExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DREntity.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRHero.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMusic.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRScene.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRSound.cs" />
@@ -75,7 +76,13 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\QualityLevelType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\RelationType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\EntityData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\HeroData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\TargetableObjectData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Entity.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\HeroLogic.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Game\SurvivalGame.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\LocalizationExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\XmlLocalizationHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureBase.cs" />
@@ -92,6 +99,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UGuiGroupHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIFormId.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AIUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AssetUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />

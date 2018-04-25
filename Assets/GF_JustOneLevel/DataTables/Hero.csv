@@ -1,0 +1,5 @@
+﻿#,场景配置表,,,
+#,Id,Name,MoveSpeed,RotateSpeed
+#,int,string,float,float
+#,场景编号,名称,移动速度,旋转速度
+,1,Player1,3,2

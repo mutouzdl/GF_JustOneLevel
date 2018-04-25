@@ -38,7 +38,7 @@ public class DRUISound : IDataRow {
     }
 
     public void ParseDataRow (string dataRowText) {
-        string[] text = DataTableExtension.SplitDataRow (dataRowText);
+        string[] text = DataTableExtension.SplitDataRowOld (dataRowText);
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);

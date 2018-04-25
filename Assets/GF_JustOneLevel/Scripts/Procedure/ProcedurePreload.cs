@@ -50,6 +50,7 @@ public class ProcedurePreload : ProcedureBase {
     private void PreloadResources () {
         // Preload data tables
         LoadDataTable ("Entity");
+        LoadDataTable ("Hero");
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");
         LoadDataTable ("UISound");

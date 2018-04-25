@@ -22,7 +22,7 @@ public abstract class TargetableObject : Entity {
         m_TargetableObjectData.HP -= damageHP;
         float toHPRatio = m_TargetableObjectData.HPRatio;
         if (fromHPRatio > toHPRatio) {
-            GameEntry.HPBar.ShowHPBar (this, fromHPRatio, toHPRatio);
+            // GameEntry.HPBar.ShowHPBar (this, fromHPRatio, toHPRatio);
         }
 
         if (m_TargetableObjectData.HP <= 0) {
@@ -56,7 +56,7 @@ public abstract class TargetableObject : Entity {
     }
 
     protected virtual void OnDead (Entity attacker) {
-        GameEntry.Entity.HideEntity (this);
+        GameEntry.Entity.HideEntity (this.Entity);
     }
 
     private void OnTriggerEnter (Collider other) {

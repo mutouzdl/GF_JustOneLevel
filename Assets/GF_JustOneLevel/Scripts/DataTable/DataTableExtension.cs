@@ -7,7 +7,8 @@ using UnityGameFramework.Runtime;
 /// </summary>
 public static class DataTableExtension {
     private const string DataRowClassPrefixName = "DR";
-    private static readonly string[] ColumnSplit = new string[] { "\t" };
+    private static readonly string[] ColumnSplitOld = new string[] { "\t" };
+    private static readonly string[] ColumnSplit = new string[] { "," };
 
     public static void LoadDataTable (this DataTableComponent dataTableComponent, string dataTableName, object userData = null) {
         if (string.IsNullOrEmpty (dataTableName)) {
@@ -31,6 +32,10 @@ public static class DataTableExtension {
 
         string dataTableNameInType = splitNames.Length > 1 ? splitNames[1] : null;
         dataTableComponent.LoadDataTable (dataRowType, dataTableName, dataTableNameInType, AssetUtility.GetDataTableAsset (dataTableName), userData);
+    }
+
+    public static string[] SplitDataRowOld (string dataRowText) {
+        return dataRowText.Split (ColumnSplitOld, StringSplitOptions.None);
     }
 
     public static string[] SplitDataRow (string dataRowText) {
