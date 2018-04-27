@@ -73,6 +73,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\ImpactData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\VersionInfo.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\CampType.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\HeroAnimationState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\QualityLevelType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\RelationType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\EntityData.cs" />
@@ -82,6 +83,9 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Entity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\HeroLogic.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroIdleState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroWalkState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\HeroWalkEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Game\SurvivalGame.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\LocalizationExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\XmlLocalizationHelper.cs" />

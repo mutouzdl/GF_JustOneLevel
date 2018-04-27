@@ -105,6 +105,7 @@ namespace GameFramework.Procedure
         /// <param name="procedures">流程管理器包含的流程。</param>
         public void Initialize(IFsmManager fsmManager, params ProcedureBase[] procedures)
         {
+            Log.Warning("ProcedureManager Initialize");
             if (fsmManager == null)
             {
                 throw new GameFrameworkException("FSM manager is invalid.");
