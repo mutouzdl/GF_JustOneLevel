@@ -7,6 +7,9 @@ public class HeroLogic : TargetableObject {
     [SerializeField]
     private HeroData m_heroData = null;
 
+    [SerializeField]
+    private Rigidbody m_Rigidbody = null;
+
     /// <summary>
     /// 所有动画名称列表
     /// </summary>
@@ -15,6 +18,8 @@ public class HeroLogic : TargetableObject {
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
+
+        m_Rigidbody = gameObject.GetComponent<Rigidbody>();
 
         /* 获取动画名称 */
         foreach (AnimationState state in gameObject.GetComponent<Animation> ()) {
@@ -68,7 +73,8 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     public void Forward (float distance) {
-        CachedTransform.position += CachedTransform.forward * distance * m_heroData.MoveSpeed;
+        // CachedTransform.position += CachedTransform.forward * distance * m_heroData.MoveSpeed;
+        m_Rigidbody.MovePosition(CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed);
     }
 
     /// <summary>

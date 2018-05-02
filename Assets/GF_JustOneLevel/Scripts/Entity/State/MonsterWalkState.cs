@@ -27,7 +27,6 @@ public class MonsterWalkState : FsmState<MonsterLogic> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
-        Log.Info("elapseSeconds:" + elapseSeconds + ",rotateTimeCounter:" + rotateTimeCounter);
         idleTimeCounter += elapseSeconds;
         rotateTimeCounter += elapseSeconds;
 

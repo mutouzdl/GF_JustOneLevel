@@ -21,6 +21,7 @@ public class SurvivalGame {
 
         // 创建主角
         HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
+        heroData.Position = new Vector3(3, 0, 3);
         EntityExtension.ShowEntity (typeof (HeroLogic), "PlayerGroup", heroData);
 
         // 创建怪物
