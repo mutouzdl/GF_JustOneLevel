@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GF_JustOneLevel", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GF_JustOneLevel", "Assembly-CSharp-firstpass.csproj", "{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GF_JustOneLevel", "Assembly-CSharp-Editor-firstpass.csproj", "{8EAA36A6-E45D-8755-2AF0-D79301F7039E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GF_JustOneLevel", "UnityGameFramework.Editor.csproj", "{5D1067A1-7056-17CE-83BB-EA22D9081C1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GF_JustOneLevel", "Assembly-CSharp-Editor.csproj", "{61628F96-9947-B424-0254-916E8CA9C9E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GF_JustOneLevel", "Assembly-CSharp-Editor-firstpass.csproj", "{8EAA36A6-E45D-8755-2AF0-D79301F7039E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +37,10 @@ Global
 		{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D1067A1-7056-17CE-83BB-EA22D9081C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D1067A1-7056-17CE-83BB-EA22D9081C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D1067A1-7056-17CE-83BB-EA22D9081C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,10 +49,6 @@ Global
 		{61628F96-9947-B424-0254-916E8CA9C9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61628F96-9947-B424-0254-916E8CA9C9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61628F96-9947-B424-0254-916E8CA9C9E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EAA36A6-E45D-8755-2AF0-D79301F7039E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

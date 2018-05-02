@@ -3,15 +3,14 @@ using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroLogic : TargetableObject {
+public class MonsterLogic : TargetableObject {
     [SerializeField]
-    private HeroData m_heroData = null;
+    private MonsterData m_MonsterData = null;
 
-    /// <summary>
     /// 所有动画名称列表
     /// </summary>
     private List<string> m_AnimationNames = new List<string>();
-    private GameFramework.Fsm.IFsm<HeroLogic> m_HeroFsm;
+    private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterFsm;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
@@ -22,45 +21,39 @@ public class HeroLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        FsmState<HeroLogic>[] heroStates = new FsmState<HeroLogic>[] {
-            new HeroIdleState (),
-            new HeroWalkState (),
+        FsmState<MonsterLogic>[] monsterStates = new FsmState<MonsterLogic>[] {
+            new MonsterIdleState (),
+            new MonsterWalkState (),
         };
 
-        m_HeroFsm = GameEntry.Fsm.CreateFsm<HeroLogic> (this, heroStates);
+        m_MonsterFsm = GameEntry.Fsm.CreateFsm<MonsterLogic> (this, monsterStates);
 
         /* 启动站立状态 */
-        m_HeroFsm.Start<HeroIdleState> ();
+        m_MonsterFsm.Start<MonsterIdleState> ();
     }
 
     protected override void OnShow (object userData) {
         base.OnShow (userData);
 
-        m_heroData = userData as HeroData;
-        if (m_heroData == null) {
-            Log.Error ("Hero data is invalid.");
+        m_MonsterData = userData as MonsterData;
+        if (m_MonsterData == null) {
+            Log.Error ("Monster data is invalid.");
             return;
         }
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
-
-        /* 旋转镜头 */
-        float inputHorizontal = Input.GetAxis ("Horizontal");
-        if (inputHorizontal != 0) {
-            transform.Rotate (new Vector3 (0, inputHorizontal * 0.8f * m_heroData.RotateSpeed, 0));
-        }
     }
 
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm<HeroLogic> ();
+        GameEntry.Fsm.DestroyFsm<MonsterLogic> ();
     }
 
     public override ImpactData GetImpactData () {
-        return new ImpactData (m_heroData.Camp, m_heroData.HP, 0, m_heroData.Defense);
+        return new ImpactData (m_MonsterData.Camp, m_MonsterData.HP, 0, m_MonsterData.Defense);
     }
 
     /// <summary>
@@ -68,14 +61,22 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     public void Forward (float distance) {
-        CachedTransform.position += CachedTransform.forward * distance * m_heroData.MoveSpeed;
+        CachedTransform.position += CachedTransform.forward * distance * m_MonsterData.MoveSpeed;
+    }
+
+    /// <summary>
+    /// 转身
+    /// </summary>
+    /// <param name="destVec">目标位置</param>
+    public void Rotate(Vector3 destVec) {
+        CachedTransform.Rotate(destVec);
     }
 
     /// <summary>
     /// 切换动画
     /// </summary>
     /// <param name="state"></param>
-    public void ChangeAnimation (HeroAnimationState state) {
+    public void ChangeAnimation (MonsterAnimationState state) {
         CachedAnimation.CrossFade (m_AnimationNames[(int) state], 0.01f);
     }
 }

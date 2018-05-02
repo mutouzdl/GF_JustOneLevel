@@ -18,10 +18,15 @@ public class SurvivalGame {
         GameEntry.Event.Subscribe (ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
         GameEntry.Event.Subscribe (ShowEntityFailureEventArgs.EventId, OnShowEntityFailure);
 
-        HeroData data = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
 
         // 创建主角
-        EntityExtension.ShowEntity (typeof (HeroLogic), "PlayerGroup", data);
+        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
+        EntityExtension.ShowEntity (typeof (HeroLogic), "PlayerGroup", heroData);
+
+        // 创建怪物
+        MonsterData monsterData = new MonsterData (EntityExtension.GenerateSerialId (), 101, CampType.Enemy);
+        monsterData.Position = new Vector3(10, 0, 10);
+        EntityExtension.ShowEntity (typeof (MonsterLogic), "MonsterGroup", monsterData);
 
         GameOver = false;
         m_Hero = null;
