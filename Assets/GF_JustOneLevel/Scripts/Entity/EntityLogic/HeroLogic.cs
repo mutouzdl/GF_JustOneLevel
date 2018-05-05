@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using GameFramework;
+using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
 
@@ -27,15 +30,30 @@ public class HeroLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        FsmState<HeroLogic>[] heroStates = new FsmState<HeroLogic>[] {
-            new HeroIdleState (),
-            new HeroWalkState (),
-        };
+        List<FsmState<HeroLogic>> fsmStateList = new List<FsmState<HeroLogic>>();
 
-        m_HeroFsm = GameEntry.Fsm.CreateFsm<HeroLogic> (this, heroStates);
+        Type heroFSMStateType = typeof(FsmState<HeroLogic>);
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        Type[] types = assembly.GetTypes();
+        for (int i = 0; i < types.Length; i++)
+        {
+            if (!types[i].IsClass || types[i].IsAbstract)
+            {
+                continue;
+            }
+
+            if (types[i].BaseType == heroFSMStateType)
+            {
+                fsmStateList.Add((FsmState<HeroLogic>)Activator.CreateInstance(types[i]));
+            }
+        }
+
+        m_HeroFsm = GameEntry.Fsm.CreateFsm<HeroLogic> (this, fsmStateList.ToArray());
 
         /* 启动站立状态 */
         m_HeroFsm.Start<HeroIdleState> ();
+
+        /* 订阅事件 */
     }
 
     protected override void OnShow (object userData) {
@@ -82,6 +100,17 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (HeroAnimationState state) {
+        Log.Info("ChangeAnimation");
         CachedAnimation.CrossFade (m_AnimationNames[(int) state], 0.01f);
     }
+
+    /// <summary>
+    /// 是否正在播放某个状态的动画
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    public bool IsPlayingAnimation(HeroAnimationState state) {
+        return CachedAnimation.IsPlaying(m_AnimationNames[(int)state]);
+    }
+
 }

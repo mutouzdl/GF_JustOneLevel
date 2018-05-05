@@ -7,5 +7,6 @@ public class UIPlayerOperate : UIFormLogic {
     /// </summary>
     public void OnAtkClick() {
         Log.Info("OnAtkClick");
+        GameEntry.Event.Fire(this, new ClickAttackButtonEventArgs(){ });
     }
 }
