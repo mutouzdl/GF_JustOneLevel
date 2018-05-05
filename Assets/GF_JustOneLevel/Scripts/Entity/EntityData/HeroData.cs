@@ -12,9 +12,14 @@ public class HeroData : FightEntityData {
             return;
         }
 
-        HP = m_MaxHP;
-        m_MoveSpeed = drHero.MoveSpeed;
-        m_RotateSpeed = drHero.RotateSpeed;
+        HP = drHero.HP;
+        MaxHP = HP;
+        MoveSpeed = drHero.MoveSpeed;
+        RotateSpeed = drHero.RotateSpeed;
+        Atk = drHero.Atk;
+        AtkRange = drHero.AtkRange;
+        Def = drHero.Def;
+        AtkSpeed = drHero.AtkSpeed;
     }
 
     // public ThrusterData GetThrusterData()
@@ -93,8 +98,8 @@ public class HeroData : FightEntityData {
         //     m_Defense += m_ArmorDatas[i].Defense;
         // }
 
-        if (HP > m_MaxHP) {
-            HP = m_MaxHP;
+        if (HP > MaxHP) {
+            HP = MaxHP;
         }
     }
 }

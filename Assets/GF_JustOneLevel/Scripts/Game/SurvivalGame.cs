@@ -22,12 +22,12 @@ public class SurvivalGame {
         // 创建主角
         HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
         heroData.Position = new Vector3(3, 0, 3);
-        EntityExtension.ShowEntity (typeof (HeroLogic), "PlayerGroup", heroData);
+        EntityExtension.ShowHero (typeof (HeroLogic), "PlayerGroup", heroData);
 
         // 创建怪物
-        MonsterData monsterData = new MonsterData (EntityExtension.GenerateSerialId (), 101, CampType.Enemy);
+        MonsterData monsterData = new MonsterData (EntityExtension.GenerateSerialId (), 1, CampType.Enemy);
         monsterData.Position = new Vector3(10, 0, 10);
-        EntityExtension.ShowEntity (typeof (MonsterLogic), "MonsterGroup", monsterData);
+        EntityExtension.ShowMonster (typeof (MonsterLogic), "MonsterGroup", monsterData);
 
         GameOver = false;
         m_Hero = null;

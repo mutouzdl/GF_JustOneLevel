@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameFramework;
 using GameFramework.DataTable;
 using UnityEngine;
 
@@ -11,9 +12,14 @@ public class MonsterData : FightEntityData {
         if (drMonster == null) {
             return;
         }
-
-        HP = m_MaxHP;
-        m_MoveSpeed = drMonster.MoveSpeed;
-        m_RotateSpeed = drMonster.RotateSpeed;
+Log.Info("drMonster.HP:" + drMonster.HP);
+        HP = drMonster.HP;
+        MaxHP = HP;
+        MoveSpeed = drMonster.MoveSpeed;
+        RotateSpeed = drMonster.RotateSpeed;
+        Atk = drMonster.Atk;
+        AtkRange = drMonster.AtkRange;
+        Def = drMonster.Def;
+        AtkSpeed = drMonster.AtkSpeed;
     }
 }

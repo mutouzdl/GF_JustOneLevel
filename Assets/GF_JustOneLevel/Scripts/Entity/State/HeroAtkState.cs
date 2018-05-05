@@ -1,3 +1,4 @@
+using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
@@ -15,6 +16,20 @@ public class HeroAtkState : FsmState<HeroLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<HeroLogic> fsm) {
         fsm.Owner.ChangeAnimation (HeroAnimationState.atk);
+
+        /* 判断是否有怪物进入攻击范围 */
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        foreach(GameObject obj in monsters) {
+            TargetableObject monster = obj.GetComponent<TargetableObject>();
+
+            if (monster.IsDead == false) {
+                float distance = AIUtility.GetDistance(fsm.Owner, monster);
+
+                if (fsm.Owner.CheckInAtkRange(distance)) {
+                    fsm.Owner.PerformAttack(monster);
+                }
+            }
+        }
     }
 
     /// <summary>

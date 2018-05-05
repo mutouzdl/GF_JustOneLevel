@@ -6,12 +6,8 @@ public abstract class TargetableObjectData : EntityData {
     [SerializeField]
     private CampType m_Camp = CampType.Unknown;
 
-    [SerializeField]
-    private int m_HP = 0;
-
     public TargetableObjectData (int entityId, int typeId, CampType camp) : base (entityId, typeId) {
         m_Camp = camp;
-        m_HP = 0;
     }
 
     /// <summary>
@@ -27,12 +23,8 @@ public abstract class TargetableObjectData : EntityData {
     /// 当前生命。
     /// </summary>
     public int HP {
-        get {
-            return m_HP;
-        }
-        set {
-            m_HP = value;
-        }
+        get;
+        set;
     }
 
     /// <summary>
@@ -40,6 +32,7 @@ public abstract class TargetableObjectData : EntityData {
     /// </summary>
     public abstract int MaxHP {
         get;
+        protected set;
     }
 
     /// <summary>
@@ -50,4 +43,13 @@ public abstract class TargetableObjectData : EntityData {
             return MaxHP > 0 ? (float) HP / MaxHP : 0f;
         }
     }
+    
+    /// <summary>
+    /// 防御。
+    /// </summary>
+    public int Def {
+        get;
+        protected set;
+    }
+
 }

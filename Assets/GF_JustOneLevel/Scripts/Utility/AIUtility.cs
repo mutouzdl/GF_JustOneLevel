@@ -13,30 +13,6 @@ public static class AIUtility {
     static AIUtility () {
         s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Player), RelationType.Friendly);
         s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Enemy), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Neutral), RelationType.Neutral);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Player2), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Enemy2), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Neutral2), RelationType.Neutral);
-
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Enemy), RelationType.Friendly);
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Neutral), RelationType.Neutral);
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Player2), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Enemy2), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Neutral2), RelationType.Neutral);
-
-        s_CampPairToRelation.Add (new CampPair (CampType.Neutral, CampType.Neutral), RelationType.Neutral);
-        s_CampPairToRelation.Add (new CampPair (CampType.Neutral, CampType.Player2), RelationType.Neutral);
-        s_CampPairToRelation.Add (new CampPair (CampType.Neutral, CampType.Enemy2), RelationType.Neutral);
-        s_CampPairToRelation.Add (new CampPair (CampType.Neutral, CampType.Neutral2), RelationType.Hostile);
-
-        s_CampPairToRelation.Add (new CampPair (CampType.Player2, CampType.Player2), RelationType.Friendly);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player2, CampType.Enemy2), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player2, CampType.Neutral2), RelationType.Neutral);
-
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy2, CampType.Enemy2), RelationType.Friendly);
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy2, CampType.Neutral2), RelationType.Neutral);
-
-        s_CampPairToRelation.Add (new CampPair (CampType.Neutral2, CampType.Neutral2), RelationType.Neutral);
     }
 
     /// <summary>

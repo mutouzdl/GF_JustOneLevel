@@ -5,22 +5,6 @@ using UnityEngine;
 
 [Serializable]
 public class FightEntityData : TargetableObjectData {
-    [SerializeField]
-    protected int m_MaxHP = 0;
-
-    [SerializeField]
-    protected int m_Defense = 0;
-    [SerializeField]
-    protected float m_MoveSpeed = 0;
-    [SerializeField]
-    protected float m_RotateSpeed = 0;
-
-    [SerializeField]
-    protected int m_DeadEffectId = 0;
-
-    [SerializeField]
-    protected int m_DeadSoundId = 0;
-
     public FightEntityData (int entityId, int typeId, CampType camp) : base (entityId, typeId, camp) {
     }
 
@@ -28,48 +12,66 @@ public class FightEntityData : TargetableObjectData {
     /// 最大生命。
     /// </summary>
     public override int MaxHP {
-        get {
-            return m_MaxHP;
-        }
-    }
-
-    /// <summary>
-    /// 防御。
-    /// </summary>
-    public int Defense {
-        get {
-            return m_Defense;
-        }
+        get;
+        protected set;
     }
 
     /// <summary>
     /// 移动速度。
     /// </summary>
     public float MoveSpeed {
-        get {
-            return m_MoveSpeed;
-        }
+        get;
+        protected set;
     }
 
     /// <summary>
     /// 旋转速度。
     /// </summary>
     public float RotateSpeed {
-        get {
-            return m_RotateSpeed;
-        }
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 攻击力
+    /// </summary>
+    public int Atk {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 攻击范围
+    /// </summary>
+    public int AtkRange {
+        get;
+        protected set;
+    }
+    
+    /// <summary>
+    /// 防御力
+    /// </summary>
+    public int Def {
+        get;
+        protected set;
+    }
+    
+    /// <summary>
+    /// 攻速
+    /// </summary>
+    public float AtkSpeed {
+        get;
+        protected set;
     }
 
     public int DeadEffectId {
-        get {
-            return m_DeadEffectId;
-        }
+        get;
+        protected set;
     }
 
     public int DeadSoundId {
-        get {
-            return m_DeadSoundId;
-        }
+        get;
+        protected set;
     }
 
     private void RefreshData () {
@@ -81,8 +83,8 @@ public class FightEntityData : TargetableObjectData {
         //     m_Defense += m_ArmorDatas[i].Defense;
         // }
 
-        if (HP > m_MaxHP) {
-            HP = m_MaxHP;
+        if (HP > MaxHP) {
+            HP = MaxHP;
         }
     }
 }

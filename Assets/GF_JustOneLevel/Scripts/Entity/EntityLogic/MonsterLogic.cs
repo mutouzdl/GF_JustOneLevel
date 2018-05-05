@@ -53,7 +53,7 @@ public class MonsterLogic : TargetableObject {
     }
 
     public override ImpactData GetImpactData () {
-        return new ImpactData (m_MonsterData.Camp, m_MonsterData.HP, 0, m_MonsterData.Defense);
+        return new ImpactData (m_MonsterData.Camp, m_MonsterData.HP, 0, m_MonsterData.Def);
     }
 
     /// <summary>

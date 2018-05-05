@@ -49,7 +49,6 @@ public class ProcedurePreload : ProcedureBase {
 
     private void PreloadResources () {
         // Preload data tables
-        LoadDataTable ("Entity");
         LoadDataTable ("Hero");
         LoadDataTable ("Monster");
         LoadDataTable ("Scene");

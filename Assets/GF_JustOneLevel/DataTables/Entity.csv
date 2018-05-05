@@ -1,6 +1,0 @@
-﻿#,实体配置表,
-#,Id,AssetName
-#,int,string
-#,编号,资源名称
-,1,Player
-,101,Monster1

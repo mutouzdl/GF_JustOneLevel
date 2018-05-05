@@ -11,7 +11,7 @@ using UnityGameFramework.Runtime;
         // 负值用于本地生成的临时实体（如特效、FakeObject等）
         private static int s_SerialId = 0;
 
-        public static void ShowEntity(Type logicType, string entityGroup, EntityData data)
+        public static void ShowMonster(Type logicType, string entityGroup, EntityData data)
         {
             if (data == null)
             {
@@ -19,14 +19,33 @@ using UnityGameFramework.Runtime;
                 return;
             }
 
-            IDataTable<DREntity> dtEntity = GameEntry.DataTable.GetDataTable<DREntity>();
-            DREntity drEntity = dtEntity.GetDataRow(data.TypeId);
+            IDataTable<DRMonster> dtEntity = GameEntry.DataTable.GetDataTable<DRMonster>();
+            DRMonster drEntity = dtEntity.GetDataRow(data.TypeId);
             if (drEntity == null)
             {
                 Log.Warning("Can not load entity id '{0}' from data table.", data.TypeId.ToString());
                 return;
             }
 Log.Info("drEntity.AssetName:" + drEntity.AssetName);
+            GameEntry.Entity.ShowEntity(data.Id, logicType, AssetUtility.GetEntityAsset(drEntity.AssetName), entityGroup, data);
+        }
+
+        public static void ShowHero(Type logicType, string entityGroup, EntityData data)
+        {
+            if (data == null)
+            {
+                Log.Warning("Data is invalid.");
+                return;
+            }
+
+            IDataTable<DRHero> dtEntity = GameEntry.DataTable.GetDataTable<DRHero>();
+            DRHero drEntity = dtEntity.GetDataRow(data.TypeId);
+            if (drEntity == null)
+            {
+                Log.Warning("Can not load entity id '{0}' from data table.", data.TypeId.ToString());
+                return;
+            }
+
             GameEntry.Entity.ShowEntity(data.Id, logicType, AssetUtility.GetEntityAsset(drEntity.AssetName), entityGroup, data);
         }
 

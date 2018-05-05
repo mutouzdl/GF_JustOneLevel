@@ -13,24 +13,4 @@ public enum CampType {
     /// 第一敌人阵营。
     /// </summary>
     Enemy,
-
-    /// <summary>
-    /// 第一中立阵营。
-    /// </summary>
-    Neutral,
-
-    /// <summary>
-    /// 第二玩家阵营。
-    /// </summary>
-    Player2,
-
-    /// <summary>
-    /// 第二敌人阵营。
-    /// </summary>
-    Enemy2,
-
-    /// <summary>
-    /// 第二中立阵营
-    /// </summary>
-    Neutral2,
 }

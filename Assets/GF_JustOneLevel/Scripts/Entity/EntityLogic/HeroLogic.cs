@@ -83,7 +83,7 @@ public class HeroLogic : TargetableObject {
     }
 
     public override ImpactData GetImpactData () {
-        return new ImpactData (m_heroData.Camp, m_heroData.HP, 0, m_heroData.Defense);
+        return new ImpactData (m_heroData.Camp, m_heroData.HP, 0, m_heroData.Def);
     }
 
     /// <summary>
@@ -93,6 +93,15 @@ public class HeroLogic : TargetableObject {
     public void Forward (float distance) {
         // CachedTransform.position += CachedTransform.forward * distance * m_heroData.MoveSpeed;
         m_Rigidbody.MovePosition(CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed);
+    }
+
+    /// <summary>
+    /// 是否在攻击范围内
+    /// </summary>
+    /// <param name="distance"></param>
+    /// <returns></returns>
+    public bool CheckInAtkRange(float distance) {
+        return distance <= m_heroData.AtkRange;
     }
 
     /// <summary>
@@ -113,4 +122,11 @@ public class HeroLogic : TargetableObject {
         return CachedAnimation.IsPlaying(m_AnimationNames[(int)state]);
     }
 
+    /// <summary>
+    /// 执行攻击
+    /// </summary>
+    /// <param name="aimEntity">攻击目标</param>
+    public void PerformAttack(TargetableObject aimEntity) {
+        aimEntity.ApplyDamage(this, m_heroData.Atk);
+    }
 }

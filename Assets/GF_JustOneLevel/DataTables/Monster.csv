@@ -1,5 +1,4 @@
-﻿#,场景配置表,,,
-#,Id,Name,MoveSpeed,RotateSpeed
-#,int,string,float,float
-#,场景编号,名称,移动速度,旋转速度
-,101,史莱姆,0.5,3
+﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkRange,Def,AtkSpeed,HP
+#,int,string,string,float,float,int,int,int,float,int
+#,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击范围,防御,攻速（秒）,血量
+,1,Monster1,史莱姆,0.5,3,3,2,1,0.3,10
