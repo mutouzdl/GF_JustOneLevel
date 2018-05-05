@@ -90,6 +90,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroIdleState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroListenAttackState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroWalkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterIdleState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterWalkState.cs" />

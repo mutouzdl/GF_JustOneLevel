@@ -36,6 +36,7 @@ public class MonsterIdleState : FsmState<MonsterLogic> {
                 ChangeState<MonsterWalkState>(fsm);
             }
         }
+        
     }
 
     /// <summary>

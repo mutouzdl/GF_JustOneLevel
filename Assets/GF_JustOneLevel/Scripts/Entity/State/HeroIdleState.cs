@@ -2,24 +2,21 @@ using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroIdleState : FsmState<HeroLogic> {
-    private bool m_IsAtk = false;
-
+public class HeroIdleState : HeroListenAttackState {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<HeroLogic> fsm) { }
+    protected override void OnInit (IFsm<HeroLogic> fsm) { 
+        base.OnInit(fsm);
+    }
 
     /// <summary>
     /// 有限状态机状态进入时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<HeroLogic> fsm) {
-        m_IsAtk = false;
-
-        GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
-        
+        base.OnEnter(fsm);
         fsm.Owner.ChangeAnimation (HeroAnimationState.idle);
     }
 
@@ -30,9 +27,7 @@ public class HeroIdleState : FsmState<HeroLogic> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<HeroLogic> fsm, float elapseSeconds, float realElapseSeconds) {
-        if (m_IsAtk) {
-            ChangeState<HeroAtkState> (fsm);
-        }
+        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
         float inputVertical = Input.GetAxis ("Vertical");
         if (inputVertical != 0) {
@@ -47,8 +42,7 @@ public class HeroIdleState : FsmState<HeroLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<HeroLogic> fsm, bool isShutdown) {
-
-        GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
+        base.OnLeave(fsm, isShutdown);
     }
 
     /// <summary>
@@ -57,10 +51,5 @@ public class HeroIdleState : FsmState<HeroLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnDestroy (IFsm<HeroLogic> fsm) {
         base.OnDestroy (fsm);
-        GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
-    }
-
-    private void OnClickAttackButton (object sender, GameEventArgs e) {
-        m_IsAtk = true;
     }
 }

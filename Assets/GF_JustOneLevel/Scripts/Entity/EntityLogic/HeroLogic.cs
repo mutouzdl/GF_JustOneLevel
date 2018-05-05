@@ -42,7 +42,7 @@ public class HeroLogic : TargetableObject {
                 continue;
             }
 
-            if (types[i].BaseType == heroFSMStateType)
+            if (types[i].IsSubclassOf(heroFSMStateType))
             {
                 fsmStateList.Add((FsmState<HeroLogic>)Activator.CreateInstance(types[i]));
             }
@@ -72,7 +72,7 @@ public class HeroLogic : TargetableObject {
         /* 旋转镜头 */
         float inputHorizontal = Input.GetAxis ("Horizontal");
         if (inputHorizontal != 0) {
-            transform.Rotate (new Vector3 (0, inputHorizontal * 0.8f * m_heroData.RotateSpeed, 0));
+            CachedTransform.Rotate (new Vector3 (0, inputHorizontal * 0.8f * m_heroData.RotateSpeed, 0));
         }
     }
 
