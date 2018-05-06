@@ -13,20 +13,24 @@ public class HeroLogic : TargetableObject {
     [SerializeField]
     private Rigidbody m_Rigidbody = null;
 
-    /// <summary>
-    /// 所有动画名称列表
-    /// </summary>
-    private List<string> m_AnimationNames = new List<string> ();
+    private Animator m_Animator;
     private GameFramework.Fsm.IFsm<HeroLogic> m_HeroFsm;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
+        m_Animator = gameObject.GetComponent<Animator>();
         m_Rigidbody = gameObject.GetComponent<Rigidbody> ();
 
-        /* 获取动画名称 */
-        foreach (AnimationState state in gameObject.GetComponent<Animation> ()) {
-            m_AnimationNames.Add (state.name);
+    }
+
+    protected override void OnShow (object userData) {
+        base.OnShow (userData);
+
+        m_heroData = userData as HeroData;
+        if (m_heroData == null) {
+            Log.Error ("Hero data is invalid.");
+            return;
         }
 
         /* 创建状态机 */
@@ -51,16 +55,7 @@ public class HeroLogic : TargetableObject {
         m_HeroFsm.Start<HeroIdleState> ();
 
         /* 订阅事件 */
-    }
-
-    protected override void OnShow (object userData) {
-        base.OnShow (userData);
-
-        m_heroData = userData as HeroData;
-        if (m_heroData == null) {
-            Log.Error ("Hero data is invalid.");
-            return;
-        }
+        GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -78,6 +73,7 @@ public class HeroLogic : TargetableObject {
         base.OnHide (userData);
 
         GameEntry.Fsm.DestroyFsm<HeroLogic> ();
+        GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
     }
 
     public override ImpactData GetImpactData () {
@@ -89,7 +85,6 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     public void Forward (float distance) {
-        // CachedTransform.position += CachedTransform.forward * distance * m_heroData.MoveSpeed;
         m_Rigidbody.MovePosition (CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed);
     }
 
@@ -107,17 +102,18 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (HeroAnimationState state) {
-        Log.Info ("ChangeAnimation");
-        CachedAnimation.CrossFade (m_AnimationNames[(int) state], 0.01f);
-    }
-
-    /// <summary>
-    /// 是否正在播放某个状态的动画
-    /// </summary>
-    /// <param name="state"></param>
-    /// <returns></returns>
-    public bool IsPlayingAnimation (HeroAnimationState state) {
-        return CachedAnimation.IsPlaying (m_AnimationNames[(int) state]);
+        if (state == HeroAnimationState.walk) {
+            m_Animator.SetBool("IsWalking", true);
+            m_Animator.SetBool("IsAttacking", false);
+        }
+        else if (state == HeroAnimationState.idle) {
+            m_Animator.SetBool("IsWalking", false);
+            m_Animator.SetBool("IsAttacking", false);
+        }
+        else if (state == HeroAnimationState.atk) {
+            m_Animator.SetBool("IsWalking", false);
+            m_Animator.SetBool("IsAttacking", true);
+        }
     }
 
     /// <summary>
@@ -126,5 +122,15 @@ public class HeroLogic : TargetableObject {
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (TargetableObject aimEntity) {
         aimEntity.ApplyDamage (this, m_heroData.Atk);
+    }
+
+    private void OnClickAttackButton (object sender, GameEventArgs e) {
+        m_HeroFsm.FireEvent(this, ClickAttackButtonEventArgs.EventId);
+    }
+
+    public HeroData HeroData {
+        get {
+            return m_heroData;
+        }
     }
 }

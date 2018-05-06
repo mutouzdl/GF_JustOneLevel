@@ -1,15 +1,16 @@
-using GameFramework.Event;
+using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroListenAttackState : FsmState<HeroLogic> {
-    private bool m_IsAtk = false;
+public class HeroAtkCDState : FsmState<HeroLogic> {
+    private float atkCDTimeCounter = 0;
 
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<HeroLogic> fsm) { 
+    protected override void OnInit (IFsm<HeroLogic> fsm) {
+        base.OnInit(fsm);
     }
 
     /// <summary>
@@ -17,9 +18,9 @@ public class HeroListenAttackState : FsmState<HeroLogic> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<HeroLogic> fsm) {
-        m_IsAtk = false;
+        base.OnEnter(fsm);
 
-        SubscribeEvent(ClickAttackButtonEventArgs.EventId, OnClickAttackButtonEvent);
+        atkCDTimeCounter = 0;
     }
 
     /// <summary>
@@ -29,8 +30,13 @@ public class HeroListenAttackState : FsmState<HeroLogic> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<HeroLogic> fsm, float elapseSeconds, float realElapseSeconds) {
-        if (m_IsAtk) {
-            ChangeState<HeroAtkState> (fsm);
+        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+
+        atkCDTimeCounter += elapseSeconds;
+        
+        if (atkCDTimeCounter >= fsm.Owner.HeroData.AtkSpeed) {
+            atkCDTimeCounter = 0;
+            ChangeState<HeroIdleState>(fsm);
         }
     }
 
@@ -40,7 +46,7 @@ public class HeroListenAttackState : FsmState<HeroLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<HeroLogic> fsm, bool isShutdown) {
-        UnsubscribeEvent(ClickAttackButtonEventArgs.EventId, OnClickAttackButtonEvent);
+        base.OnLeave (fsm, isShutdown);
     }
 
     /// <summary>
@@ -49,10 +55,6 @@ public class HeroListenAttackState : FsmState<HeroLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnDestroy (IFsm<HeroLogic> fsm) {
         base.OnDestroy (fsm);
-        UnsubscribeEvent(ClickAttackButtonEventArgs.EventId, OnClickAttackButtonEvent);
     }
 
-    private void OnClickAttackButtonEvent(IFsm<HeroLogic> fsm, object sender, object userData) {
-        ChangeState<HeroAtkState> (fsm);
-    }
 }

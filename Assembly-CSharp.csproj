@@ -88,6 +88,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\HeroLogic.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\MonsterLogic.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroIdleState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroListenAttackState.cs" />

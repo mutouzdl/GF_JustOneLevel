@@ -18,6 +18,8 @@ public class HeroAtkState : HeroListenAttackState {
     protected override void OnEnter (IFsm<HeroLogic> fsm) {
         base.OnEnter(fsm);
 
+        Log.Info("HeroAtkState OnEnter");
+
         fsm.Owner.ChangeAnimation (HeroAnimationState.atk);
 
         /* 判断是否有怪物进入攻击范围 */
@@ -44,9 +46,7 @@ public class HeroAtkState : HeroListenAttackState {
     protected override void OnUpdate (IFsm<HeroLogic> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
-        if (fsm.Owner.IsPlayingAnimation(HeroAnimationState.atk) == false) {
-            ChangeState<HeroIdleState>(fsm);
-        }
+        ChangeState<HeroAtkCDState>(fsm);
     }
 
     /// <summary>

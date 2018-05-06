@@ -415,9 +415,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4607495446440246}
-  - component: {fileID: 111591290373121820}
   - component: {fileID: 54481860795528864}
   - component: {fileID: 65912169698222490}
+  - component: {fileID: 95553373638069486}
   m_Layer: 0
   m_Name: Player
   m_TagString: Hero
@@ -1025,6 +1025,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 27414cf1326826e418ffc8f35b6bd0bc, type: 2}
   m_StaticBatchInfo:
@@ -1080,25 +1081,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0.15, z: 0}
---- !u!111 &111591290373121820
-Animation:
+--- !u!95 &95553373638069486
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829171384183556}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: ac1d9b0420ad1b146b5d57d7729b647e, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: ac1d9b0420ad1b146b5d57d7729b647e, type: 3}
-  - {fileID: 7400000, guid: afa46a7eafad7874da3988d082799d38, type: 3}
-  - {fileID: 7400000, guid: cb0d6a1bee21e754e955d5a0bed61fdf, type: 3}
-  - {fileID: 7400000, guid: 49b297db20eec434cb72977e88d5107b, type: 3}
-  - {fileID: 7400000, guid: 119550f2b2b0fe748875dc68a648b28c, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92565eff50bb7224fbd7107c8e39da05, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!124 &124260308980937614
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1119,6 +1119,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: a44dcad8b441a154c83635df9154ae58, type: 2}
   m_StaticBatchInfo:
@@ -1181,6 +1182,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 156f7ae04933bae4885cdef0ea06ede7, type: 2}
   - {fileID: 2100000, guid: bc3b182be6490b04f8ee265c6256a229, type: 2}
