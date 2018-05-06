@@ -2,7 +2,7 @@ using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class MonsterWalkState : FsmState<MonsterLogic> {
+public class MonsterWalkState : MonsterSeekAimState {
     private float rotateTimeCounter = 0;
     private float idleTimeCounter = 0;
 
@@ -10,13 +10,17 @@ public class MonsterWalkState : FsmState<MonsterLogic> {
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<MonsterLogic> fsm) { }
+    protected override void OnInit (IFsm<MonsterLogic> fsm) {
+        base.OnInit(fsm);
+    }
 
     /// <summary>
     /// 有限状态机状态进入时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
+        base.OnEnter(fsm);
+
         fsm.Owner.ChangeAnimation (MonsterAnimationState.walk);
     }
 
@@ -27,6 +31,8 @@ public class MonsterWalkState : FsmState<MonsterLogic> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+
         idleTimeCounter += elapseSeconds;
         rotateTimeCounter += elapseSeconds;
 
@@ -61,7 +67,7 @@ public class MonsterWalkState : FsmState<MonsterLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<MonsterLogic> fsm, bool isShutdown) {
-
+        base.OnLeave (fsm, isShutdown);
     }
 
     /// <summary>

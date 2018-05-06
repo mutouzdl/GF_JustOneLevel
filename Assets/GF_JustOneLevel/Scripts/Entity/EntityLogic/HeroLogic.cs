@@ -16,13 +16,13 @@ public class HeroLogic : TargetableObject {
     /// <summary>
     /// 所有动画名称列表
     /// </summary>
-    private List<string> m_AnimationNames = new List<string>();
+    private List<string> m_AnimationNames = new List<string> ();
     private GameFramework.Fsm.IFsm<HeroLogic> m_HeroFsm;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
-        m_Rigidbody = gameObject.GetComponent<Rigidbody>();
+        m_Rigidbody = gameObject.GetComponent<Rigidbody> ();
 
         /* 获取动画名称 */
         foreach (AnimationState state in gameObject.GetComponent<Animation> ()) {
@@ -30,25 +30,22 @@ public class HeroLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        List<FsmState<HeroLogic>> fsmStateList = new List<FsmState<HeroLogic>>();
+        List<FsmState<HeroLogic>> fsmStateList = new List<FsmState<HeroLogic>> ();
 
-        Type heroFSMStateType = typeof(FsmState<HeroLogic>);
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        Type[] types = assembly.GetTypes();
-        for (int i = 0; i < types.Length; i++)
-        {
-            if (!types[i].IsClass || types[i].IsAbstract)
-            {
+        Type heroFSMStateType = typeof (FsmState<HeroLogic>);
+        Assembly assembly = Assembly.GetExecutingAssembly ();
+        Type[] types = assembly.GetTypes ();
+        for (int i = 0; i < types.Length; i++) {
+            if (!types[i].IsClass || types[i].IsAbstract) {
                 continue;
             }
 
-            if (types[i].IsSubclassOf(heroFSMStateType))
-            {
-                fsmStateList.Add((FsmState<HeroLogic>)Activator.CreateInstance(types[i]));
+            if (types[i].IsSubclassOf (heroFSMStateType)) {
+                fsmStateList.Add ((FsmState<HeroLogic>) Activator.CreateInstance (types[i]));
             }
         }
 
-        m_HeroFsm = GameEntry.Fsm.CreateFsm<HeroLogic> (this, fsmStateList.ToArray());
+        m_HeroFsm = GameEntry.Fsm.CreateFsm<HeroLogic> (this, fsmStateList.ToArray ());
 
         /* 启动站立状态 */
         m_HeroFsm.Start<HeroIdleState> ();
@@ -72,7 +69,8 @@ public class HeroLogic : TargetableObject {
         /* 旋转镜头 */
         float inputHorizontal = Input.GetAxis ("Horizontal");
         if (inputHorizontal != 0) {
-            CachedTransform.Rotate (new Vector3 (0, inputHorizontal * 0.8f * m_heroData.RotateSpeed, 0));
+            Quaternion deltaRotation = Quaternion.Euler (0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0);
+            m_Rigidbody.MoveRotation (m_Rigidbody.rotation * deltaRotation);
         }
     }
 
@@ -92,7 +90,7 @@ public class HeroLogic : TargetableObject {
     /// <param name="distance"></param>
     public void Forward (float distance) {
         // CachedTransform.position += CachedTransform.forward * distance * m_heroData.MoveSpeed;
-        m_Rigidbody.MovePosition(CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed);
+        m_Rigidbody.MovePosition (CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed);
     }
 
     /// <summary>
@@ -100,7 +98,7 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     /// <returns></returns>
-    public bool CheckInAtkRange(float distance) {
+    public bool CheckInAtkRange (float distance) {
         return distance <= m_heroData.AtkRange;
     }
 
@@ -109,7 +107,7 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (HeroAnimationState state) {
-        Log.Info("ChangeAnimation");
+        Log.Info ("ChangeAnimation");
         CachedAnimation.CrossFade (m_AnimationNames[(int) state], 0.01f);
     }
 
@@ -118,15 +116,15 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     /// <returns></returns>
-    public bool IsPlayingAnimation(HeroAnimationState state) {
-        return CachedAnimation.IsPlaying(m_AnimationNames[(int)state]);
+    public bool IsPlayingAnimation (HeroAnimationState state) {
+        return CachedAnimation.IsPlaying (m_AnimationNames[(int) state]);
     }
 
     /// <summary>
     /// 执行攻击
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
-    public void PerformAttack(TargetableObject aimEntity) {
-        aimEntity.ApplyDamage(this, m_heroData.Atk);
+    public void PerformAttack (TargetableObject aimEntity) {
+        aimEntity.ApplyDamage (this, m_heroData.Atk);
     }
 }

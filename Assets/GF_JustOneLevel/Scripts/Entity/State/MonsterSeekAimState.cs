@@ -1,16 +1,15 @@
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
-public class MonsterIdleState : MonsterSeekAimState {
-    private float forwardTimeCounter = 0;
-
+public class MonsterSeekAimState : FsmState<MonsterLogic> {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnInit (IFsm<MonsterLogic> fsm) {
-        base.OnInit(fsm);
+        base.OnInit (fsm);
     }
 
     /// <summary>
@@ -18,9 +17,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
-        base.OnEnter(fsm);
-
-        fsm.Owner.ChangeAnimation (MonsterAnimationState.idle);
+        base.OnEnter (fsm);
     }
 
     /// <summary>
@@ -30,19 +27,23 @@ public class MonsterIdleState : MonsterSeekAimState {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
-        forwardTimeCounter += elapseSeconds;
+        /* 判断是否有英雄进入攻击范围 */
+        GameObject[] heros = GameObject.FindGameObjectsWithTag ("Hero");
+        foreach (GameObject obj in heros) {
+            TargetableObject hero = obj.GetComponent<TargetableObject> ();
 
-        // 随机移动
-        if(forwardTimeCounter > 7) {
-            forwardTimeCounter = 0;
-            
-            if (Utility.Random.GetRandom(100) < 40) {
-                ChangeState<MonsterWalkState>(fsm);
+            if (hero.IsDead == false) {
+                float distance = AIUtility.GetDistance (fsm.Owner, hero);
+
+                if (fsm.Owner.CheckInAtkRange (distance)) {
+                    fsm.SetData<VarInt>(Constant.EntityData.LockAimID, hero.Entity.Id);
+                    ChangeState<MonsterAtkState>(fsm);
+                    break;
+                }
             }
         }
-        
     }
 
     /// <summary>
@@ -61,5 +62,4 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnDestroy (IFsm<MonsterLogic> fsm) {
         base.OnDestroy (fsm);
     }
-
 }

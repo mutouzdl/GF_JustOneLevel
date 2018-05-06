@@ -12,7 +12,7 @@ public class MonsterData : FightEntityData {
         if (drMonster == null) {
             return;
         }
-Log.Info("drMonster.HP:" + drMonster.HP);
+
         HP = drMonster.HP;
         MaxHP = HP;
         MoveSpeed = drMonster.MoveSpeed;

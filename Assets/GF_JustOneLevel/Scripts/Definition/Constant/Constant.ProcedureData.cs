@@ -7,4 +7,8 @@ public static partial class Constant {
         public const string NextSceneId = "NextSceneId";
         public const string GameMode = "GameMode";
     }
+
+    public static class EntityData {
+        public const string LockAimID = "LockAimID";
+    }
 }

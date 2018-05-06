@@ -2,7 +2,7 @@ using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroAtkState : FsmState<HeroLogic> {
+public class HeroAtkState : HeroListenAttackState {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>

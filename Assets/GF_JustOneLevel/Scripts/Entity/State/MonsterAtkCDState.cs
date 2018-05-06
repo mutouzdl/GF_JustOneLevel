@@ -2,8 +2,8 @@ using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class MonsterIdleState : MonsterSeekAimState {
-    private float forwardTimeCounter = 0;
+public class MonsterAtkCDState : FsmState<MonsterLogic> {
+    private float atkCDTimeCounter = 0;
 
     /// <summary>
     /// 有限状态机状态初始化时调用。
@@ -20,7 +20,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
         base.OnEnter(fsm);
 
-        fsm.Owner.ChangeAnimation (MonsterAnimationState.idle);
+        atkCDTimeCounter = 0;
     }
 
     /// <summary>
@@ -32,17 +32,11 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
-        forwardTimeCounter += elapseSeconds;
-
-        // 随机移动
-        if(forwardTimeCounter > 7) {
-            forwardTimeCounter = 0;
-            
-            if (Utility.Random.GetRandom(100) < 40) {
-                ChangeState<MonsterWalkState>(fsm);
-            }
-        }
+        atkCDTimeCounter += elapseSeconds;
         
+        if (atkCDTimeCounter >= fsm.Owner.MonsterData.AtkSpeed) {
+            ChangeState<MonsterIdleState>(fsm);
+        }
     }
 
     /// <summary>

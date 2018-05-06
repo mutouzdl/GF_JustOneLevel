@@ -49,14 +49,6 @@ public class FightEntityData : TargetableObjectData {
     }
     
     /// <summary>
-    /// 防御力
-    /// </summary>
-    public int Def {
-        get;
-        protected set;
-    }
-    
-    /// <summary>
     /// 攻速
     /// </summary>
     public float AtkSpeed {

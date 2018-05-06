@@ -1,15 +1,14 @@
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
-public class MonsterIdleState : MonsterSeekAimState {
-    private float forwardTimeCounter = 0;
-
+public class MonsterAtkState : FsmState<MonsterLogic> {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<MonsterLogic> fsm) {
+    protected override void OnInit (IFsm<MonsterLogic> fsm) { 
         base.OnInit(fsm);
     }
 
@@ -20,7 +19,12 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
         base.OnEnter(fsm);
 
-        fsm.Owner.ChangeAnimation (MonsterAnimationState.idle);
+        fsm.Owner.ChangeAnimation (MonsterAnimationState.atk);
+
+        int lockAimID = fsm.GetData<VarInt>(Constant.EntityData.LockAimID).Value;
+        HeroLogic hero = (HeroLogic)GameEntry.Entity.GetEntity(lockAimID).Logic;
+
+        fsm.Owner.PerformAttack(hero);
     }
 
     /// <summary>
@@ -32,17 +36,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
-        forwardTimeCounter += elapseSeconds;
-
-        // 随机移动
-        if(forwardTimeCounter > 7) {
-            forwardTimeCounter = 0;
-            
-            if (Utility.Random.GetRandom(100) < 40) {
-                ChangeState<MonsterWalkState>(fsm);
-            }
-        }
-        
+        ChangeState<MonsterAtkCDState>(fsm);
     }
 
     /// <summary>
@@ -51,7 +45,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<MonsterLogic> fsm, bool isShutdown) {
-        base.OnLeave (fsm, isShutdown);
+        base.OnLeave(fsm, isShutdown);
     }
 
     /// <summary>
@@ -61,5 +55,4 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnDestroy (IFsm<MonsterLogic> fsm) {
         base.OnDestroy (fsm);
     }
-
 }

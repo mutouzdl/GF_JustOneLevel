@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
@@ -21,12 +23,25 @@ public class MonsterLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        FsmState<MonsterLogic>[] monsterStates = new FsmState<MonsterLogic>[] {
-            new MonsterIdleState (),
-            new MonsterWalkState (),
-        };
+        List<FsmState<MonsterLogic>> fsmStateList = new List<FsmState<MonsterLogic>>();
 
-        m_MonsterFsm = GameEntry.Fsm.CreateFsm<MonsterLogic> (this, monsterStates);
+        Type monsterFSMStateType = typeof(FsmState<MonsterLogic>);
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        Type[] types = assembly.GetTypes();
+        for (int i = 0; i < types.Length; i++)
+        {
+            if (!types[i].IsClass || types[i].IsAbstract)
+            {
+                continue;
+            }
+
+            if (types[i].IsSubclassOf(monsterFSMStateType))
+            {
+                fsmStateList.Add((FsmState<MonsterLogic>)Activator.CreateInstance(types[i]));
+            }
+        }
+
+        m_MonsterFsm = GameEntry.Fsm.CreateFsm<MonsterLogic> (this, fsmStateList.ToArray());
 
         /* 启动站立状态 */
         m_MonsterFsm.Start<MonsterIdleState> ();
@@ -78,5 +93,28 @@ public class MonsterLogic : TargetableObject {
     /// <param name="state"></param>
     public void ChangeAnimation (MonsterAnimationState state) {
         CachedAnimation.CrossFade (m_AnimationNames[(int) state], 0.01f);
+    }
+
+    /// <summary>
+    /// 是否在攻击范围内
+    /// </summary>
+    /// <param name="distance"></param>
+    /// <returns></returns>
+    public bool CheckInAtkRange(float distance) {
+        return distance <= m_MonsterData.AtkRange;
+    }
+
+    /// <summary>
+    /// 执行攻击
+    /// </summary>
+    /// <param name="aimEntity">攻击目标</param>
+    public void PerformAttack(TargetableObject aimEntity) {
+        aimEntity.ApplyDamage(this, m_MonsterData.Atk);
+    }
+
+    public MonsterData MonsterData {
+        get {
+            return m_MonsterData;
+        }
     }
 }
