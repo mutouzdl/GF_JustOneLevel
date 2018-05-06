@@ -17,7 +17,7 @@ public abstract class Entity : EntityLogic {
                 }
         }
 
-        public Animation CachedAnimation {
+        public Animator CachedAnimator {
                 get;
                 private set;
         }
@@ -29,7 +29,7 @@ public abstract class Entity : EntityLogic {
 #endif
         {
                 base.OnInit (userData);
-                CachedAnimation = GetComponent<Animation> ();
+                CachedAnimator = GetComponent<Animator> ();
         }
 
 #if UNITY_2017_3_OR_NEWER

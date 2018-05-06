@@ -9,17 +9,20 @@ public class MonsterLogic : TargetableObject {
     [SerializeField]
     private MonsterData m_MonsterData = null;
 
-    /// 所有动画名称列表
-    /// </summary>
-    private List<string> m_AnimationNames = new List<string>();
     private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterFsm;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
-        /* 获取动画名称 */
-        foreach (AnimationState state in gameObject.GetComponent<Animation> ()) {
-            m_AnimationNames.Add (state.name);
+    }
+
+    protected override void OnShow (object userData) {
+        base.OnShow (userData);
+
+        m_MonsterData = userData as MonsterData;
+        if (m_MonsterData == null) {
+            Log.Error ("Monster data is invalid.");
+            return;
         }
 
         /* 创建状态机 */
@@ -45,16 +48,6 @@ public class MonsterLogic : TargetableObject {
 
         /* 启动站立状态 */
         m_MonsterFsm.Start<MonsterIdleState> ();
-    }
-
-    protected override void OnShow (object userData) {
-        base.OnShow (userData);
-
-        m_MonsterData = userData as MonsterData;
-        if (m_MonsterData == null) {
-            Log.Error ("Monster data is invalid.");
-            return;
-        }
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -92,7 +85,18 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (MonsterAnimationState state) {
-        CachedAnimation.CrossFade (m_AnimationNames[(int) state], 0.01f);
+        if (state == MonsterAnimationState.walk) {
+            CachedAnimator.SetBool("IsWalking", true);
+            CachedAnimator.SetBool("IsAttacking", false);
+        }
+        else if (state == MonsterAnimationState.idle) {
+            CachedAnimator.SetBool("IsWalking", false);
+            CachedAnimator.SetBool("IsAttacking", false);
+        }
+        else if (state == MonsterAnimationState.atk) {
+            CachedAnimator.SetBool("IsWalking", false);
+            CachedAnimator.SetBool("IsAttacking", true);
+        }
     }
 
     /// <summary>

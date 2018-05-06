@@ -95,9 +95,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4210021702076582}
-  - component: {fileID: 111827787359562460}
   - component: {fileID: 54869796266969072}
   - component: {fileID: 65874329916168052}
+  - component: {fileID: 95595453233047304}
   m_Layer: 0
   m_Name: Monster1
   m_TagString: Monster
@@ -215,25 +215,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.84, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!111 &111827787359562460
-Animation:
+--- !u!95 &95595453233047304
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1911964595210574}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1b0ab3a30946ebe4b9961802812a327e, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 1b0ab3a30946ebe4b9961802812a327e, type: 3}
-  - {fileID: 7400000, guid: b64d9c22cf32b4e4898cc86a2e97ed47, type: 3}
-  - {fileID: 7400000, guid: f983d351f501d5d49bd7981f7c98152a, type: 3}
-  - {fileID: 7400000, guid: 59513984fb4b3f2488d9398a71241451, type: 3}
-  - {fileID: 7400000, guid: f524334c8ae52f24b8c15fda83e34712, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 484f49697c3b15548b12591eec8e761e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!137 &137091136604446890
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -247,6 +246,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8bf1b9b502f25ff42bb1f92fab50fdfe, type: 2}
   m_StaticBatchInfo:
