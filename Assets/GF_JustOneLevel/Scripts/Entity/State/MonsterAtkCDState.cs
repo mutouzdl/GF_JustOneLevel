@@ -35,7 +35,9 @@ public class MonsterAtkCDState : FsmState<MonsterLogic> {
         atkCDTimeCounter += elapseSeconds;
         
         if (atkCDTimeCounter >= fsm.Owner.MonsterData.AtkSpeed) {
-            ChangeState<MonsterIdleState>(fsm);
+            atkCDTimeCounter = 0;
+            fsm.Owner.ResetAtkCD();
+            ChangeState<MonsterCDIdleState>(fsm);
         }
     }
 

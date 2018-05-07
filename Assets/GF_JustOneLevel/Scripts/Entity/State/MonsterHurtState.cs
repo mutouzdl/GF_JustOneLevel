@@ -3,15 +3,15 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class MonsterAtkState : FsmState<MonsterLogic> {
-    private float atkTimeCounter = 0;
-    
+public class MonsterHurtState : FsmState<MonsterLogic> {
+    private float hurtTimeCounter = 0;
+
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<MonsterLogic> fsm) { 
-        base.OnInit(fsm);
+    protected override void OnInit (IFsm<MonsterLogic> fsm) {
+        base.OnInit (fsm);
     }
 
     /// <summary>
@@ -19,15 +19,16 @@ public class MonsterAtkState : FsmState<MonsterLogic> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
-        base.OnEnter(fsm);
+        base.OnEnter (fsm);
 
-        Log.Info("MonsterAtkState OnEnter");
-        fsm.Owner.ChangeAnimation (MonsterAnimationState.atk);
+        Log.Info("MonsterHurtState Enter");
 
-        int lockAimID = fsm.GetData<VarInt>(Constant.EntityData.LockAimID).Value;
-        HeroLogic hero = (HeroLogic)GameEntry.Entity.GetEntity(lockAimID).Logic;
+        hurtTimeCounter = 0;
 
-        fsm.Owner.PerformAttack(hero);
+        fsm.Owner.ChangeAnimation (MonsterAnimationState.hurt);
+
+        int damageHP = fsm.GetData<VarInt> (Constant.EntityData.DamageHP).Value;
+        fsm.Owner.OnDamage (damageHP);
     }
 
     /// <summary>
@@ -37,11 +38,11 @@ public class MonsterAtkState : FsmState<MonsterLogic> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
-        atkTimeCounter += elapseSeconds;
+        hurtTimeCounter += elapseSeconds;
 
-        if (atkTimeCounter > 0.8) {
+        if (hurtTimeCounter > 0.3) {
             ChangeState<MonsterIdleState> (fsm);
         }
     }
@@ -52,7 +53,7 @@ public class MonsterAtkState : FsmState<MonsterLogic> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<MonsterLogic> fsm, bool isShutdown) {
-        base.OnLeave(fsm, isShutdown);
+        base.OnLeave (fsm, isShutdown);
     }
 
     /// <summary>

@@ -2,13 +2,13 @@ using GameFramework.Event;
 using UnityGameFramework.Runtime;
 
 /// <summary>
-/// 英雄攻击事件。
+/// 怪物攻击事件。
 /// </summary>
-public sealed class HeroAttackEventArgs : GameEventArgs {
+public sealed class MonsterAttackEventArgs : GameEventArgs {
     /// <summary>
     /// 事件编号。
     /// </summary>
-    public static readonly int EventId = typeof (HeroAttackEventArgs).GetHashCode ();
+    public static readonly int EventId = typeof (MonsterAttackEventArgs).GetHashCode ();
 
     /// <summary>
     /// 获取事件编号。

@@ -9,7 +9,19 @@ public class MonsterLogic : TargetableObject {
     [SerializeField]
     private MonsterData m_MonsterData = null;
 
-    private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterFsm;
+    /// <summary>
+    /// 攻击是否正在冷却
+    /// </summary>
+    private bool m_IsAtkCDing = false;
+    /// <summary>
+    /// 状态类状态机：CD空闲、CD
+    /// </summary>
+    private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterStateFsm;
+    /// <summary>
+    /// 行动类状态机：空闲、行走、攻击、受伤
+    /// </summary>
+    private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterActionFsm;
+
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
@@ -26,28 +38,21 @@ public class MonsterLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        List<FsmState<MonsterLogic>> fsmStateList = new List<FsmState<MonsterLogic>>();
+        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<MonsterLogic>("monsterStateFsm", this, new FsmState<MonsterLogic>[]{
+            new MonsterCDIdleState(),
+            new MonsterAtkCDState(),
+        });
 
-        Type monsterFSMStateType = typeof(FsmState<MonsterLogic>);
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        Type[] types = assembly.GetTypes();
-        for (int i = 0; i < types.Length; i++)
-        {
-            if (!types[i].IsClass || types[i].IsAbstract)
-            {
-                continue;
-            }
+        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<MonsterLogic>("monsterActionFsm", this, new FsmState<MonsterLogic>[]{
+            new MonsterIdleState(),
+            new MonsterWalkState(),
+            new MonsterAtkState(),
+            new MonsterHurtState(),
+        });
 
-            if (types[i].IsSubclassOf(monsterFSMStateType))
-            {
-                fsmStateList.Add((FsmState<MonsterLogic>)Activator.CreateInstance(types[i]));
-            }
-        }
-
-        m_MonsterFsm = GameEntry.Fsm.CreateFsm<MonsterLogic> (this, fsmStateList.ToArray());
-
-        /* 启动站立状态 */
-        m_MonsterFsm.Start<MonsterIdleState> ();
+        /* 启动状态机 */
+        m_MonsterStateFsm.Start<MonsterCDIdleState> ();
+        m_MonsterActionFsm.Start<MonsterIdleState> ();
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -86,17 +91,23 @@ public class MonsterLogic : TargetableObject {
     /// <param name="state"></param>
     public void ChangeAnimation (MonsterAnimationState state) {
         Log.Info("Monster ChangeAnimation");
+        
         if (state == MonsterAnimationState.walk) {
-            CachedAnimator.SetBool("IsWalking", true);
-            CachedAnimator.SetBool("IsAttacking", false);
-        }
-        else if (state == MonsterAnimationState.idle) {
-            CachedAnimator.SetBool("IsWalking", false);
-            CachedAnimator.SetBool("IsAttacking", false);
-        }
-        else if (state == MonsterAnimationState.atk) {
-            CachedAnimator.SetBool("IsWalking", false);
-            CachedAnimator.SetBool("IsAttacking", true);
+            CachedAnimator.SetBool ("IsWalking", true);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", false);
+        } else if (state == MonsterAnimationState.idle) {
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", false);
+        } else if (state == MonsterAnimationState.atk) {
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", true);
+            CachedAnimator.SetBool ("IsHurting", false);
+        } else if (state == MonsterAnimationState.hurt) {
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", true);
         }
     }
 
@@ -114,6 +125,8 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack(TargetableObject aimEntity) {
+        m_IsAtkCDing = true;
+        m_MonsterStateFsm.FireEvent(this, MonsterAttackEventArgs.EventId);
         aimEntity.ApplyDamage(m_MonsterData.Atk);
     }
 
@@ -122,7 +135,22 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     /// <param name="damageHP"></param>
     public override void ApplyDamage (int damageHP) {
-        m_MonsterFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
+        m_MonsterActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
+    }
+
+    /// <summary>
+    /// 攻击是否正在冷却
+    /// </summary>
+    /// <returns></returns>
+    public bool IsAtkCDing() {
+        return m_IsAtkCDing;
+    }
+
+    /// <summary>
+    /// 重置攻击冷却
+    /// </summary>
+    public void ResetAtkCD() {
+        m_IsAtkCDing = false;
     }
 
     public MonsterData MonsterData {

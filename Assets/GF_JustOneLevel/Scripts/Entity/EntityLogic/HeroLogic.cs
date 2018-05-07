@@ -13,7 +13,6 @@ public class HeroLogic : TargetableObject {
     [SerializeField]
     private Rigidbody m_Rigidbody = null;
 
-    private Animator m_Animator;
     /// <summary>
     /// 攻击是否正在冷却
     /// </summary>
@@ -29,10 +28,7 @@ public class HeroLogic : TargetableObject {
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-
-        m_Animator = gameObject.GetComponent<Animator> ();
         m_Rigidbody = gameObject.GetComponent<Rigidbody> ();
-
     }
 
     protected override void OnShow (object userData) {
@@ -45,7 +41,6 @@ public class HeroLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-
         m_HeroStateFsm = GameEntry.Fsm.CreateFsm<HeroLogic>("heroStateFsm", this, new FsmState<HeroLogic>[]{
             new HeroCDIdleState(),
             new HeroAtkCDState(),
@@ -113,21 +108,21 @@ public class HeroLogic : TargetableObject {
         Log.Info("Hero ChangeAnimation:" + state);
         
         if (state == HeroAnimationState.walk) {
-            m_Animator.SetBool ("IsWalking", true);
-            m_Animator.SetBool ("IsAttacking", false);
-            m_Animator.SetBool ("IsHurting", false);
+            CachedAnimator.SetBool ("IsWalking", true);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", false);
         } else if (state == HeroAnimationState.idle) {
-            m_Animator.SetBool ("IsWalking", false);
-            m_Animator.SetBool ("IsAttacking", false);
-            m_Animator.SetBool ("IsHurting", false);
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", false);
         } else if (state == HeroAnimationState.atk) {
-            m_Animator.SetBool ("IsWalking", false);
-            m_Animator.SetBool ("IsAttacking", true);
-            m_Animator.SetBool ("IsHurting", false);
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", true);
+            CachedAnimator.SetBool ("IsHurting", false);
         } else if (state == HeroAnimationState.hurt) {
-            m_Animator.SetBool ("IsWalking", false);
-            m_Animator.SetBool ("IsAttacking", false);
-            m_Animator.SetBool ("IsHurting", true);
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", true);
         }
     }
 

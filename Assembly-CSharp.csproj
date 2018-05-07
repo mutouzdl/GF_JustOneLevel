@@ -99,12 +99,16 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroWalkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterAtkState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterCDIdleState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterHurtState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterIdleState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterListenDamageState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterSeekAimState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterWalkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\ApplyDamageEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\ClickAttackButtonEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\HeroAttackEventArgs.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Monster\MonsterAttackEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Game\SurvivalGame.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\LocalizationExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\XmlLocalizationHelper.cs" />

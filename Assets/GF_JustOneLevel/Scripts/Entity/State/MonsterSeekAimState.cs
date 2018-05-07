@@ -3,7 +3,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class MonsterSeekAimState : FsmState<MonsterLogic> {
+public class MonsterSeekAimState : MonsterListenDamageState {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
@@ -28,6 +28,10 @@ public class MonsterSeekAimState : FsmState<MonsterLogic> {
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
+
+        if (fsm.Owner.IsAtkCDing()) {
+            return;
+        }
 
         /* 判断是否有英雄进入攻击范围 */
         GameObject[] heros = GameObject.FindGameObjectsWithTag ("Hero");
