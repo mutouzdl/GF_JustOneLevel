@@ -85,6 +85,7 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (MonsterAnimationState state) {
+        Log.Info("Monster ChangeAnimation");
         if (state == MonsterAnimationState.walk) {
             CachedAnimator.SetBool("IsWalking", true);
             CachedAnimator.SetBool("IsAttacking", false);
@@ -113,7 +114,15 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack(TargetableObject aimEntity) {
-        aimEntity.ApplyDamage(this, m_MonsterData.Atk);
+        aimEntity.ApplyDamage(m_MonsterData.Atk);
+    }
+
+    /// <summary>
+    /// 接受伤害
+    /// </summary>
+    /// <param name="damageHP"></param>
+    public override void ApplyDamage (int damageHP) {
+        m_MonsterFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
     }
 
     public MonsterData MonsterData {

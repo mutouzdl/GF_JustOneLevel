@@ -36,7 +36,8 @@ public class HeroAtkCDState : FsmState<HeroLogic> {
         
         if (atkCDTimeCounter >= fsm.Owner.HeroData.AtkSpeed) {
             atkCDTimeCounter = 0;
-            ChangeState<HeroIdleState>(fsm);
+            fsm.Owner.ResetAtkCD();
+            ChangeState<HeroCDIdleState>(fsm);
         }
     }
 

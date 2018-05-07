@@ -14,12 +14,23 @@ public class HeroLogic : TargetableObject {
     private Rigidbody m_Rigidbody = null;
 
     private Animator m_Animator;
-    private GameFramework.Fsm.IFsm<HeroLogic> m_HeroFsm;
+    /// <summary>
+    /// 攻击是否正在冷却
+    /// </summary>
+    private bool m_IsAtkCDing = false;
+    /// <summary>
+    /// 状态类状态机：CD空闲、CD
+    /// </summary>
+    private GameFramework.Fsm.IFsm<HeroLogic> m_HeroStateFsm;
+    /// <summary>
+    /// 行动类状态机：空闲、行走、攻击、受伤
+    /// </summary>
+    private GameFramework.Fsm.IFsm<HeroLogic> m_HeroActionFsm;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
-        m_Animator = gameObject.GetComponent<Animator>();
+        m_Animator = gameObject.GetComponent<Animator> ();
         m_Rigidbody = gameObject.GetComponent<Rigidbody> ();
 
     }
@@ -34,25 +45,22 @@ public class HeroLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        List<FsmState<HeroLogic>> fsmStateList = new List<FsmState<HeroLogic>> ();
 
-        Type heroFSMStateType = typeof (FsmState<HeroLogic>);
-        Assembly assembly = Assembly.GetExecutingAssembly ();
-        Type[] types = assembly.GetTypes ();
-        for (int i = 0; i < types.Length; i++) {
-            if (!types[i].IsClass || types[i].IsAbstract) {
-                continue;
-            }
+        m_HeroStateFsm = GameEntry.Fsm.CreateFsm<HeroLogic>("heroStateFsm", this, new FsmState<HeroLogic>[]{
+            new HeroCDIdleState(),
+            new HeroAtkCDState(),
+        });
 
-            if (types[i].IsSubclassOf (heroFSMStateType)) {
-                fsmStateList.Add ((FsmState<HeroLogic>) Activator.CreateInstance (types[i]));
-            }
-        }
+        m_HeroActionFsm = GameEntry.Fsm.CreateFsm<HeroLogic>("heroActionFsm", this, new FsmState<HeroLogic>[]{
+            new HeroIdleState(),
+            new HeroWalkState(),
+            new HeroAtkState(),
+            new HeroHurtState(),
+        });
 
-        m_HeroFsm = GameEntry.Fsm.CreateFsm<HeroLogic> (this, fsmStateList.ToArray ());
-
-        /* 启动站立状态 */
-        m_HeroFsm.Start<HeroIdleState> ();
+        /* 启动状态机 */
+        m_HeroStateFsm.Start<HeroCDIdleState> ();
+        m_HeroActionFsm.Start<HeroIdleState> ();
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
@@ -102,17 +110,24 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (HeroAnimationState state) {
+        Log.Info("Hero ChangeAnimation:" + state);
+        
         if (state == HeroAnimationState.walk) {
-            m_Animator.SetBool("IsWalking", true);
-            m_Animator.SetBool("IsAttacking", false);
-        }
-        else if (state == HeroAnimationState.idle) {
-            m_Animator.SetBool("IsWalking", false);
-            m_Animator.SetBool("IsAttacking", false);
-        }
-        else if (state == HeroAnimationState.atk) {
-            m_Animator.SetBool("IsWalking", false);
-            m_Animator.SetBool("IsAttacking", true);
+            m_Animator.SetBool ("IsWalking", true);
+            m_Animator.SetBool ("IsAttacking", false);
+            m_Animator.SetBool ("IsHurting", false);
+        } else if (state == HeroAnimationState.idle) {
+            m_Animator.SetBool ("IsWalking", false);
+            m_Animator.SetBool ("IsAttacking", false);
+            m_Animator.SetBool ("IsHurting", false);
+        } else if (state == HeroAnimationState.atk) {
+            m_Animator.SetBool ("IsWalking", false);
+            m_Animator.SetBool ("IsAttacking", true);
+            m_Animator.SetBool ("IsHurting", false);
+        } else if (state == HeroAnimationState.hurt) {
+            m_Animator.SetBool ("IsWalking", false);
+            m_Animator.SetBool ("IsAttacking", false);
+            m_Animator.SetBool ("IsHurting", true);
         }
     }
 
@@ -121,11 +136,31 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (TargetableObject aimEntity) {
-        aimEntity.ApplyDamage (this, m_heroData.Atk);
+        m_IsAtkCDing = true;
+        m_HeroStateFsm.FireEvent(this, HeroAttackEventArgs.EventId);
+        aimEntity.ApplyDamage (m_heroData.Atk);
+    }
+
+    /// <summary>
+    /// 接受伤害
+    /// </summary>
+    /// <param name="damageHP"></param>
+    public override void ApplyDamage (int damageHP) {
+        Log.Info("Hero ApplyDamage");
+        m_HeroActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
+    }
+
+    /// <summary>
+    /// 重置攻击冷却
+    /// </summary>
+    public void ResetAtkCD() {
+        m_IsAtkCDing = false;
     }
 
     private void OnClickAttackButton (object sender, GameEventArgs e) {
-        m_HeroFsm.FireEvent(this, ClickAttackButtonEventArgs.EventId);
+        if (m_IsAtkCDing == false) {
+            m_HeroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
+        }
     }
 
     public HeroData HeroData {

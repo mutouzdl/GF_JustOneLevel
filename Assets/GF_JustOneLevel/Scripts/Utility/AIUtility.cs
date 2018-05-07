@@ -97,8 +97,8 @@ public static class AIUtility {
                 targetDamageHP += delta;
             }
 
-            entity.ApplyDamage (target, entityDamageHP);
-            target.ApplyDamage (entity, targetDamageHP);
+            entity.ApplyDamage (entityDamageHP);
+            target.ApplyDamage (targetDamageHP);
             return;
         }
 

@@ -5,9 +5,10 @@ using UnityEngine;
 /// 可作为目标的实体类。
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
-public abstract class TargetableObject : Entity {
+public abstract class TargetableObject : Entity{
     [SerializeField]
     private TargetableObjectData m_TargetableObjectData = null;
+    protected GameFramework.Fsm.IFsm<TargetableObject> m_Fsm;
 
     public bool IsDead {
         get {
@@ -17,7 +18,18 @@ public abstract class TargetableObject : Entity {
 
     public abstract ImpactData GetImpactData ();
 
-    public void ApplyDamage (Entity attacker, int damageHP) {
+    /// <summary>
+    /// 接受伤害
+    /// </summary>
+    /// <param name="damageHP"></param>
+    public virtual void ApplyDamage (int damageHP) {
+    }
+
+    /// <summary>
+    /// 真正执行伤害逻辑
+    /// </summary>
+    /// <param name="damageHP"></param>
+    public void OnDamage(int damageHP) {
         damageHP -= m_TargetableObjectData.Def;
 
         if (damageHP < 0) {
@@ -32,7 +44,7 @@ public abstract class TargetableObject : Entity {
         }
 
         if (m_TargetableObjectData.HP <= 0) {
-            OnDead (attacker);
+            OnDead ();
         }
     }
 
@@ -53,7 +65,7 @@ public abstract class TargetableObject : Entity {
         }
     }
 
-    protected virtual void OnDead (Entity attacker) {
+    protected virtual void OnDead () {
         GameEntry.Entity.HideEntity (this.Entity);
     }
 
