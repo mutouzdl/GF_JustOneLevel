@@ -21,7 +21,6 @@ public class MonsterAtkState : FsmState<MonsterLogic> {
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
         base.OnEnter (fsm);
 
-        Log.Info ("MonsterAtkState OnEnter");
         atkTimeCounter = 0;
 
         fsm.Owner.ChangeAnimation (MonsterAnimationState.atk);

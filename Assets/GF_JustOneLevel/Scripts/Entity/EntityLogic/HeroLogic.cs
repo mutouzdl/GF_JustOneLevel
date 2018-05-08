@@ -141,7 +141,6 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="damageHP"></param>
     public override void ApplyDamage (int damageHP) {
-        Log.Info("Hero ApplyDamage");
         m_HeroActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
     }
 
