@@ -39,9 +39,16 @@ public class MonsterSeekAimState : MonsterListenDamageState {
             /* 进入攻击范围，直接攻击 */
             if (fsm.Owner.CheckInAtkRange (distance)) {
                 fsm.SetData<VarInt> (Constant.EntityData.LockAimID, aim.Entity.Id);
+                Log.Info("进入攻击范围，直接攻击");
                 ChangeState<MonsterAtkState> (fsm);
             }
-            else if (fsm.Owner.CheckInSeekRange(distance) == false) {
+            /* 在视线范围内，则继续移动 */
+            else if (fsm.Owner.CheckInSeekRange(distance)) {
+                if (fsm.CurrentState.GetType() != typeof(MonsterWalkState)) {
+                    ChangeState<MonsterWalkState>(fsm);
+                }
+            }
+            else {
                 fsm.Owner.UnlockAim();
             }
             return;

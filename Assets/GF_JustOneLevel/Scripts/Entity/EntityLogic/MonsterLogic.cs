@@ -102,7 +102,7 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (MonsterAnimationState state) {
-        Log.Info("Monster ChangeAnimation");
+        Log.Info("Monster ChangeAnimation：" + state);
         
         if (state == MonsterAnimationState.walk) {
             CachedAnimator.SetBool ("IsWalking", true);

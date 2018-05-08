@@ -105,7 +105,7 @@ public class HeroLogic : TargetableObject {
     /// </summary>
     /// <param name="state"></param>
     public void ChangeAnimation (HeroAnimationState state) {
-        Log.Info("Hero ChangeAnimation:" + state);
+        // Log.Info("Hero ChangeAnimation:" + state);
         
         if (state == HeroAnimationState.walk) {
             CachedAnimator.SetBool ("IsWalking", true);

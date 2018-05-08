@@ -21,6 +21,8 @@ public class HeroHurtState : FsmState<HeroLogic> {
     protected override void OnEnter (IFsm<HeroLogic> fsm) {
         base.OnEnter (fsm);
 
+        Log.Info("HeroHurtState OnEnter!!!!!!!!!!!!!!!!!!!!!");
+
         hurtTimeCounter = 0;
 
         fsm.Owner.ChangeAnimation (HeroAnimationState.hurt);
