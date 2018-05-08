@@ -55,6 +55,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Builtin.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Custom.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Component\HPBar.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\ConfigComponent.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\DeviceModelConfig.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DataTableExtension.cs" />
