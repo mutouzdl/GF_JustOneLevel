@@ -5,7 +5,7 @@ using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class MonsterLogic : TargetableObject {
+public class Monster : TargetableObject {
     [SerializeField]
     private MonsterData m_MonsterData = null;
 
@@ -16,11 +16,11 @@ public class MonsterLogic : TargetableObject {
     /// <summary>
     /// 状态类状态机：CD空闲、CD
     /// </summary>
-    private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterStateFsm;
+    private GameFramework.Fsm.IFsm<Monster> m_MonsterStateFsm;
     /// <summary>
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
-    private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterActionFsm;
+    private GameFramework.Fsm.IFsm<Monster> m_MonsterActionFsm;
 
     /// <summary>
     /// 是否正在追踪目标
@@ -50,12 +50,12 @@ public class MonsterLogic : TargetableObject {
         IsLockingAim = false;
 
         /* 创建状态机 */
-        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<MonsterLogic>("monsterStateFsm", this, new FsmState<MonsterLogic>[]{
+        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterStateFsm", this, new FsmState<Monster>[]{
             new MonsterCDIdleState(),
             new MonsterAtkCDState(),
         });
 
-        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<MonsterLogic>("monsterActionFsm", this, new FsmState<MonsterLogic>[]{
+        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterActionFsm", this, new FsmState<Monster>[]{
             new MonsterIdleState(),
             new MonsterWalkState(),
             new MonsterAtkState(),
@@ -74,7 +74,7 @@ public class MonsterLogic : TargetableObject {
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm<MonsterLogic> ();
+        GameEntry.Fsm.DestroyFsm<Monster> ();
     }
 
     public override ImpactData GetImpactData () {

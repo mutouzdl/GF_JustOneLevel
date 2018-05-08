@@ -10,7 +10,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<MonsterLogic> fsm) {
+    protected override void OnInit (IFsm<Monster> fsm) {
         base.OnInit (fsm);
     }
 
@@ -18,7 +18,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// 有限状态机状态进入时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnEnter (IFsm<MonsterLogic> fsm) {
+    protected override void OnEnter (IFsm<Monster> fsm) {
         base.OnEnter (fsm);
 
         fsm.Owner.ChangeAnimation (MonsterAnimationState.walk);
@@ -30,7 +30,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
-    protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
+    protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
         if (fsm.Owner.IsLockingAim) {
@@ -72,7 +72,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
-    protected override void OnLeave (IFsm<MonsterLogic> fsm, bool isShutdown) {
+    protected override void OnLeave (IFsm<Monster> fsm, bool isShutdown) {
         base.OnLeave (fsm, isShutdown);
     }
 
@@ -80,7 +80,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// 有限状态机状态销毁时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnDestroy (IFsm<MonsterLogic> fsm) {
+    protected override void OnDestroy (IFsm<Monster> fsm) {
         base.OnDestroy (fsm);
     }
 

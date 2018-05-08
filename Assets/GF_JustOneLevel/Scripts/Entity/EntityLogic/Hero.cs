@@ -6,7 +6,7 @@ using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroLogic : TargetableObject {
+public class Hero : TargetableObject {
     [SerializeField]
     private HeroData m_heroData = null;
 
@@ -20,11 +20,11 @@ public class HeroLogic : TargetableObject {
     /// <summary>
     /// 状态类状态机：CD空闲、CD
     /// </summary>
-    private GameFramework.Fsm.IFsm<HeroLogic> m_HeroStateFsm;
+    private GameFramework.Fsm.IFsm<Hero> m_HeroStateFsm;
     /// <summary>
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
-    private GameFramework.Fsm.IFsm<HeroLogic> m_HeroActionFsm;
+    private GameFramework.Fsm.IFsm<Hero> m_HeroActionFsm;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
@@ -41,12 +41,12 @@ public class HeroLogic : TargetableObject {
         }
 
         /* 创建状态机 */
-        m_HeroStateFsm = GameEntry.Fsm.CreateFsm<HeroLogic>("heroStateFsm", this, new FsmState<HeroLogic>[]{
+        m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero>("heroStateFsm", this, new FsmState<Hero>[]{
             new HeroCDIdleState(),
             new HeroAtkCDState(),
         });
 
-        m_HeroActionFsm = GameEntry.Fsm.CreateFsm<HeroLogic>("heroActionFsm", this, new FsmState<HeroLogic>[]{
+        m_HeroActionFsm = GameEntry.Fsm.CreateFsm<Hero>("heroActionFsm", this, new FsmState<Hero>[]{
             new HeroIdleState(),
             new HeroWalkState(),
             new HeroAtkState(),
@@ -75,7 +75,7 @@ public class HeroLogic : TargetableObject {
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm<HeroLogic> ();
+        GameEntry.Fsm.DestroyFsm<Hero> ();
         GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
     }
 
