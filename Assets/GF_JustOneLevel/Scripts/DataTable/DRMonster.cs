@@ -5,6 +5,15 @@ using GameFramework.DataTable;
 /// 怪物表
 /// </summary>
 public class DRMonster : DREntity {
+    /// <summary>
+    /// 追踪范围
+    /// </summary>
+    /// <returns></returns>
+    public float SeekRange {
+        get;
+        protected set;
+    }
+    
     public override void ParseDataRow (string dataRowText) {
         string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
@@ -15,7 +24,8 @@ public class DRMonster : DREntity {
         MoveSpeed = float.Parse (text[index++]);
         RotateSpeed = float.Parse (text[index++]);
         Atk = int.Parse (text[index++]);
-        AtkRange = int.Parse (text[index++]);
+        AtkRange = float.Parse (text[index++]);
+        SeekRange = float.Parse (text[index++]);
         Def = int.Parse (text[index++]);
         AtkSpeed = float.Parse (text[index++]);
         HP = int.Parse (text[index++]);

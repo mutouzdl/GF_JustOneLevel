@@ -22,6 +22,16 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     private GameFramework.Fsm.IFsm<MonsterLogic> m_MonsterActionFsm;
 
+    /// <summary>
+    /// 是否正在追踪目标
+    /// </summary>
+    /// <returns></returns>
+    public bool IsLockingAim { get; set; }
+    /// <summary>
+    /// 锁定的目标
+    /// </summary>
+    /// <returns></returns>
+    public Entity LockingAim { get; set; }
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
@@ -36,6 +46,8 @@ public class MonsterLogic : TargetableObject {
             Log.Error ("Monster data is invalid.");
             return;
         }
+
+        IsLockingAim = false;
 
         /* 创建状态机 */
         m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<MonsterLogic>("monsterStateFsm", this, new FsmState<MonsterLogic>[]{
@@ -121,6 +133,15 @@ public class MonsterLogic : TargetableObject {
     }
 
     /// <summary>
+    /// 是否在追踪范围内
+    /// </summary>
+    /// <param name="distance"></param>
+    /// <returns></returns>
+    public bool CheckInSeekRange(float distance) {
+        return distance <= m_MonsterData.SeekRange;
+    }
+
+    /// <summary>
     /// 执行攻击
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
@@ -151,6 +172,23 @@ public class MonsterLogic : TargetableObject {
     /// </summary>
     public void ResetAtkCD() {
         m_IsAtkCDing = false;
+    }
+
+    /// <summary>
+    /// 锁定目标
+    /// </summary>
+    /// <param name="aim"></param>
+    public void LockAim(Entity aim) {
+        this.LockingAim = aim;
+        this.IsLockingAim = true;
+    }
+
+    /// <summary>
+    /// 解除目标的锁定
+    /// </summary>
+    public void UnlockAim() {
+        this.LockingAim = null;
+        this.IsLockingAim = false;
     }
 
     public MonsterData MonsterData {

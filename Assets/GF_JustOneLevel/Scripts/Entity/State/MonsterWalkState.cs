@@ -11,7 +11,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnInit (IFsm<MonsterLogic> fsm) {
-        base.OnInit(fsm);
+        base.OnInit (fsm);
     }
 
     /// <summary>
@@ -19,7 +19,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<MonsterLogic> fsm) {
-        base.OnEnter(fsm);
+        base.OnEnter (fsm);
 
         fsm.Owner.ChangeAnimation (MonsterAnimationState.walk);
     }
@@ -31,7 +31,15 @@ public class MonsterWalkState : MonsterSeekAimState {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<MonsterLogic> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
+
+        if (fsm.Owner.IsLockingAim) {
+            Entity aim = fsm.Owner.LockingAim;
+            fsm.Owner.transform.LookAt (aim.transform);
+            fsm.Owner.Forward (elapseSeconds);
+
+            return;
+        }
 
         idleTimeCounter += elapseSeconds;
         rotateTimeCounter += elapseSeconds;
@@ -40,10 +48,10 @@ public class MonsterWalkState : MonsterSeekAimState {
         fsm.Owner.Forward (elapseSeconds);
 
         // 随机转身
-        if(rotateTimeCounter > 5) {
+        if (rotateTimeCounter > 5) {
             rotateTimeCounter = 0;
-            if (Utility.Random.GetRandom(100) <= 80) {
-                fsm.Owner.Rotate(new Vector3(0, Utility.Random.GetRandom(-180, 180), 0));
+            if (Utility.Random.GetRandom (100) <= 80) {
+                fsm.Owner.Rotate (new Vector3 (0, Utility.Random.GetRandom (-180, 180), 0));
             }
         }
 
@@ -52,13 +60,11 @@ public class MonsterWalkState : MonsterSeekAimState {
             idleTimeCounter = 0;
 
             if (Utility.Random.GetRandom (100) <= 10) {
-                ChangeState<MonsterIdleState>(fsm);
+                ChangeState<MonsterIdleState> (fsm);
             }
         }
 
-        // 碰到障碍物停止
-
-        // 进入攻击状态
+        // 碰到障碍物停止（暂无）
     }
 
     /// <summary>

@@ -43,7 +43,7 @@ public class FightEntityData : TargetableObjectData {
     /// <summary>
     /// 攻击范围
     /// </summary>
-    public int AtkRange {
+    public float AtkRange {
         get;
         protected set;
     }

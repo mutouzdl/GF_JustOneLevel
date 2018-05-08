@@ -58,7 +58,7 @@ public class DREntity : IDataRow {
     /// 攻击范围
     /// </summary>
     /// <returns></returns>
-    public int AtkRange {
+    public float AtkRange {
         get;
         protected set;
     }

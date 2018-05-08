@@ -6,6 +6,13 @@ using UnityEngine;
 
 [Serializable]
 public class MonsterData : FightEntityData {
+    /// <summary>
+    /// 攻击范围
+    /// </summary>
+    public float SeekRange {
+        get;
+        protected set;
+    }
     public MonsterData (int entityId, int typeId, CampType camp) : base (entityId, typeId, camp) {
         IDataTable<DRMonster> dtMonster = GameEntry.DataTable.GetDataTable<DRMonster> ();
         DRMonster drMonster = dtMonster.GetDataRow (typeId);
@@ -19,6 +26,7 @@ public class MonsterData : FightEntityData {
         RotateSpeed = drMonster.RotateSpeed;
         Atk = drMonster.Atk;
         AtkRange = drMonster.AtkRange;
+        SeekRange = drMonster.SeekRange;
         Def = drMonster.Def;
         AtkSpeed = drMonster.AtkSpeed;
     }
