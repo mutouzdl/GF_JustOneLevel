@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-
 /// <summary>
 /// 实体逻辑
 /// 参考来源：https://github.com/EllanJiang/StarForce

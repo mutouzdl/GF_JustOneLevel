@@ -4,7 +4,7 @@ using UnityEngine;
 
 [Serializable]
 public class PowerBarData : AccessoryObjectData {
-    public HPBarData (int entityId, int typeId, int ownerId, CampType ownerCamp) : base (entityId, typeId, ownerId, ownerCamp) {
+    public PowerBarData (int entityId, int typeId, int ownerId, CampType ownerCamp) : base (entityId, typeId, ownerId, ownerCamp) {
         IDataTable<DRPowerBar> dtPowerBar = GameEntry.DataTable.GetDataTable<DRPowerBar> ();
         DRPowerBar drPowerBar = dtPowerBar.GetDataRow (TypeId);
         if (drPowerBar == null) {
@@ -15,9 +15,9 @@ public class PowerBarData : AccessoryObjectData {
     }
 
     /// <summary>
-    /// 速度。
+    /// 颜色
     /// </summary>
-    public float Speed {
+    public string Color {
         get;
         private set;
     }

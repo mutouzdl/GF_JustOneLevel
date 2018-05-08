@@ -24,7 +24,7 @@ public class PowerBar : Entity {
 			return;
 		}
 
-		GameEntry.Entity.AttachEntity (this, m_PowerBarData.OwnerId);
+		GameEntry.Entity.AttachEntity (this.Id, m_PowerBarData.OwnerId);
 	}
 
 	protected override void OnAttachTo (EntityLogic parentEntity, Transform parentTransform, object userData)
