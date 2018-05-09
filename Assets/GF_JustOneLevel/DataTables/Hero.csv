@@ -1,4 +1,4 @@
 ﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkRange,Def,AtkSpeed,HP
 #,int,string,string,float,float,int,float,int,float,int
 #,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击范围,防御,攻速（秒）,血量
-,1,Player,Player1,3,30,3,1,1,0.5,90
+,1,Player,Player1,4,40,3,1,1,0.5,333

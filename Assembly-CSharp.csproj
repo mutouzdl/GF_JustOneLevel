@@ -75,9 +75,8 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\DeviceModel.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\ImpactData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\VersionInfo.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\AnimationState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\CampType.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\HeroAnimationState.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\MonsterAnimationState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\QualityLevelType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\RelationType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\AccessoryObjectData.cs" />

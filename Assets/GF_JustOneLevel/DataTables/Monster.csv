@@ -1,4 +1,4 @@
 ﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkRange,SeekRange,Def,AtkSpeed,HP
 #,int,string,string,float,float,int,float,float,int,float,int
 #,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击范围,追踪范围,防御,攻速（秒）,血量
-,1,Monster1,史莱姆,0.5,3,3,1,3,1,3,999
+,1,Monster1,史莱姆,0.5,3,3,1,3,1,3,10

@@ -53,6 +53,32 @@ public abstract class TargetableObject : Entity {
         }
     }
 
+    /// <summary>
+    /// 切换动画
+    /// </summary>
+    /// <param name="state"></param>
+    public void ChangeAnimation (AnimationState state) {
+        // Log.Info("Hero ChangeAnimation:" + state);
+
+        if (state == AnimationState.walk) {
+            CachedAnimator.SetBool ("IsWalking", true);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", false);
+        } else if (state == AnimationState.idle) {
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", false);
+        } else if (state == AnimationState.atk) {
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", true);
+            CachedAnimator.SetBool ("IsHurting", false);
+        } else if (state == AnimationState.hurt) {
+            CachedAnimator.SetBool ("IsWalking", false);
+            CachedAnimator.SetBool ("IsAttacking", false);
+            CachedAnimator.SetBool ("IsHurting", true);
+        }
+    }
+
     protected override void OnInit (object userData) {
         base.OnInit (userData);
         CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);

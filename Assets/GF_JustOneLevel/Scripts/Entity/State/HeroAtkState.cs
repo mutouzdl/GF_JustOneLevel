@@ -22,7 +22,7 @@ public class HeroAtkState : FsmState<Hero> {
 
         atkTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (HeroAnimationState.atk);
+        fsm.Owner.ChangeAnimation (AnimationState.atk);
 
         /* 判断是否有怪物进入攻击范围 */
         GameObject[] monsters = GameObject.FindGameObjectsWithTag ("Monster");

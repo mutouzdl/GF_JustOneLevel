@@ -50,12 +50,12 @@ public class Monster : TargetableObject {
         IsLockingAim = false;
 
         /* 创建状态机 */
-        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterStateFsm", this, new FsmState<Monster>[]{
+        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterStateFsm" + this.Id, this, new FsmState<Monster>[]{
             new MonsterCDIdleState(),
             new MonsterAtkCDState(),
         });
 
-        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterActionFsm", this, new FsmState<Monster>[]{
+        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterActionFsm" + this.Id, this, new FsmState<Monster>[]{
             new MonsterIdleState(),
             new MonsterWalkState(),
             new MonsterAtkState(),
@@ -95,32 +95,6 @@ public class Monster : TargetableObject {
     /// <param name="destVec">目标位置</param>
     public void Rotate(Vector3 destVec) {
         CachedTransform.Rotate(destVec);
-    }
-
-    /// <summary>
-    /// 切换动画
-    /// </summary>
-    /// <param name="state"></param>
-    public void ChangeAnimation (MonsterAnimationState state) {
-        // Log.Info("Monster ChangeAnimation：" + state);
-        
-        if (state == MonsterAnimationState.walk) {
-            CachedAnimator.SetBool ("IsWalking", true);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", false);
-        } else if (state == MonsterAnimationState.idle) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", false);
-        } else if (state == MonsterAnimationState.atk) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", true);
-            CachedAnimator.SetBool ("IsHurting", false);
-        } else if (state == MonsterAnimationState.hurt) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", true);
-        }
     }
 
     /// <summary>

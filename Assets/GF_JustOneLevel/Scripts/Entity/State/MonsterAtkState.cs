@@ -23,7 +23,7 @@ public class MonsterAtkState : FsmState<Monster> {
 
         atkTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (MonsterAnimationState.atk);
+        fsm.Owner.ChangeAnimation (AnimationState.atk);
     }
 
     /// <summary>

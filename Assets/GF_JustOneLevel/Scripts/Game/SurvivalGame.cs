@@ -29,6 +29,18 @@ public class SurvivalGame {
         monsterData.Position = new Vector3(10, 0, 10);
         EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 
+        monsterData = new MonsterData (EntityExtension.GenerateSerialId (), 1, CampType.Enemy);
+        monsterData.Position = new Vector3(8, 0, 8);
+        EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
+        
+        // monsterData = new MonsterData (EntityExtension.GenerateSerialId (), 1, CampType.Enemy);
+        // monsterData.Position = new Vector3(12, 0, 3);
+        // EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
+        
+        // monsterData = new MonsterData (EntityExtension.GenerateSerialId (), 1, CampType.Enemy);
+        // monsterData.Position = new Vector3(3, 0, 4);
+        // EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
+
         GameOver = false;
         m_Hero = null;
     }

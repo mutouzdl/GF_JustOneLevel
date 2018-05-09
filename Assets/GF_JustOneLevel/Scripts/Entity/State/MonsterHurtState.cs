@@ -25,7 +25,7 @@ public class MonsterHurtState : FsmState<Monster> {
 
         hurtTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (MonsterAnimationState.hurt);
+        fsm.Owner.ChangeAnimation (AnimationState.hurt);
 
         int damageHP = fsm.GetData<VarInt> (Constant.EntityData.DamageHP).Value;
         fsm.Owner.OnDamage (damageHP);

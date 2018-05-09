@@ -102,32 +102,6 @@ public class Hero : TargetableObject {
     }
 
     /// <summary>
-    /// 切换动画
-    /// </summary>
-    /// <param name="state"></param>
-    public void ChangeAnimation (HeroAnimationState state) {
-        // Log.Info("Hero ChangeAnimation:" + state);
-
-        if (state == HeroAnimationState.walk) {
-            CachedAnimator.SetBool ("IsWalking", true);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", false);
-        } else if (state == HeroAnimationState.idle) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", false);
-        } else if (state == HeroAnimationState.atk) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", true);
-            CachedAnimator.SetBool ("IsHurting", false);
-        } else if (state == HeroAnimationState.hurt) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", true);
-        }
-    }
-
-    /// <summary>
     /// 执行攻击
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
