@@ -1,15 +1,19 @@
 ﻿using GameFramework;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 /// <summary>
 /// 可作为目标的实体类。
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
-public abstract class TargetableObject : Entity{
+public abstract class TargetableObject : Entity {
     [SerializeField]
     private TargetableObjectData m_TargetableObjectData = null;
-    protected GameFramework.Fsm.IFsm<TargetableObject> m_Fsm;
 
+    /// <summary>
+    /// 血量条
+    /// </summary>
+    private PowerBar m_HPBar;
     public bool IsDead {
         get {
             return m_TargetableObjectData.HP <= 0;
@@ -22,14 +26,13 @@ public abstract class TargetableObject : Entity{
     /// 接受伤害
     /// </summary>
     /// <param name="damageHP"></param>
-    public virtual void ApplyDamage (int damageHP) {
-    }
+    public virtual void ApplyDamage (int damageHP) { }
 
     /// <summary>
     /// 真正执行伤害逻辑
     /// </summary>
     /// <param name="damageHP"></param>
-    public void OnDamage(int damageHP) {
+    public void OnDamage (int damageHP) {
         damageHP -= m_TargetableObjectData.Def;
 
         if (damageHP < 0) {
@@ -43,24 +46,39 @@ public abstract class TargetableObject : Entity{
             // GameEntry.HPBar.ShowHPBar (this, fromHPRatio, toHPRatio);
         }
 
+        m_HPBar.UpdatePower (m_TargetableObjectData.HP, m_TargetableObjectData.MaxHP);
+
         if (m_TargetableObjectData.HP <= 0) {
             OnDead ();
         }
     }
 
-    protected override void OnInit (object userData)
-    {
+    protected override void OnInit (object userData) {
         base.OnInit (userData);
         CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
     }
 
-    protected override void OnShow (object userData)
-    {
+    protected override void OnShow (object userData) {
         base.OnShow (userData);
 
         m_TargetableObjectData = userData as TargetableObjectData;
         if (m_TargetableObjectData == null) {
             Log.Error ("Targetable object data is invalid.");
+            return;
+        }
+
+        /* 附加血量条 */
+        PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);
+        EntityExtension.ShowPowerBar (typeof (PowerBar), "PowerBarGroup", hpBarData);
+
+    }
+
+    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
+        base.OnAttached (childEntity, parentTransform, userData);
+
+        if (childEntity is PowerBar) {
+            m_HPBar = (PowerBar) childEntity;
+            m_HPBar.UpdatePower (m_TargetableObjectData.HP, m_TargetableObjectData.MaxHP);
             return;
         }
     }

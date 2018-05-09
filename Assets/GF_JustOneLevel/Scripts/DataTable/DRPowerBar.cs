@@ -14,6 +14,14 @@ public class DRPowerBar : IDataRow {
     }
 
     /// <summary>
+    /// 资源名称。
+    /// </summary>
+    public string AssetName {
+        get;
+        protected set;
+    }
+
+    /// <summary>
     /// 颜色
     /// </summary>
     public string Color {
@@ -26,7 +34,7 @@ public class DRPowerBar : IDataRow {
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
-        index++;
+        AssetName = text[index++];
         Color = text[index++];
     }
 

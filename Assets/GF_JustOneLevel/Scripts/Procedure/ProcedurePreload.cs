@@ -51,6 +51,7 @@ public class ProcedurePreload : ProcedureBase {
         // Preload data tables
         LoadDataTable ("Hero");
         LoadDataTable ("Monster");
+        LoadDataTable ("PowerBar");
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");
         LoadDataTable ("UISound");

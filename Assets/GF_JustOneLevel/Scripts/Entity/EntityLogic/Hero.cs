@@ -5,6 +5,7 @@ using GameFramework;
 using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 public class Hero : TargetableObject {
     [SerializeField]
@@ -41,16 +42,16 @@ public class Hero : TargetableObject {
         }
 
         /* 创建状态机 */
-        m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero>("heroStateFsm", this, new FsmState<Hero>[]{
-            new HeroCDIdleState(),
-            new HeroAtkCDState(),
+        m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
+            new HeroCDIdleState (),
+                new HeroAtkCDState (),
         });
 
-        m_HeroActionFsm = GameEntry.Fsm.CreateFsm<Hero>("heroActionFsm", this, new FsmState<Hero>[]{
-            new HeroIdleState(),
-            new HeroWalkState(),
-            new HeroAtkState(),
-            new HeroHurtState(),
+        m_HeroActionFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroActionFsm", this, new FsmState<Hero>[] {
+            new HeroIdleState (),
+                new HeroWalkState (),
+                new HeroAtkState (),
+                new HeroHurtState (),
         });
 
         /* 启动状态机 */
@@ -106,7 +107,7 @@ public class Hero : TargetableObject {
     /// <param name="state"></param>
     public void ChangeAnimation (HeroAnimationState state) {
         // Log.Info("Hero ChangeAnimation:" + state);
-        
+
         if (state == HeroAnimationState.walk) {
             CachedAnimator.SetBool ("IsWalking", true);
             CachedAnimator.SetBool ("IsAttacking", false);
@@ -132,7 +133,7 @@ public class Hero : TargetableObject {
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (TargetableObject aimEntity) {
         m_IsAtkCDing = true;
-        m_HeroStateFsm.FireEvent(this, HeroAttackEventArgs.EventId);
+        m_HeroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
         aimEntity.ApplyDamage (m_heroData.Atk);
     }
 
@@ -147,7 +148,7 @@ public class Hero : TargetableObject {
     /// <summary>
     /// 重置攻击冷却
     /// </summary>
-    public void ResetAtkCD() {
+    public void ResetAtkCD () {
         m_IsAtkCDing = false;
     }
 
