@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameFramework;
 using GameFramework.DataTable;
 
 /// <summary>

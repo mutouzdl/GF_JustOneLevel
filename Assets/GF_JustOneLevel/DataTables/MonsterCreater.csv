@@ -1,0 +1,4 @@
+﻿#,Id,AssetName,Name,Interval,Probability,PerNum,MaxNum,MonsterTypeId
+#,int,string,string,float,int,int,int,int
+#,编号,资源名称,名称,创建间隔（秒）,每轮创建概率（0-100）,每轮创建数量,最大创建数量,怪物ID
+,1,MonsterCreater,测试生成器,4,99,2,10,1
