@@ -59,24 +59,25 @@ public abstract class TargetableObject : Entity {
     /// <param name="state"></param>
     public void ChangeAnimation (AnimationState state) {
         // Log.Info("Hero ChangeAnimation:" + state);
+        ResetAnimation();
 
         if (state == AnimationState.walk) {
             CachedAnimator.SetBool ("IsWalking", true);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", false);
         } else if (state == AnimationState.idle) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", false);
-            CachedAnimator.SetBool ("IsHurting", false);
         } else if (state == AnimationState.atk) {
-            CachedAnimator.SetBool ("IsWalking", false);
             CachedAnimator.SetBool ("IsAttacking", true);
-            CachedAnimator.SetBool ("IsHurting", false);
         } else if (state == AnimationState.hurt) {
-            CachedAnimator.SetBool ("IsWalking", false);
-            CachedAnimator.SetBool ("IsAttacking", false);
             CachedAnimator.SetBool ("IsHurting", true);
+        } else if (state == AnimationState.dead) {
+            CachedAnimator.SetBool ("IsDead", true);
         }
+    }
+
+    private void ResetAnimation() {
+        CachedAnimator.SetBool ("IsWalking", false);
+        CachedAnimator.SetBool ("IsAttacking", false);
+        CachedAnimator.SetBool ("IsHurting", false);
+        CachedAnimator.SetBool ("IsDead", false);
     }
 
     protected override void OnInit (object userData) {
@@ -110,7 +111,7 @@ public abstract class TargetableObject : Entity {
     }
 
     protected virtual void OnDead () {
-        GameEntry.Entity.HideEntity (this.Entity);
+        // GameEntry.Entity.HideEntity (this.Entity);
     }
 
     private void OnTriggerEnter (Collider other) {

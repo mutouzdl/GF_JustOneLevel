@@ -3,7 +3,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class MonsterHurtState : FsmState<Monster> {
+public class MonsterHurtState : MonsterBaseActionState {
     private float hurtTimeCounter = 0;
 
     /// <summary>
@@ -20,8 +20,6 @@ public class MonsterHurtState : FsmState<Monster> {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Monster> fsm) {
         base.OnEnter (fsm);
-
-        Log.Info("MonsterHurtState Enter");
 
         hurtTimeCounter = 0;
 

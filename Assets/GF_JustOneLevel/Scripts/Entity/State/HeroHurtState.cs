@@ -3,7 +3,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class HeroHurtState : FsmState<Hero> {
+public class HeroHurtState : HeroBaseActionState {
     private float hurtTimeCounter = 0;
 
     /// <summary>

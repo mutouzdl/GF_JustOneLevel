@@ -44,14 +44,15 @@ public class Hero : TargetableObject {
         /* 创建状态机 */
         m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
             new HeroCDIdleState (),
-                new HeroAtkCDState (),
+            new HeroAtkCDState (),
         });
 
         m_HeroActionFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroActionFsm", this, new FsmState<Hero>[] {
             new HeroIdleState (),
-                new HeroWalkState (),
-                new HeroAtkState (),
-                new HeroHurtState (),
+            new HeroWalkState (),
+            new HeroAtkState (),
+            new HeroHurtState (),
+            new HeroDeadState (),
         });
 
         /* 启动状态机 */
@@ -76,8 +77,14 @@ public class Hero : TargetableObject {
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm<Hero> ();
+        GameEntry.Fsm.DestroyFsm (m_HeroActionFsm);
+        GameEntry.Fsm.DestroyFsm (m_HeroStateFsm);
         GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
+    }
+
+    protected override void OnDead () {
+        base.OnDead ();
+        m_HeroActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
     }
 
     public override ImpactData GetImpactData () {

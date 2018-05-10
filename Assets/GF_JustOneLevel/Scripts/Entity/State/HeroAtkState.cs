@@ -2,7 +2,7 @@ using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroAtkState : FsmState<Hero> {
+public class HeroAtkState : HeroBaseActionState {
     private float atkTimeCounter = 0;
 
     /// <summary>

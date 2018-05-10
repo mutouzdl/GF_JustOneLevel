@@ -3,7 +3,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class MonsterAtkState : FsmState<Monster> {
+public class MonsterAtkState : MonsterBaseActionState {
     private float atkTimeCounter = 0;
 
     /// <summary>

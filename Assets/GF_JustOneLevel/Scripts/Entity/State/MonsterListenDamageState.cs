@@ -4,7 +4,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class MonsterListenDamageState : FsmState<Monster> {
+public class MonsterListenDamageState : MonsterBaseActionState {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>

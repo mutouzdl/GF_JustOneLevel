@@ -4,7 +4,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class HeroListenDamageState : HeroBaseActionState {
+public class HeroBaseActionState : FsmState<Hero> {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
@@ -19,7 +19,7 @@ public class HeroListenDamageState : HeroBaseActionState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Hero> fsm) {
         base.OnEnter(fsm);
-        SubscribeEvent(ApplyDamageEventArgs.EventId, OnApplyDamageEvent);
+        SubscribeEvent(DeadEventArgs.EventId, OnDeadEvent);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class HeroListenDamageState : HeroBaseActionState {
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
         base.OnLeave(fsm, isShutdown);
-        UnsubscribeEvent(ApplyDamageEventArgs.EventId, OnApplyDamageEvent);
+        UnsubscribeEvent(DeadEventArgs.EventId, OnDeadEvent);
     }
 
     /// <summary>
@@ -48,13 +48,14 @@ public class HeroListenDamageState : HeroBaseActionState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnDestroy (IFsm<Hero> fsm) {
         base.OnDestroy (fsm);
-        UnsubscribeEvent(ApplyDamageEventArgs.EventId, OnApplyDamageEvent);
+        UnsubscribeEvent(DeadEventArgs.EventId, OnDeadEvent);
     }
 
-    private void OnApplyDamageEvent(IFsm<Hero> fsm, object sender, object userData) {
-        int damageHP = (int)userData;
+    private void OnDeadEvent(IFsm<Hero> fsm, object sender, object userData) {
+        int entityId = (int)userData;
 
-        fsm.SetData<VarInt>(Constant.EntityData.DamageHP, damageHP);
-        ChangeState<HeroHurtState>(fsm);
+        if (entityId == fsm.Owner.Id) {
+            ChangeState<HeroDeadState>(fsm);
+        }
     }
 }

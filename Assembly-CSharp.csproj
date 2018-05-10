@@ -94,7 +94,9 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroBaseActionState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroCDIdleState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroDeadState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroHurtState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroIdleState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroListenAttackState.cs" />
@@ -102,13 +104,16 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroWalkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterAtkState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterBaseActionState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterCDIdleState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterDeadState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterHurtState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterIdleState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterListenDamageState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterSeekAimState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterWalkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\ApplyDamageEventArgs.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\DeadEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\ClickAttackButtonEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\HeroAttackEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Monster\MonsterAttackEventArgs.cs" />

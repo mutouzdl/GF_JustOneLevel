@@ -60,6 +60,7 @@ public class Monster : TargetableObject {
             new MonsterWalkState(),
             new MonsterAtkState(),
             new MonsterHurtState(),
+            new MonsterDeadState(),
         });
 
         /* 启动状态机 */
@@ -74,7 +75,15 @@ public class Monster : TargetableObject {
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm<Monster> ();
+        GameEntry.Fsm.DestroyFsm(m_MonsterStateFsm);
+        GameEntry.Fsm.DestroyFsm(m_MonsterActionFsm);
+    }
+
+    protected override void OnDead() {
+        base.OnDead();
+        m_MonsterActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
+
+        Log.Info("怪物死亡！！！");
     }
 
     public override ImpactData GetImpactData () {
