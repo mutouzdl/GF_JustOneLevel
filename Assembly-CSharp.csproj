@@ -150,11 +150,11 @@
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildSettings.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildInfo.txt" />
- <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.PackageManagerUI.Editor">
+ <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity2018/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

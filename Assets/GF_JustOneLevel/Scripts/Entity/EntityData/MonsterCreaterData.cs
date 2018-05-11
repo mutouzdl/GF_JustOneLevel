@@ -17,6 +17,7 @@ public class MonsterCreaterData : EntityData {
         Probability = drMonsterCreater.Probability;
         PerNum = drMonsterCreater.PerNum;
         MaxNum = drMonsterCreater.MaxNum;
+        MonsterPrize = drMonsterCreater.MonsterPrize;
     }
 
     /// <summary>
@@ -78,4 +79,12 @@ public class MonsterCreaterData : EntityData {
         protected set;
     }
 
+    /// <summary>
+    /// 怪物奖励分值
+    /// </summary>
+    /// <returns></returns>
+    public int MonsterPrize {
+        get;
+        protected set;
+    }
 }

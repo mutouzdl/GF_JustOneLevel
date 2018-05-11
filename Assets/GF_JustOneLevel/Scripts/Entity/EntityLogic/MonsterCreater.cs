@@ -44,7 +44,8 @@ public class MonsterCreater : Entity {
 		// 创建怪物
 		if (Utility.Random.GetRandom (100) < m_MonsterCreaterData.Probability) {
 			for (int i = 0; i < m_MonsterCreaterData.PerNum; i++) {
-				MonsterData monsterData = new MonsterData (EntityExtension.GenerateSerialId (), m_MonsterCreaterData.TypeId, CampType.Enemy);
+				MonsterData monsterData = new MonsterData (
+					EntityExtension.GenerateSerialId (), m_MonsterCreaterData.TypeId, CampType.Enemy, m_MonsterCreaterData.MonsterPrize);
 				monsterData.Position = new Vector3 (Utility.Random.GetRandom (5, 25), 0, Utility.Random.GetRandom (5, 25));
 				EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 

@@ -20,9 +20,18 @@ public sealed class DeadEventArgs : GameEventArgs {
     }
 
     /// <summary>
-    /// 获取用户自定义数据。
+    /// 死亡实体阵营类型
     /// </summary>
-    public object UserData {
+    public CampType CampType {
+        get;
+        private set;
+    }
+
+    /// <summary>
+    /// 死亡奖励
+    /// </summary>
+    /// <returns></returns>
+    public int Prize {
         get;
         private set;
     }
@@ -31,6 +40,16 @@ public sealed class DeadEventArgs : GameEventArgs {
     /// 清理事件。
     /// </summary>
     public override void Clear () {
-        UserData = default (object);
+        Prize = 0;
+    }
+
+    /// <summary>
+    /// 填充事件
+    /// </summary>
+    /// <param name="UserData"></param>
+    public DeadEventArgs Fill (CampType type, int prize) {
+        this.CampType = type;
+        this.Prize = prize;
+        return this;
     }
 }

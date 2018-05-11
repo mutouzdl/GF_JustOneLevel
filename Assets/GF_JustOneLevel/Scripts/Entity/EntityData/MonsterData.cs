@@ -13,7 +13,17 @@ public class MonsterData : FightEntityData {
         get;
         protected set;
     }
-    public MonsterData (int entityId, int typeId, CampType camp) : base (entityId, typeId, camp) {
+    
+    /// <summary>
+    /// 怪物奖励分值
+    /// </summary>
+    /// <returns></returns>
+    public int Prize {
+        get;
+        protected set;
+    }
+
+    public MonsterData (int entityId, int typeId, CampType camp, int prize) : base (entityId, typeId, camp) {
         IDataTable<DRMonster> dtMonster = GameEntry.DataTable.GetDataTable<DRMonster> ();
         DRMonster drMonster = dtMonster.GetDataRow (typeId);
         if (drMonster == null) {
@@ -29,5 +39,7 @@ public class MonsterData : FightEntityData {
         SeekRange = drMonster.SeekRange;
         Def = drMonster.Def;
         AtkSpeed = drMonster.AtkSpeed;
+
+        this.Prize = prize;
     }
 }

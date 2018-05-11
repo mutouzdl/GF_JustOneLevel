@@ -83,7 +83,8 @@ public class Monster : TargetableObject {
         base.OnDead();
         m_MonsterActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
 
-        Log.Info("怪物死亡！！！");
+        GameEntry.Event.Fire(this, 
+            ReferencePool.Acquire<DeadEventArgs>().Fill(this.m_MonsterData.Camp, this.m_MonsterData.Prize));
     }
 
     public override ImpactData GetImpactData () {

@@ -72,6 +72,15 @@ public class DRMonsterCreater : IDataRow {
         protected set;
     }
 
+    /// <summary>
+    /// 怪物奖励分值
+    /// </summary>
+    /// <returns></returns>
+    public int MonsterPrize {
+        get;
+        protected set;
+    }
+
     public virtual void ParseDataRow (string dataRowText) {
         string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
@@ -83,6 +92,7 @@ public class DRMonsterCreater : IDataRow {
         Probability = int.Parse (text[index++]);
         PerNum = int.Parse (text[index++]);
         MaxNum = int.Parse (text[index++]);
+        MonsterPrize = int.Parse (text[index++]);
     }
 
     private void AvoidJIT () {
