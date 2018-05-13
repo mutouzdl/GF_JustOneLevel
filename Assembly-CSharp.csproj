@@ -137,6 +137,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UGuiGroupHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIFormId.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerMessage.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerOperate.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AIUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AssetUtility.cs" />

@@ -54,8 +54,6 @@ public class MonsterCreater : Entity {
 
 			// 达到最大创建数量，销毁生成器
 			if (m_CreateNum >= m_MonsterCreaterData.MaxNum) {
-				Log.Info ("m_CreateNum:" + m_CreateNum);
-				Log.Info ("m_MonsterCreaterData.MaxNum:" + m_MonsterCreaterData.MaxNum);
 				GameEntry.Entity.HideEntity (this.Id);
 			}
 		}

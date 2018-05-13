@@ -13,16 +13,12 @@ public class SurvivalGame {
     private float m_ElapseSeconds = 0f;
 
     private Hero m_Hero = null;
-    /// <summary>
-    /// 累计获得奖励
-    /// </summary>
-    private int m_TotalPrize = 0;
+    
 
     public void Initialize () {
         // 订阅事件
         GameEntry.Event.Subscribe (ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
         GameEntry.Event.Subscribe (ShowEntityFailureEventArgs.EventId, OnShowEntityFailure);
-        GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
 
         // 创建主角
         HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
@@ -34,6 +30,8 @@ public class SurvivalGame {
         monsterCreaterData.Position = new Vector3 (3, 0, 3);
         EntityExtension.ShowMonsterCreater (typeof (MonsterCreater), "MonsterCreaterGroup", monsterCreaterData);
 
+        // 打开UI
+        
         GameOver = false;
         m_Hero = null;
     }
@@ -74,15 +72,5 @@ public class SurvivalGame {
     protected void OnShowEntityFailure (object sender, GameEventArgs e) {
         ShowEntityFailureEventArgs ne = (ShowEntityFailureEventArgs) e;
         Log.Warning ("Show entity failure with error message '{0}'.", ne.ErrorMessage);
-    }
-
-    protected void OnDeadEvent (object sender, GameEventArgs e) {
-        DeadEventArgs deadEventArgs = e as DeadEventArgs;
-
-        if (deadEventArgs.CampType == CampType.Enemy) {
-            m_TotalPrize += deadEventArgs.Prize;
-            
-            Log.Info ("怪物死亡，获得奖励：" + deadEventArgs.Prize + "，累计获得奖励：" + m_TotalPrize);
-        }
     }
 }
