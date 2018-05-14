@@ -143,6 +143,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AssetUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />
+     <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleBuilder.xml" />

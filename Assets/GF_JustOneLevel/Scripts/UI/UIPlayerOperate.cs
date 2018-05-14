@@ -1,7 +1,7 @@
 using GameFramework;
 using UnityGameFramework.Runtime;
 
-public class UIPlayerOperate : UIFormLogic {
+public class UIPlayerOperate : UGuiForm {
     /// <summary>
     /// 玩家点击攻击按钮
     /// </summary>

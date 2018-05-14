@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
-public class UIPlayerMessage : UIFormLogic {
+public class UIPlayerMessage : UGuiForm {
     [SerializeField]
     private Text m_PrizeText = null;
 

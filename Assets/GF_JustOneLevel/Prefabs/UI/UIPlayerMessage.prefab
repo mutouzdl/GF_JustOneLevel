@@ -200,7 +200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5956\u52B1\uFF1A"
+  m_Text: Message.Prize
 --- !u!114 &114836716662967730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!114 &114945955865148958
 MonoBehaviour:
   m_ObjectHideFlags: 1
