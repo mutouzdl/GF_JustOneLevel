@@ -44,4 +44,12 @@ public class UIPlayerMessage : UGuiForm {
             m_PrizeText.text = m_TotalPrize.ToString();
         }
     }
+
+    /// <summary>
+    /// 总共获得的金币奖励数量
+    /// </summary>
+    /// <returns></returns>
+    public int TotalPrize() {
+        return m_TotalPrize;
+    }
 }

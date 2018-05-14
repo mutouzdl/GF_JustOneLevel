@@ -30,8 +30,6 @@ public class SurvivalGame {
         monsterCreaterData.Position = new Vector3 (3, 0, 3);
         EntityExtension.ShowMonsterCreater (typeof (MonsterCreater), "MonsterCreaterGroup", monsterCreaterData);
 
-        // 打开UI
-        
         GameOver = false;
         m_Hero = null;
     }
@@ -45,20 +43,6 @@ public class SurvivalGame {
         if (m_Hero != null && m_Hero.IsDead) {
             GameOver = true;
             return;
-        }
-
-        m_ElapseSeconds += elapseSeconds;
-        if (m_ElapseSeconds >= 1f) {
-            m_ElapseSeconds = 0f;
-
-            // float randomPositionX = m_SceneBackground.EnemySpawnBoundary.bounds.min.x + m_SceneBackground.EnemySpawnBoundary.bounds.size.x * (float) Utility.Random.GetRandomDouble ();
-            // float randomPositionZ = m_SceneBackground.EnemySpawnBoundary.bounds.min.z + m_SceneBackground.EnemySpawnBoundary.bounds.size.z * (float) Utility.Random.GetRandomDouble ();
-
-            // GameEntry.Entity.ShowEntity<DemoSF_Asteroid> (
-            //     DemoSF_EntityExtension.GenerateSerialId (),
-            //     "Assets/DemoStarForce/Prefabs/Asteroid01.prefab",
-            //     "AsteroidGroup",
-            //     new Vector3 (randomPositionX, 0f, randomPositionZ));
         }
     }
 

@@ -56,9 +56,19 @@ public class ProcedureGame : ProcedureBase {
     }
 
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
-        if (m_SurvivalGame != null && !m_SurvivalGame.GameOver) {
-            m_SurvivalGame.Update (elapseSeconds, realElapseSeconds);
-            return;
+        if (m_SurvivalGame != null) {
+            if (!m_SurvivalGame.GameOver) {
+                m_SurvivalGame.Update (elapseSeconds, realElapseSeconds);
+            }
+            else {
+                // 保存获得的金币
+                int gold = GameEntry.Setting.GetInt(Constant.Player.Gold, 0);
+                GameEntry.Setting.SetInt(Constant.Player.Gold, gold + m_UIPlayerMessage.TotalPrize());
+
+                // 返回菜单场景
+                procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt("Scene.Menu"));
+                ChangeState<ProcedureChangeScene>(procedureOwner);
+            }
         }
     }
 

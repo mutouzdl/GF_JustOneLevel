@@ -305,11 +305,6 @@ Prefab:
     m_Modifications:
     - target: {fileID: 224314012045011210, guid: 843225ea0397c8446ae8475b79c87ff1,
         type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224314012045011210, guid: 843225ea0397c8446ae8475b79c87ff1,
-        type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -398,10 +393,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114011972799146852, guid: 843225ea0397c8446ae8475b79c87ff1,
-        type: 2}
-      propertyPath: m_Text
-      value: Operate.Atk
+    - target: {fileID: 1213254167301958, guid: 843225ea0397c8446ae8475b79c87ff1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 843225ea0397c8446ae8475b79c87ff1, type: 2}
@@ -717,7 +711,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2080464096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06ae6129ec64a3c4fbe26f4cd8bf3aee, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce01c5775b50f14a8d827f8d0e9feab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_DeviceModelConfig: {fileID: 0}

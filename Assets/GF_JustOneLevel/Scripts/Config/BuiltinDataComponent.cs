@@ -2,10 +2,7 @@
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-/// <summary>
-/// 参考来源：https://github.com/EllanJiang/StarForce
-/// </summary>
-public class ConfigComponent : GameFrameworkComponent {
+public class BuiltinDataComponent : GameFrameworkComponent {
     [SerializeField]
     private DeviceModelConfig m_DeviceModelConfig = null;
 
@@ -41,8 +38,8 @@ public class ConfigComponent : GameFrameworkComponent {
             return;
         }
 
-        GameEntry.Base.GameVersion = GameEntry.Config.BuildInfo.GameVersion;
-        GameEntry.Base.InternalApplicationVersion = GameEntry.Config.BuildInfo.InternalVersion;
+        GameEntry.Base.GameVersion = m_BuildInfo.GameVersion;
+        GameEntry.Base.InternalApplicationVersion = m_BuildInfo.InternalVersion;
     }
 
     public void InitDefaultDictionary () {
