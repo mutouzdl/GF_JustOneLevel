@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: cec4ecf575fe7ed4fadd6458d54016d2
+timeCreated: 1447495874
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: eff_fire
+    100002: Model
+    100004: //RootNode
+    100006: Root
+    100008: Skeleton_Arm01_L
+    100010: Skeleton_Arm01_R
+    100012: Skeleton_Arm02_L
+    100014: Skeleton_Arm02_R
+    100016: Skeleton_Arm03_L
+    100018: Skeleton_Arm03_R
+    100020: Skeleton_Arm04_L
+    100022: Skeleton_Arm04_R
+    100024: Skeleton_Head
+    100026: Skeleton_Leg01_L
+    100028: Skeleton_Leg01_R
+    100030: Skeleton_Leg02_L
+    100032: Skeleton_Leg02_R
+    100034: Skeleton_Leg03_L
+    100036: Skeleton_Leg03_R
+    100038: Skeleton_Leg04_L
+    100040: Skeleton_Leg04_R
+    100042: Skeleton_Leg05_L
+    100044: Skeleton_Leg05_R
+    100046: Skeleton_Mouse_Top
+    100048: Skeleton_Mouse_Top (2)
+    100050: Skeleton_Mouse_Under
+    100052: Skeleton_Mouse_Under (2)
+    100054: Skeleton_Pelvis
+    100056: Skeleton_Spine01
+    100058: Skeleton_Spine02
+    100060: Skeleton_Spine03
+    100062: Skeleton_Tail01
+    100064: Skeleton_Tail02
+    100066: Skeleton_Tail03
+    100068: Skeleton_Tail04
+    100070: Skeleton_Tail05
+    100072: Skeleton_Wing01_L
+    100074: Skeleton_Wing01_R
+    100076: Skeleton_Wing02_L
+    100078: Skeleton_Wing02_R
+    100080: Skeleton_Wing02B_End_L
+    100082: Skeleton_Wing02B_End_R
+    100084: Skeleton_Wing02B_L
+    100086: Skeleton_Wing02B_R
+    100088: Skeleton_Wing03_L
+    100090: Skeleton_Wing03_R
+    100092: Skeleton_Wing03B_End_L
+    100094: Skeleton_Wing03B_End_R
+    100096: Skeleton_Wing03B_L
+    100098: Skeleton_Wing03B_R
+    100100: Skeleton_Wing04_L
+    100102: Skeleton_Wing04_R
+    100104: Skeleton_Wing04B_End_L
+    100106: Skeleton_Wing04B_End_R
+    100108: Skeleton_Wing04B_L
+    100110: Skeleton_Wing04B_R
+    100112: Skeleton_Wing05_L
+    100114: Skeleton_Wing05_R
+    400000: eff_fire
+    400002: Model
+    400004: //RootNode
+    400006: Root
+    400008: Skeleton_Arm01_L
+    400010: Skeleton_Arm01_R
+    400012: Skeleton_Arm02_L
+    400014: Skeleton_Arm02_R
+    400016: Skeleton_Arm03_L
+    400018: Skeleton_Arm03_R
+    400020: Skeleton_Arm04_L
+    400022: Skeleton_Arm04_R
+    400024: Skeleton_Head
+    400026: Skeleton_Leg01_L
+    400028: Skeleton_Leg01_R
+    400030: Skeleton_Leg02_L
+    400032: Skeleton_Leg02_R
+    400034: Skeleton_Leg03_L
+    400036: Skeleton_Leg03_R
+    400038: Skeleton_Leg04_L
+    400040: Skeleton_Leg04_R
+    400042: Skeleton_Leg05_L
+    400044: Skeleton_Leg05_R
+    400046: Skeleton_Mouse_Top
+    400048: Skeleton_Mouse_Top (2)
+    400050: Skeleton_Mouse_Under
+    400052: Skeleton_Mouse_Under (2)
+    400054: Skeleton_Pelvis
+    400056: Skeleton_Spine01
+    400058: Skeleton_Spine02
+    400060: Skeleton_Spine03
+    400062: Skeleton_Tail01
+    400064: Skeleton_Tail02
+    400066: Skeleton_Tail03
+    400068: Skeleton_Tail04
+    400070: Skeleton_Tail05
+    400072: Skeleton_Wing01_L
+    400074: Skeleton_Wing01_R
+    400076: Skeleton_Wing02_L
+    400078: Skeleton_Wing02_R
+    400080: Skeleton_Wing02B_End_L
+    400082: Skeleton_Wing02B_End_R
+    400084: Skeleton_Wing02B_L
+    400086: Skeleton_Wing02B_R
+    400088: Skeleton_Wing03_L
+    400090: Skeleton_Wing03_R
+    400092: Skeleton_Wing03B_End_L
+    400094: Skeleton_Wing03B_End_R
+    400096: Skeleton_Wing03B_L
+    400098: Skeleton_Wing03B_R
+    400100: Skeleton_Wing04_L
+    400102: Skeleton_Wing04_R
+    400104: Skeleton_Wing04B_End_L
+    400106: Skeleton_Wing04B_End_R
+    400108: Skeleton_Wing04B_L
+    400110: Skeleton_Wing04B_R
+    400112: Skeleton_Wing05_L
+    400114: Skeleton_Wing05_R
+    7400000: Dragon_Damage
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Dragon_Damage
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Model
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Skeleton_Pelvis
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_L/Skeleton_Leg02_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_L/Skeleton_Leg02_L/Skeleton_Leg03_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_L/Skeleton_Leg02_L/Skeleton_Leg03_L/Skeleton_Leg04_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_L/Skeleton_Leg02_L/Skeleton_Leg03_L/Skeleton_Leg04_L/Skeleton_Leg05_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_R/Skeleton_Leg02_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_R/Skeleton_Leg02_R/Skeleton_Leg03_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_R/Skeleton_Leg02_R/Skeleton_Leg03_R/Skeleton_Leg04_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Leg01_R/Skeleton_Leg02_R/Skeleton_Leg03_R/Skeleton_Leg04_R/Skeleton_Leg05_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_L/Skeleton_Arm02_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_L/Skeleton_Arm02_L/Skeleton_Arm03_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_L/Skeleton_Arm02_L/Skeleton_Arm03_L/Skeleton_Arm04_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_R/Skeleton_Arm02_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_R/Skeleton_Arm02_R/Skeleton_Arm03_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Arm01_R/Skeleton_Arm02_R/Skeleton_Arm03_R/Skeleton_Arm04_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03/Skeleton_Head
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03/Skeleton_Head/eff_fire
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03/Skeleton_Head/Skeleton_Mouse_Top
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03/Skeleton_Head/Skeleton_Mouse_Top/Skeleton_Mouse_Top
+          (2)
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03/Skeleton_Head/Skeleton_Mouse_Under
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Spine02/Skeleton_Spine03/Skeleton_Head/Skeleton_Mouse_Under/Skeleton_Mouse_Under
+          (2)
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing02B_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing02B_L/Skeleton_Wing02B_End_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L/Skeleton_Wing03B_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L/Skeleton_Wing03B_L/Skeleton_Wing03B_End_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L/Skeleton_Wing04_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L/Skeleton_Wing04_L/Skeleton_Wing04B_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L/Skeleton_Wing04_L/Skeleton_Wing04B_L/Skeleton_Wing04B_End_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_L/Skeleton_Wing02_L/Skeleton_Wing03_L/Skeleton_Wing04_L/Skeleton_Wing05_L
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing02B_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing02B_R/Skeleton_Wing02B_End_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R/Skeleton_Wing03B_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R/Skeleton_Wing03B_R/Skeleton_Wing03B_End_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R/Skeleton_Wing04_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R/Skeleton_Wing04_R/Skeleton_Wing04B_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R/Skeleton_Wing04_R/Skeleton_Wing04B_R/Skeleton_Wing04B_End_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Spine01/Skeleton_Wing01_R/Skeleton_Wing02_R/Skeleton_Wing03_R/Skeleton_Wing04_R/Skeleton_Wing05_R
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Tail01
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Tail01/Skeleton_Tail02
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Tail01/Skeleton_Tail02/Skeleton_Tail03
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Tail01/Skeleton_Tail02/Skeleton_Tail03/Skeleton_Tail04
+        weight: 1
+      - path: Root/Skeleton_Pelvis/Skeleton_Tail01/Skeleton_Tail02/Skeleton_Tail03/Skeleton_Tail04/Skeleton_Tail05
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Root
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

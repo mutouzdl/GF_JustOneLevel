@@ -149,6 +149,7 @@
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />
+     <None Include="Assets\GF_JustOneLevel\Character\Character_Witch_Dragon\ReadMe.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleBuilder.xml" />
      <None Include="Assets\GF_JustOneLevel\Localization\ChineseSimplified\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />

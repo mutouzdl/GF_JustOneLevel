@@ -13,7 +13,6 @@ public class SurvivalGame {
     private float m_ElapseSeconds = 0f;
 
     private Hero m_Hero = null;
-    
 
     public void Initialize () {
         // 订阅事件
@@ -26,9 +25,14 @@ public class SurvivalGame {
         EntityExtension.ShowHero (typeof (Hero), "PlayerGroup", heroData);
 
         // 创建怪物生成器
-        MonsterCreaterData monsterCreaterData = new MonsterCreaterData (EntityExtension.GenerateSerialId (), 1);
-        monsterCreaterData.Position = new Vector3 (3, 0, 3);
-        EntityExtension.ShowMonsterCreater (typeof (MonsterCreater), "MonsterCreaterGroup", monsterCreaterData);
+        IDataTable<DRMonsterCreater> dtMonsterCreater = GameEntry.DataTable.GetDataTable<DRMonsterCreater> ();
+        DRMonsterCreater[] creaters = dtMonsterCreater.GetAllDataRows ();
+
+        foreach (DRMonsterCreater creater in creaters) {
+            MonsterCreaterData monsterCreaterData = new MonsterCreaterData (EntityExtension.GenerateSerialId (), creater.Id);
+            monsterCreaterData.Position = new Vector3 (3, 0, 3);
+            EntityExtension.ShowMonsterCreater (typeof (MonsterCreater), "MonsterCreaterGroup", monsterCreaterData);
+        }
 
         GameOver = false;
         m_Hero = null;

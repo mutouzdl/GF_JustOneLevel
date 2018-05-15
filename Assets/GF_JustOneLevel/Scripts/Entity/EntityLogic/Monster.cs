@@ -96,7 +96,14 @@ public class Monster : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     public void Forward (float distance) {
-        CachedTransform.position += CachedTransform.forward * distance * m_MonsterData.MoveSpeed;
+        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * m_MonsterData.MoveSpeed;
+        if (nextPos.x > 30) {
+            nextPos.x = 30;
+        }
+        if (nextPos.z > 30) {
+            nextPos.z = 30;
+        }
+        CachedTransform.position = nextPos;
     }
 
     /// <summary>

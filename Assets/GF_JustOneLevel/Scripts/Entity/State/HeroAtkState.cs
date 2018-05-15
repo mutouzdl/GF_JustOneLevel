@@ -32,6 +32,7 @@ public class HeroAtkState : HeroBaseActionState {
             if (monster.IsDead == false) {
                 float distance = AIUtility.GetDistance (fsm.Owner, monster);
 
+                Log.Info("distance:" + distance);
                 if (fsm.Owner.CheckInAtkRange (distance)) {
                     fsm.Owner.PerformAttack (monster);
                 }
