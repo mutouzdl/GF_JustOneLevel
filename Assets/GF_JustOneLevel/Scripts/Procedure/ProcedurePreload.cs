@@ -15,6 +15,8 @@ public class ProcedurePreload : ProcedureBase {
     protected override void OnEnter (ProcedureOwner procedureOwner) {
         base.OnEnter (procedureOwner);
 
+        GameEntry.Event.Subscribe (LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
+        GameEntry.Event.Subscribe (LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
         GameEntry.Event.Subscribe (LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
         GameEntry.Event.Subscribe (LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);
         GameEntry.Event.Subscribe (LoadDictionarySuccessEventArgs.EventId, OnLoadDictionarySuccess);
@@ -26,6 +28,8 @@ public class ProcedurePreload : ProcedureBase {
     }
 
     protected override void OnLeave (ProcedureOwner procedureOwner, bool isShutdown) {
+        GameEntry.Event.Unsubscribe (LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
+        GameEntry.Event.Unsubscribe (LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
         GameEntry.Event.Unsubscribe (LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);
         GameEntry.Event.Unsubscribe (LoadDataTableFailureEventArgs.EventId, OnLoadDataTableFailure);
         GameEntry.Event.Unsubscribe (LoadDictionarySuccessEventArgs.EventId, OnLoadDictionarySuccess);
@@ -44,10 +48,14 @@ public class ProcedurePreload : ProcedureBase {
             }
         }
 
+        procedureOwner.SetData<VarInt> (Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt ("Scene.Menu"));
         ChangeState<ProcedureChangeScene> (procedureOwner);
     }
 
     private void PreloadResources () {
+        // Preload configs
+        LoadConfig ("DefaultConfig");
+
         // Preload data tables
         LoadDataTable ("Hero");
         LoadDataTable ("Monster");
@@ -62,6 +70,17 @@ public class ProcedurePreload : ProcedureBase {
 
         // Preload fonts
         LoadFont ("MainFont");
+    }
+
+    private void LoadConfig (string configName) {
+        m_LoadedFlag.Add (string.Format ("Config.{0}", configName), false);
+
+        if (string.IsNullOrEmpty (configName)) {
+            Log.Warning ("Config name is invalid.");
+            return;
+        }
+
+        GameEntry.Config.LoadConfig (configName, AssetUtility.GetConfigAsset (configName), this);
     }
 
     private void LoadDataTable (string dataTableName) {
@@ -86,6 +105,25 @@ public class ProcedurePreload : ProcedureBase {
             (assetName, status, errorMessage, userData) => {
                 Log.Error ("Can not load font '{0}' from '{1}' with error message '{2}'.", fontName, assetName, errorMessage);
             }));
+    }
+
+    private void OnLoadConfigSuccess (object sender, GameEventArgs e) {
+        LoadConfigSuccessEventArgs ne = (LoadConfigSuccessEventArgs) e;
+        if (ne.UserData != this) {
+            return;
+        }
+
+        m_LoadedFlag[string.Format ("Config.{0}", ne.ConfigName)] = true;
+        Log.Info ("Load config '{0}' OK.", ne.ConfigName);
+    }
+
+    private void OnLoadConfigFailure (object sender, GameEventArgs e) {
+        LoadConfigFailureEventArgs ne = (LoadConfigFailureEventArgs) e;
+        if (ne.UserData != this) {
+            return;
+        }
+
+        Log.Error ("Can not load config '{0}' from '{1}' with error message '{2}'.", ne.ConfigName, ne.ConfigAssetName, ne.ErrorMessage);
     }
 
     private void OnLoadDataTableSuccess (object sender, GameEventArgs e) {

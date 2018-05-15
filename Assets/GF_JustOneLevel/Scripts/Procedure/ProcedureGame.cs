@@ -16,7 +16,6 @@ public class ProcedureGame : ProcedureBase {
     /// 玩家信息UI
     /// </summary>
     private UIPlayerMessage m_UIPlayerMessage = null;
-    private float time = 0;
 
     protected override void OnInit (ProcedureOwner procedureOwner) {
         base.OnInit (procedureOwner);
@@ -33,8 +32,8 @@ public class ProcedureGame : ProcedureBase {
         GameEntry.Event.Subscribe (OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
         // 加载UI
-        GameEntry.UI.OpenUIForm ("Assets/GF_JustOneLevel/Prefabs/UI/UIPlayerOperate.prefab", "DefaultGroup");
-        GameEntry.UI.OpenUIForm ("Assets/GF_JustOneLevel/Prefabs/UI/UIPlayerMessage.prefab", "DefaultGroup");
+        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIPlayerOperate"), "DefaultGroup", this);
+        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIPlayerMessage"), "DefaultGroup", this);
     }
 
     protected override void OnLeave (ProcedureOwner procedureOwner, bool isShutdown) {
@@ -59,17 +58,34 @@ public class ProcedureGame : ProcedureBase {
         if (m_SurvivalGame != null) {
             if (!m_SurvivalGame.GameOver) {
                 m_SurvivalGame.Update (elapseSeconds, realElapseSeconds);
-            }
-            else {
-                // 保存获得的金币
-                int gold = GameEntry.Setting.GetInt(Constant.Player.Gold, 0);
-                GameEntry.Setting.SetInt(Constant.Player.Gold, gold + m_UIPlayerMessage.TotalPrize());
-
-                // 返回菜单场景
-                procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt("Scene.Menu"));
-                ChangeState<ProcedureChangeScene>(procedureOwner);
+            } else {
+                GameOver (procedureOwner);
             }
         }
+    }
+
+    /// <summary>
+    /// 返回菜单
+    /// </summary>
+    public void Back () {
+        m_SurvivalGame.Shutdown();
+        m_ProcedureOwner.SetData<VarInt> (Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt ("Scene.Menu"));
+        ChangeState<ProcedureChangeScene> (m_ProcedureOwner);
+    }
+
+    private void GameOver (ProcedureOwner procedureOwner) {
+        // 保存获得的金币
+        int gold = GameEntry.Setting.GetInt (Constant.Player.Gold, 0);
+        GameEntry.Setting.SetInt (Constant.Player.Gold, gold + m_UIPlayerMessage.TotalPrize ());
+
+        // 返回菜单场景
+        BackToMenu (procedureOwner);
+    }
+
+    /// <summary>
+    /// 返回菜单
+    /// </summary>
+    private void BackToMenu (ProcedureOwner procedureOwner) {
     }
 
     private void OnOpenUIFormSuccess (object sender, GameEventArgs e) {
@@ -77,8 +93,7 @@ public class ProcedureGame : ProcedureBase {
 
         if (ne.UIForm.Logic.GetType () == typeof (UIPlayerOperate)) {
             m_UIPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
-        }
-        else if (ne.UIForm.Logic.GetType () == typeof (UIPlayerMessage)) {
+        } else if (ne.UIForm.Logic.GetType () == typeof (UIPlayerMessage)) {
             m_UIPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
         }
     }

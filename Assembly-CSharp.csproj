@@ -56,6 +56,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Custom.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\BuiltinDataComponent.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\ConfigHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\DeviceModelConfig.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DataTableExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DREntity.cs" />
@@ -129,15 +130,16 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureCheckVersion.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureGame.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureLaunch.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureMenu.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedurePreload.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureSplash.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\Scene\SceneId.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Sound\SoundExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\DialogParams.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UGuiForm.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UGuiGroupHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIFormId.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIMenu.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerMessage.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerOperate.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AIUtility.cs" />

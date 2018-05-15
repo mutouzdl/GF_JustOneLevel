@@ -13,12 +13,16 @@ public class UIPlayerMessage : UGuiForm {
     /// </summary>
     private int m_TotalPrize = 0;
 
+    private ProcedureGame m_ProcedureGame = null;
+
     /// <summary>
     /// 界面打开。
     /// </summary>
     /// <param name="userData">用户自定义数据。</param>
     protected override void OnOpen (object userData) {
         base.OnOpen(userData);
+
+        m_ProcedureGame = userData as ProcedureGame;
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe(DeadEventArgs.EventId, OnDeadEvent);

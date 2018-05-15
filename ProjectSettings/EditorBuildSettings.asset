@@ -11,3 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GF_JustOneLevel/Scenes/Game.unity
     guid: 13f9733ba444da349be170e978d01bcf
+  - enabled: 1
+    path: Assets/GF_JustOneLevel/Scenes/Menu.unity
+    guid: 99237d2b95093834faea4dac2cfe3628
+  m_configObjects: {}

@@ -66,6 +66,8 @@ namespace UnityGameFramework.Runtime
                         continue;
                     }
 
+                    Log.Info("rowTexts[i]:" + rowTexts[i]);
+
                     string[] splitLine = rowTexts[i].Split(ColumnSplit, StringSplitOptions.None);
                     if (splitLine.Length != ColumnCount)
                     {

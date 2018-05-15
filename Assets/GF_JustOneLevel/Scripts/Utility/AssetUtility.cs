@@ -1,8 +1,11 @@
-﻿
-/// <summary>
+﻿/// <summary>
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public static class AssetUtility {
+    public static string GetConfigAsset (string assetName) {
+        return string.Format ("Assets/GF_JustOneLevel/Configs/{0}.csv", assetName);
+    }
+
     public static string GetDataTableAsset (string assetName) {
         return string.Format ("Assets/GF_JustOneLevel/DataTables/{0}.csv", assetName);
     }
@@ -32,7 +35,7 @@ public static class AssetUtility {
     }
 
     public static string GetUIFormAsset (string assetName) {
-        return string.Format ("Assets/GF_JustOneLevel/UI/UIForms/{0}.prefab", assetName);
+        return string.Format ("Assets/GF_JustOneLevel/Prefabs/UI/{0}.prefab", assetName);
     }
 
     public static string GetUISpriteAsset (string assetName) {

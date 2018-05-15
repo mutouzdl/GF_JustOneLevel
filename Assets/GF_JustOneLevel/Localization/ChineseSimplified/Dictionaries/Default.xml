@@ -6,6 +6,7 @@
     <String Key="Game.Website" Value="http://GameFramework.cn/" />
     <String Key="Message.Prize" Value="奖励：" />
     <String Key="Operate.Atk" Value="攻击" />
+    <String Key="Operate.Back" Value="返回" />
     <String Key="Menu.StartButton" Value="开始" />
     <String Key="Menu.SettingButton" Value="设置" />
     <String Key="Menu.AboutButton" Value="关于" />

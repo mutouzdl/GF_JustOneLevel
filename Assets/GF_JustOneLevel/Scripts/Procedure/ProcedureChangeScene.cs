@@ -67,8 +67,11 @@ public partial class ProcedureChangeScene : ProcedureBase {
         }
         int sceneId = procedureOwner.GetData<VarInt> (Constant.ProcedureData.NextSceneId).Value;
 
-        if (sceneId == (int)SceneId.Game) {
+        if (sceneId == GameEntry.Config.GetInt("Scene.Game")) {
             ChangeState<ProcedureGame>(procedureOwner);
+        }
+        else if (sceneId == GameEntry.Config.GetInt("Scene.Menu")) {
+            ChangeState<ProcedureMenu>(procedureOwner);
         }
         // if (m_ChangeToMenu) {
         //     ChangeState<ProcedureMenu> (procedureOwner);
