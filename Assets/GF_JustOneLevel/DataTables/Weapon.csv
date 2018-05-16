@@ -1,0 +1,4 @@
+﻿#,Id,AssetName,Attack,AttackInterval,BulletId,BulletSpeed,BulletSoundId
+#,int,string,int,float,int,float,int
+#,编号,资源名称,攻击力,攻击间隔（秒）,子弹编号,子弹速度,子弹声音编号
+,1,WeaponNormal,10,0.4,1,5,1

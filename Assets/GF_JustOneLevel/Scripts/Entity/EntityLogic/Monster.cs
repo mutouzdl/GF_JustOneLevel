@@ -4,6 +4,7 @@ using System.Reflection;
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 public class Monster : TargetableObject {
     [SerializeField]
@@ -21,6 +22,7 @@ public class Monster : TargetableObject {
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
     private GameFramework.Fsm.IFsm<Monster> m_MonsterActionFsm;
+
 
     /// <summary>
     /// 是否正在追踪目标
@@ -49,18 +51,25 @@ public class Monster : TargetableObject {
 
         IsLockingAim = false;
 
+        /* 加载武器 */
+        List<WeaponData> weaponDatas = m_MonsterData.GetWeaponDatas ();
+        for (int i = 0; i < weaponDatas.Count; i++) {
+            Log.Info("创建武器:" + weaponDatas[i]);
+            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
+        }
+
         /* 创建状态机 */
-        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterStateFsm" + this.Id, this, new FsmState<Monster>[]{
-            new MonsterCDIdleState(),
-            new MonsterAtkCDState(),
+        m_MonsterStateFsm = GameEntry.Fsm.CreateFsm<Monster> ("monsterStateFsm" + this.Id, this, new FsmState<Monster>[] {
+            new MonsterCDIdleState (),
+                new MonsterAtkCDState (),
         });
 
-        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<Monster>("monsterActionFsm" + this.Id, this, new FsmState<Monster>[]{
-            new MonsterIdleState(),
-            new MonsterWalkState(),
-            new MonsterAtkState(),
-            new MonsterHurtState(),
-            new MonsterDeadState(),
+        m_MonsterActionFsm = GameEntry.Fsm.CreateFsm<Monster> ("monsterActionFsm" + this.Id, this, new FsmState<Monster>[] {
+            new MonsterIdleState (),
+                new MonsterWalkState (),
+                new MonsterAtkState (),
+                new MonsterHurtState (),
+                new MonsterDeadState (),
         });
 
         /* 启动状态机 */
@@ -72,19 +81,29 @@ public class Monster : TargetableObject {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
     }
 
+    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData)
+    {
+        base.OnAttached (childEntity, parentTransform, userData);
+
+        if (childEntity is Weapon) {
+            m_Weapons.Add ((Weapon) childEntity);
+            return;
+        }
+    }
+
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm(m_MonsterStateFsm);
-        GameEntry.Fsm.DestroyFsm(m_MonsterActionFsm);
+        GameEntry.Fsm.DestroyFsm (m_MonsterStateFsm);
+        GameEntry.Fsm.DestroyFsm (m_MonsterActionFsm);
     }
 
-    protected override void OnDead() {
-        base.OnDead();
+    protected override void OnDead () {
+        base.OnDead ();
         m_MonsterActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
 
-        GameEntry.Event.Fire(this, 
-            ReferencePool.Acquire<DeadEventArgs>().Fill(this.m_MonsterData.Camp, this.m_MonsterData.Prize));
+        GameEntry.Event.Fire (this,
+            ReferencePool.Acquire<DeadEventArgs> ().Fill (this.m_MonsterData.Camp, this.m_MonsterData.Prize));
     }
 
     public override ImpactData GetImpactData () {
@@ -110,8 +129,8 @@ public class Monster : TargetableObject {
     /// 转身
     /// </summary>
     /// <param name="destVec">目标位置</param>
-    public void Rotate(Vector3 destVec) {
-        CachedTransform.Rotate(destVec);
+    public void Rotate (Vector3 destVec) {
+        CachedTransform.Rotate (destVec);
     }
 
     /// <summary>
@@ -119,7 +138,7 @@ public class Monster : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     /// <returns></returns>
-    public bool CheckInAtkRange(float distance) {
+    public bool CheckInAtkRange (float distance) {
         return distance <= m_MonsterData.AtkRange;
     }
 
@@ -128,7 +147,7 @@ public class Monster : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     /// <returns></returns>
-    public bool CheckInSeekRange(float distance) {
+    public bool CheckInSeekRange (float distance) {
         return distance <= m_MonsterData.SeekRange;
     }
 
@@ -136,10 +155,14 @@ public class Monster : TargetableObject {
     /// 执行攻击
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
-    public void PerformAttack(TargetableObject aimEntity) {
+    public void PerformAttack (TargetableObject aimEntity) {
         m_IsAtkCDing = true;
-        m_MonsterStateFsm.FireEvent(this, MonsterAttackEventArgs.EventId);
-        aimEntity.ApplyDamage(m_MonsterData.Atk);
+        m_MonsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
+        aimEntity.ApplyDamage (m_MonsterData.Atk);
+
+        foreach(Weapon weapon in m_Weapons) {
+            weapon.TryAttack();
+        }
     }
 
     /// <summary>
@@ -154,14 +177,14 @@ public class Monster : TargetableObject {
     /// 攻击是否正在冷却
     /// </summary>
     /// <returns></returns>
-    public bool IsAtkCDing() {
+    public bool IsAtkCDing () {
         return m_IsAtkCDing;
     }
 
     /// <summary>
     /// 重置攻击冷却
     /// </summary>
-    public void ResetAtkCD() {
+    public void ResetAtkCD () {
         m_IsAtkCDing = false;
     }
 
@@ -169,7 +192,7 @@ public class Monster : TargetableObject {
     /// 锁定目标
     /// </summary>
     /// <param name="aim"></param>
-    public void LockAim(Entity aim) {
+    public void LockAim (Entity aim) {
         this.LockingAim = aim;
         this.IsLockingAim = true;
     }
@@ -177,7 +200,7 @@ public class Monster : TargetableObject {
     /// <summary>
     /// 解除目标的锁定
     /// </summary>
-    public void UnlockAim() {
+    public void UnlockAim () {
         this.LockingAim = null;
         this.IsLockingAim = false;
     }

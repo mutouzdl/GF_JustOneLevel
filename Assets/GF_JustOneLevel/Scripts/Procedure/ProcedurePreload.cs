@@ -60,6 +60,8 @@ public class ProcedurePreload : ProcedureBase {
         LoadDataTable ("Hero");
         LoadDataTable ("Monster");
         LoadDataTable ("PowerBar");
+        LoadDataTable ("Weapon");
+        LoadDataTable ("Bullet");
         LoadDataTable ("MonsterCreater");
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");

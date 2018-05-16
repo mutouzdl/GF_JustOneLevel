@@ -1,4 +1,5 @@
-﻿using GameFramework;
+﻿using System.Collections.Generic;
+using GameFramework;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
@@ -14,6 +15,14 @@ public abstract class TargetableObject : Entity {
     /// 血量条
     /// </summary>
     private PowerBar m_HPBar;
+    
+    /// <summary>
+    /// 武器
+    /// </summary>
+    /// <typeparam name="Weapon"></typeparam>
+    /// <returns></returns>
+    protected List<Weapon> m_Weapons = new List<Weapon>();
+
     public bool IsDead {
         get {
             return m_TargetableObjectData.HP <= 0;

@@ -59,6 +59,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\ConfigHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Config\DeviceModelConfig.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DataTableExtension.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRBullet.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DREntity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRHero.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonster.cs" />
@@ -69,6 +70,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRSound.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRUIForm.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRUISound.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRWeapon.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.EntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Layer.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Player.cs" />
@@ -83,6 +85,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\QualityLevelType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\RelationType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\AccessoryObjectData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\BulletData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\EntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\FightEntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\HeroData.cs" />
@@ -90,13 +93,16 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\PowerBarData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\TargetableObjectData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\WeaponData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityExtension.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Bullet.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Entity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Hero.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Monster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\MonsterCreater.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\PowerBar.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Weapon.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroBaseActionState.cs" />

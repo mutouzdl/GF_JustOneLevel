@@ -6,22 +6,7 @@ using UnityEngine;
 
 [Serializable]
 public class MonsterData : FightEntityData {
-    /// <summary>
-    /// 攻击范围
-    /// </summary>
-    public float SeekRange {
-        get;
-        protected set;
-    }
-    
-    /// <summary>
-    /// 怪物奖励分值
-    /// </summary>
-    /// <returns></returns>
-    public int Prize {
-        get;
-        protected set;
-    }
+    private List<WeaponData> m_WeaponDatas = new List<WeaponData> ();
 
     public MonsterData (int entityId, int typeId, CampType camp, int prize) : base (entityId, typeId, camp) {
         IDataTable<DRMonster> dtMonster = GameEntry.DataTable.GetDataTable<DRMonster> ();
@@ -41,5 +26,35 @@ public class MonsterData : FightEntityData {
         AtkSpeed = drMonster.AtkSpeed;
 
         this.Prize = prize;
+
+        for (int i = 0; i < drMonster.GetWeaponCount(); i++) {
+            m_WeaponDatas.Add (new WeaponData (EntityExtension.GenerateSerialId (), drMonster.GetWeaponID(i), Id, Camp));
+        }
     }
+
+    /// <summary>
+    /// 获取武器数据列表
+    /// </summary>
+    /// <returns></returns>
+    public List<WeaponData> GetWeaponDatas() {
+        return m_WeaponDatas;
+    }
+
+    /// <summary>
+    /// 攻击范围
+    /// </summary>
+    public float SeekRange {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 怪物奖励分值
+    /// </summary>
+    /// <returns></returns>
+    public int Prize {
+        get;
+        protected set;
+    }
+
 }
