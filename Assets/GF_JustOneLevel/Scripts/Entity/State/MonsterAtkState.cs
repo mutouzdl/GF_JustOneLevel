@@ -41,6 +41,7 @@ public class MonsterAtkState : MonsterBaseActionState {
             int lockAimID = fsm.GetData<VarInt> (Constant.EntityData.LockAimID).Value;
             Hero hero = (Hero) GameEntry.Entity.GetEntity (lockAimID).Logic;
 
+            fsm.Owner.transform.LookAt (hero.transform);
             fsm.Owner.PerformAttack (hero);
             ChangeState<MonsterIdleState> (fsm);
         }
