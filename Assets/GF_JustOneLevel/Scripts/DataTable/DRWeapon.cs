@@ -30,14 +30,6 @@ public class DRWeapon : IDataRow {
     }
 
     /// <summary>
-    /// 攻击间隔。
-    /// </summary>
-    public float AttackInterval {
-        get;
-        private set;
-    }
-
-    /// <summary>
     /// 子弹编号。
     /// </summary>
     public int BulletId {
@@ -68,7 +60,6 @@ public class DRWeapon : IDataRow {
         Id = int.Parse (text[index++]);
         AssetName = text[index++];
         Attack = int.Parse (text[index++]);
-        AttackInterval = float.Parse (text[index++]);
         BulletId = int.Parse (text[index++]);
         BulletSpeed = float.Parse (text[index++]);
         BulletSoundId = int.Parse (text[index++]);

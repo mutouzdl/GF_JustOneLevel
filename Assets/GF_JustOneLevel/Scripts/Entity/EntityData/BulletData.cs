@@ -5,6 +5,8 @@ using UnityEngine;
 public class BulletData : EntityData {
     [SerializeField]
     private int m_OwnerId = 0;
+    [SerializeField]
+    private int m_AimEntityId = 0;
 
     [SerializeField]
     private CampType m_OwnerCamp = CampType.Unknown;
@@ -17,18 +19,25 @@ public class BulletData : EntityData {
     [SerializeField]
     private Vector3 m_Forward = Vector3.zero;
 
-    public BulletData (int entityId, int typeId, int ownerId, CampType ownerCamp, int attack, float speed, Vector3 forward) : base (entityId, typeId) {
+    public BulletData (int entityId, int typeId, int ownerId, int aimEntityID,
+        CampType ownerCamp, int attack, float speed, Vector3 forward) : base (entityId, typeId) {
         m_OwnerId = ownerId;
         m_OwnerCamp = ownerCamp;
         m_Attack = attack;
         m_Speed = speed;
 
-        m_Forward = forward;
+        m_Forward = GameEntry.Entity.GetEntity(ownerId).transform.forward;
     }
 
     public int OwnerId {
         get {
             return m_OwnerId;
+        }
+    }
+
+    public int AimEntityID {
+        get {
+            return m_AimEntityId;
         }
     }
 

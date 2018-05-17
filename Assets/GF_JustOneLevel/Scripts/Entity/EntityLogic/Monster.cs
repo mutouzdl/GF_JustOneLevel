@@ -158,10 +158,10 @@ public class Monster : TargetableObject {
     public void PerformAttack (TargetableObject aimEntity) {
         m_IsAtkCDing = true;
         m_MonsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
-        aimEntity.ApplyDamage (m_MonsterData.Atk);
+        // aimEntity.ApplyDamage (m_MonsterData.Atk);
 
         foreach(Weapon weapon in m_Weapons) {
-            weapon.TryAttack();
+            weapon.Attack(aimEntity.Id, m_MonsterData.Atk);
         }
     }
 

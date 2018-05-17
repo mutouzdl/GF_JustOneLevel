@@ -11,8 +11,6 @@ public class Weapon : Entity {
     [SerializeField]
     private WeaponData m_WeaponData = null;
 
-    private float m_NextAttackTime = 0f;
-
     protected override void OnInit (object userData)
     {
         base.OnInit (userData);
@@ -39,19 +37,14 @@ public class Weapon : Entity {
         CachedTransform.localPosition = Vector3.zero;
     }
 
-    public void TryAttack () {
-        if (Time.time < m_NextAttackTime) {
-            return;
-        }
-
-        m_NextAttackTime = Time.time + m_WeaponData.AttackInterval;
-
+    public void Attack (int aimEntityID, int ownerAtk) {
         BulletData bulletData = new BulletData (
             EntityExtension.GenerateSerialId (), 
             m_WeaponData.BulletId, 
             m_WeaponData.OwnerId, 
+            aimEntityID,
             m_WeaponData.OwnerCamp, 
-            m_WeaponData.Attack, 
+            m_WeaponData.Attack + ownerAtk, 
             m_WeaponData.BulletSpeed,
             GameEntry.Entity.GetEntity(m_WeaponData.OwnerId).transform.forward
         );
