@@ -54,7 +54,6 @@ public class Monster : TargetableObject {
         /* 加载武器 */
         List<WeaponData> weaponDatas = m_MonsterData.GetWeaponDatas ();
         for (int i = 0; i < weaponDatas.Count; i++) {
-            Log.Info("创建武器:" + weaponDatas[i]);
             EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
         }
 
@@ -116,6 +115,8 @@ public class Monster : TargetableObject {
     /// <param name="distance"></param>
     public void Forward (float distance) {
         Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * m_MonsterData.MoveSpeed;
+
+        /* 判断边界，我知道写死是不对的，但是我目前就是想要写死，没有原因，就是很突然的 */
         if (nextPos.x > 30) {
             nextPos.x = 30;
         }

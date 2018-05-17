@@ -1,4 +1,5 @@
 ﻿#,Id,AssetName,Attack,BulletId,BulletSpeed,BulletSoundId
 #,int,string,int,int,float,int
 #,编号,资源名称,攻击力,子弹编号,子弹速度,子弹声音编号
-,1,WeaponNormal,10,1,5,1
+,1,WeaponLucency,0,1,5,1
+,100,WeaponLucency,10,100,5,100

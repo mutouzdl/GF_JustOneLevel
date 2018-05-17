@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4217157915893048}
   m_Layer: 0
-  m_Name: WeaponNormal
+  m_Name: WeaponLucency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

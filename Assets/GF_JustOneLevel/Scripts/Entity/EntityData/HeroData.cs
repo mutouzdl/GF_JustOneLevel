@@ -20,6 +20,10 @@ public class HeroData : FightEntityData {
         AtkRange = drHero.AtkRange;
         Def = drHero.Def;
         AtkSpeed = drHero.AtkSpeed;
+        
+        for (int i = 0; i < drHero.GetWeaponCount(); i++) {
+            m_WeaponDatas.Add (new WeaponData (EntityExtension.GenerateSerialId (), drHero.GetWeaponID(i), Id, Camp));
+        }
     }
 
     // public ThrusterData GetThrusterData()

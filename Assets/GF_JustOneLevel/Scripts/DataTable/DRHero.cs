@@ -19,6 +19,8 @@ public class DRHero : DREntity {
         Def = int.Parse (text[index++]);
         AtkSpeed = float.Parse (text[index++]);
         HP = int.Parse (text[index++]);
+        
+        ParseWeapon(text[index++]);
     }
 
     private void AvoidJIT () {

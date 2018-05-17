@@ -1,4 +1,5 @@
 ﻿#,Id,AssetName
 #,int,string
 #,编号,资源名称
-,1,BulletNormal
+,1,BulletLucency
+,100,BulletNormal

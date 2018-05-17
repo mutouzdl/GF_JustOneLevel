@@ -41,6 +41,12 @@ public class Hero : TargetableObject {
             return;
         }
 
+        /* 加载武器 */
+        List<WeaponData> weaponDatas = m_heroData.GetWeaponDatas ();
+        for (int i = 0; i < weaponDatas.Count; i++) {
+            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
+        }
+
         /* 创建状态机 */
         m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
             new HeroCDIdleState (),
@@ -71,6 +77,16 @@ public class Hero : TargetableObject {
         if (inputHorizontal != 0) {
             Quaternion deltaRotation = Quaternion.Euler (0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0);
             m_Rigidbody.MoveRotation (m_Rigidbody.rotation * deltaRotation);
+        }
+    }
+    
+    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData)
+    {
+        base.OnAttached (childEntity, parentTransform, userData);
+
+        if (childEntity is Weapon) {
+            m_Weapons.Add ((Weapon) childEntity);
+            return;
         }
     }
 
@@ -115,7 +131,11 @@ public class Hero : TargetableObject {
     public void PerformAttack (TargetableObject aimEntity) {
         m_IsAtkCDing = true;
         m_HeroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
-        aimEntity.ApplyDamage (m_heroData.Atk);
+        
+        foreach(Weapon weapon in m_Weapons) {
+            Log.Info("英雄武器攻击");
+            weapon.Attack(aimEntity.Id, m_heroData.Atk);
+        }
     }
 
     /// <summary>
