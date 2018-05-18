@@ -14,6 +14,7 @@ public class Bullet : Entity {
 
         protected override void OnInit (object userData) {
                 base.OnInit (userData);
+
         }
 
         protected override void OnShow (object userData) {

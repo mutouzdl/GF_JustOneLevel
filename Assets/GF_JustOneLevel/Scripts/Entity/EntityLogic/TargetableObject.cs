@@ -15,13 +15,13 @@ public abstract class TargetableObject : Entity {
     /// 血量条
     /// </summary>
     private PowerBar m_HPBar;
-    
+
     /// <summary>
     /// 武器
     /// </summary>
     /// <typeparam name="Weapon"></typeparam>
     /// <returns></returns>
-    protected List<Weapon> m_Weapons = new List<Weapon>();
+    protected List<Weapon> m_Weapons = new List<Weapon> ();
 
     public bool IsDead {
         get {
@@ -68,12 +68,11 @@ public abstract class TargetableObject : Entity {
     /// <param name="state"></param>
     public void ChangeAnimation (AnimationState state) {
         // Log.Info("Hero ChangeAnimation:" + state);
-        ResetAnimation();
+        ResetAnimation ();
 
         if (state == AnimationState.walk) {
             CachedAnimator.SetBool ("IsWalking", true);
-        } else if (state == AnimationState.idle) {
-        } else if (state == AnimationState.atk) {
+        } else if (state == AnimationState.idle) { } else if (state == AnimationState.atk) {
             CachedAnimator.SetBool ("IsAttacking", true);
         } else if (state == AnimationState.hurt) {
             CachedAnimator.SetBool ("IsHurting", true);
@@ -82,7 +81,7 @@ public abstract class TargetableObject : Entity {
         }
     }
 
-    private void ResetAnimation() {
+    private void ResetAnimation () {
         CachedAnimator.SetBool ("IsWalking", false);
         CachedAnimator.SetBool ("IsAttacking", false);
         CachedAnimator.SetBool ("IsHurting", false);
@@ -102,6 +101,8 @@ public abstract class TargetableObject : Entity {
             Log.Error ("Targetable object data is invalid.");
             return;
         }
+        
+        CachedTransform.localScale = Vector3.one;
 
         /* 附加血量条 */
         PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);

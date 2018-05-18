@@ -3,24 +3,18 @@ using UnityEngine;
 
 [Serializable]
 public class BulletData : EntityData {
-    [SerializeField]
     private int m_OwnerId = 0;
-    [SerializeField]
     private int m_AimEntityId = 0;
 
-    [SerializeField]
     private CampType m_OwnerCamp = CampType.Unknown;
 
-    [SerializeField]
     private int m_Attack = 0;
 
-    [SerializeField]
     private float m_Speed = 0f;
-    [SerializeField]
     private Vector3 m_Forward = Vector3.zero;
 
     public BulletData (int entityId, int typeId, int ownerId, int aimEntityID,
-        CampType ownerCamp, int attack, float speed, Vector3 forward) : base (entityId, typeId) {
+        CampType ownerCamp, int attack, float speed) : base (entityId, typeId) {
         m_OwnerId = ownerId;
         m_OwnerCamp = ownerCamp;
         m_Attack = attack;

@@ -48,7 +48,6 @@ public abstract class Entity : EntityLogic {
                 Name = string.Format ("[Entity {0}]", Id.ToString ());
                 CachedTransform.localPosition = m_EntityData.Position;
                 CachedTransform.localRotation = m_EntityData.Rotation;
-                CachedTransform.localScale = Vector3.one;
         }
 
 #if UNITY_2017_3_OR_NEWER

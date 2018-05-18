@@ -45,8 +45,7 @@ public class Weapon : Entity {
             aimEntityID,
             m_WeaponData.OwnerCamp, 
             m_WeaponData.Attack + ownerAtk, 
-            m_WeaponData.BulletSpeed,
-            GameEntry.Entity.GetEntity(m_WeaponData.OwnerId).transform.forward
+            m_WeaponData.BulletSpeed
         );
         bulletData.Position = CachedTransform.position;
         
