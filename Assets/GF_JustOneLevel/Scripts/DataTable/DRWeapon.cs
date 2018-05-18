@@ -58,6 +58,7 @@ public class DRWeapon : IDataRow {
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
+        index++; // 跳过备注列
         AssetName = text[index++];
         Attack = int.Parse (text[index++]);
         BulletId = int.Parse (text[index++]);
