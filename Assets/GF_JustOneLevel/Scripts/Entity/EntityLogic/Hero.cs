@@ -124,6 +124,10 @@ public class Hero : TargetableObject {
         GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
     }
 
+    protected override void OnHurt() {
+        GameEntry.Sound.PlaySound(Constant.Player.HURT_SOUND_ID);
+    }
+
     protected override void OnDead () {
         base.OnDead ();
         m_HeroActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);

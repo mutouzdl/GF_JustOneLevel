@@ -27,7 +27,7 @@ public static class AssetUtility {
     }
 
     public static string GetSoundAsset (string assetName) {
-        return string.Format ("Assets/GF_JustOneLevel/Sounds/{0}.wav", assetName);
+        return string.Format ("Assets/GF_JustOneLevel/Sounds/{0}", assetName);
     }
 
     public static string GetEntityAsset (string assetName) {

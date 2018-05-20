@@ -55,8 +55,11 @@ public abstract class TargetableObject : Entity {
             // GameEntry.HPBar.ShowHPBar (this, fromHPRatio, toHPRatio);
         }
 
+        // 更新血量条
         m_HPBar.UpdatePower (m_TargetableObjectData.HP, m_TargetableObjectData.MaxHP);
 
+        OnHurt();
+        
         if (m_TargetableObjectData.HP <= 0) {
             OnDead ();
         }
@@ -118,6 +121,9 @@ public abstract class TargetableObject : Entity {
             m_HPBar.UpdatePower (m_TargetableObjectData.HP, m_TargetableObjectData.MaxHP);
             return;
         }
+    }
+
+    protected virtual void OnHurt () {
     }
 
     protected virtual void OnDead () {

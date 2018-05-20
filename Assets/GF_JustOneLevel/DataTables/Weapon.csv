@@ -2,4 +2,4 @@
 #,int,string,string,int,int,float,int
 #,编号,备注,资源名称,攻击力,子弹编号,子弹速度,子弹声音编号
 ,1,近战类型子弹,WeaponLucency,0,1,0,1
-,100,,WeaponLucency,10,100,5,100
+,100,,WeaponLucency,10,100,5,1

@@ -62,7 +62,7 @@ public class DRSound : IDataRow {
     }
 
     public void ParseDataRow (string dataRowText) {
-        string[] text = DataTableExtension.SplitDataRowOld (dataRowText);
+        string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
