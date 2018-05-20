@@ -28,6 +28,9 @@ public class ProcedureGame : ProcedureBase {
 
         m_SurvivalGame.Initialize ();
 
+        // 播放音乐
+        GameEntry.Sound.PlayMusic(Constant.Sound.GAME_MUSIC_ID);
+
         // 订阅事件
         GameEntry.Event.Subscribe (OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
@@ -42,6 +45,9 @@ public class ProcedureGame : ProcedureBase {
         // 取消订阅
         GameEntry.Event.Unsubscribe (OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
+        // 停止音乐
+        GameEntry.Sound.StopMusic();
+        
         // 关闭UI
         if (m_UIPlayerOperate != null) {
             GameEntry.UI.CloseUIForm (m_UIPlayerOperate.UIForm);

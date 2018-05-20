@@ -65,6 +65,7 @@ public class ProcedurePreload : ProcedureBase {
         LoadDataTable ("MonsterCreater");
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");
+        LoadDataTable ("Music");
         LoadDataTable ("UISound");
 
         // Preload dictionaries

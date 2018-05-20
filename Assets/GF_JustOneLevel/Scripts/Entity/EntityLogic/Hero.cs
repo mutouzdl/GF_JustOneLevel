@@ -125,7 +125,7 @@ public class Hero : TargetableObject {
     }
 
     protected override void OnHurt() {
-        GameEntry.Sound.PlaySound(Constant.Player.HURT_SOUND_ID);
+        GameEntry.Sound.PlaySound(Constant.Sound.HURT_SOUND_ID);
     }
 
     protected override void OnDead () {

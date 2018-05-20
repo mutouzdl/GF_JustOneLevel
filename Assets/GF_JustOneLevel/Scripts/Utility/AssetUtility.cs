@@ -23,7 +23,7 @@ public static class AssetUtility {
     }
 
     public static string GetMusicAsset (string assetName) {
-        return string.Format ("Assets/GF_JustOneLevel/Music/{0}.mp3", assetName);
+        return string.Format ("Assets/GF_JustOneLevel/Musics/{0}", assetName);
     }
 
     public static string GetSoundAsset (string assetName) {
