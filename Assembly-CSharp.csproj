@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GF_JustOneLevel\Character\cha_data\Script\ScreenShot.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Builtin.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Custom.cs" />
@@ -80,8 +79,8 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\DeviceModel.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\ImpactData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\DataStruct\VersionInfo.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\AnimationState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\CampType.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\FightEntityAnimationState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\QualityLevelType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\RelationType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\AccessoryObjectData.cs" />
@@ -152,6 +151,10 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AssetUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />
+     <Compile Include="Assets\PocketRPG Trails\Scripts\Effects\WeaponTrail.cs" />
+     <Compile Include="Assets\PocketRPG Trails\Scripts\Entities\BladeMaster.cs" />
+     <Compile Include="Assets\PocketRPG Trails\Scripts\MyTest.cs" />
+     <Compile Include="Assets\PocketRPG Trails\Scripts\Utility\AnimationController.cs" />
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />

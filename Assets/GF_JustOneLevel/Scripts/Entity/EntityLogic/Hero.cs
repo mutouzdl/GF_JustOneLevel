@@ -26,10 +26,12 @@ public class Hero : TargetableObject {
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
     private GameFramework.Fsm.IFsm<Hero> m_HeroActionFsm;
+    public WeaponTrail m_WeaponTrail;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
         m_Rigidbody = gameObject.GetComponent<Rigidbody> ();
+        m_WeaponTrail = FindObjectOfType<WeaponTrail> ();
     }
 
     protected override void OnShow (object userData) {
@@ -41,6 +43,8 @@ public class Hero : TargetableObject {
             return;
         }
 
+        m_WeaponTrail.SetTime (0.0f, 0, 1);
+
         /* 加载武器 */
         List<WeaponData> weaponDatas = m_heroData.GetWeaponDatas ();
         for (int i = 0; i < weaponDatas.Count; i++) {
@@ -50,15 +54,15 @@ public class Hero : TargetableObject {
         /* 创建状态机 */
         m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
             new HeroCDIdleState (),
-            new HeroAtkCDState (),
+                new HeroAtkCDState (),
         });
 
         m_HeroActionFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroActionFsm", this, new FsmState<Hero>[] {
             new HeroIdleState (),
-            new HeroWalkState (),
-            new HeroAtkState (),
-            new HeroHurtState (),
-            new HeroDeadState (),
+                new HeroWalkState (),
+                new HeroAtkState (),
+                new HeroHurtState (),
+                new HeroDeadState (),
         });
 
         /* 启动状态机 */
@@ -79,9 +83,31 @@ public class Hero : TargetableObject {
             m_Rigidbody.MoveRotation (m_Rigidbody.rotation * deltaRotation);
         }
     }
-    
-    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData)
-    {
+    private float t = 0.033f;
+    private float animationIncrement = 0.003f;
+    private float tempT = 0;
+    void LateUpdate () {
+        t = Mathf.Clamp (Time.deltaTime, 0, 0.066f);
+
+        if (t > 0) {
+            while (tempT < t) {
+                tempT += animationIncrement;
+
+                if (m_WeaponTrail.time > 0) {
+                    m_WeaponTrail.Itterate (Time.time - t + tempT);
+                } else {
+                    m_WeaponTrail.ClearTrail ();
+                }
+            }
+
+            tempT -= t;
+
+            if (m_WeaponTrail.time > 0) {
+                m_WeaponTrail.UpdateTrail (Time.time, t);
+            }
+        }
+    }
+    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
         base.OnAttached (childEntity, parentTransform, userData);
 
         if (childEntity is Weapon) {
@@ -131,11 +157,38 @@ public class Hero : TargetableObject {
     public void PerformAttack (TargetableObject aimEntity) {
         m_IsAtkCDing = true;
         m_HeroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
-        
-        foreach(Weapon weapon in m_Weapons) {
-            Log.Info("英雄武器攻击");
-            weapon.Attack(aimEntity.Id, m_heroData.Atk);
+
+        foreach (Weapon weapon in m_Weapons) {
+            weapon.Attack (aimEntity.Id, m_heroData.Atk);
         }
+
+    }
+
+    /// <summary>
+    /// 播放拖尾效果
+    /// </summary>
+    public void PlayTrailEffect() {
+        if (m_WeaponTrail == null) {
+            return;
+        }
+
+        //设置拖尾时长  
+        m_WeaponTrail.SetTime (2.0f, 0.0f, 1.0f);
+        
+        //开始进行拖尾  
+        m_WeaponTrail.StartTrail (0.5f, 0.4f);
+    }
+
+    /// <summary>
+    /// 清除拖尾效果
+    /// </summary>
+    public void ClearTrialEffect() {
+        if (m_WeaponTrail == null) {
+            return;
+        }
+
+        //清除拖尾  
+		m_WeaponTrail.ClearTrail ();
     }
 
     /// <summary>

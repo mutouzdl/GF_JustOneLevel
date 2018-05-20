@@ -22,7 +22,7 @@ public class HeroAtkState : HeroBaseActionState {
 
         atkTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (AnimationState.atk);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.atk);
 
         /* 判断是否有怪物进入攻击范围 */
         GameObject[] monsters = GameObject.FindGameObjectsWithTag ("Monster");
@@ -32,8 +32,8 @@ public class HeroAtkState : HeroBaseActionState {
             if (monster.IsDead == false) {
                 float distance = AIUtility.GetDistance (fsm.Owner, monster);
 
-                Log.Info("distance:" + distance);
                 if (fsm.Owner.CheckInAtkRange (distance)) {
+                    fsm.Owner.PlayTrailEffect();
                     fsm.Owner.PerformAttack (monster);
                 }
             }
@@ -63,6 +63,8 @@ public class HeroAtkState : HeroBaseActionState {
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
         base.OnLeave (fsm, isShutdown);
+
+        fsm.Owner.ClearTrialEffect();
     }
 
     /// <summary>

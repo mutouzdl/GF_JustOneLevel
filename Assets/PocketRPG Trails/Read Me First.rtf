@@ -1,0 +1,64 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf100
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red217\green11\blue0;}
+\margl1440\margr1440\vieww10580\viewh10060\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs28 \cf0 POCKET RPG WEAPON TRAILS (for Unity3D)
+\b0\fs24 \
+\
+There are two scripts required to get Pocket RPG Weapon Trails working.\
+\
+WeaponTrail.cs\
+AnimationController.cs\
+\
+You will also need another script that calls AnimationController and WeaponTrails and controls their behavior. In the example scene this is BladeMaster,cs (Please look at this script)\
+\
+
+\b\fs28 \cf2 Please look in the example scene: "Blade Master Example".
+\b0\fs24 \cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+
+\b\fs28 WeaponTrails.cs :
+\b0\fs24 \
+\
+This script must be attached to the transform from which you want draw the trail. It also needs a MeshRenderer with a trail type material on it (like in the example scene).\
+\
+Calling \cf2 StartTrail(float timeToTweenTo, float fadeInTime)\cf0  and \cf2 FadeOut(float fadeTime)\cf0  will fade in and fade out the trail respectively.\
+\
+Calling\cf2  SetTime(float trailTime, float timeToTweenTo, float tweenSpeed) \cf0 can change the length of the trail instantly, giving you a little more control.\
+\
+The WeaponTrail can be built by calling\cf2  Itterate(float itterateTime)\cf0  and \cf2 UpdateTrail(float currentTime, float deltaTime)\cf0 . These functions are called by AnimationController, however if you don't want to use AnimationController you can call these yourself.\
+\
+(Like in the Unity Line Renderer the "time" variable of the WeaponTrail determines the length of the trail in seconds.)\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\b\fs28 \cf0 AnimationController.cs :
+\b0\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 You don't have to use AnimationController to build the trail, but if you want trails smoother than the framerate then AnimationController is necessary.\
+\
+IF YOU USE ANIMATION CONTROLLER YOU CANNOT USE THE BUILT IN ANIMATION COMPONENT TO PLAY ANIMATIONS. THEY WILL CONFLICT WITH EACH OTHER. PLEASE LOOK AT THE EXAMPLE.\
+\
+AnimationController reproduces the animation playing functionality of the built-in Unity Animation component. It samples the animation at 300 fps by default (though this can be adjusted).\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+To play animations use \cf2 PlayAnimation (AnimationState state)\cf0 .\
+\
+To crossfade into an animation use \cf2 CrossfadeAnimation (AnimationState state, float fadeTime)\cf0 .\
+\
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
+\
+PocketRPG Weapon Trails is written by Evan Greenwood (of Free Lives) for the game PocketRPG by Tasty Poison Games.\
+\
+ALL CODE IN THIS PACKAGE IS PROVIDED AS IS. IT IS ALSO PROVIDED FOR FREE. SADLY I HAVE AN INCREDIBLY BUSY DAY JOB, I SIMPLY HAVE NO TIME TO REPLY TO MESSAGES ABOUT THIS.\
+\
+I hope you enjoy it and make great weapon slicing games!\
+}

@@ -23,7 +23,7 @@ public class MonsterAtkState : MonsterBaseActionState {
 
         atkTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (AnimationState.atk);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.atk);
     }
 
     /// <summary>

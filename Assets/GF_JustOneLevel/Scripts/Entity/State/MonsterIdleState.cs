@@ -20,7 +20,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnEnter (IFsm<Monster> fsm) {
         base.OnEnter(fsm);
 
-        fsm.Owner.ChangeAnimation (AnimationState.idle);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.idle);
     }
 
     /// <summary>

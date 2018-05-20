@@ -66,17 +66,17 @@ public abstract class TargetableObject : Entity {
     /// 切换动画
     /// </summary>
     /// <param name="state"></param>
-    public void ChangeAnimation (AnimationState state) {
+    public void ChangeAnimation (FightEntityAnimationState state) {
         // Log.Info("Hero ChangeAnimation:" + state);
         ResetAnimation ();
 
-        if (state == AnimationState.walk) {
+        if (state == FightEntityAnimationState.walk) {
             CachedAnimator.SetBool ("IsWalking", true);
-        } else if (state == AnimationState.idle) { } else if (state == AnimationState.atk) {
+        } else if (state == FightEntityAnimationState.idle) { } else if (state == FightEntityAnimationState.atk) {
             CachedAnimator.SetBool ("IsAttacking", true);
-        } else if (state == AnimationState.hurt) {
+        } else if (state == FightEntityAnimationState.hurt) {
             CachedAnimator.SetBool ("IsHurting", true);
-        } else if (state == AnimationState.dead) {
+        } else if (state == FightEntityAnimationState.dead) {
             CachedAnimator.SetBool ("IsDead", true);
         }
     }
@@ -101,7 +101,7 @@ public abstract class TargetableObject : Entity {
             Log.Error ("Targetable object data is invalid.");
             return;
         }
-        
+
         CachedTransform.localScale = Vector3.one;
 
         /* 附加血量条 */

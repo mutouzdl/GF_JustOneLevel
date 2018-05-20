@@ -21,7 +21,7 @@ public class MonsterWalkState : MonsterSeekAimState {
     protected override void OnEnter (IFsm<Monster> fsm) {
         base.OnEnter (fsm);
 
-        fsm.Owner.ChangeAnimation (AnimationState.walk);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.walk);
     }
 
     /// <summary>

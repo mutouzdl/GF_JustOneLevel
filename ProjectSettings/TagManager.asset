@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Monster
   - Hero
+  - WeaponTrail
   layers:
   - Default
   - TransparentFX

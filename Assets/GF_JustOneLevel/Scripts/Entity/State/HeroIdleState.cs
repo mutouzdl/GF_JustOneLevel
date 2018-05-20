@@ -17,7 +17,7 @@ public class HeroIdleState : HeroListenAttackState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Hero> fsm) {
         base.OnEnter(fsm);
-        fsm.Owner.ChangeAnimation (AnimationState.idle);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.idle);
     }
 
     /// <summary>

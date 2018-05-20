@@ -23,7 +23,7 @@ public class HeroHurtState : HeroBaseActionState {
 
         hurtTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (AnimationState.hurt);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.hurt);
 
         int damageHP = fsm.GetData<VarInt> (Constant.EntityData.DamageHP).Value;
         fsm.Owner.OnDamage (damageHP);

@@ -16,7 +16,7 @@ public class HeroWalkState : HeroListenAttackState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Hero> fsm) {
         base.OnEnter(fsm);
-        fsm.Owner.ChangeAnimation (AnimationState.walk);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.walk);
     }
 
     /// <summary>

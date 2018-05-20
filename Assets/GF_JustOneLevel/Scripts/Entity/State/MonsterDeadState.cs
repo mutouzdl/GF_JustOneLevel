@@ -20,7 +20,7 @@ public class MonsterDeadState : FsmState<Monster> {
     protected override void OnEnter (IFsm<Monster> fsm) {
         deadTimeCounter = 0;
 
-        fsm.Owner.ChangeAnimation (AnimationState.dead);
+        fsm.Owner.ChangeAnimation (FightEntityAnimationState.dead);
     }
 
     /// <summary>
