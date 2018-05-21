@@ -26,6 +26,7 @@ public class UIPlayerMessage : UGuiForm {
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe(DeadEventArgs.EventId, OnDeadEvent);
+        GameEntry.Event.Subscribe(RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
     }
 
     /// <summary>
@@ -37,16 +38,29 @@ public class UIPlayerMessage : UGuiForm {
 
         /* 取消订阅事件 */
         GameEntry.Event.Unsubscribe(DeadEventArgs.EventId, OnDeadEvent);
+        GameEntry.Event.Unsubscribe(RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
     }
 
-    protected void OnDeadEvent (object sender, GameEventArgs e) {
+    private void OnDeadEvent (object sender, GameEventArgs e) {
         DeadEventArgs deadEventArgs = e as DeadEventArgs;
 
         if (deadEventArgs.CampType == CampType.Enemy) {
-            m_TotalPrize += deadEventArgs.Prize;
+            MonsterData data = (MonsterData)deadEventArgs.EntityData;
+            m_TotalPrize += data.Prize;
             
             m_PrizeText.text = m_TotalPrize.ToString();
+
+        } else if (deadEventArgs.CampType == CampType.Player) {
+            Log.Info("游戏结束");
         }
+    }
+
+    private void OnRefreshHeroProps(object sender, GameEventArgs e) {
+        RefreshHeroPropsEventArgs eventArgs = e as RefreshHeroPropsEventArgs;
+
+        Log.Info("英雄攻击为：" + eventArgs.HeroData.Atk);
+        Log.Info("英雄防御为：" + eventArgs.HeroData.Def);
+        Log.Info("英雄血量为：" + eventArgs.HeroData.HP);
     }
 
     /// <summary>

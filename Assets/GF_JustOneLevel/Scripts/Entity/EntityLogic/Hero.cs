@@ -71,6 +71,7 @@ public class Hero : TargetableObject {
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
+        GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -79,9 +80,10 @@ public class Hero : TargetableObject {
         /* 旋转镜头 */
         float inputHorizontal = Input.GetAxis ("Horizontal");
         if (inputHorizontal != 0) {
-			transform.Rotate(new Vector3(0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0));
+            transform.Rotate (new Vector3 (0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0));
         }
     }
+
     private float t = 0.033f;
     private float animationIncrement = 0.003f;
     private float tempT = 0;
@@ -106,6 +108,7 @@ public class Hero : TargetableObject {
             }
         }
     }
+
     protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
         base.OnAttached (childEntity, parentTransform, userData);
 
@@ -120,11 +123,13 @@ public class Hero : TargetableObject {
 
         GameEntry.Fsm.DestroyFsm (m_HeroActionFsm);
         GameEntry.Fsm.DestroyFsm (m_HeroStateFsm);
+
         GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
+        GameEntry.Event.Unsubscribe (DeadEventArgs.EventId, OnDeadEvent);
     }
 
-    protected override void OnHurt() {
-        GameEntry.Sound.PlaySound(Constant.Sound.HURT_SOUND_ID);
+    protected override void OnHurt () {
+        GameEntry.Sound.PlaySound (Constant.Sound.HURT_SOUND_ID);
     }
 
     protected override void OnDead () {
@@ -143,7 +148,7 @@ public class Hero : TargetableObject {
     public void Forward (float distance) {
         Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed;
 
-        CachedTransform.position = PositionUtility.GetAjustPositionWithMap(nextPos);
+        CachedTransform.position = PositionUtility.GetAjustPositionWithMap (nextPos);
     }
 
     /// <summary>
@@ -172,14 +177,14 @@ public class Hero : TargetableObject {
     /// <summary>
     /// 播放拖尾效果
     /// </summary>
-    public void PlayTrailEffect() {
+    public void PlayTrailEffect () {
         if (m_WeaponTrail == null) {
             return;
         }
 
         //设置拖尾时长  
         m_WeaponTrail.SetTime (2.0f, 0.0f, 1.0f);
-        
+
         //开始进行拖尾  
         m_WeaponTrail.StartTrail (0.5f, 0.4f);
     }
@@ -187,13 +192,13 @@ public class Hero : TargetableObject {
     /// <summary>
     /// 清除拖尾效果
     /// </summary>
-    public void ClearTrialEffect() {
+    public void ClearTrialEffect () {
         if (m_WeaponTrail == null) {
             return;
         }
 
         //清除拖尾  
-		m_WeaponTrail.ClearTrail ();
+        m_WeaponTrail.ClearTrail ();
     }
 
     /// <summary>
@@ -211,15 +216,31 @@ public class Hero : TargetableObject {
         m_IsAtkCDing = false;
     }
 
+    public HeroData HeroData {
+        get {
+            return m_heroData;
+        }
+    }
+
+
     private void OnClickAttackButton (object sender, GameEventArgs e) {
         if (m_IsAtkCDing == false) {
             m_HeroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
         }
     }
 
-    public HeroData HeroData {
-        get {
-            return m_heroData;
+    private void OnDeadEvent (object sender, GameEventArgs e) {
+        DeadEventArgs deadEventArgs = e as DeadEventArgs;
+
+        if (deadEventArgs.CampType == CampType.Enemy) {
+            MonsterData data = (MonsterData) deadEventArgs.EntityData;
+
+            /* 加强英雄属性 */
+            this.m_heroData.PowerUp(data.Atk, data.Def, data.MaxHP);
+
+            /* 发送刷新属性消息 */
+            GameEntry.Event.Fire (this,
+                ReferencePool.Acquire<RefreshHeroPropsEventArgs> ().Fill (this.m_heroData));
         }
     }
 }

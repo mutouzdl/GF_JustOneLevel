@@ -102,7 +102,7 @@ public class Monster : TargetableObject {
         m_MonsterActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
 
         GameEntry.Event.Fire (this,
-            ReferencePool.Acquire<DeadEventArgs> ().Fill (this.m_MonsterData.Camp, this.m_MonsterData.Prize));
+            ReferencePool.Acquire<DeadEventArgs> ().Fill (this.m_MonsterData.Camp, this.m_MonsterData));
     }
 
     public override ImpactData GetImpactData () {
