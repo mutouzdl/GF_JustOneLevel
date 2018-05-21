@@ -1,4 +1,5 @@
 ﻿using System;
+using GameFramework.DataTable;
 using UnityEngine;
 
 [Serializable]
@@ -15,12 +16,25 @@ public class BulletData : EntityData {
 
     public BulletData (int entityId, int typeId, int ownerId, int aimEntityID,
         CampType ownerCamp, int attack, float speed) : base (entityId, typeId) {
+        IDataTable<DRBullet> dtBullet = GameEntry.DataTable.GetDataTable<DRBullet> ();
+        DRBullet drBullet = dtBullet.GetDataRow (TypeId);
+        if (drBullet == null) {
+            return;
+        }
+
+        ParticleId = drBullet.ParticleId;
+
         m_OwnerId = ownerId;
         m_OwnerCamp = ownerCamp;
         m_Attack = attack;
         m_Speed = speed;
 
         m_Forward = GameEntry.Entity.GetEntity(ownerId).transform.forward;
+    }
+
+    public int ParticleId {
+        get;
+        private set;
     }
 
     public int OwnerId {

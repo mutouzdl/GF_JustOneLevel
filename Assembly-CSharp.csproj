@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Builtin.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Custom.cs" />
@@ -64,6 +65,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonsterCreater.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMusic.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRParticle.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRPowerBar.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRScene.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRSound.cs" />
@@ -72,6 +74,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRWeapon.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.EntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Layer.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Map.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Player.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.ProcedureData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Setting.cs" />
@@ -91,6 +94,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\HeroData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterCreaterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\ParticleData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\PowerBarData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\TargetableObjectData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\WeaponData.cs" />
@@ -100,6 +104,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Hero.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Monster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\MonsterCreater.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\ParticleEffect.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\PowerBar.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Weapon.cs" />
@@ -151,12 +156,14 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AIUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AssetUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\PositionUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />
      <Compile Include="Assets\PocketRPG Trails\Scripts\Effects\WeaponTrail.cs" />
      <Compile Include="Assets\PocketRPG Trails\Scripts\Entities\BladeMaster.cs" />
      <Compile Include="Assets\PocketRPG Trails\Scripts\MyTest.cs" />
      <Compile Include="Assets\PocketRPG Trails\Scripts\Utility\AnimationController.cs" />
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
+     <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />
      <None Include="Assets\GF_JustOneLevel\Character\Character_Witch_Dragon\ReadMe.txt" />
@@ -165,6 +172,7 @@
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildSettings.xml" />
+     <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildInfo.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -418,10 +426,10 @@
       <Project>{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="UnityGameFramework.Runtime.csproj">
       <Project>{D47F4F3A-6605-F232-66CE-185F37EDE5D6}</Project>      <Name>UnityGameFramework.Runtime</Name>    </ProjectReference>
-    <ProjectReference Include="GameFramework.csproj">
-      <Project>{088C33B6-563A-26CC-FC13-D9C3C6F2A3A6}</Project>      <Name>GameFramework</Name>    </ProjectReference>
     <ProjectReference Include="UnityGameFramework.Editor.csproj">
       <Project>{5D1067A1-7056-17CE-83BB-EA22D9081C1C}</Project>      <Name>UnityGameFramework.Editor</Name>    </ProjectReference>
+    <ProjectReference Include="GameFramework.csproj">
+      <Project>{088C33B6-563A-26CC-FC13-D9C3C6F2A3A6}</Project>      <Name>GameFramework</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

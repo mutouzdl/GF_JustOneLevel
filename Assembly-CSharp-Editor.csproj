@@ -372,10 +372,10 @@
       <Project>{8EAA36A6-E45D-8755-2AF0-D79301F7039E}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="UnityGameFramework.Runtime.csproj">
       <Project>{D47F4F3A-6605-F232-66CE-185F37EDE5D6}</Project>      <Name>UnityGameFramework.Runtime</Name>    </ProjectReference>
-    <ProjectReference Include="GameFramework.csproj">
-      <Project>{088C33B6-563A-26CC-FC13-D9C3C6F2A3A6}</Project>      <Name>GameFramework</Name>    </ProjectReference>
     <ProjectReference Include="UnityGameFramework.Editor.csproj">
       <Project>{5D1067A1-7056-17CE-83BB-EA22D9081C1C}</Project>      <Name>UnityGameFramework.Editor</Name>    </ProjectReference>
+    <ProjectReference Include="GameFramework.csproj">
+      <Project>{088C33B6-563A-26CC-FC13-D9C3C6F2A3A6}</Project>      <Name>GameFramework</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -34,6 +34,10 @@ public static class AssetUtility {
         return string.Format ("Assets/GF_JustOneLevel/Prefabs/Entities/{0}.prefab", assetName);
     }
 
+    public static string GetParticleAsset (string assetName) {
+        return string.Format ("Assets/GF_JustOneLevel/Prefabs/Particles/{0}.prefab", assetName);
+    }
+
     public static string GetUIFormAsset (string assetName) {
         return string.Format ("Assets/GF_JustOneLevel/Prefabs/UI/{0}.prefab", assetName);
     }

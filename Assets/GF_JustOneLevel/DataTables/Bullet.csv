@@ -1,5 +1,6 @@
-﻿#,Id,AssetName
-#,int,string
-#,编号,资源名称
-,1,BulletLucency
-,100,BulletNormal
+﻿#,Id,AssetName,ParticleId
+#,int,string,string
+#,编号,资源名称,粒子特效Id
+,1,BulletLucency,0
+,100,BulletNormal,0
+,101,BulletPurpleMagic,1

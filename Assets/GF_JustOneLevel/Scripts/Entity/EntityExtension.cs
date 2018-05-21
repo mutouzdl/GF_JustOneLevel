@@ -87,6 +87,25 @@ using UnityGameFramework.Runtime;
             GameEntry.Entity.ShowEntity(data.Id, logicType, AssetUtility.GetEntityAsset(drEntity.AssetName), entityGroup, data);
         }
         
+        public static void ShowParticle(Type logicType, string entityGroup, EntityData data)
+        {
+            if (data == null)
+            {
+                Log.Warning("Data is invalid.");
+                return;
+            }
+
+            IDataTable<DRParticle> dtEntity = GameEntry.DataTable.GetDataTable<DRParticle>();
+            DRParticle drEntity = dtEntity.GetDataRow(data.TypeId);
+            if (drEntity == null)
+            {
+                Log.Warning("Can not load entity id '{0}' from data table.", data.TypeId.ToString());
+                return;
+            }
+
+            GameEntry.Entity.ShowEntity(data.Id, logicType, AssetUtility.GetParticleAsset(drEntity.AssetName), entityGroup, data);
+        }
+        
         public static void ShowWeapon(Type logicType, string entityGroup, EntityData data)
         {
             if (data == null)

@@ -116,14 +116,7 @@ public class Monster : TargetableObject {
     public void Forward (float distance) {
         Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * m_MonsterData.MoveSpeed;
 
-        /* 判断边界，我知道写死是不对的，但是我目前就是想要写死，没有原因，就是很突然的 */
-        if (nextPos.x > 30) {
-            nextPos.x = 30;
-        }
-        if (nextPos.z > 30) {
-            nextPos.z = 30;
-        }
-        CachedTransform.position = nextPos;
+        CachedTransform.position = PositionUtility.GetAjustPositionWithMap(nextPos);
     }
 
     /// <summary>

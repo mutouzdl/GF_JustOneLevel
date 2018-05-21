@@ -79,8 +79,7 @@ public class Hero : TargetableObject {
         /* 旋转镜头 */
         float inputHorizontal = Input.GetAxis ("Horizontal");
         if (inputHorizontal != 0) {
-            Quaternion deltaRotation = Quaternion.Euler (0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0);
-            m_Rigidbody.MoveRotation (m_Rigidbody.rotation * deltaRotation);
+			transform.Rotate(new Vector3(0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0));
         }
     }
     private float t = 0.033f;
@@ -142,7 +141,9 @@ public class Hero : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     public void Forward (float distance) {
-        m_Rigidbody.MovePosition (CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed);
+        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed;
+
+        CachedTransform.position = PositionUtility.GetAjustPositionWithMap(nextPos);
     }
 
     /// <summary>

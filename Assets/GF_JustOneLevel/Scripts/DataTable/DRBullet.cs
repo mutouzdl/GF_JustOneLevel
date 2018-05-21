@@ -21,12 +21,21 @@ public class DRBullet : IDataRow {
         protected set;
     }
 
+    /// <summary>
+    /// 粒子特效编号
+    /// </summary>
+    public int ParticleId {
+        get;
+        private set;
+    }
+
     public void ParseDataRow (string dataRowText) {
         string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
         AssetName = text[index++];
+        ParticleId = int.Parse (text[index++]);
     }
 
     private void AvoidJIT () {
