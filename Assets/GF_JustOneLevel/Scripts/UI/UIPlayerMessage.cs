@@ -7,6 +7,12 @@ using UnityGameFramework.Runtime;
 public class UIPlayerMessage : UGuiForm {
     [SerializeField]
     private Text prizeText = null;
+    [SerializeField]
+    private Text atkText = null;
+    [SerializeField]
+    private Text defText = null;
+    [SerializeField]
+    private Text hpText = null;
 
     /// <summary>
     /// 累计获得奖励
@@ -58,9 +64,9 @@ public class UIPlayerMessage : UGuiForm {
     private void OnRefreshHeroProps(object sender, GameEventArgs e) {
         RefreshHeroPropsEventArgs eventArgs = e as RefreshHeroPropsEventArgs;
 
-        Log.Info("英雄攻击为：" + eventArgs.HeroData.Atk);
-        Log.Info("英雄防御为：" + eventArgs.HeroData.Def);
-        Log.Info("英雄血量为：" + eventArgs.HeroData.HP);
+        atkText.text = eventArgs.HeroData.Atk.ToString();
+        defText.text = eventArgs.HeroData.Def.ToString();
+        hpText.text = eventArgs.HeroData.HP.ToString();
     }
 
     /// <summary>

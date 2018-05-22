@@ -4,8 +4,11 @@
     <String Key="Game.Name" Value="只有一关" />
     <String Key="Game.Description" Value="Game Framework 单机游戏" />
     <String Key="Game.Website" Value="http://GameFramework.cn/" />
-    <String Key="Message.Prize" Value="奖励：" />
-    <String Key="Operate.Atk" Value="攻击" />
+    <String Key="Symbol.Colon" Value="：" />
+    <String Key="Message.Prize" Value="奖励" />
+    <String Key="Property.Atk" Value="攻击" />
+    <String Key="Property.Def" Value="防御" />
+    <String Key="Property.HP" Value="血量" />
     <String Key="Operate.Back" Value="返回" />
     <String Key="Menu.StartButton" Value="开始" />
     <String Key="Menu.SettingButton" Value="设置" />
