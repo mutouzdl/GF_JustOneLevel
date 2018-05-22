@@ -8,13 +8,13 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public partial class ProcedureChangeScene : ProcedureBase {
-    private bool m_IsChangeSceneComplete = false;
-    private int m_BackgroundMusicId = 0;
+    private bool isChangeSceneComplete = false;
+    private int backgroundMusicId = 0;
 
     protected override void OnEnter (ProcedureOwner procedureOwner) {
         base.OnEnter (procedureOwner);
 
-        m_IsChangeSceneComplete = false;
+        isChangeSceneComplete = false;
 
         GameEntry.Event.Subscribe (LoadSceneSuccessEventArgs.EventId, OnLoadSceneSuccess);
         GameEntry.Event.Subscribe (LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
@@ -47,7 +47,7 @@ public partial class ProcedureChangeScene : ProcedureBase {
         }
 
         GameEntry.Scene.LoadScene (AssetUtility.GetSceneAsset (drScene.AssetName), this);
-        m_BackgroundMusicId = drScene.BackgroundMusicId;
+        backgroundMusicId = drScene.BackgroundMusicId;
     }
 
     protected override void OnLeave (ProcedureOwner procedureOwner, bool isShutdown) {
@@ -62,7 +62,7 @@ public partial class ProcedureChangeScene : ProcedureBase {
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (procedureOwner, elapseSeconds, realElapseSeconds);
 
-        if (!m_IsChangeSceneComplete) {
+        if (!isChangeSceneComplete) {
             return;
         }
         int sceneId = procedureOwner.GetData<VarInt> (Constant.ProcedureData.NextSceneId).Value;
@@ -88,11 +88,11 @@ public partial class ProcedureChangeScene : ProcedureBase {
 
         Log.Info ("Load scene '{0}' OK.", ne.SceneAssetName);
 
-        if (m_BackgroundMusicId > 0) {
-            GameEntry.Sound.PlayMusic (m_BackgroundMusicId);
+        if (backgroundMusicId > 0) {
+            GameEntry.Sound.PlayMusic (backgroundMusicId);
         }
 
-        m_IsChangeSceneComplete = true;
+        isChangeSceneComplete = true;
     }
 
     private void OnLoadSceneFailure (object sender, GameEventArgs e) {

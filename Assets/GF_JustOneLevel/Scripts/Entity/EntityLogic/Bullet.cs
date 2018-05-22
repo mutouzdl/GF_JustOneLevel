@@ -6,11 +6,11 @@ using UnityGameFramework.Runtime;
 /// 子弹类。
 /// </summary>
 public class Bullet : Entity {
-    private BulletData m_BulletData = null;
-    private ParticleEffect m_ParticleEffect = null;
+    private BulletData bulletData = null;
+    private ParticleEffect particleEffect = null;
 
     public ImpactData GetImpactData () {
-        return new ImpactData (m_BulletData.OwnerCamp, 0, m_BulletData.Attack, 0);
+        return new ImpactData (bulletData.OwnerCamp, 0, bulletData.Attack, 0);
     }
 
     protected override void OnInit (object userData) {
@@ -21,14 +21,14 @@ public class Bullet : Entity {
     protected override void OnShow (object userData) {
         base.OnShow (userData);
 
-        m_BulletData = userData as BulletData;
-        if (m_BulletData == null) {
+        bulletData = userData as BulletData;
+        if (bulletData == null) {
             Log.Error ("Bullet data is invalid.");
             return;
         }
 
-        if (m_BulletData.ParticleId > 0) {
-            ParticleData particleData = new ParticleData (EntityExtension.GenerateSerialId (), m_BulletData.ParticleId, Id);
+        if (bulletData.ParticleId > 0) {
+            ParticleData particleData = new ParticleData (EntityExtension.GenerateSerialId (), bulletData.ParticleId, Id);
             EntityExtension.ShowParticle (typeof (ParticleEffect), "ParticleGroup", particleData);
         }
     }
@@ -36,7 +36,7 @@ public class Bullet : Entity {
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
 
-        CachedTransform.Translate (m_BulletData.Forward * m_BulletData.Speed * elapseSeconds, Space.World);
+        CachedTransform.Translate (bulletData.Forward * bulletData.Speed * elapseSeconds, Space.World);
 
         // 将超出边界的子弹隐藏
         if (PositionUtility.IsOutOfMapBoundary(CachedTransform.position)) {
@@ -48,7 +48,7 @@ public class Bullet : Entity {
         base.OnAttached (childEntity, parentTransform, userData);
 
         if (childEntity is ParticleEffect) {
-            m_ParticleEffect = (ParticleEffect) childEntity;
+            particleEffect = (ParticleEffect) childEntity;
         }
     }
 }

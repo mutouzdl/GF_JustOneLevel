@@ -4,10 +4,10 @@ using UnityEngine;
 [Serializable]
 public abstract class TargetableObjectData : EntityData {
     [SerializeField]
-    private CampType m_Camp = CampType.Unknown;
+    private CampType camp = CampType.Unknown;
 
     public TargetableObjectData (int entityId, int typeId, CampType camp) : base (entityId, typeId) {
-        m_Camp = camp;
+        this.camp = camp;
     }
 
     /// <summary>
@@ -15,7 +15,7 @@ public abstract class TargetableObjectData : EntityData {
     /// </summary>
     public CampType Camp {
         get {
-            return m_Camp;
+            return camp;
         }
     }
 

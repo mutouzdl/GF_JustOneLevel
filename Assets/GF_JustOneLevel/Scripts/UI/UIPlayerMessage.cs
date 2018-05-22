@@ -6,14 +6,14 @@ using UnityGameFramework.Runtime;
 
 public class UIPlayerMessage : UGuiForm {
     [SerializeField]
-    private Text m_PrizeText = null;
+    private Text prizeText = null;
 
     /// <summary>
     /// 累计获得奖励
     /// </summary>
-    private int m_TotalPrize = 0;
+    private int totalPrize = 0;
 
-    private ProcedureGame m_ProcedureGame = null;
+    private ProcedureGame procedureGame = null;
 
     /// <summary>
     /// 界面打开。
@@ -22,7 +22,7 @@ public class UIPlayerMessage : UGuiForm {
     protected override void OnOpen (object userData) {
         base.OnOpen(userData);
 
-        m_ProcedureGame = userData as ProcedureGame;
+        procedureGame = userData as ProcedureGame;
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe(DeadEventArgs.EventId, OnDeadEvent);
@@ -46,9 +46,9 @@ public class UIPlayerMessage : UGuiForm {
 
         if (deadEventArgs.CampType == CampType.Enemy) {
             MonsterData data = (MonsterData)deadEventArgs.EntityData;
-            m_TotalPrize += data.Prize;
+            totalPrize += data.Prize;
             
-            m_PrizeText.text = m_TotalPrize.ToString();
+            prizeText.text = totalPrize.ToString();
 
         } else if (deadEventArgs.CampType == CampType.Player) {
             Log.Info("游戏结束");
@@ -68,6 +68,6 @@ public class UIPlayerMessage : UGuiForm {
     /// </summary>
     /// <returns></returns>
     public int TotalPrize() {
-        return m_TotalPrize;
+        return totalPrize;
     }
 }

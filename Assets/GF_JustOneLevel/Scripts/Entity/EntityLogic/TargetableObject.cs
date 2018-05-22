@@ -9,23 +9,23 @@ using UnityGameFramework.Runtime;
 /// </summary>
 public abstract class TargetableObject : Entity {
     [SerializeField]
-    private TargetableObjectData m_TargetableObjectData = null;
+    private TargetableObjectData targetableObjectData = null;
 
     /// <summary>
     /// 血量条
     /// </summary>
-    private PowerBar m_HPBar;
+    private PowerBar hpBar;
 
     /// <summary>
     /// 武器
     /// </summary>
     /// <typeparam name="Weapon"></typeparam>
     /// <returns></returns>
-    protected List<Weapon> m_Weapons = new List<Weapon> ();
+    protected List<Weapon> weapons = new List<Weapon> ();
 
     public bool IsDead {
         get {
-            return m_TargetableObjectData.HP <= 0;
+            return targetableObjectData.HP <= 0;
         }
     }
 
@@ -42,25 +42,25 @@ public abstract class TargetableObject : Entity {
     /// </summary>
     /// <param name="damageHP"></param>
     public void OnDamage (int damageHP) {
-        damageHP -= m_TargetableObjectData.Def;
+        damageHP -= targetableObjectData.Def;
 
         if (damageHP < 0) {
             damageHP = 0;
         }
 
-        float fromHPRatio = m_TargetableObjectData.HPRatio;
-        m_TargetableObjectData.HP -= damageHP;
-        float toHPRatio = m_TargetableObjectData.HPRatio;
+        float fromHPRatio = targetableObjectData.HPRatio;
+        targetableObjectData.HP -= damageHP;
+        float toHPRatio = targetableObjectData.HPRatio;
         if (fromHPRatio > toHPRatio) {
             // GameEntry.HPBar.ShowHPBar (this, fromHPRatio, toHPRatio);
         }
 
         // 更新血量条
-        m_HPBar.UpdatePower (m_TargetableObjectData.HP, m_TargetableObjectData.MaxHP);
+        hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
 
         OnHurt();
         
-        if (m_TargetableObjectData.HP <= 0) {
+        if (targetableObjectData.HP <= 0) {
             OnDead ();
         }
     }
@@ -74,21 +74,21 @@ public abstract class TargetableObject : Entity {
         ResetAnimation ();
 
         if (state == FightEntityAnimationState.walk) {
-            CachedAnimator.SetBool ("IsWalking", true);
+            cachedAnimator.SetBool ("IsWalking", true);
         } else if (state == FightEntityAnimationState.idle) { } else if (state == FightEntityAnimationState.atk) {
-            CachedAnimator.SetBool ("IsAttacking", true);
+            cachedAnimator.SetBool ("IsAttacking", true);
         } else if (state == FightEntityAnimationState.hurt) {
-            CachedAnimator.SetBool ("IsHurting", true);
+            cachedAnimator.SetBool ("IsHurting", true);
         } else if (state == FightEntityAnimationState.dead) {
-            CachedAnimator.SetBool ("IsDead", true);
+            cachedAnimator.SetBool ("IsDead", true);
         }
     }
 
     private void ResetAnimation () {
-        CachedAnimator.SetBool ("IsWalking", false);
-        CachedAnimator.SetBool ("IsAttacking", false);
-        CachedAnimator.SetBool ("IsHurting", false);
-        CachedAnimator.SetBool ("IsDead", false);
+        cachedAnimator.SetBool ("IsWalking", false);
+        cachedAnimator.SetBool ("IsAttacking", false);
+        cachedAnimator.SetBool ("IsHurting", false);
+        cachedAnimator.SetBool ("IsDead", false);
     }
 
     protected override void OnInit (object userData) {
@@ -99,8 +99,8 @@ public abstract class TargetableObject : Entity {
     protected override void OnShow (object userData) {
         base.OnShow (userData);
 
-        m_TargetableObjectData = userData as TargetableObjectData;
-        if (m_TargetableObjectData == null) {
+        targetableObjectData = userData as TargetableObjectData;
+        if (targetableObjectData == null) {
             Log.Error ("Targetable object data is invalid.");
             return;
         }
@@ -117,8 +117,8 @@ public abstract class TargetableObject : Entity {
         base.OnAttached (childEntity, parentTransform, userData);
 
         if (childEntity is PowerBar) {
-            m_HPBar = (PowerBar) childEntity;
-            m_HPBar.UpdatePower (m_TargetableObjectData.HP, m_TargetableObjectData.MaxHP);
+            hpBar = (PowerBar) childEntity;
+            hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
             return;
         }
     }

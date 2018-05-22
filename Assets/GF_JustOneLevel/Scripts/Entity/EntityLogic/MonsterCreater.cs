@@ -7,14 +7,14 @@ using UnityGameFramework.Runtime;
 /// </summary>
 public class MonsterCreater : Entity {
 	[SerializeField]
-	private MonsterCreaterData m_MonsterCreaterData = null;
+	private MonsterCreaterData monsterCreaterData = null;
 
 	/// <summary>
 	/// 已创建的怪物数量
 	/// </summary>
-	private int m_CreateNum = 0;
+	private int createNum = 0;
 
-	private float m_TimeCounter = 0;
+	private float timeCounter = 0;
 
 	protected override void OnInit (object userData) {
 		base.OnInit (userData);
@@ -23,8 +23,8 @@ public class MonsterCreater : Entity {
 	protected override void OnShow (object userData) {
 		base.OnShow (userData);
 
-		m_MonsterCreaterData = userData as MonsterCreaterData;
-		if (m_MonsterCreaterData == null) {
+		monsterCreaterData = userData as MonsterCreaterData;
+		if (monsterCreaterData == null) {
 			Log.Error ("MonsterCreater data is invalid.");
 			return;
 		}
@@ -33,27 +33,27 @@ public class MonsterCreater : Entity {
 	protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
 		base.OnUpdate (elapseSeconds, realElapseSeconds);
 
-		m_TimeCounter += elapseSeconds;
+		timeCounter += elapseSeconds;
 
-		if (m_TimeCounter < m_MonsterCreaterData.Interval) {
+		if (timeCounter < monsterCreaterData.Interval) {
 			return;
 		}
 
-		m_TimeCounter = 0;
+		timeCounter = 0;
 
 		// 创建怪物
-		if (Utility.Random.GetRandom (100) < m_MonsterCreaterData.Probability) {
-			for (int i = 0; i < m_MonsterCreaterData.PerNum; i++) {
+		if (Utility.Random.GetRandom (100) < monsterCreaterData.Probability) {
+			for (int i = 0; i < monsterCreaterData.PerNum; i++) {
 				MonsterData monsterData = new MonsterData (
-					EntityExtension.GenerateSerialId (), m_MonsterCreaterData.TypeId, CampType.Enemy, m_MonsterCreaterData.MonsterPrize);
+					EntityExtension.GenerateSerialId (), monsterCreaterData.TypeId, CampType.Enemy, monsterCreaterData.MonsterPrize);
 				monsterData.Position = new Vector3 (Utility.Random.GetRandom (5, 25), 0, Utility.Random.GetRandom (5, 25));
 				EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 
-				m_CreateNum++;
+				createNum++;
 			}
 
 			// 达到最大创建数量，销毁生成器
-			if (m_CreateNum >= m_MonsterCreaterData.MaxNum) {
+			if (createNum >= monsterCreaterData.MaxNum) {
 				GameEntry.Entity.HideEntity (this.Id);
 			}
 		}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 [Serializable]
 public class FightEntityData : TargetableObjectData {
-    protected List<WeaponData> m_WeaponDatas = new List<WeaponData> ();
+    protected List<WeaponData> weaponDatas = new List<WeaponData> ();
     
     public FightEntityData (int entityId, int typeId, CampType camp) : base (entityId, typeId, camp) {
     }
@@ -15,7 +15,7 @@ public class FightEntityData : TargetableObjectData {
     /// </summary>
     /// <returns></returns>
     public List<WeaponData> GetWeaponDatas() {
-        return m_WeaponDatas;
+        return weaponDatas;
     }
 
     /// <summary>

@@ -27,7 +27,7 @@ public class MonsterData : FightEntityData {
         this.Prize = prize;
 
         for (int i = 0; i < drMonster.GetWeaponCount(); i++) {
-            m_WeaponDatas.Add (new WeaponData (EntityExtension.GenerateSerialId (), drMonster.GetWeaponID(i), Id, Camp));
+            weaponDatas.Add (new WeaponData (EntityExtension.GenerateSerialId (), drMonster.GetWeaponID(i), Id, Camp));
         }
     }
 

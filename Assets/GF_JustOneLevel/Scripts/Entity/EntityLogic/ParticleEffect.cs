@@ -8,28 +8,28 @@ using UnityGameFramework.Runtime;
 public class ParticleEffect : Entity {
     private const string AttachPoint = "ParticlePoint";
 
-    private ParticleData m_ParticleData = null;
+    private ParticleData particleData = null;
 
-    private ParticleSystem m_ParticleSystem = null;
+    private ParticleSystem particleSystem = null;
 
     protected override void OnInit (object userData)
     {
         base.OnInit (userData);
 
-        m_ParticleSystem = FindObjectOfType<ParticleSystem>();
+        particleSystem = FindObjectOfType<ParticleSystem>();
     }
 
     protected override void OnShow (object userData)
     {
         base.OnShow (userData);
 
-        m_ParticleData = userData as ParticleData;
-        if (m_ParticleData == null) {
+        particleData = userData as ParticleData;
+        if (particleData == null) {
             Log.Error ("ParticleEffect data is invalid.");
             return;
         }
 
-        GameEntry.Entity.AttachEntity (Entity, m_ParticleData.OwnerId, AttachPoint);
+        GameEntry.Entity.AttachEntity (Entity, particleData.OwnerId, AttachPoint);
     }
 
     protected override void OnAttachTo (EntityLogic parentEntity, Transform parentTransform, object userData)

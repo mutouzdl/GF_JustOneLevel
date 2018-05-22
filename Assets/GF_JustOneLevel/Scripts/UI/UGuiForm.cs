@@ -11,9 +11,9 @@ public abstract class UGuiForm : UIFormLogic {
         public const int DepthFactor = 100;
         private const float FadeTime = 0.3f;
 
-        private static Font s_MainFont = null;
-        private Canvas m_CachedCanvas = null;
-        private CanvasGroup m_CanvasGroup = null;
+        private static Font mainFont = null;
+        private Canvas cachedCanvas = null;
+        private CanvasGroup canvasGroup = null;
 
         public int OriginalDepth {
                 get;
@@ -22,7 +22,7 @@ public abstract class UGuiForm : UIFormLogic {
 
         public int Depth {
                 get {
-                        return m_CachedCanvas.sortingOrder;
+                        return cachedCanvas.sortingOrder;
                 }
         }
 
@@ -50,7 +50,7 @@ public abstract class UGuiForm : UIFormLogic {
                         return;
                 }
 
-                s_MainFont = mainFont;
+        UGuiForm.mainFont = mainFont;
 
                 GameObject go = new GameObject ();
                 go.AddComponent<Text> ().font = mainFont;
@@ -65,11 +65,11 @@ public abstract class UGuiForm : UIFormLogic {
         {
                 base.OnInit (userData);
 
-                m_CachedCanvas = gameObject.GetOrAddComponent<Canvas> ();
-                m_CachedCanvas.overrideSorting = true;
-                OriginalDepth = m_CachedCanvas.sortingOrder;
+                cachedCanvas = gameObject.GetOrAddComponent<Canvas> ();
+                cachedCanvas.overrideSorting = true;
+                OriginalDepth = cachedCanvas.sortingOrder;
 
-                m_CanvasGroup = gameObject.GetOrAddComponent<CanvasGroup> ();
+                canvasGroup = gameObject.GetOrAddComponent<CanvasGroup> ();
 
                 RectTransform transform = GetComponent<RectTransform> ();
                 transform.anchorMin = Vector2.zero;
@@ -81,7 +81,7 @@ public abstract class UGuiForm : UIFormLogic {
 
                 Text[] texts = GetComponentsInChildren<Text> (true);
                 for (int i = 0; i < texts.Length; i++) {
-                        texts[i].font = s_MainFont;
+                        texts[i].font = mainFont;
                         
                         if (!string.IsNullOrEmpty (texts[i].text)) {
                                 texts[i].text = GameEntry.Localization.GetString (texts[i].text);
@@ -97,9 +97,9 @@ public abstract class UGuiForm : UIFormLogic {
         {
                 base.OnOpen (userData);
 
-                m_CanvasGroup.alpha = 0f;
+                canvasGroup.alpha = 0f;
                 StopAllCoroutines ();
-                StartCoroutine (m_CanvasGroup.FadeToAlpha (1f, FadeTime));
+                StartCoroutine (canvasGroup.FadeToAlpha (1f, FadeTime));
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -128,9 +128,9 @@ public abstract class UGuiForm : UIFormLogic {
         {
                 base.OnResume ();
 
-                m_CanvasGroup.alpha = 0f;
+                canvasGroup.alpha = 0f;
                 StopAllCoroutines ();
-                StartCoroutine (m_CanvasGroup.FadeToAlpha (1f, FadeTime));
+                StartCoroutine (canvasGroup.FadeToAlpha (1f, FadeTime));
         }
 
 #if UNITY_2017_3_OR_NEWER
@@ -185,7 +185,7 @@ public abstract class UGuiForm : UIFormLogic {
         }
 
         private IEnumerator CloseCo (float duration) {
-                yield return m_CanvasGroup.FadeToAlpha (0f, duration);
+                yield return canvasGroup.FadeToAlpha (0f, duration);
                 GameEntry.UI.CloseUIForm (this);
         }
 }

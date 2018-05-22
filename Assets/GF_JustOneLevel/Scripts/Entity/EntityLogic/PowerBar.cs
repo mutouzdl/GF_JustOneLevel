@@ -7,7 +7,7 @@ using UnityGameFramework.Runtime;
 /// </summary>
 public class PowerBar : Entity {
 	[SerializeField]
-	private PowerBarData m_PowerBarData = null;
+	private PowerBarData powerBarData = null;
 
 	protected override void OnInit (object userData) {
 		base.OnInit (userData);
@@ -16,13 +16,13 @@ public class PowerBar : Entity {
 	protected override void OnShow (object userData) {
 		base.OnShow (userData);
 
-		m_PowerBarData = userData as PowerBarData;
-		if (m_PowerBarData == null) {
+		powerBarData = userData as PowerBarData;
+		if (powerBarData == null) {
 			Log.Error ("PowerBar data is invalid.");
 			return;
 		}
 
-		GameEntry.Entity.AttachEntity (this.Id, m_PowerBarData.OwnerId, "HPBarPosition");
+		GameEntry.Entity.AttachEntity (this.Id, powerBarData.OwnerId, "HPBarPosition");
 	}
 
 	protected override void OnAttachTo (EntityLogic parentEntity, Transform parentTransform, object userData) {

@@ -7,26 +7,26 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 using System;
 
 public class ProcedureGame : ProcedureBase {
-    private SurvivalGame m_SurvivalGame = null;
+    private SurvivalGame survivalGame = null;
     /// <summary>
     /// 玩家操作UI
     /// </summary>
-    private UIPlayerOperate m_UIPlayerOperate = null;
+    private UIPlayerOperate uiPlayerOperate = null;
     /// <summary>
     /// 玩家信息UI
     /// </summary>
-    private UIPlayerMessage m_UIPlayerMessage = null;
+    private UIPlayerMessage uiPlayerMessage = null;
 
     protected override void OnInit (ProcedureOwner procedureOwner) {
         base.OnInit (procedureOwner);
 
-        m_SurvivalGame = new SurvivalGame ();
+        survivalGame = new SurvivalGame ();
     }
 
     protected override void OnEnter (ProcedureOwner procedureOwner) {
         base.OnEnter (procedureOwner);
 
-        m_SurvivalGame.Initialize ();
+        survivalGame.Initialize ();
 
         // 播放音乐
         GameEntry.Sound.PlayMusic(Constant.Sound.GAME_MUSIC_ID);
@@ -49,21 +49,21 @@ public class ProcedureGame : ProcedureBase {
         GameEntry.Sound.StopMusic();
         
         // 关闭UI
-        if (m_UIPlayerOperate != null) {
-            GameEntry.UI.CloseUIForm (m_UIPlayerOperate.UIForm);
-            m_UIPlayerOperate = null;
+        if (uiPlayerOperate != null) {
+            GameEntry.UI.CloseUIForm (uiPlayerOperate.UIForm);
+            uiPlayerOperate = null;
         }
 
-        if (m_UIPlayerMessage != null) {
-            GameEntry.UI.CloseUIForm (m_UIPlayerMessage.UIForm);
-            m_UIPlayerMessage = null;
+        if (uiPlayerMessage != null) {
+            GameEntry.UI.CloseUIForm (uiPlayerMessage.UIForm);
+            uiPlayerMessage = null;
         }
     }
 
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
-        if (m_SurvivalGame != null) {
-            if (!m_SurvivalGame.GameOver) {
-                m_SurvivalGame.Update (elapseSeconds, realElapseSeconds);
+        if (survivalGame != null) {
+            if (!survivalGame.GameOver) {
+                survivalGame.Update (elapseSeconds, realElapseSeconds);
             } else {
                 GameOver (procedureOwner);
             }
@@ -74,7 +74,7 @@ public class ProcedureGame : ProcedureBase {
     /// 返回菜单
     /// </summary>
     public void Back () {
-        m_SurvivalGame.Shutdown();
+        survivalGame.Shutdown();
         m_ProcedureOwner.SetData<VarInt> (Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt ("Scene.Menu"));
         ChangeState<ProcedureChangeScene> (m_ProcedureOwner);
     }
@@ -82,7 +82,7 @@ public class ProcedureGame : ProcedureBase {
     private void GameOver (ProcedureOwner procedureOwner) {
         // 保存获得的金币
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold, 0);
-        GameEntry.Setting.SetInt (Constant.Player.Gold, gold + m_UIPlayerMessage.TotalPrize ());
+        GameEntry.Setting.SetInt (Constant.Player.Gold, gold + uiPlayerMessage.TotalPrize ());
 
         // 返回菜单场景
         BackToMenu (procedureOwner);
@@ -98,9 +98,9 @@ public class ProcedureGame : ProcedureBase {
         OpenUIFormSuccessEventArgs ne = (OpenUIFormSuccessEventArgs) e;
 
         if (ne.UIForm.Logic.GetType () == typeof (UIPlayerOperate)) {
-            m_UIPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
+            uiPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
         } else if (ne.UIForm.Logic.GetType () == typeof (UIPlayerMessage)) {
-            m_UIPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
+            uiPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
         }
     }
 }

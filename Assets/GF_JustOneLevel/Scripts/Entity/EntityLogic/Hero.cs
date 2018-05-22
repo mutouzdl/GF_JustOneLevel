@@ -8,56 +8,54 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 
 public class Hero : TargetableObject {
-    [SerializeField]
-    private HeroData m_heroData = null;
+    private HeroData heroData = null;
 
-    [SerializeField]
-    private Rigidbody m_Rigidbody = null;
+    private Rigidbody rigidbody = null;
 
     /// <summary>
     /// 攻击是否正在冷却
     /// </summary>
-    private bool m_IsAtkCDing = false;
+    private bool isAtkCDing = false;
     /// <summary>
     /// 状态类状态机：CD空闲、CD
     /// </summary>
-    private GameFramework.Fsm.IFsm<Hero> m_HeroStateFsm;
+    private GameFramework.Fsm.IFsm<Hero> heroStateFsm;
     /// <summary>
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
-    private GameFramework.Fsm.IFsm<Hero> m_HeroActionFsm;
-    public WeaponTrail m_WeaponTrail;
+    private GameFramework.Fsm.IFsm<Hero> heroActionFsm;
+    public WeaponTrail weaponTrail;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-        m_Rigidbody = gameObject.GetComponent<Rigidbody> ();
-        m_WeaponTrail = FindObjectOfType<WeaponTrail> ();
+        rigidbody = gameObject.GetComponent<Rigidbody> ();
+        weaponTrail = FindObjectOfType<WeaponTrail> ();
     }
 
     protected override void OnShow (object userData) {
         base.OnShow (userData);
 
-        m_heroData = userData as HeroData;
-        if (m_heroData == null) {
+        heroData = userData as HeroData;
+        if (heroData == null) {
             Log.Error ("Hero data is invalid.");
             return;
         }
 
-        m_WeaponTrail.SetTime (0.0f, 0, 1);
+        weaponTrail.SetTime (0.0f, 0, 1);
 
         /* 加载武器 */
-        List<WeaponData> weaponDatas = m_heroData.GetWeaponDatas ();
+        List<WeaponData> weaponDatas = heroData.GetWeaponDatas ();
         for (int i = 0; i < weaponDatas.Count; i++) {
             EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
         }
 
         /* 创建状态机 */
-        m_HeroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
+        heroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
             new HeroCDIdleState (),
                 new HeroAtkCDState (),
         });
 
-        m_HeroActionFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroActionFsm", this, new FsmState<Hero>[] {
+        heroActionFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroActionFsm", this, new FsmState<Hero>[] {
             new HeroIdleState (),
                 new HeroWalkState (),
                 new HeroAtkState (),
@@ -66,8 +64,8 @@ public class Hero : TargetableObject {
         });
 
         /* 启动状态机 */
-        m_HeroStateFsm.Start<HeroCDIdleState> ();
-        m_HeroActionFsm.Start<HeroIdleState> ();
+        heroStateFsm.Start<HeroCDIdleState> ();
+        heroActionFsm.Start<HeroIdleState> ();
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
@@ -80,7 +78,7 @@ public class Hero : TargetableObject {
         /* 旋转镜头 */
         float inputHorizontal = Input.GetAxis ("Horizontal");
         if (inputHorizontal != 0) {
-            transform.Rotate (new Vector3 (0, inputHorizontal * Time.deltaTime * m_heroData.RotateSpeed, 0));
+            transform.Rotate (new Vector3 (0, inputHorizontal * Time.deltaTime * heroData.RotateSpeed, 0));
         }
     }
 
@@ -94,17 +92,17 @@ public class Hero : TargetableObject {
             while (tempT < t) {
                 tempT += animationIncrement;
 
-                if (m_WeaponTrail.time > 0) {
-                    m_WeaponTrail.Itterate (Time.time - t + tempT);
+                if (weaponTrail.time > 0) {
+                    weaponTrail.Itterate (Time.time - t + tempT);
                 } else {
-                    m_WeaponTrail.ClearTrail ();
+                    weaponTrail.ClearTrail ();
                 }
             }
 
             tempT -= t;
 
-            if (m_WeaponTrail.time > 0) {
-                m_WeaponTrail.UpdateTrail (Time.time, t);
+            if (weaponTrail.time > 0) {
+                weaponTrail.UpdateTrail (Time.time, t);
             }
         }
     }
@@ -113,7 +111,7 @@ public class Hero : TargetableObject {
         base.OnAttached (childEntity, parentTransform, userData);
 
         if (childEntity is Weapon) {
-            m_Weapons.Add ((Weapon) childEntity);
+            weapons.Add ((Weapon) childEntity);
             return;
         }
     }
@@ -121,8 +119,8 @@ public class Hero : TargetableObject {
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
-        GameEntry.Fsm.DestroyFsm (m_HeroActionFsm);
-        GameEntry.Fsm.DestroyFsm (m_HeroStateFsm);
+        GameEntry.Fsm.DestroyFsm (heroActionFsm);
+        GameEntry.Fsm.DestroyFsm (heroStateFsm);
 
         GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
         GameEntry.Event.Unsubscribe (DeadEventArgs.EventId, OnDeadEvent);
@@ -134,11 +132,11 @@ public class Hero : TargetableObject {
 
     protected override void OnDead () {
         base.OnDead ();
-        m_HeroActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
+        heroActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
     }
 
     public override ImpactData GetImpactData () {
-        return new ImpactData (m_heroData.Camp, m_heroData.HP, 0, m_heroData.Def);
+        return new ImpactData (heroData.Camp, heroData.HP, 0, heroData.Def);
     }
 
     /// <summary>
@@ -146,7 +144,7 @@ public class Hero : TargetableObject {
     /// </summary>
     /// <param name="distance"></param>
     public void Forward (float distance) {
-        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * m_heroData.MoveSpeed;
+        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * heroData.MoveSpeed;
 
         CachedTransform.position = PositionUtility.GetAjustPositionWithMap (nextPos);
     }
@@ -157,7 +155,7 @@ public class Hero : TargetableObject {
     /// <param name="distance"></param>
     /// <returns></returns>
     public bool CheckInAtkRange (float distance) {
-        return distance <= m_heroData.AtkRange;
+        return distance <= heroData.AtkRange;
     }
 
     /// <summary>
@@ -165,11 +163,11 @@ public class Hero : TargetableObject {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (TargetableObject aimEntity) {
-        m_IsAtkCDing = true;
-        m_HeroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
+        isAtkCDing = true;
+        heroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
 
-        foreach (Weapon weapon in m_Weapons) {
-            weapon.Attack (aimEntity.Id, m_heroData.Atk);
+        foreach (Weapon weapon in weapons) {
+            weapon.Attack (aimEntity.Id, heroData.Atk);
         }
 
     }
@@ -178,27 +176,27 @@ public class Hero : TargetableObject {
     /// 播放拖尾效果
     /// </summary>
     public void PlayTrailEffect () {
-        if (m_WeaponTrail == null) {
+        if (weaponTrail == null) {
             return;
         }
 
         //设置拖尾时长  
-        m_WeaponTrail.SetTime (2.0f, 0.0f, 1.0f);
+        weaponTrail.SetTime (2.0f, 0.0f, 1.0f);
 
         //开始进行拖尾  
-        m_WeaponTrail.StartTrail (0.5f, 0.4f);
+        weaponTrail.StartTrail (0.5f, 0.4f);
     }
 
     /// <summary>
     /// 清除拖尾效果
     /// </summary>
     public void ClearTrialEffect () {
-        if (m_WeaponTrail == null) {
+        if (weaponTrail == null) {
             return;
         }
 
         //清除拖尾  
-        m_WeaponTrail.ClearTrail ();
+        weaponTrail.ClearTrail ();
     }
 
     /// <summary>
@@ -206,26 +204,26 @@ public class Hero : TargetableObject {
     /// </summary>
     /// <param name="damageHP"></param>
     public override void ApplyDamage (int damageHP) {
-        m_HeroActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
+        heroActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
     }
 
     /// <summary>
     /// 重置攻击冷却
     /// </summary>
     public void ResetAtkCD () {
-        m_IsAtkCDing = false;
+        isAtkCDing = false;
     }
 
     public HeroData HeroData {
         get {
-            return m_heroData;
+            return heroData;
         }
     }
 
 
     private void OnClickAttackButton (object sender, GameEventArgs e) {
-        if (m_IsAtkCDing == false) {
-            m_HeroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
+        if (isAtkCDing == false) {
+            heroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
         }
     }
 
@@ -236,11 +234,11 @@ public class Hero : TargetableObject {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
 
             /* 加强英雄属性 */
-            this.m_heroData.PowerUp(data.Atk, data.Def, data.MaxHP);
+            this.heroData.PowerUp(data.Atk, data.Def, data.MaxHP);
 
             /* 发送刷新属性消息 */
             GameEntry.Event.Fire (this,
-                ReferencePool.Acquire<RefreshHeroPropsEventArgs> ().Fill (this.m_heroData));
+                ReferencePool.Acquire<RefreshHeroPropsEventArgs> ().Fill (this.heroData));
         }
     }
 }

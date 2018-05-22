@@ -4,20 +4,20 @@ using UnityEngine;
 [Serializable]
 public abstract class EntityData {
     [SerializeField]
-    private int m_Id = 0;
+    private int id = 0;
 
     [SerializeField]
-    private int m_TypeId = 0;
+    private int typeId = 0;
 
     [SerializeField]
-    private Vector3 m_Position = Vector3.zero;
+    private Vector3 position = Vector3.zero;
 
     [SerializeField]
-    private Quaternion m_Rotation = Quaternion.identity;
+    private Quaternion rotation = Quaternion.identity;
 
     public EntityData (int entityId, int typeId) {
-        m_Id = entityId;
-        m_TypeId = typeId;
+        id = entityId;
+        this.typeId = typeId;
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ public abstract class EntityData {
     /// </summary>
     public int Id {
         get {
-            return m_Id;
+            return id;
         }
     }
 
@@ -34,7 +34,7 @@ public abstract class EntityData {
     /// </summary>
     public int TypeId {
         get {
-            return m_TypeId;
+            return typeId;
         }
     }
 
@@ -43,10 +43,10 @@ public abstract class EntityData {
     /// </summary>
     public Vector3 Position {
         get {
-            return m_Position;
+            return position;
         }
         set {
-            m_Position = value;
+            position = value;
         }
     }
 
@@ -55,10 +55,10 @@ public abstract class EntityData {
     /// </summary>
     public Quaternion Rotation {
         get {
-            return m_Rotation;
+            return rotation;
         }
         set {
-            m_Rotation = value;
+            rotation = value;
         }
     }
 }

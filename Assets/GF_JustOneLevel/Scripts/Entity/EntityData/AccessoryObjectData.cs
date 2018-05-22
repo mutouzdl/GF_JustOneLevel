@@ -3,15 +3,13 @@ using UnityEngine;
 
 [Serializable]
 public abstract class AccessoryObjectData : EntityData {
-    [SerializeField]
-    private int m_OwnerId = 0;
+    private int ownerId = 0;
 
-    [SerializeField]
-    private CampType m_OwnerCamp = CampType.Unknown;
+    private CampType ownerCamp = CampType.Unknown;
 
     public AccessoryObjectData (int entityId, int typeId, int ownerId, CampType ownerCamp) : base (entityId, typeId) {
-        m_OwnerId = ownerId;
-        m_OwnerCamp = ownerCamp;
+        this.ownerId = ownerId;
+        this.ownerCamp = ownerCamp;
     }
 
     /// <summary>
@@ -19,7 +17,7 @@ public abstract class AccessoryObjectData : EntityData {
     /// </summary>
     public int OwnerId {
         get {
-            return m_OwnerId;
+            return ownerId;
         }
     }
 
@@ -28,7 +26,7 @@ public abstract class AccessoryObjectData : EntityData {
     /// </summary>
     public CampType OwnerCamp {
         get {
-            return m_OwnerCamp;
+            return ownerCamp;
         }
     }
 }

@@ -9,7 +9,7 @@ public class Weapon : Entity {
     private const string AttachPoint = "WeaponPoint";
 
     [SerializeField]
-    private WeaponData m_WeaponData = null;
+    private WeaponData weaponData = null;
 
     protected override void OnInit (object userData)
     {
@@ -20,13 +20,13 @@ public class Weapon : Entity {
     {
         base.OnShow (userData);
 
-        m_WeaponData = userData as WeaponData;
-        if (m_WeaponData == null) {
+        weaponData = userData as WeaponData;
+        if (weaponData == null) {
             Log.Error ("Weapon data is invalid.");
             return;
         }
 
-        GameEntry.Entity.AttachEntity (Entity, m_WeaponData.OwnerId, AttachPoint);
+        GameEntry.Entity.AttachEntity (Entity, weaponData.OwnerId, AttachPoint);
     }
 
     protected override void OnAttachTo (EntityLogic parentEntity, Transform parentTransform, object userData)
@@ -40,17 +40,17 @@ public class Weapon : Entity {
     public void Attack (int aimEntityID, int ownerAtk) {
         BulletData bulletData = new BulletData (
             EntityExtension.GenerateSerialId (), 
-            m_WeaponData.BulletId, 
-            m_WeaponData.OwnerId, 
+            weaponData.BulletId, 
+            weaponData.OwnerId, 
             aimEntityID,
-            m_WeaponData.OwnerCamp, 
-            m_WeaponData.Attack + ownerAtk, 
-            m_WeaponData.BulletSpeed
+            weaponData.OwnerCamp, 
+            weaponData.Attack + ownerAtk, 
+            weaponData.BulletSpeed
         );
         bulletData.Position = CachedTransform.position;
         
         EntityExtension.ShowBullet (typeof(Bullet), "BulletGroup", bulletData);
         
-        GameEntry.Sound.PlaySound (m_WeaponData.BulletSoundId);
+        GameEntry.Sound.PlaySound (weaponData.BulletSoundId);
     }
 }

@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 
 public class ProcedureMenu : ProcedureBase {
-    private UIMenu m_UIMenu = null;
+    private UIMenu uiMenu = null;
 
     protected override void OnInit (ProcedureOwner procedureOwner) {
         base.OnInit (procedureOwner);
@@ -40,9 +40,9 @@ public class ProcedureMenu : ProcedureBase {
         GameEntry.Sound.StopMusic();
         
         // 关闭UI
-        if (m_UIMenu != null) {
-            GameEntry.UI.CloseUIForm (m_UIMenu.UIForm);
-            m_UIMenu = null;
+        if (uiMenu != null) {
+            GameEntry.UI.CloseUIForm (uiMenu.UIForm);
+            uiMenu = null;
         }
     }
 
@@ -53,7 +53,7 @@ public class ProcedureMenu : ProcedureBase {
         OpenUIFormSuccessEventArgs ne = (OpenUIFormSuccessEventArgs) e;
 
         if (ne.UIForm.Logic.GetType () == typeof (UIMenu)) {
-            m_UIMenu = (UIMenu) ne.UIForm.Logic;
+            uiMenu = (UIMenu) ne.UIForm.Logic;
         }
     }
 

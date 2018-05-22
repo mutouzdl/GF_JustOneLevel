@@ -7,13 +7,13 @@ using UnityEngine;
 /// AI 工具类。
 /// </summary>
 public static class AIUtility {
-    private static Dictionary<CampPair, RelationType> s_CampPairToRelation = new Dictionary<CampPair, RelationType> ();
-    private static Dictionary<KeyValuePair<CampType, RelationType>, CampType[]> s_CampAndRelationToCamps = new Dictionary<KeyValuePair<CampType, RelationType>, CampType[]> ();
+    private static Dictionary<CampPair, RelationType> campPairToRelation = new Dictionary<CampPair, RelationType> ();
+    private static Dictionary<KeyValuePair<CampType, RelationType>, CampType[]> campAndRelationToCamps = new Dictionary<KeyValuePair<CampType, RelationType>, CampType[]> ();
 
     static AIUtility () {
-        s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Player), RelationType.Friendly);
-        s_CampPairToRelation.Add (new CampPair (CampType.Player, CampType.Enemy), RelationType.Hostile);
-        s_CampPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Enemy), RelationType.Friendly);
+        campPairToRelation.Add (new CampPair (CampType.Player, CampType.Player), RelationType.Friendly);
+        campPairToRelation.Add (new CampPair (CampType.Player, CampType.Enemy), RelationType.Hostile);
+        campPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Enemy), RelationType.Friendly);
     }
 
     /// <summary>
@@ -30,7 +30,7 @@ public static class AIUtility {
         }
 
         RelationType relationType;
-        if (s_CampPairToRelation.TryGetValue (new CampPair (first, second), out relationType)) {
+        if (campPairToRelation.TryGetValue (new CampPair (first, second), out relationType)) {
             return relationType;
         }
 
@@ -47,7 +47,7 @@ public static class AIUtility {
     public static CampType[] GetCamps (CampType camp, RelationType relation) {
         KeyValuePair<CampType, RelationType> key = new KeyValuePair<CampType, RelationType> (camp, relation);
         CampType[] result = null;
-        if (s_CampAndRelationToCamps.TryGetValue (key, out result)) {
+        if (campAndRelationToCamps.TryGetValue (key, out result)) {
             return result;
         }
 
@@ -61,7 +61,7 @@ public static class AIUtility {
         }
 
         result = camps.ToArray ();
-        s_CampAndRelationToCamps[key] = result;
+        campAndRelationToCamps[key] = result;
 
         return result;
     }

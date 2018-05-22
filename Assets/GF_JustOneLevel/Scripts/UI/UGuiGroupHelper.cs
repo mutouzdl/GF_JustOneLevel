@@ -9,27 +9,27 @@ using UnityGameFramework.Runtime;
 public class UGuiGroupHelper : UIGroupHelperBase {
     public const int DepthFactor = 10000;
 
-    private int m_Depth = 0;
-    private Canvas m_CachedCanvas = null;
+    private int depth = 0;
+    private Canvas cachedCanvas = null;
 
     /// <summary>
     /// 设置界面组深度。
     /// </summary>
     /// <param name="depth">界面组深度。</param>
     public override void SetDepth (int depth) {
-        m_Depth = depth;
-        m_CachedCanvas.overrideSorting = true;
-        m_CachedCanvas.sortingOrder = DepthFactor * depth;
+        this.depth = depth;
+        cachedCanvas.overrideSorting = true;
+        cachedCanvas.sortingOrder = DepthFactor * depth;
     }
 
     private void Awake () {
-        m_CachedCanvas = gameObject.GetOrAddComponent<Canvas> ();
+        cachedCanvas = gameObject.GetOrAddComponent<Canvas> ();
         gameObject.GetOrAddComponent<GraphicRaycaster> ();
     }
 
     private void Start () {
-        m_CachedCanvas.overrideSorting = true;
-        m_CachedCanvas.sortingOrder = DepthFactor * m_Depth;
+        cachedCanvas.overrideSorting = true;
+        cachedCanvas.sortingOrder = DepthFactor * depth;
 
         RectTransform transform = GetComponent<RectTransform> ();
         transform.anchorMin = Vector2.zero;

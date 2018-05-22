@@ -22,7 +22,7 @@ public class HeroData : FightEntityData {
         AtkSpeed = drHero.AtkSpeed;
 
         for (int i = 0; i < drHero.GetWeaponCount (); i++) {
-            m_WeaponDatas.Add (new WeaponData (EntityExtension.GenerateSerialId (), drHero.GetWeaponID (i), Id, Camp));
+            weaponDatas.Add (new WeaponData (EntityExtension.GenerateSerialId (), drHero.GetWeaponID (i), Id, Camp));
         }
     }
 

@@ -4,15 +4,15 @@ using UnityEngine;
 
 [Serializable]
 public class BulletData : EntityData {
-    private int m_OwnerId = 0;
-    private int m_AimEntityId = 0;
+    private int ownerId = 0;
+    private int aimEntityId = 0;
 
-    private CampType m_OwnerCamp = CampType.Unknown;
+    private CampType ownerCamp = CampType.Unknown;
 
-    private int m_Attack = 0;
+    private int attack = 0;
 
-    private float m_Speed = 0f;
-    private Vector3 m_Forward = Vector3.zero;
+    private float speed = 0f;
+    private Vector3 forward = Vector3.zero;
 
     public BulletData (int entityId, int typeId, int ownerId, int aimEntityID,
         CampType ownerCamp, int attack, float speed) : base (entityId, typeId) {
@@ -24,12 +24,12 @@ public class BulletData : EntityData {
 
         ParticleId = drBullet.ParticleId;
 
-        m_OwnerId = ownerId;
-        m_OwnerCamp = ownerCamp;
-        m_Attack = attack;
-        m_Speed = speed;
+        this.ownerId = ownerId;
+        this.ownerCamp = ownerCamp;
+        this.attack = attack;
+        this.speed = speed;
 
-        m_Forward = GameEntry.Entity.GetEntity(ownerId).transform.forward;
+        forward = GameEntry.Entity.GetEntity(ownerId).transform.forward;
     }
 
     public int ParticleId {
@@ -39,37 +39,37 @@ public class BulletData : EntityData {
 
     public int OwnerId {
         get {
-            return m_OwnerId;
+            return ownerId;
         }
     }
 
     public int AimEntityID {
         get {
-            return m_AimEntityId;
+            return aimEntityId;
         }
     }
 
     public CampType OwnerCamp {
         get {
-            return m_OwnerCamp;
+            return ownerCamp;
         }
     }
 
     public int Attack {
         get {
-            return m_Attack;
+            return attack;
         }
     }
 
     public float Speed {
         get {
-            return m_Speed;
+            return speed;
         }
     }
 
     public Vector3 Forward {
         get {
-            return m_Forward;
+            return forward;
         }
     }
 }

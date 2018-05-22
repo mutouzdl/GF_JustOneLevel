@@ -8,12 +8,12 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public class ProcedureCheckVersion : ProcedureBase {
-    private bool m_ResourceInitComplete = false;
+    private bool resourceInitComplete = false;
 
     protected override void OnEnter (ProcedureOwner procedureOwner) {
         base.OnEnter (procedureOwner);
 
-        m_ResourceInitComplete = false;
+        resourceInitComplete = false;
 
         GameEntry.Event.Subscribe (WebRequestSuccessEventArgs.EventId, OnWebRequestSuccess);
         GameEntry.Event.Subscribe (WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
@@ -33,7 +33,7 @@ public class ProcedureCheckVersion : ProcedureBase {
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (procedureOwner, elapseSeconds, realElapseSeconds);
 
-        if (!m_ResourceInitComplete) {
+        if (!resourceInitComplete) {
             return;
         }
 
@@ -140,7 +140,7 @@ public class ProcedureCheckVersion : ProcedureBase {
     }
 
     private void OnResourceInitComplete (object sender, GameEventArgs e) {
-        m_ResourceInitComplete = true;
+        resourceInitComplete = true;
 
         Log.Info ("Init resource complete.");
     }

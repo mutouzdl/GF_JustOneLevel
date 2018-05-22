@@ -5,17 +5,17 @@ using UnityEngine;
 [Serializable]
 public class WeaponData : AccessoryObjectData {
     [SerializeField]
-    private int m_Attack = 0;
+    private int attack = 0;
 
 
     [SerializeField]
-    private int m_BulletId = 0;
+    private int bulletId = 0;
 
     [SerializeField]
-    private float m_BulletSpeed = 0f;
+    private float bulletSpeed = 0f;
 
     [SerializeField]
-    private int m_BulletSoundId = 0;
+    private int bulletSoundId = 0;
 
     public WeaponData (int entityId, int typeId, int ownerId, CampType ownerCamp) : base (entityId, typeId, ownerId, ownerCamp) {
         IDataTable<DRWeapon> dtWeapon = GameEntry.DataTable.GetDataTable<DRWeapon> ();
@@ -24,10 +24,10 @@ public class WeaponData : AccessoryObjectData {
             return;
         }
 
-        m_Attack = drWeapon.Attack;
-        m_BulletId = drWeapon.BulletId;
-        m_BulletSpeed = drWeapon.BulletSpeed;
-        m_BulletSoundId = drWeapon.BulletSoundId;
+        attack = drWeapon.Attack;
+        bulletId = drWeapon.BulletId;
+        bulletSpeed = drWeapon.BulletSpeed;
+        bulletSoundId = drWeapon.BulletSoundId;
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public class WeaponData : AccessoryObjectData {
     /// </summary>
     public int Attack {
         get {
-            return m_Attack;
+            return attack;
         }
     }
 
@@ -44,7 +44,7 @@ public class WeaponData : AccessoryObjectData {
     /// </summary>
     public int BulletId {
         get {
-            return m_BulletId;
+            return bulletId;
         }
     }
 
@@ -53,7 +53,7 @@ public class WeaponData : AccessoryObjectData {
     /// </summary>
     public float BulletSpeed {
         get {
-            return m_BulletSpeed;
+            return bulletSpeed;
         }
     }
 
@@ -62,7 +62,7 @@ public class WeaponData : AccessoryObjectData {
     /// </summary>
     public int BulletSoundId {
         get {
-            return m_BulletSoundId;
+            return bulletSoundId;
         }
     }
 }

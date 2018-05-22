@@ -10,7 +10,7 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public class ProcedurePreload : ProcedureBase {
-    private Dictionary<string, bool> m_LoadedFlag = new Dictionary<string, bool> ();
+    private Dictionary<string, bool> loadedFlag = new Dictionary<string, bool> ();
 
     protected override void OnEnter (ProcedureOwner procedureOwner) {
         base.OnEnter (procedureOwner);
@@ -22,7 +22,7 @@ public class ProcedurePreload : ProcedureBase {
         GameEntry.Event.Subscribe (LoadDictionarySuccessEventArgs.EventId, OnLoadDictionarySuccess);
         GameEntry.Event.Subscribe (LoadDictionaryFailureEventArgs.EventId, OnLoadDictionaryFailure);
 
-        m_LoadedFlag.Clear ();
+        loadedFlag.Clear ();
 
         PreloadResources ();
     }
@@ -41,7 +41,7 @@ public class ProcedurePreload : ProcedureBase {
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (procedureOwner, elapseSeconds, realElapseSeconds);
 
-        IEnumerator<bool> iter = m_LoadedFlag.Values.GetEnumerator ();
+        IEnumerator<bool> iter = loadedFlag.Values.GetEnumerator ();
         while (iter.MoveNext ()) {
             if (!iter.Current) {
                 return;
@@ -77,7 +77,7 @@ public class ProcedurePreload : ProcedureBase {
     }
 
     private void LoadConfig (string configName) {
-        m_LoadedFlag.Add (string.Format ("Config.{0}", configName), false);
+        loadedFlag.Add (string.Format ("Config.{0}", configName), false);
 
         if (string.IsNullOrEmpty (configName)) {
             Log.Warning ("Config name is invalid.");
@@ -88,20 +88,20 @@ public class ProcedurePreload : ProcedureBase {
     }
 
     private void LoadDataTable (string dataTableName) {
-        m_LoadedFlag.Add (string.Format ("DataTable.{0}", dataTableName), false);
+        loadedFlag.Add (string.Format ("DataTable.{0}", dataTableName), false);
         GameEntry.DataTable.LoadDataTable (dataTableName, this);
     }
 
     private void LoadDictionary (string dictionaryName) {
-        m_LoadedFlag.Add (string.Format ("Dictionary.{0}", dictionaryName), false);
+        loadedFlag.Add (string.Format ("Dictionary.{0}", dictionaryName), false);
         GameEntry.Localization.LoadDictionary (dictionaryName, this);
     }
 
     private void LoadFont (string fontName) {
-        m_LoadedFlag.Add (string.Format ("Font.{0}", fontName), false);
+        loadedFlag.Add (string.Format ("Font.{0}", fontName), false);
         GameEntry.Resource.LoadAsset (AssetUtility.GetFontAsset (fontName), new LoadAssetCallbacks (
             (assetName, asset, duration, userData) => {
-                m_LoadedFlag[string.Format ("Font.{0}", fontName)] = true;
+                loadedFlag[string.Format ("Font.{0}", fontName)] = true;
                 UGuiForm.SetMainFont ((Font) asset);
                 Log.Info ("Load font '{0}' OK.", fontName);
             },
@@ -117,7 +117,7 @@ public class ProcedurePreload : ProcedureBase {
             return;
         }
 
-        m_LoadedFlag[string.Format ("Config.{0}", ne.ConfigName)] = true;
+        loadedFlag[string.Format ("Config.{0}", ne.ConfigName)] = true;
         Log.Info ("Load config '{0}' OK.", ne.ConfigName);
     }
 
@@ -136,7 +136,7 @@ public class ProcedurePreload : ProcedureBase {
             return;
         }
 
-        m_LoadedFlag[string.Format ("DataTable.{0}", ne.DataTableName)] = true;
+        loadedFlag[string.Format ("DataTable.{0}", ne.DataTableName)] = true;
         Log.Info ("Load data table '{0}' OK.", ne.DataTableName);
     }
 
@@ -155,7 +155,7 @@ public class ProcedurePreload : ProcedureBase {
             return;
         }
 
-        m_LoadedFlag[string.Format ("Dictionary.{0}", ne.DictionaryName)] = true;
+        loadedFlag[string.Format ("Dictionary.{0}", ne.DictionaryName)] = true;
         Log.Info ("Load dictionary '{0}' OK.", ne.DictionaryName);
     }
 
