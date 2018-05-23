@@ -59,7 +59,6 @@ public class HeroDeadState : FsmState<Hero> {
     }
 
     private void OnResurgenceEvent(IFsm<Hero> fsm, object sender, object userData) {
-        Log.Info("HeroDeadState OnResurgenEvent");
         /* 复活 */
         fsm.Owner.Resurgence();
         ChangeState<HeroIdleState>(fsm);

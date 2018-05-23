@@ -43,12 +43,23 @@ public class Hero : TargetableObject {
 
         weaponTrail.SetTime (0.0f, 0, 1);
 
-        /* 加载武器 */
-        List<WeaponData> weaponDatas = heroData.GetWeaponDatas ();
-        for (int i = 0; i < weaponDatas.Count; i++) {
-            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
-        }
+        /* 初始化状态机 */
+        InitFSM ();
 
+        /* 加载武器 */
+        InitWeapon ();
+
+        /* 订阅事件 */
+        SubscribeEvent ();
+
+        /* 发送刷新属性消息 */
+        SendRefreshPropEvent ();
+    }
+
+    /// <summary>
+    /// 初始化状态机
+    /// </summary>
+    private void InitFSM () {
         /* 创建状态机 */
         heroStateFsm = GameEntry.Fsm.CreateFsm<Hero> ("heroStateFsm", this, new FsmState<Hero>[] {
             new HeroCDIdleState (),
@@ -66,8 +77,22 @@ public class Hero : TargetableObject {
         /* 启动状态机 */
         heroStateFsm.Start<HeroCDIdleState> ();
         heroActionFsm.Start<HeroIdleState> ();
+    }
 
-        /* 订阅事件 */
+    /// <summary>
+    /// 初始化武器
+    /// </summary>
+    private void InitWeapon () {
+        List<WeaponData> weaponDatas = heroData.GetWeaponDatas ();
+        for (int i = 0; i < weaponDatas.Count; i++) {
+            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
+        }
+    }
+
+    /// <summary>
+    /// 订阅事件
+    /// </summary>
+    private void SubscribeEvent () {
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
@@ -130,6 +155,9 @@ public class Hero : TargetableObject {
 
     protected override void OnHurt () {
         GameEntry.Sound.PlaySound (Constant.Sound.HURT_SOUND_ID);
+
+        /* 发送刷新属性消息 */
+        SendRefreshPropEvent ();
     }
 
     protected override void OnDead () {
@@ -219,9 +247,11 @@ public class Hero : TargetableObject {
     /// <summary>
     /// 复活
     /// </summary>
-    public void Resurgence() {
-        Log.Info("英雄复活");
+    public void Resurgence () {
         heroData.HP = heroData.MaxHP;
+
+        /* 发送刷新属性消息 */
+        SendRefreshPropEvent ();
     }
 
     public HeroData HeroData {
@@ -230,6 +260,13 @@ public class Hero : TargetableObject {
         }
     }
 
+    /// <summary>
+    /// 发送刷新属性消息
+    /// </summary>
+    public void SendRefreshPropEvent () {
+        GameEntry.Event.Fire (this,
+            ReferencePool.Acquire<RefreshHeroPropsEventArgs> ().Fill (this.heroData));
+    }
 
     private void OnClickAttackButton (object sender, GameEventArgs e) {
         if (isAtkCDing == false) {
@@ -238,7 +275,6 @@ public class Hero : TargetableObject {
     }
 
     private void OnResurgenceEvent (object sender, GameEventArgs e) {
-        Log.Info("OnResurgenceEvent");
         heroActionFsm.FireEvent (this, ResurgenceEventArgs.EventId);
     }
 
@@ -249,11 +285,10 @@ public class Hero : TargetableObject {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
 
             /* 加强英雄属性 */
-            this.heroData.PowerUp(data.Atk, data.Def, data.MaxHP);
+            this.heroData.PowerUp (data.Atk, data.Def, data.MaxHP);
 
             /* 发送刷新属性消息 */
-            GameEntry.Event.Fire (this,
-                ReferencePool.Acquire<RefreshHeroPropsEventArgs> ().Fill (this.heroData));
+            SendRefreshPropEvent ();
         }
     }
 }

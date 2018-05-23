@@ -8,6 +8,8 @@ public class UIPlayerMessage : UGuiForm {
     [SerializeField]
     private Text prizeText = null;
     [SerializeField]
+    private Text goldText = null;
+    [SerializeField]
     private Text atkText = null;
     [SerializeField]
     private Text defText = null;
@@ -26,13 +28,15 @@ public class UIPlayerMessage : UGuiForm {
     /// </summary>
     /// <param name="userData">用户自定义数据。</param>
     protected override void OnOpen (object userData) {
-        base.OnOpen(userData);
+        base.OnOpen (userData);
 
         procedureGame = userData as ProcedureGame;
 
+        RefreshGold ();
+
         /* 订阅事件 */
-        GameEntry.Event.Subscribe(DeadEventArgs.EventId, OnDeadEvent);
-        GameEntry.Event.Subscribe(RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+        GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
+        GameEntry.Event.Subscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
     }
 
     /// <summary>
@@ -40,40 +44,38 @@ public class UIPlayerMessage : UGuiForm {
     /// </summary>
     /// <param name="userData">用户自定义数据。</param>
     protected override void OnClose (object userData) {
-        base.OnClose(userData);
+        base.OnClose (userData);
 
         /* 取消订阅事件 */
-        GameEntry.Event.Unsubscribe(DeadEventArgs.EventId, OnDeadEvent);
-        GameEntry.Event.Unsubscribe(RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+        GameEntry.Event.Unsubscribe (DeadEventArgs.EventId, OnDeadEvent);
+        GameEntry.Event.Unsubscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+    }
+
+    private void RefreshGold () {
+        prizeText.text = totalPrize.ToString ();
+        goldText.text = GameEntry.Setting.GetInt (Constant.Player.Gold).ToString ();
     }
 
     private void OnDeadEvent (object sender, GameEventArgs e) {
         DeadEventArgs deadEventArgs = e as DeadEventArgs;
 
         if (deadEventArgs.CampType == CampType.Enemy) {
-            MonsterData data = (MonsterData)deadEventArgs.EntityData;
+            MonsterData data = (MonsterData) deadEventArgs.EntityData;
             totalPrize += data.Prize;
-            
-            prizeText.text = totalPrize.ToString();
 
-        } else if (deadEventArgs.CampType == CampType.Player) {
-            Log.Info("游戏结束");
+            // 保存获得的金币
+            int gold = GameEntry.Setting.GetInt (Constant.Player.Gold, 0);
+            GameEntry.Setting.SetInt (Constant.Player.Gold, gold + totalPrize);
+
+            RefreshGold ();
         }
     }
 
-    private void OnRefreshHeroProps(object sender, GameEventArgs e) {
+    private void OnRefreshHeroProps (object sender, GameEventArgs e) {
         RefreshHeroPropsEventArgs eventArgs = e as RefreshHeroPropsEventArgs;
 
-        atkText.text = eventArgs.HeroData.Atk.ToString();
-        defText.text = eventArgs.HeroData.Def.ToString();
-        hpText.text = eventArgs.HeroData.HP.ToString();
-    }
-
-    /// <summary>
-    /// 总共获得的金币奖励数量
-    /// </summary>
-    /// <returns></returns>
-    public int TotalPrize() {
-        return totalPrize;
+        atkText.text = eventArgs.HeroData.Atk.ToString ();
+        defText.text = eventArgs.HeroData.Def.ToString ();
+        hpText.text = eventArgs.HeroData.HP.ToString ();
     }
 }

@@ -116,10 +116,6 @@ public class ProcedureGame : ProcedureBase {
             return;
         }
 
-        // 保存获得的金币
-        int gold = GameEntry.Setting.GetInt (Constant.Player.Gold, 0);
-        GameEntry.Setting.SetInt (Constant.Player.Gold, gold + uiPlayerMessage.TotalPrize ());
-
         // 打开失败UI
         GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIGameOver"), "DefaultGroup", this);
     }
