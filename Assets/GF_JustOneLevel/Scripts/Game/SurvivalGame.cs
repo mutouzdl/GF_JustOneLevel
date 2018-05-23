@@ -18,6 +18,7 @@ public class SurvivalGame {
         // 订阅事件
         GameEntry.Event.Subscribe (ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
         GameEntry.Event.Subscribe (ShowEntityFailureEventArgs.EventId, OnShowEntityFailure);
+        GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
 
         // 创建主角
         HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
@@ -41,6 +42,7 @@ public class SurvivalGame {
     public void Shutdown () {
         GameEntry.Event.Unsubscribe (ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
         GameEntry.Event.Unsubscribe (ShowEntityFailureEventArgs.EventId, OnShowEntityFailure);
+        GameEntry.Event.Unsubscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
     }
 
     public void Update (float elapseSeconds, float realElapseSeconds) {
@@ -60,5 +62,9 @@ public class SurvivalGame {
     protected void OnShowEntityFailure (object sender, GameEventArgs e) {
         ShowEntityFailureEventArgs ne = (ShowEntityFailureEventArgs) e;
         Log.Warning ("Show entity failure with error message '{0}'.", ne.ErrorMessage);
+    }
+
+    private void OnResurgenceEvent(object sender, GameEventArgs e) {
+        GameOver = false;
     }
 }

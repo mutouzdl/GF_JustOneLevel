@@ -6,10 +6,14 @@
     <String Key="Game.Website" Value="http://GameFramework.cn/" />
     <String Key="Symbol.Colon" Value="：" />
     <String Key="Message.Prize" Value="奖励" />
+    <String Key="GameOver.Title" Value="你好像输了" />
+    <String Key="GameOver.Des" Value="放心，你并不是打不赢，你只是单纯的输了。" />
+    <String Key="GameOver.ResurgenceDes" Value="不过，你可以花费500金币续命，要继续吗？" />
     <String Key="Property.Atk" Value="攻击" />
     <String Key="Property.Def" Value="防御" />
     <String Key="Property.HP" Value="血量" />
     <String Key="Operate.Back" Value="返回" />
+    <String Key="Operate.Continue" Value="继续" />
     <String Key="Menu.StartButton" Value="开始" />
     <String Key="Menu.SettingButton" Value="设置" />
     <String Key="Menu.AboutButton" Value="关于" />

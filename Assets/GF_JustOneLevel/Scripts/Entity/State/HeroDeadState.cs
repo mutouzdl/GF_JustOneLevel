@@ -1,3 +1,4 @@
+using GameFramework;
 using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class HeroDeadState : FsmState<Hero> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Hero> fsm) {
+        SubscribeEvent(ResurgenceEventArgs.EventId, OnResurgenceEvent);
+
         deadTimeCounter = 0;
 
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.dead);
@@ -33,7 +36,7 @@ public class HeroDeadState : FsmState<Hero> {
         deadTimeCounter += elapseSeconds;
 
         if (deadTimeCounter > 2) {
-            GameEntry.Entity.HideEntity(fsm.Owner.Id);
+            // GameEntry.Entity.HideEntity(fsm.Owner.Id);
         }
     }
 
@@ -43,6 +46,7 @@ public class HeroDeadState : FsmState<Hero> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
+        UnsubscribeEvent(ResurgenceEventArgs.EventId, OnResurgenceEvent);
     }
 
     /// <summary>
@@ -51,5 +55,13 @@ public class HeroDeadState : FsmState<Hero> {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnDestroy (IFsm<Hero> fsm) {
         base.OnDestroy (fsm);
+        UnsubscribeEvent(ResurgenceEventArgs.EventId, OnResurgenceEvent);
+    }
+
+    private void OnResurgenceEvent(IFsm<Hero> fsm, object sender, object userData) {
+        Log.Info("HeroDeadState OnResurgenEvent");
+        /* 复活 */
+        fsm.Owner.Resurgence();
+        ChangeState<HeroIdleState>(fsm);
     }
 }

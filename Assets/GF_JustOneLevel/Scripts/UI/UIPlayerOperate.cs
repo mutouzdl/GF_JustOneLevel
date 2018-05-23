@@ -2,7 +2,7 @@ using GameFramework;
 using UnityGameFramework.Runtime;
 
 public class UIPlayerOperate : UGuiForm {
-    private ProcedureGame m_ProcedureGame = null;
+    private ProcedureGame procedureGame = null;
     
     /// <summary>
     /// 界面打开。
@@ -11,22 +11,22 @@ public class UIPlayerOperate : UGuiForm {
     protected override void OnOpen (object userData) {
         base.OnOpen(userData);
 
-        m_ProcedureGame = userData as ProcedureGame;
+        procedureGame = userData as ProcedureGame;
     }
 
     /// <summary>
     /// 点击攻击按钮
     /// </summary>
     public void OnAtkClick() {
-        GameEntry.Event.Fire(this, new ClickAttackButtonEventArgs(){ });
+        GameEntry.Event.Fire(this, ReferencePool.Acquire<ClickAttackButtonEventArgs>());
     }
 
     /// <summary>
     /// 点击返回按钮
     /// </summary>
     public void OnBackClick() {
-        if (m_ProcedureGame != null) {
-            m_ProcedureGame.Back();
+        if (procedureGame != null) {
+            procedureGame.Back();
         }
     }
 }

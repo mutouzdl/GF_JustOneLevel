@@ -70,6 +70,7 @@ public class Hero : TargetableObject {
         /* 订阅事件 */
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
+        GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -124,6 +125,7 @@ public class Hero : TargetableObject {
 
         GameEntry.Event.Unsubscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
         GameEntry.Event.Unsubscribe (DeadEventArgs.EventId, OnDeadEvent);
+        GameEntry.Event.Unsubscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
     }
 
     protected override void OnHurt () {
@@ -214,6 +216,14 @@ public class Hero : TargetableObject {
         isAtkCDing = false;
     }
 
+    /// <summary>
+    /// 复活
+    /// </summary>
+    public void Resurgence() {
+        Log.Info("英雄复活");
+        heroData.HP = heroData.MaxHP;
+    }
+
     public HeroData HeroData {
         get {
             return heroData;
@@ -225,6 +235,11 @@ public class Hero : TargetableObject {
         if (isAtkCDing == false) {
             heroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
         }
+    }
+
+    private void OnResurgenceEvent (object sender, GameEventArgs e) {
+        Log.Info("OnResurgenceEvent");
+        heroActionFsm.FireEvent (this, ResurgenceEventArgs.EventId);
     }
 
     private void OnDeadEvent (object sender, GameEventArgs e) {

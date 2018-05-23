@@ -83,11 +83,9 @@ public static class AIUtility {
 
         Bullet bullet = other as Bullet;
         if (bullet != null) {
-            Log.Info("子弹攻击！");
             ImpactData entityImpactData = entity.GetImpactData ();
             ImpactData bulletImpactData = bullet.GetImpactData ();
             if (GetRelation (entityImpactData.Camp, bulletImpactData.Camp) == RelationType.Friendly) {
-                Log.Info("相同正营，不攻击：" + entityImpactData.Camp + "," + bulletImpactData.Camp);
                 return;
             }
 

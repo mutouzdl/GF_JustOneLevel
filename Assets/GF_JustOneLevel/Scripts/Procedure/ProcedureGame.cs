@@ -16,6 +16,10 @@ public class ProcedureGame : ProcedureBase {
     /// 玩家信息UI
     /// </summary>
     private UIPlayerMessage uiPlayerMessage = null;
+    /// <summary>
+    /// 失败UI
+    /// </summary>
+    private UIGameOver uiGameOver = null;
 
     protected override void OnInit (ProcedureOwner procedureOwner) {
         base.OnInit (procedureOwner);
@@ -58,6 +62,11 @@ public class ProcedureGame : ProcedureBase {
             GameEntry.UI.CloseUIForm (uiPlayerMessage.UIForm);
             uiPlayerMessage = null;
         }
+        
+        if (uiGameOver != null) {
+            GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
+            uiGameOver = null;
+        }
     }
 
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
@@ -79,28 +88,53 @@ public class ProcedureGame : ProcedureBase {
         ChangeState<ProcedureChangeScene> (m_ProcedureOwner);
     }
 
+    /// <summary>
+    /// 继续游戏，续命
+    /// </summary>
+    public void Continue () {
+        int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
+        Log.Info("Continue Gold:" + gold);
+        
+        if (gold < 500) {
+            Log.Info("金币不足");
+            return;
+        }
+
+        // 扣除金币进行复活
+        GameEntry.Setting.SetInt(Constant.Player.Gold, gold - 500);
+
+        // 隐藏失败UI
+        GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
+        uiGameOver = null;
+
+        // 发送复活消息
+        GameEntry.Event.Fire(this, new ResurgenceEventArgs());
+    }
+
     private void GameOver (ProcedureOwner procedureOwner) {
+        if (uiGameOver != null) {
+            return;
+        }
+
         // 保存获得的金币
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold, 0);
         GameEntry.Setting.SetInt (Constant.Player.Gold, gold + uiPlayerMessage.TotalPrize ());
 
-        // 返回菜单场景
-        BackToMenu (procedureOwner);
-    }
-
-    /// <summary>
-    /// 返回菜单
-    /// </summary>
-    private void BackToMenu (ProcedureOwner procedureOwner) {
+        // 打开失败UI
+        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIGameOver"), "DefaultGroup", this);
     }
 
     private void OnOpenUIFormSuccess (object sender, GameEventArgs e) {
         OpenUIFormSuccessEventArgs ne = (OpenUIFormSuccessEventArgs) e;
 
-        if (ne.UIForm.Logic.GetType () == typeof (UIPlayerOperate)) {
+        if (ne.UIForm.Logic is UIPlayerOperate) {
             uiPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
-        } else if (ne.UIForm.Logic.GetType () == typeof (UIPlayerMessage)) {
+        } 
+        else if (ne.UIForm.Logic is UIPlayerMessage) {
             uiPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
+        } 
+        else if (ne.UIForm.Logic is UIGameOver) {
+            uiGameOver = (UIGameOver) ne.UIForm.Logic;
         }
     }
 }

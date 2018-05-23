@@ -34,8 +34,14 @@ public class MonsterSeekAimState : MonsterListenDamageState {
         }
 
         if (fsm.Owner.IsLockingAim) {
-            Entity aim = fsm.Owner.LockingAim;
+            TargetableObject aim = fsm.Owner.LockingAim;
+            if (aim.IsDead) {
+                ChangeState<MonsterIdleState>(fsm);
+                return;
+            }
+
             float distance = AIUtility.GetDistance (fsm.Owner, aim);
+            
             /* 进入攻击范围，直接攻击 */
             if (fsm.Owner.CheckInAtkRange (distance)) {
                 fsm.SetData<VarInt> (Constant.EntityData.LockAimID, aim.Entity.Id);
