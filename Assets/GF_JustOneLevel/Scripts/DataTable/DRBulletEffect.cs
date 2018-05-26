@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using GameFramework.DataTable;
 
 /// <summary>
-/// 粒子特效表
+/// 子弹特效表
 /// </summary>
-public class DRParticle : IDataRow {
+public class DRBulletEffect : IDataRow {
     /// <summary>
     /// 编号。
     /// </summary>
@@ -18,7 +18,25 @@ public class DRParticle : IDataRow {
     /// </summary>
     public string AssetName {
         get;
-        protected set;
+        private set;
+    }
+
+    /// <summary>
+    /// 子弹特效类型
+    /// </summary>
+    /// <returns></returns>
+    public int Type {
+        get;
+        private set;
+    }
+
+    /// <summary>
+    /// 产生效果次数
+    /// </summary>
+    /// <returns></returns>
+    public int EffectTimes {
+        get;
+        private set;
     }
 
     public void ParseDataRow (string dataRowText) {
@@ -26,10 +44,13 @@ public class DRParticle : IDataRow {
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
+        index++; // 备注列
         AssetName = text[index++];
+        Type = int.Parse (text[index++]);
+        EffectTimes = int.Parse (text[index++]);
     }
 
     private void AvoidJIT () {
-        new Dictionary<int, DRParticle> ();
+        new Dictionary<int, DRBulletEffect> ();
     }
 }

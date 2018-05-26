@@ -56,7 +56,7 @@ public abstract class TargetableObject : Entity {
         }
 
         // 更新血量条
-        hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
+        RefreshHPBar();
 
         OnHurt();
         
@@ -82,6 +82,13 @@ public abstract class TargetableObject : Entity {
         } else if (state == FightEntityAnimationState.dead) {
             cachedAnimator.SetBool ("IsDead", true);
         }
+    }
+
+    /// <summary>
+    /// 更新血量条
+    /// </summary>
+    protected void RefreshHPBar () {
+        hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
     }
 
     private void ResetAnimation () {

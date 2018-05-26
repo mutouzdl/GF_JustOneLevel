@@ -4,17 +4,15 @@ using UnityEngine;
 
 [Serializable]
 public class BulletData : EntityData {
-    private int ownerId = 0;
-    private int aimEntityId = 0;
+    private int aimEntityID = 0;
 
     private CampType ownerCamp = CampType.Unknown;
 
     private int attack = 0;
 
     private float speed = 0f;
-    private Vector3 forward = Vector3.zero;
 
-    public BulletData (int entityId, int typeId, int ownerId, int aimEntityID,
+    public BulletData (int entityId, int typeId, int aimEntityID,
         CampType ownerCamp, int attack, float speed) : base (entityId, typeId) {
         IDataTable<DRBullet> dtBullet = GameEntry.DataTable.GetDataTable<DRBullet> ();
         DRBullet drBullet = dtBullet.GetDataRow (TypeId);
@@ -22,30 +20,22 @@ public class BulletData : EntityData {
             return;
         }
 
-        ParticleId = drBullet.ParticleId;
+        EffectId = drBullet.EffectId;
 
-        this.ownerId = ownerId;
+        this.aimEntityID = aimEntityID;
         this.ownerCamp = ownerCamp;
         this.attack = attack;
         this.speed = speed;
-
-        forward = GameEntry.Entity.GetEntity(ownerId).transform.forward;
     }
 
-    public int ParticleId {
+    public int EffectId {
         get;
         private set;
     }
 
-    public int OwnerId {
-        get {
-            return ownerId;
-        }
-    }
-
     public int AimEntityID {
         get {
-            return aimEntityId;
+            return aimEntityID;
         }
     }
 
@@ -64,12 +54,6 @@ public class BulletData : EntityData {
     public float Speed {
         get {
             return speed;
-        }
-    }
-
-    public Vector3 Forward {
-        get {
-            return forward;
         }
     }
 }

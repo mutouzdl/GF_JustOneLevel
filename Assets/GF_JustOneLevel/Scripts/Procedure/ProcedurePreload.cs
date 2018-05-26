@@ -62,7 +62,7 @@ public class ProcedurePreload : ProcedureBase {
         LoadDataTable ("PowerBar");
         LoadDataTable ("Weapon");
         LoadDataTable ("Bullet");
-        LoadDataTable ("Particle");
+        LoadDataTable ("BulletEffect");
         LoadDataTable ("MonsterCreater");
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");

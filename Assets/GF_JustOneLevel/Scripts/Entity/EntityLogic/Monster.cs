@@ -23,7 +23,6 @@ public class Monster : TargetableObject {
     /// </summary>
     private GameFramework.Fsm.IFsm<Monster> monsterActionFsm;
 
-
     /// <summary>
     /// 是否正在追踪目标
     /// </summary>
@@ -50,14 +49,16 @@ public class Monster : TargetableObject {
         }
 
         IsLockingAim = false;
+        ResetAtkCD();
 
         /* 加载武器 */
-        List<WeaponData> weaponDatas = monsterData.GetWeaponDatas ();
-        for (int i = 0; i < weaponDatas.Count; i++) {
-            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
-        }
+        InitWeapon();
 
         /* 创建状态机 */
+        InitFSM ();
+    }
+
+    private void InitFSM () {
         monsterStateFsm = GameEntry.Fsm.CreateFsm<Monster> ("monsterStateFsm" + this.Id, this, new FsmState<Monster>[] {
             new MonsterCDIdleState (),
                 new MonsterAtkCDState (),
@@ -76,12 +77,18 @@ public class Monster : TargetableObject {
         monsterActionFsm.Start<MonsterIdleState> ();
     }
 
+    private void InitWeapon () {
+        List<WeaponData> weaponDatas = monsterData.GetWeaponDatas ();
+        for (int i = 0; i < weaponDatas.Count; i++) {
+            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
+        }
+    }
+
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
     }
 
-    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData)
-    {
+    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
         base.OnAttached (childEntity, parentTransform, userData);
 
         if (childEntity is Weapon) {
@@ -116,7 +123,7 @@ public class Monster : TargetableObject {
     public void Forward (float distance) {
         Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * monsterData.MoveSpeed;
 
-        CachedTransform.position = PositionUtility.GetAjustPositionWithMap(nextPos);
+        CachedTransform.position = PositionUtility.GetAjustPositionWithMap (nextPos);
     }
 
     /// <summary>
@@ -154,8 +161,8 @@ public class Monster : TargetableObject {
         monsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
         // aimEntity.ApplyDamage (m_MonsterData.Atk);
 
-        foreach(Weapon weapon in weapons) {
-            weapon.Attack(aimEntity.Id, monsterData.Atk);
+        foreach (Weapon weapon in weapons) {
+            weapon.Attack (aimEntity.Id, monsterData.Atk);
         }
     }
 

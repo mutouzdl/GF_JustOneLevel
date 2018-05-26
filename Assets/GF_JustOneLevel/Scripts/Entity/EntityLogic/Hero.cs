@@ -10,8 +10,6 @@ using UnityGameFramework.Runtime;
 public class Hero : TargetableObject {
     private HeroData heroData = null;
 
-    private Rigidbody rigidbody = null;
-
     /// <summary>
     /// 攻击是否正在冷却
     /// </summary>
@@ -28,7 +26,6 @@ public class Hero : TargetableObject {
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-        rigidbody = gameObject.GetComponent<Rigidbody> ();
         weaponTrail = FindObjectOfType<WeaponTrail> ();
     }
 
@@ -42,6 +39,7 @@ public class Hero : TargetableObject {
         }
 
         weaponTrail.SetTime (0.0f, 0, 1);
+        ResetAtkCD();
 
         /* 初始化状态机 */
         InitFSM ();
@@ -286,6 +284,9 @@ public class Hero : TargetableObject {
 
             /* 加强英雄属性 */
             this.heroData.PowerUp (data.Atk, data.Def, data.MaxHP);
+
+            /* 刷新血量条 */
+            RefreshHPBar();
 
             /* 发送刷新属性消息 */
             SendRefreshPropEvent ();

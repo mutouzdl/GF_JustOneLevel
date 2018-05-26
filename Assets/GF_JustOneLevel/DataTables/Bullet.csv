@@ -1,6 +1,7 @@
-﻿#,Id,AssetName,ParticleId
-#,int,string,string
-#,编号,资源名称,粒子特效Id
-,1,BulletLucency,0
-,100,BulletNormal,0
-,101,BulletPurpleMagic,1
+﻿#,Id,des,AssetName,EffectId
+#,int,,string,string
+#,编号,备注列,资源名称,特效Id
+,1,透明子弹，用于近战生物,BulletLucency,0
+,100,普通子弹,BulletNormal,0
+,101,紫色粒子子弹,BulletParticle,1
+,102,黄色射线子弹,BulletWithoutCollider,2

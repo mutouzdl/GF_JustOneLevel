@@ -22,9 +22,9 @@ public class DRBullet : IDataRow {
     }
 
     /// <summary>
-    /// 粒子特效编号
+    /// 特效编号
     /// </summary>
-    public int ParticleId {
+    public int EffectId {
         get;
         private set;
     }
@@ -34,8 +34,9 @@ public class DRBullet : IDataRow {
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
+        index++; // 备注列
         AssetName = text[index++];
-        ParticleId = int.Parse (text[index++]);
+        EffectId = int.Parse (text[index++]);
     }
 
     private void AvoidJIT () {

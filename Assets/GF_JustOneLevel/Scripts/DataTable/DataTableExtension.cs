@@ -1,5 +1,6 @@
 ﻿using System;
 using GameFramework;
+using GameFramework.DataTable;
 using UnityGameFramework.Runtime;
 
 /// <summary>
@@ -40,5 +41,16 @@ public static class DataTableExtension {
 
     public static string[] SplitDataRow (string dataRowText) {
         return dataRowText.Split (ColumnSplit, StringSplitOptions.None);
+    }
+
+    /// <summary>
+    /// 获取数据表行
+    /// </summary>
+    /// <param name="typeId">数据表行的编号</param>
+    /// <typeparam name="T">数据表类型</typeparam>
+    /// <returns></returns>
+    public static T GetDataRow<T>(this DataTableComponent dataTableComponent, int typeId) where T : IDataRow {
+        IDataTable<T> dt = GameEntry.DataTable.GetDataTable<T> ();
+        return dt.GetDataRow (typeId);
     }
 }

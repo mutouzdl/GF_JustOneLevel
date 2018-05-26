@@ -34,7 +34,7 @@ public class HeroData : FightEntityData {
     /// <param name="hp"></param>
     public void PowerUp (int atk, int def, int hp) {
         int atkPowerUp = atk / 2;
-        int defPowerUp = def / 3;
+        int defPowerUp = def / 6;
         int hpPowerUp = hp / 4;
 
         this.Atk += atkPowerUp > 0 ? atkPowerUp : 1;

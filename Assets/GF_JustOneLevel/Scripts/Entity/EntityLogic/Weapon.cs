@@ -41,7 +41,6 @@ public class Weapon : Entity {
         BulletData bulletData = new BulletData (
             EntityExtension.GenerateSerialId (), 
             weaponData.BulletId, 
-            weaponData.OwnerId, 
             aimEntityID,
             weaponData.OwnerCamp, 
             weaponData.Attack + ownerAtk, 
