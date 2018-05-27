@@ -10,8 +10,6 @@ public class SurvivalGame {
         protected set;
     }
 
-    private float m_ElapseSeconds = 0f;
-
     private Hero m_Hero = null;
 
     public void Initialize () {
