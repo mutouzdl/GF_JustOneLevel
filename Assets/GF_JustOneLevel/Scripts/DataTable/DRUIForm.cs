@@ -24,7 +24,7 @@ public class DRUIForm : IDataRow {
     /// <summary>
     /// 界面组名称。
     /// </summary>
-    public string UIGroupName {
+    public string GroupName {
         get;
         private set;
     }
@@ -46,13 +46,13 @@ public class DRUIForm : IDataRow {
     }
 
     public void ParseDataRow (string dataRowText) {
-        string[] text = DataTableExtension.SplitDataRowOld (dataRowText);
+        string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
         index++;
         AssetName = text[index++];
-        UIGroupName = text[index++];
+        GroupName = text[index++];
         AllowMultiInstance = bool.Parse (text[index++]);
         PauseCoveredUIForm = bool.Parse (text[index++]);
     }

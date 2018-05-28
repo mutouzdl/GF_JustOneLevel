@@ -113,13 +113,13 @@ public class ProcedureCheckVersion : ProcedureBase {
 
         if (versionInfo.ForceGameUpdate) {
             GameEntry.UI.OpenDialog (new DialogParams {
-                Mode = 2,
-                    Title = GameEntry.Localization.GetString ("ForceUpdate.Title"),
-                    Message = GameEntry.Localization.GetString ("ForceUpdate.Message"),
-                    ConfirmText = GameEntry.Localization.GetString ("ForceUpdate.UpdateButton"),
-                    OnClickConfirm = delegate (object userData) { Application.OpenURL (versionInfo.GameUpdateUrl); },
-                    CancelText = GameEntry.Localization.GetString ("ForceUpdate.QuitButton"),
-                    OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown (ShutdownType.Quit); },
+                Mode = DialogParams.DialogMode.双按钮,
+                Title = GameEntry.Localization.GetString ("ForceUpdate.Title"),
+                Message = GameEntry.Localization.GetString ("ForceUpdate.Message"),
+                ConfirmText = GameEntry.Localization.GetString ("ForceUpdate.UpdateButton"),
+                OnClickConfirm = delegate (object userData) { Application.OpenURL (versionInfo.GameUpdateUrl); },
+                CancelText = GameEntry.Localization.GetString ("ForceUpdate.QuitButton"),
+                OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown (ShutdownType.Quit); },
             });
 
             return;
