@@ -176,6 +176,7 @@
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleBuilder.xml" />
      <None Include="Assets\GF_JustOneLevel\Localization\ChineseSimplified\Dictionaries\Default.xml" />
      <None Include="Assets\SimpleUI\Fonts\Jupiter\LICENSE.txt" />
+     <None Include="Assets\Baker House\Readme.txt" />
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
      <None Include="Assets\SimpleUI\Textures and Sprites\SF UI\Background\LICENSE.txt" />
