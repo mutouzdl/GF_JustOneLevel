@@ -93,8 +93,9 @@ public class ProcedureGame : ProcedureBase {
     /// </summary>
     public void Continue () {
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
+        GameEntry.Setting.SetInt (Constant.Player.Gold, 2000);
 
-        if (gold < 500) {
+        if (gold < Constant.Player.ContinueCostGold) {
             int? id = 0;
             id = GameEntry.UI.OpenDialog (new DialogParams () {
                 Title = GameEntry.Localization.GetString ("Alert.OperateFail"),
@@ -105,11 +106,14 @@ public class ProcedureGame : ProcedureBase {
         }
 
         // 扣除金币进行复活
-        GameEntry.Setting.SetInt (Constant.Player.Gold, gold - 500);
+        GameEntry.Setting.SetInt (Constant.Player.Gold, gold - Constant.Player.ContinueCostGold);
 
         // 发送复活消息
         GameEntry.Event.Fire (this, new ResurgenceEventArgs ());
 
+        // 刷新金币信息
+        uiPlayerMessage.RefreshGold();
+        
         isPause = false;
     }
 

@@ -51,7 +51,10 @@ public class UIPlayerMessage : UGuiForm {
         GameEntry.Event.Unsubscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
     }
 
-    private void RefreshGold () {
+    /// <summary>
+    /// 刷新金币信息
+    /// </summary>
+    public void RefreshGold () {
         prizeText.text = totalPrize.ToString ();
         goldText.text = GameEntry.Setting.GetInt (Constant.Player.Gold).ToString ();
     }
