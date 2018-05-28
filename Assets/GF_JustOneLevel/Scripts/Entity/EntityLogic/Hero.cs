@@ -267,6 +267,10 @@ public class Hero : TargetableObject {
     }
 
     private void OnClickAttackButton (object sender, GameEventArgs e) {
+        if (IsDead) {
+            return;
+        }
+        
         if (isAtkCDing == false) {
             heroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
         }
@@ -277,6 +281,10 @@ public class Hero : TargetableObject {
     }
 
     private void OnDeadEvent (object sender, GameEventArgs e) {
+        if (IsDead) {
+            return;
+        }
+
         DeadEventArgs deadEventArgs = e as DeadEventArgs;
 
         if (deadEventArgs.CampType == CampType.Enemy) {
