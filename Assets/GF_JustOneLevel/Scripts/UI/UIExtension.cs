@@ -120,18 +120,21 @@ public static class UIExtension {
             }
         }
 
-        return uiComponent.OpenUIForm (assetName, drUIForm.UIGroupName, drUIForm.PauseCoveredUIForm, userData);
+        return uiComponent.OpenUIForm (assetName, drUIForm.GroupName, drUIForm.PauseCoveredUIForm, userData);
     }
 
-    public static void OpenDialog (this UIComponent uiComponent, DialogParams dialogParams) {
+    public static int? OpenDialog (this UIComponent uiComponent, DialogParams dialogParams) {
         // if (((ProcedureBase) GameEntry.Procedure.CurrentProcedure).UseNativeDialog) {
         //     OpenNativeDialog (dialogParams);
         // } else {
         //     uiComponent.OpenUIForm (UIFormId.DialogForm, dialogParams);
         // }
 
-        uiComponent.OpenUIForm (UIFormId.DialogForm, dialogParams);
+        return uiComponent.OpenUIForm (UIFormId.Dialog, dialogParams);
+    }
 
+    public static void CloseDialog(this UIComponent uiComponent, int? id) {
+        uiComponent.CloseUIForm((int)id);
     }
 
     private static void OpenNativeDialog (DialogParams dialogParams) {

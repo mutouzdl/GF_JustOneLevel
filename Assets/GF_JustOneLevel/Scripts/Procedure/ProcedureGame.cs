@@ -16,10 +16,8 @@ public class ProcedureGame : ProcedureBase {
     /// 玩家信息UI
     /// </summary>
     private UIPlayerMessage uiPlayerMessage = null;
-    /// <summary>
-    /// 失败UI
-    /// </summary>
-    private UIGameOver uiGameOver = null;
+
+    private bool isPause = false;
 
     protected override void OnInit (ProcedureOwner procedureOwner) {
         base.OnInit (procedureOwner);
@@ -33,14 +31,16 @@ public class ProcedureGame : ProcedureBase {
         survivalGame.Initialize ();
 
         // 播放音乐
-        GameEntry.Sound.PlayMusic(Constant.Sound.GAME_MUSIC_ID);
+        GameEntry.Sound.PlayMusic (Constant.Sound.GAME_MUSIC_ID);
 
         // 订阅事件
         GameEntry.Event.Subscribe (OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
         // 加载UI
-        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIPlayerOperate"), "DefaultGroup", this);
-        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIPlayerMessage"), "DefaultGroup", this);
+        GameEntry.UI.OpenUIForm (UIFormId.PlayerOperate, this);
+        GameEntry.UI.OpenUIForm (UIFormId.PlayerMessage, this);
+
+        isPause = false;
     }
 
     protected override void OnLeave (ProcedureOwner procedureOwner, bool isShutdown) {
@@ -50,8 +50,8 @@ public class ProcedureGame : ProcedureBase {
         GameEntry.Event.Unsubscribe (OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
         // 停止音乐
-        GameEntry.Sound.StopMusic();
-        
+        GameEntry.Sound.StopMusic ();
+
         // 关闭UI
         if (uiPlayerOperate != null) {
             GameEntry.UI.CloseUIForm (uiPlayerOperate.UIForm);
@@ -62,14 +62,14 @@ public class ProcedureGame : ProcedureBase {
             GameEntry.UI.CloseUIForm (uiPlayerMessage.UIForm);
             uiPlayerMessage = null;
         }
-        
-        if (uiGameOver != null) {
-            GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
-            uiGameOver = null;
-        }
+
     }
 
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
+        if (isPause) {
+            return;
+        }
+
         if (survivalGame != null) {
             if (!survivalGame.GameOver) {
                 survivalGame.Update (elapseSeconds, realElapseSeconds);
@@ -83,7 +83,7 @@ public class ProcedureGame : ProcedureBase {
     /// 返回菜单
     /// </summary>
     public void Back () {
-        survivalGame.Shutdown();
+        survivalGame.Shutdown ();
         m_ProcedureOwner.SetData<VarInt> (Constant.ProcedureData.NextSceneId, GameEntry.Config.GetInt ("Scene.Menu"));
         ChangeState<ProcedureChangeScene> (m_ProcedureOwner);
     }
@@ -93,31 +93,46 @@ public class ProcedureGame : ProcedureBase {
     /// </summary>
     public void Continue () {
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
-        Log.Info("Continue Gold:" + gold);
-        
+
         if (gold < 500) {
-            Log.Info("金币不足");
+            int? id = 0;
+            id = GameEntry.UI.OpenDialog (new DialogParams () {
+                Title = GameEntry.Localization.GetString ("Alert.OperateFail"),
+                Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
+                OnClickConfirm = (object userData) => { GameEntry.UI.CloseDialog(id); },
+            });
             return;
         }
 
         // 扣除金币进行复活
-        GameEntry.Setting.SetInt(Constant.Player.Gold, gold - 500);
-
-        // 隐藏失败UI
-        GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
-        uiGameOver = null;
+        GameEntry.Setting.SetInt (Constant.Player.Gold, gold - 500);
 
         // 发送复活消息
-        GameEntry.Event.Fire(this, new ResurgenceEventArgs());
+        GameEntry.Event.Fire (this, new ResurgenceEventArgs ());
+
+        isPause = false;
     }
 
     private void GameOver (ProcedureOwner procedureOwner) {
-        if (uiGameOver != null) {
+        if (isPause) {
             return;
         }
 
         // 打开失败UI
-        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIGameOver"), "DefaultGroup", this);
+        string des = GameEntry.Localization.GetString ("GameOver.Des");
+        string ResurgenceDes = GameEntry.Localization.GetString ("GameOver.ResurgenceDes");
+        string message = $"{des}\n<color=red>{ResurgenceDes}</color>";
+        GameEntry.UI.OpenDialog (new DialogParams () {
+            Mode = DialogParams.DialogMode.双按钮,
+            Title = GameEntry.Localization.GetString ("GameOver.Title"),
+            Message = message,
+            ConfirmText = GameEntry.Localization.GetString("Operate.Continue"),
+            CancelText = GameEntry.Localization.GetString("Operate.Back"),
+            OnClickConfirm = (object userData) => { Continue(); },
+            OnClickCancel = (object userData) => { Back(); },
+        });
+
+        isPause = true;
     }
 
     private void OnOpenUIFormSuccess (object sender, GameEventArgs e) {
@@ -125,12 +140,8 @@ public class ProcedureGame : ProcedureBase {
 
         if (ne.UIForm.Logic is UIPlayerOperate) {
             uiPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
-        } 
-        else if (ne.UIForm.Logic is UIPlayerMessage) {
+        } else if (ne.UIForm.Logic is UIPlayerMessage) {
             uiPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
-        } 
-        else if (ne.UIForm.Logic is UIGameOver) {
-            uiGameOver = (UIGameOver) ne.UIForm.Logic;
         }
     }
 }

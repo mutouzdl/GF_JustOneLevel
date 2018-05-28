@@ -67,6 +67,7 @@ public class ProcedurePreload : ProcedureBase {
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");
         LoadDataTable ("Music");
+        LoadDataTable ("UIForm");
         LoadDataTable ("UISound");
 
         // Preload dictionaries

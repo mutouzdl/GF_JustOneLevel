@@ -5,13 +5,19 @@
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
 public class DialogParams {
+    public enum DialogMode {
+        单按钮 = 1,
+        双按钮,
+        三按钮,
+    }
+
     /// <summary>
     /// 模式，即按钮数量。取值 1、2、3。
     /// </summary>
-    public int Mode {
+    public DialogMode Mode {
         get;
         set;
-    }
+    } = DialogMode.单按钮;
 
     /// <summary>
     /// 标题。
@@ -19,7 +25,7 @@ public class DialogParams {
     public string Title {
         get;
         set;
-    }
+    } = GameEntry.Localization.GetString("Alert.OperateFail");
 
     /// <summary>
     /// 消息内容。
@@ -43,7 +49,7 @@ public class DialogParams {
     public string ConfirmText {
         get;
         set;
-    }
+    } = GameEntry.Localization.GetString("Dialog.ConfirmButton");
 
     /// <summary>
     /// 确定按钮回调。
@@ -59,7 +65,7 @@ public class DialogParams {
     public string CancelText {
         get;
         set;
-    }
+    } = GameEntry.Localization.GetString("Dialog.CancelButton");
 
     /// <summary>
     /// 取消按钮回调。

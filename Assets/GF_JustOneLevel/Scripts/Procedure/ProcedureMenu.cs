@@ -26,7 +26,7 @@ public class ProcedureMenu : ProcedureBase {
         GameEntry.Event.Subscribe (OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
 
         // 加载UI
-        GameEntry.UI.OpenUIForm (AssetUtility.GetUIFormAsset ("UIMenu"), "DefaultGroup", this);
+        GameEntry.UI.OpenUIForm (UIFormId.Menu, this);
         
     }
 

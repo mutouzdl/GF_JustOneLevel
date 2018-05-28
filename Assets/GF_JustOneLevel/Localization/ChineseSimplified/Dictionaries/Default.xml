@@ -5,8 +5,10 @@
     <String Key="Game.Description" Value="Game Framework 单机游戏" />
     <String Key="Game.Website" Value="http://GameFramework.cn/" />
     <String Key="Symbol.Colon" Value="：" />
+    <String Key="Alert.OperateFail" Value="操作失败" />
     <String Key="Message.Prize" Value="奖励" />
     <String Key="Message.Gold" Value="金币" />
+    <String Key="Message.GoldNotEnough" Value="金币不足" />
     <String Key="GameOver.Title" Value="你好像输了" />
     <String Key="GameOver.Des" Value="放心，你并不是打不赢，你只是单纯的输了。" />
     <String Key="GameOver.ResurgenceDes" Value="不过，你可以花费500金币续命，要继续吗？" />
