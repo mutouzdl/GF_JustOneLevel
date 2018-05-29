@@ -15,6 +15,7 @@
     <String Key="Property.Atk" Value="攻击" />
     <String Key="Property.Def" Value="防御" />
     <String Key="Property.HP" Value="血量" />
+    <String Key="Property.MP" Value="愤怒" />
     <String Key="Operate.Back" Value="返回" />
     <String Key="Operate.Continue" Value="继续" />
     <String Key="Menu.StartButton" Value="开始" />

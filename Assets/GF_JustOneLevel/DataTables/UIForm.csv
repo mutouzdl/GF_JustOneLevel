@@ -1,7 +1,7 @@
 ﻿#,Id,Des,AssetName,GroupName,AllowMultiInstance,PauseCoveredUIForm
 #,int,,string,string,bool,bool
 #,编号,备注,资源名称,分组名称,是否允许多个实例,是否暂停被其覆盖的界面
-,1,菜单UI,UIMenu,Default,false,true
-,10,玩家操作UI,UIPlayerOperate,Default,false,true
-,11,玩家信息UI,UIPlayerMessage,Default,false,true
+,1,菜单UI,UIMenu,Default,false,false
+,10,玩家操作UI,UIPlayerOperate,Default,false,false
+,11,玩家信息UI,UIPlayerMessage,Default,false,false
 ,30,全局弹窗,UIDialog,Default,true,true

@@ -154,6 +154,9 @@ public class Hero : TargetableObject {
     protected override void OnHurt () {
         GameEntry.Sound.PlaySound (Constant.Sound.HURT_SOUND_ID);
 
+        /* 累积愤怒值 */
+        this.heroData.AddMP(1);
+
         /* 发送刷新属性消息 */
         SendRefreshPropEvent ();
     }

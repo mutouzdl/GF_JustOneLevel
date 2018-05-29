@@ -15,6 +15,8 @@ public class UIPlayerMessage : UGuiForm {
     private Text defText = null;
     [SerializeField]
     private Text hpText = null;
+    [SerializeField]
+    private Text mpText = null;
 
     /// <summary>
     /// 累计获得奖励
@@ -80,5 +82,6 @@ public class UIPlayerMessage : UGuiForm {
         atkText.text = eventArgs.HeroData.Atk.ToString ();
         defText.text = eventArgs.HeroData.Def.ToString ();
         hpText.text = eventArgs.HeroData.HP.ToString ();
+        mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
     }
 }
