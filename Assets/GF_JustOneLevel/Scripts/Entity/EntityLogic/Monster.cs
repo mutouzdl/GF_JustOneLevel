@@ -88,15 +88,6 @@ public class Monster : TargetableObject {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
     }
 
-    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
-        base.OnAttached (childEntity, parentTransform, userData);
-
-        if (childEntity is Weapon) {
-            weapons.Add ((Weapon) childEntity);
-            return;
-        }
-    }
-
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
@@ -161,8 +152,8 @@ public class Monster : TargetableObject {
         monsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
         // aimEntity.ApplyDamage (m_MonsterData.Atk);
 
-        foreach (Weapon weapon in weapons) {
-            weapon.Attack (aimEntity.Id, monsterData.Atk);
+        foreach (Weapon weapon in manualWeapons) {
+            weapon.Attack (monsterData.Atk);
         }
     }
 

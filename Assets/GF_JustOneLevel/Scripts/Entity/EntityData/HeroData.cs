@@ -47,7 +47,7 @@ public class HeroData : FightEntityData {
     }
 
     /// <summary>
-    /// 增加愤怒值
+    /// 增加MP
     /// </summary>
     /// <param name="value"></param>
     public void AddMP(int value) {
@@ -56,6 +56,14 @@ public class HeroData : FightEntityData {
         if (this.MP > this.MaxMP) {
             this.MP = this.MaxMP;
         }
+    }
+
+    /// <summary>
+    /// 消耗MP
+    /// </summary>
+    /// <param name="value"></param>
+    public void CostMP(int value) {
+        this.MP -= value;
     }
 
     /// <summary>

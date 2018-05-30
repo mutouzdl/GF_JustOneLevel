@@ -5,3 +5,4 @@
 ,100,普通子弹,BulletNormal,0
 ,101,紫色粒子子弹,BulletParticle,1
 ,102,黄色射线子弹,BulletWithoutCollider,2
+,200,粒子爆炸1,BulletBomb,3

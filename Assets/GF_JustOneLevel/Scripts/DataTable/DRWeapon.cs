@@ -53,6 +53,23 @@ public class DRWeapon : IDataRow {
         private set;
     }
 
+    /// <summary>
+    /// 攻击类型
+    /// </summary>
+    public int AttackType {
+        get;
+        private set;
+    }
+
+    /// <summary>
+    /// 消耗MP
+    /// </summary>
+    /// <returns></returns>
+    public int CostMP {
+        get;
+        private set;
+    }
+
     public void ParseDataRow (string dataRowText) {
         string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
@@ -64,6 +81,8 @@ public class DRWeapon : IDataRow {
         BulletId = int.Parse (text[index++]);
         BulletSpeed = float.Parse (text[index++]);
         BulletSoundId = int.Parse (text[index++]);
+        AttackType = int.Parse(text[index++]);
+        CostMP = int.Parse(text[index++]);
     }
 
     private void AvoidJIT () {

@@ -92,7 +92,10 @@ public static class AIUtility {
             int entityDamageHP = CalcDamageHP (bulletImpactData.Attack, entityImpactData.Defense);
 
             entity.ApplyDamage (entityDamageHP);
-            GameEntry.Entity.HideEntity (bullet.Id);
+
+            if (bullet.SubEffectTimes ()) {
+                GameEntry.Entity.HideEntity (bullet.Id);
+            }
             return;
         }
     }

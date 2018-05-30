@@ -2,6 +2,7 @@ using GameFramework;
 using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 public class HeroListenAttackState : HeroListenDamageState {
     /// <summary>
@@ -51,6 +52,12 @@ public class HeroListenAttackState : HeroListenDamageState {
     }
 
     private void OnClickAttackButtonEvent(IFsm<Hero> fsm, object sender, object userData) {
+        ClickAttackButtonEventArgs args = (ClickAttackButtonEventArgs) userData;
+
+        Log.Warning("OnClickAttackButtonEvent attackType:" + args.AttackType);
+
+        fsm.SetData<VarInt>("AttackType", (int)args.AttackType);
+        fsm.SetData<VarInt>("WeaponID", args.WeaponID);
         ChangeState<HeroAtkState> (fsm);
     }
 }

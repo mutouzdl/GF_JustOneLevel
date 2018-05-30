@@ -22,6 +22,15 @@ public class UIPlayerOperate : UGuiForm {
     }
 
     /// <summary>
+    /// 点击愤怒技能按钮
+    /// </summary>
+    public void OnAngerSkillClick() {
+        ClickAttackButtonEventArgs args = ReferencePool.Acquire<ClickAttackButtonEventArgs>()
+            .Fill(WeaponAttackType.技能触发, 200);
+        GameEntry.Event.Fire(this, args);
+    }
+
+    /// <summary>
     /// 点击返回按钮
     /// </summary>
     public void OnBackClick() {

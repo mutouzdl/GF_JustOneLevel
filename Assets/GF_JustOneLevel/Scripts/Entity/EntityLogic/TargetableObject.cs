@@ -17,11 +17,23 @@ public abstract class TargetableObject : Entity {
     private PowerBar hpBar;
 
     /// <summary>
-    /// 武器
+    /// 手动触发类型武器
     /// </summary>
     /// <typeparam name="Weapon"></typeparam>
     /// <returns></returns>
-    protected List<Weapon> weapons = new List<Weapon> ();
+    protected List<Weapon> manualWeapons = new List<Weapon> ();
+    /// <summary>
+    /// 自动触发类型武器
+    /// </summary>
+    /// <typeparam name="Weapon"></typeparam>
+    /// <returns></returns>
+    protected List<Weapon> autoWeapons = new List<Weapon> ();
+    /// <summary>
+    /// 技能触发类型武器
+    /// </summary>
+    /// <typeparam name="Weapon"></typeparam>
+    /// <returns></returns>
+    protected List<Weapon> skillWeapons = new List<Weapon> ();
 
     public bool IsDead {
         get {
@@ -126,6 +138,23 @@ public abstract class TargetableObject : Entity {
         if (childEntity is PowerBar) {
             hpBar = (PowerBar) childEntity;
             hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
+            return;
+        } else if (childEntity is Weapon) {
+            WeaponData weaponData = (WeaponData) userData;
+            Weapon weapon = (Weapon) childEntity;
+
+            switch (weaponData.AttackType)
+            {
+                case WeaponAttackType.手动触发:
+                    manualWeapons.Add (weapon);
+                break;
+                case WeaponAttackType.自动触发:
+                    autoWeapons.Add (weapon);
+                break;
+                case WeaponAttackType.技能触发:
+                    skillWeapons.Add (weapon);
+                break;
+            }
             return;
         }
     }

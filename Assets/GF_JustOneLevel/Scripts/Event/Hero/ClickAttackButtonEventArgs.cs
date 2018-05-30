@@ -19,18 +19,37 @@ public sealed class ClickAttackButtonEventArgs : GameEventArgs {
         }
     }
 
+
     /// <summary>
-    /// 获取用户自定义数据。
+    /// 武器攻击类型
     /// </summary>
-    public object UserData {
+    /// <returns></returns>
+    public WeaponAttackType AttackType {
         get;
         private set;
     }
 
     /// <summary>
+    /// 武器ID
+    /// </summary>
+    /// <returns></returns>
+    public int? WeaponID {
+        get;
+        private set;
+    } = null;
+
+    /// <summary>
     /// 清理事件。
     /// </summary>
     public override void Clear () {
-        UserData = default (object);
+        AttackType = WeaponAttackType.手动触发;
+        WeaponID = null;
+    }
+
+    public ClickAttackButtonEventArgs Fill(WeaponAttackType attackType, int? weaponID = null) {
+        AttackType = attackType;
+        WeaponID = weaponID;
+
+        return this;
     }
 }

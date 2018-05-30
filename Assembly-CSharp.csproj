@@ -88,6 +88,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\FightEntityAnimationState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\QualityLevelType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\RelationType.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Enum\WeaponAttackType.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\AccessoryObjectData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\BulletData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\BulletEffectData.cs" />

@@ -1,6 +1,7 @@
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 public class HeroAtkState : HeroBaseActionState {
     private float atkTimeCounter = 0;
@@ -24,6 +25,27 @@ public class HeroAtkState : HeroBaseActionState {
 
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.atk);
 
+        WeaponAttackType attackType = (WeaponAttackType) fsm.GetData<VarInt> ("AttackType").Value;
+
+        switch (attackType) {
+            case WeaponAttackType.手动触发:
+                ManualAttack (fsm);
+                break;
+            case WeaponAttackType.自动触发:
+                break;
+            case WeaponAttackType.技能触发:
+                int weaponID = fsm.GetData<VarInt> ("WeaponID").Value;
+                SkillAttack (fsm, attackType, weaponID);
+                break;
+        }
+
+    }
+
+    /// <summary>
+    ///  手动攻击
+    /// </summary>
+    /// <param name="fsm"></param>
+    private void ManualAttack (IFsm<Hero> fsm) {
         /* 判断是否有怪物进入攻击范围 */
         GameObject[] monsters = GameObject.FindGameObjectsWithTag ("Monster");
         foreach (GameObject obj in monsters) {
@@ -33,11 +55,21 @@ public class HeroAtkState : HeroBaseActionState {
                 float distance = AIUtility.GetDistance (fsm.Owner, monster);
 
                 if (fsm.Owner.CheckInAtkRange (distance)) {
-                    fsm.Owner.PlayTrailEffect();
+                    fsm.Owner.PlayTrailEffect ();
                     fsm.Owner.PerformAttack (monster);
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// 技能攻击
+    /// </summary>
+    /// <param name="fsm"></param>
+    /// <param name="weaponID"></param>
+    private void SkillAttack (IFsm<Hero> fsm, WeaponAttackType attackType, int weaponID) {
+        Log.Warning ("触发技能攻击!!weaponID=" + weaponID);
+        fsm.Owner.FireWeapon(attackType, weaponID);
     }
 
     /// <summary>
@@ -64,7 +96,7 @@ public class HeroAtkState : HeroBaseActionState {
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
         base.OnLeave (fsm, isShutdown);
 
-        fsm.Owner.ClearTrialEffect();
+        fsm.Owner.ClearTrialEffect ();
     }
 
     /// <summary>

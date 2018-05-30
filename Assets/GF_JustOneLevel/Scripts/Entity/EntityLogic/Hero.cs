@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using GameFramework;
 using GameFramework.Event;
@@ -39,7 +40,7 @@ public class Hero : TargetableObject {
         }
 
         weaponTrail.SetTime (0.0f, 0, 1);
-        ResetAtkCD();
+        ResetAtkCD ();
 
         /* 初始化状态机 */
         InitFSM ();
@@ -131,15 +132,6 @@ public class Hero : TargetableObject {
         }
     }
 
-    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
-        base.OnAttached (childEntity, parentTransform, userData);
-
-        if (childEntity is Weapon) {
-            weapons.Add ((Weapon) childEntity);
-            return;
-        }
-    }
-
     protected override void OnHide (object userData) {
         base.OnHide (userData);
 
@@ -155,7 +147,7 @@ public class Hero : TargetableObject {
         GameEntry.Sound.PlaySound (Constant.Sound.HURT_SOUND_ID);
 
         /* 累积愤怒值 */
-        this.heroData.AddMP(1);
+        this.heroData.AddMP (1);
 
         /* 发送刷新属性消息 */
         SendRefreshPropEvent ();
@@ -197,10 +189,48 @@ public class Hero : TargetableObject {
         isAtkCDing = true;
         heroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
 
-        foreach (Weapon weapon in weapons) {
-            weapon.Attack (aimEntity.Id, heroData.Atk);
+        // 发射手动触发类型的武器
+        foreach (Weapon weapon in manualWeapons) {
+            if (weapon.CostMP > 0 && heroData.MP < weapon.CostMP) {
+                continue;
+            }
+
+            heroData.CostMP (weapon.CostMP);
+            weapon.Attack (heroData.Atk);
         }
 
+        SendRefreshPropEvent ();
+    }
+
+    /// <summary>
+    /// 选择指定的武器开火
+    /// </summary>
+    /// <param name="attackType"></param>
+    /// <param name="weaponID"></param>
+    public void FireWeapon (WeaponAttackType attackType, int weaponID) {
+        Weapon weapon = null;
+        switch (attackType) {
+            case WeaponAttackType.手动触发:
+                weapon = manualWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
+                break;
+            case WeaponAttackType.自动触发:
+                weapon = autoWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
+                break;
+            case WeaponAttackType.技能触发:
+                weapon = skillWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
+                break;
+        }
+
+        if (weapon != null) {
+            if (weapon.CostMP > 0 && heroData.MP < weapon.CostMP) {
+                return;
+            }
+
+            heroData.CostMP (weapon.CostMP);
+            weapon.Attack (heroData.Atk);
+
+            SendRefreshPropEvent ();
+        }
     }
 
     /// <summary>
@@ -273,9 +303,10 @@ public class Hero : TargetableObject {
         if (IsDead) {
             return;
         }
-        
+
         if (isAtkCDing == false) {
-            heroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId);
+            ClickAttackButtonEventArgs args = (ClickAttackButtonEventArgs) e;
+            heroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId, args);
         }
     }
 
@@ -297,7 +328,7 @@ public class Hero : TargetableObject {
             this.heroData.PowerUp (data.Atk, data.Def, data.MaxHP);
 
             /* 刷新血量条 */
-            RefreshHPBar();
+            RefreshHPBar ();
 
             /* 发送刷新属性消息 */
             SendRefreshPropEvent ();
