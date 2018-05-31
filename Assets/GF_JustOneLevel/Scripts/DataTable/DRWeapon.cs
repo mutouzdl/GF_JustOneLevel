@@ -70,12 +70,22 @@ public class DRWeapon : IDataRow {
         private set;
     }
 
+    /// <summary>
+    /// 名称
+    /// </summary>
+    /// <returns></returns>
+    public string Name {
+        get;
+        private set;
+    }
+
     public void ParseDataRow (string dataRowText) {
         string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
         index++;
         Id = int.Parse (text[index++]);
         index++; // 跳过备注列
+        Name = text[index++];
         AssetName = text[index++];
         Attack = int.Parse (text[index++]);
         BulletId = int.Parse (text[index++]);

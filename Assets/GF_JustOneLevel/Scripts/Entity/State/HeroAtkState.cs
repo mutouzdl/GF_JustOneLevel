@@ -68,7 +68,6 @@ public class HeroAtkState : HeroBaseActionState {
     /// <param name="fsm"></param>
     /// <param name="weaponID"></param>
     private void SkillAttack (IFsm<Hero> fsm, WeaponAttackType attackType, int weaponID) {
-        Log.Warning ("触发技能攻击!!weaponID=" + weaponID);
         fsm.Owner.FireWeapon(attackType, weaponID);
     }
 

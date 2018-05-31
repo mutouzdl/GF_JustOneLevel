@@ -11,6 +11,7 @@ public class WeaponData : AccessoryObjectData {
             return;
         }
 
+        Name = drWeapon.Name;
         Attack = drWeapon.Attack;
         BulletId = drWeapon.BulletId;
         BulletSpeed = drWeapon.BulletSpeed;
@@ -67,4 +68,13 @@ public class WeaponData : AccessoryObjectData {
         get;
         private set;
     } = 0;
+
+    /// <summary>
+    /// 名称
+    /// </summary>
+    /// <returns></returns>
+    public string Name {
+        get;
+        private set;
+    } = "";
 }
