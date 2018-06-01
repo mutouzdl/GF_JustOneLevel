@@ -110,6 +110,8 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\PowerBar.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Weapon.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\MoveController\IMoveController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\MoveController\LeftJoystickMoveController.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroBaseActionState.cs" />
@@ -169,6 +171,17 @@
      <Compile Include="Assets\PocketRPG Trails\Scripts\Entities\BladeMaster.cs" />
      <Compile Include="Assets\PocketRPG Trails\Scripts\MyTest.cs" />
      <Compile Include="Assets\PocketRPG Trails\Scripts\Utility\AnimationController.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\DualJoystickPlayerController.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\DualJoystickTouchContoller.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystick.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystickPlayerController.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystickTouchContoller.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\RightJoystick.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\RightJoystickPlayerController.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\RightJoystickTouchContoller.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\SingleJoystick.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\SingleJoystickPlayerController.cs" />
+     <Compile Include="Assets\TouchJoysticks\Scripts\SingleJoystickTouchController.cs" />
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />

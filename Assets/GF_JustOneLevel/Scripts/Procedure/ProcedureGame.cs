@@ -93,7 +93,6 @@ public class ProcedureGame : ProcedureBase {
     /// </summary>
     public void Continue () {
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
-        GameEntry.Setting.SetInt (Constant.Player.Gold, 2000);
 
         if (gold < Constant.Player.ContinueCostGold) {
             int? id = 0;
