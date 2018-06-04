@@ -5,12 +5,17 @@ public enum CampType {
     Unknown = 0,
 
     /// <summary>
-    /// 第一玩家阵营。
+    /// 玩家
     /// </summary>
     Player,
 
     /// <summary>
-    /// 第一敌人阵营。
+    /// 战斗中生成的英雄
+    /// </summary>
+    CloneHero,
+
+    /// <summary>
+    /// 敌人
     /// </summary>
     Enemy,
 }

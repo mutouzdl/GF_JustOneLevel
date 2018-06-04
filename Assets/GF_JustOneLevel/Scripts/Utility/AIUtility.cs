@@ -12,7 +12,10 @@ public static class AIUtility {
 
     static AIUtility () {
         campPairToRelation.Add (new CampPair (CampType.Player, CampType.Player), RelationType.Friendly);
+        campPairToRelation.Add (new CampPair (CampType.Player, CampType.CloneHero), RelationType.Friendly);
+        campPairToRelation.Add (new CampPair (CampType.CloneHero, CampType.CloneHero), RelationType.Friendly);
         campPairToRelation.Add (new CampPair (CampType.Player, CampType.Enemy), RelationType.Hostile);
+        campPairToRelation.Add (new CampPair (CampType.CloneHero, CampType.Enemy), RelationType.Hostile);
         campPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Enemy), RelationType.Friendly);
     }
 

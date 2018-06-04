@@ -349,12 +349,12 @@ public class Hero : TargetableObject {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
 
             /* 加强英雄属性 */
-            int atkPowerUp = data.Atk / 2;
+            int atkPowerUp = data.Atk / 5;
             int defPowerUp = data.Def / 6;
-            int hpPowerUp = data.HP / 4;
+            int hpPowerUp = data.HP / 10;
 
             atkPowerUp = atkPowerUp > 0 ? atkPowerUp : 1;
-            defPowerUp = defPowerUp > 0 ? defPowerUp : 1;
+            defPowerUp = defPowerUp > 0 ? defPowerUp : 0;
             hpPowerUp = hpPowerUp > 0 ? hpPowerUp : 1;
 
             this.heroData.PowerUp (atkPowerUp, defPowerUp, hpPowerUp);

@@ -39,11 +39,11 @@ public class MonsterAtkState : MonsterBaseActionState {
 
         if (atkTimeCounter > 0.4) {
             int lockAimID = fsm.GetData<VarInt> (Constant.EntityData.LockAimID).Value;
-            Hero hero = (Hero) GameEntry.Entity.GetEntity (lockAimID).Logic;
+            TargetableObject aim = (TargetableObject) GameEntry.Entity.GetEntity (lockAimID).Logic;
 
-            if (hero.IsDead == false) {
-                fsm.Owner.transform.LookAt (hero.transform);
-                fsm.Owner.PerformAttack (hero);
+            if (aim.IsDead == false) {
+                fsm.Owner.transform.LookAt (aim.transform);
+                fsm.Owner.PerformAttack (aim);
             }
             ChangeState<MonsterIdleState> (fsm);
         }
