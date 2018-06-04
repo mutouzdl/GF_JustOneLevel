@@ -50,7 +50,7 @@ public class HeroData : FightEntityData {
     /// 增加MP
     /// </summary>
     /// <param name="value"></param>
-    public void AddMP(int value) {
+    public void AddMP (int value) {
         this.MP += value;
 
         if (this.MP > this.MaxMP) {
@@ -62,26 +62,28 @@ public class HeroData : FightEntityData {
     /// 消耗MP
     /// </summary>
     /// <param name="value"></param>
-    public void CostMP(int value) {
+    public void CostMP (int value) {
         this.MP -= value;
+
+        if (this.MP < 0) {
+            this.MP = 0;
+        }
     }
 
     /// <summary>
     /// 根据给定的属性，加强英雄
     /// </summary>
-    /// <param name="atk"></param>
-    /// <param name="def"></param>
-    /// <param name="hp"></param>
-    public void PowerUp (int atk, int def, int hp) {
-        int atkPowerUp = atk / 2;
-        int defPowerUp = def / 6;
-        int hpPowerUp = hp / 4;
+    /// <param name="atkPowerUp"></param>
+    /// <param name="defPowerUp"></param>
+    /// <param name="hpPowerUp"></param>
+    public void PowerUp (int atkPowerUp, int defPowerUp, int hpPowerUp) {
+        this.Atk += atkPowerUp;
+        this.Def += defPowerUp;
 
-        this.Atk += atkPowerUp > 0 ? atkPowerUp : 1;
-        this.Def += defPowerUp > 0 ? defPowerUp : 1;
-        this.MaxHP += hpPowerUp > 0 ? hpPowerUp : 1;
-
-        this.HP = this.MaxHP;
+        if (hpPowerUp != 0) {
+            this.MaxHP += hpPowerUp;
+            this.HP = this.MaxHP;
+        }
     }
 
     private void RefreshData () {

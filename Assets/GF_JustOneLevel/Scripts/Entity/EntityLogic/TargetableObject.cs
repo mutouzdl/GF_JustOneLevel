@@ -50,28 +50,43 @@ public abstract class TargetableObject : Entity {
     public virtual void ApplyDamage (int damageHP) { }
 
     /// <summary>
-    /// 真正执行伤害逻辑
+    /// 真正执行伤害/加血逻辑
     /// </summary>
     /// <param name="damageHP"></param>
-    public void OnDamage (int damageHP) {
-        damageHP -= targetableObjectData.Def;
+    public void OnDamage (float damageHP) {
+        int changeHP = 0;
 
-        if (damageHP < 0) {
-            damageHP = 0;
+        // 按百分比改变当前血量
+        if ((damageHP > 0 && damageHP < 1) || (damageHP < 0 && damageHP > -1)) {
+            changeHP = (int)(targetableObjectData.HP * damageHP);
+        } else {
+            changeHP = (int)damageHP;
         }
+        // 伤害
+        if (changeHP > 0) {
+            changeHP -= targetableObjectData.Def;
 
-        float fromHPRatio = targetableObjectData.HPRatio;
-        targetableObjectData.HP -= damageHP;
-        float toHPRatio = targetableObjectData.HPRatio;
-        if (fromHPRatio > toHPRatio) {
-            // GameEntry.HPBar.ShowHPBar (this, fromHPRatio, toHPRatio);
+            if (changeHP < 0) {
+                changeHP = 0;
+            }
+
+            targetableObjectData.HP -= changeHP;
+
+            OnHurt ();
+        }
+        // 加血
+        else if (changeHP < 0) {
+            targetableObjectData.HP += -changeHP;
+            if (targetableObjectData.HP > targetableObjectData.MaxHP) {
+                targetableObjectData.HP = targetableObjectData.MaxHP;
+            }
+
+            OnCure();
         }
 
         // 更新血量条
-        RefreshHPBar();
+        RefreshHPBar ();
 
-        OnHurt();
-        
         if (targetableObjectData.HP <= 0) {
             OnDead ();
         }
@@ -143,24 +158,23 @@ public abstract class TargetableObject : Entity {
             WeaponData weaponData = (WeaponData) userData;
             Weapon weapon = (Weapon) childEntity;
 
-            switch (weaponData.AttackType)
-            {
+            switch (weaponData.AttackType) {
                 case WeaponAttackType.手动触发:
                     manualWeapons.Add (weapon);
-                break;
+                    break;
                 case WeaponAttackType.自动触发:
                     autoWeapons.Add (weapon);
-                break;
+                    break;
                 case WeaponAttackType.技能触发:
                     skillWeapons.Add (weapon);
-                break;
+                    break;
             }
             return;
         }
     }
 
-    protected virtual void OnHurt () {
-    }
+    protected virtual void OnHurt () { }
+    protected virtual void OnCure () { }
 
     protected virtual void OnDead () {
         // GameEntry.Entity.HideEntity (this.Entity);
