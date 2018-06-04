@@ -39,7 +39,7 @@ public class MagicWater : MonoBehaviour {
 			Hero hero = other.gameObject.GetComponent<Hero>();	
 			if(hero != null) {
 				if (addHPPercent != 0) {
-					hero.OnDamage(addHPPercent);
+					hero.OnDamage(-addHPPercent, true);
 				}
 
 				if(addAtk != 0) {

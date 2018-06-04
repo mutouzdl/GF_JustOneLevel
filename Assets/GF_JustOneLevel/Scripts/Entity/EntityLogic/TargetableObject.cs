@@ -52,15 +52,21 @@ public abstract class TargetableObject : Entity {
     /// <summary>
     /// 真正执行伤害/加血逻辑
     /// </summary>
-    /// <param name="damageHP"></param>
-    public void OnDamage (float damageHP) {
+    /// <param name="damageHP">伤害值，可以正负，如果小于1，则按百分比执行</param>
+    /// <param name="effectFollowMaxHP">是否以最大生命值为准</param>
+    public void OnDamage (float damageHP, bool effectFollowMaxHP = false) {
         int changeHP = 0;
 
         // 按百分比改变当前血量
         if ((damageHP > 0 && damageHP < 1) || (damageHP < 0 && damageHP > -1)) {
-            changeHP = (int)(targetableObjectData.HP * damageHP);
+            if (effectFollowMaxHP) {
+                changeHP = (int) (targetableObjectData.MaxHP * damageHP);
+            }
+            else {
+                changeHP = (int) (targetableObjectData.HP * damageHP);
+            }
         } else {
-            changeHP = (int)damageHP;
+            changeHP = (int) damageHP;
         }
         // 伤害
         if (changeHP > 0) {
@@ -81,7 +87,7 @@ public abstract class TargetableObject : Entity {
                 targetableObjectData.HP = targetableObjectData.MaxHP;
             }
 
-            OnCure();
+            OnCure ();
         }
 
         // 更新血量条
