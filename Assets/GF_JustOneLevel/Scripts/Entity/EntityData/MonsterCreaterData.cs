@@ -17,6 +17,7 @@ public class MonsterCreaterData : EntityData {
         Probability = drMonsterCreater.Probability;
         PerNum = drMonsterCreater.PerNum;
         MaxNum = drMonsterCreater.MaxNum;
+        MonsterTypeId = drMonsterCreater.MonsterTypeId;
         MonsterPrize = drMonsterCreater.MonsterPrize;
     }
 

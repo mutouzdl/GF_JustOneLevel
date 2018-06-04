@@ -46,17 +46,19 @@ public class HeroAtkState : HeroBaseActionState {
     /// </summary>
     /// <param name="fsm"></param>
     private void ManualAttack (IFsm<Hero> fsm) {
-        /* 判断是否有怪物进入攻击范围 */
-        GameObject[] monsters = GameObject.FindGameObjectsWithTag ("Monster");
-        foreach (GameObject obj in monsters) {
-            TargetableObject monster = obj.GetComponent<TargetableObject> ();
+        /* 判断是否有敌人进入攻击范围 */
+        CampType camp = fsm.Owner.GetImpactData().Camp;
+        GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
+        foreach (GameObject obj in aims) {
+            TargetableObject aim = obj.GetComponent<TargetableObject> ();
 
-            if (monster.IsDead == false) {
-                float distance = AIUtility.GetDistance (fsm.Owner, monster);
+            if (aim.IsDead == false
+                && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {
+                float distance = AIUtility.GetDistance (fsm.Owner, aim);
 
                 if (fsm.Owner.CheckInAtkRange (distance)) {
                     fsm.Owner.PlayTrailEffect ();
-                    fsm.Owner.PerformAttack (monster);
+                    fsm.Owner.PerformAttack (aim);
                 }
             }
         }

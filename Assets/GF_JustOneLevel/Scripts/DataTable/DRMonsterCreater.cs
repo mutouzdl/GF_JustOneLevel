@@ -92,6 +92,7 @@ public class DRMonsterCreater : IDataRow {
         Probability = int.Parse (text[index++]);
         PerNum = int.Parse (text[index++]);
         MaxNum = int.Parse (text[index++]);
+        MonsterTypeId = int.Parse (text[index++]);
         MonsterPrize = int.Parse (text[index++]);
     }
 

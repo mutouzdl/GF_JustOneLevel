@@ -59,12 +59,14 @@ public class MonsterSeekAimState : MonsterListenDamageState {
             return;
         }
 
-        /* 判断是否有英雄进入追踪或攻击范围 */
-        GameObject[] heros = GameObject.FindGameObjectsWithTag ("Hero");
-        foreach (GameObject obj in heros) {
+        /* 判断是否有敌人进入追踪或攻击范围 */
+        CampType camp = fsm.Owner.GetImpactData().Camp;
+        GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
+        foreach (GameObject obj in aims) {
             TargetableObject aim = obj.GetComponent<TargetableObject> ();
 
-            if (aim.IsDead == false) {
+            if (aim.IsDead == false 
+                && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {
                 float distance = AIUtility.GetDistance (fsm.Owner, aim);
 
                 /* 进入攻击范围，直接攻击 */
