@@ -138,6 +138,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\ClickAttackButtonEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Hero\HeroAttackEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\Monster\MonsterAttackEventArgs.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\RefreshGoldEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\RefreshPlayerPropsEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\ResurgenceEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Game\SurvivalGame.cs" />

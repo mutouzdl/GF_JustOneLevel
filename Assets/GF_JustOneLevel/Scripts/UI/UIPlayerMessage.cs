@@ -39,6 +39,7 @@ public class UIPlayerMessage : UGuiForm {
         /* 订阅事件 */
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+        GameEntry.Event.Subscribe (RefreshGoldEventArgs.EventId, OnRefreshGoldProps);
     }
 
     /// <summary>
@@ -51,6 +52,7 @@ public class UIPlayerMessage : UGuiForm {
         /* 取消订阅事件 */
         GameEntry.Event.Unsubscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Unsubscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+        GameEntry.Event.Unsubscribe (RefreshGoldEventArgs.EventId, OnRefreshGoldProps);
     }
 
     /// <summary>
@@ -83,5 +85,9 @@ public class UIPlayerMessage : UGuiForm {
         defText.text = eventArgs.HeroData.Def.ToString ();
         hpText.text = eventArgs.HeroData.HP.ToString ();
         mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
+    }
+
+    private void OnRefreshGoldProps (object sender, GameEventArgs e) {
+        RefreshGold();
     }
 }

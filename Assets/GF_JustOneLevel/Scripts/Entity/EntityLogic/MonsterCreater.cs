@@ -44,12 +44,7 @@ public class MonsterCreater : Entity {
 		// 创建怪物
 		if (Utility.Random.GetRandom (100) < monsterCreaterData.Probability) {
 			for (int i = 0; i < monsterCreaterData.PerNum; i++) {
-				// 测试新阵营
 				CampType camp = CampType.Enemy;
-
-				if (monsterCreaterData.MonsterTypeId == 3) {
-					camp = CampType.CloneHero;
-				}
 
 				MonsterData monsterData = new MonsterData (
 					EntityExtension.GenerateSerialId (), monsterCreaterData.MonsterTypeId, camp, monsterCreaterData.MonsterPrize);
