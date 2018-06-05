@@ -9,10 +9,4 @@ public interface IMoveController {
     /// </summary>
     /// <returns></returns>
     Vector3 GetInput();
-
-    /// <summary>
-    /// 是否暂停移动，进入休息状态
-    /// </summary>
-    /// <returns></returns>
-    bool IsIdle();
 }

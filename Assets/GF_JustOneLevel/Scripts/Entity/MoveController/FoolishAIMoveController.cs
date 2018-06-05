@@ -96,8 +96,4 @@ public class FoolishAIMoveController : IMoveController {
 
         return inputVec;
     }
-
-    public bool IsIdle () {
-        return !isWalk;
-    }
 }
