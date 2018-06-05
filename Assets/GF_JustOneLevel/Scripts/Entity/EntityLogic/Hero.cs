@@ -25,11 +25,6 @@ public class Hero : TargetableObject {
     private GameFramework.Fsm.IFsm<Hero> heroActionFsm;
     public WeaponTrail weaponTrail;
 
-    /// <summary>
-    /// 移动控制器
-    /// </summary>
-    private IMoveController moveController = null;
-
     protected override void OnInit (object userData) {
         base.OnInit (userData);
         weaponTrail = FindObjectOfType<WeaponTrail> ();
@@ -43,7 +38,7 @@ public class Hero : TargetableObject {
             Log.Error ("Hero data is invalid.");
             return;
         }
-
+        
         weaponTrail.SetTime (0.0f, 0, 1);
         ResetAtkCD ();
 
@@ -166,6 +161,10 @@ public class Hero : TargetableObject {
     protected override void OnDead () {
         base.OnDead ();
         heroActionFsm.FireEvent (this, DeadEventArgs.EventId, this.Id);
+    }
+
+    protected override IMoveController CreateMoveController () {
+        return new LeftJoystickMoveController (FindObjectOfType<LeftJoystick> ());
     }
 
     public override ImpactData GetImpactData () {
@@ -298,19 +297,6 @@ public class Hero : TargetableObject {
     public HeroData HeroData {
         get {
             return heroData;
-        }
-    }
-
-    /// <summary>
-    /// 移动控制器
-    /// </summary>
-    /// <returns></returns>
-    public IMoveController MoveController {
-        get {
-            if (moveController == null) {
-                moveController = new LeftJoystickMoveController (FindObjectOfType<LeftJoystick> ());
-            }
-            return moveController;
         }
     }
 

@@ -3,8 +3,6 @@ using GameFramework.Fsm;
 using UnityEngine;
 
 public class MonsterWalkState : MonsterSeekAimState {
-    private float rotateTimeCounter = 0;
-    private float idleTimeCounter = 0;
 
     /// <summary>
     /// 有限状态机状态初始化时调用。
@@ -41,30 +39,23 @@ public class MonsterWalkState : MonsterSeekAimState {
             return;
         }
 
-        idleTimeCounter += elapseSeconds;
-        rotateTimeCounter += elapseSeconds;
+        Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
+        bool isIdle = fsm.Owner.MoveController.IsIdle ();
 
         // 移动
-        fsm.Owner.Forward (elapseSeconds);
-
-        // 随机转身
-        if (rotateTimeCounter > 5) {
-            rotateTimeCounter = 0;
-            if (Utility.Random.GetRandom (100) <= 80) {
-                fsm.Owner.Rotate (new Vector3 (0, Utility.Random.GetRandom (-180, 180), 0));
-            }
+        if (inputVec.y != 0) {
+            fsm.Owner.Forward (inputVec.y * elapseSeconds);
         }
 
-        // 随机站立
-        if (idleTimeCounter > 5) {
-            idleTimeCounter = 0;
-
-            if (Utility.Random.GetRandom (100) <= 10) {
-                ChangeState<MonsterIdleState> (fsm);
-            }
+        // 转身
+        if (inputVec.x != 0) {
+            fsm.Owner.Rotate (new Vector3 (0, inputVec.x, 0));
         }
 
-        // 碰到障碍物停止（暂无）
+        // 站立
+        if (isIdle) {
+            ChangeState<MonsterIdleState> (fsm);
+        }
     }
 
     /// <summary>

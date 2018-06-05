@@ -17,6 +17,11 @@ public abstract class TargetableObject : Entity {
     private PowerBar hpBar;
 
     /// <summary>
+    /// 移动控制器
+    /// </summary>
+    protected IMoveController moveController = null;
+
+    /// <summary>
     /// 手动触发类型武器
     /// </summary>
     /// <typeparam name="Weapon"></typeparam>
@@ -41,7 +46,28 @@ public abstract class TargetableObject : Entity {
         }
     }
 
+    /// <summary>
+    /// 移动控制器
+    /// </summary>
+    /// <returns></returns>
+    public IMoveController MoveController {
+        get {
+            if (moveController == null) {
+                moveController = CreateMoveController();
+            }
+            return moveController;
+        }
+    }
+
     public abstract ImpactData GetImpactData ();
+
+    /// <summary>
+    /// 当子类需要在特殊情况下才能创建移动控制器时，可以重写该函数
+    /// </summary>
+    /// <returns></returns>
+    protected virtual IMoveController CreateMoveController () {
+        return null;
+    }
 
     /// <summary>
     /// 接受伤害

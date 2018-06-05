@@ -37,6 +37,7 @@ public class Monster : TargetableObject {
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
+        moveController = new FoolishAIMoveController ();
     }
 
     protected override void OnShow (object userData) {

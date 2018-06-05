@@ -111,6 +111,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\TargetableObject.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Weapon.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\Environment\MagicWater.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\MoveController\FoolishAIMoveController.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\MoveController\IMoveController.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\MoveController\LeftJoystickMoveController.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkCDState.cs" />

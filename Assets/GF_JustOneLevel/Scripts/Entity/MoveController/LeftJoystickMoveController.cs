@@ -12,4 +12,9 @@ public class LeftJoystickMoveController : IMoveController
     {
         return joystick.GetInputDirection();;
     }
+
+    public bool IsIdle()
+    {
+        return false;
+    }
 }
