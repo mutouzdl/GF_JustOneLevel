@@ -76,16 +76,6 @@ public class Hero : FightEntity {
     }
 
     /// <summary>
-    /// 初始化武器
-    /// </summary>
-    private void InitWeapon () {
-        List<WeaponData> weaponDatas = heroData.GetWeaponDatas ();
-        for (int i = 0; i < weaponDatas.Count; i++) {
-            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
-        }
-    }
-
-    /// <summary>
     /// 订阅事件
     /// </summary>
     private void SubscribeEvent () {
@@ -116,7 +106,7 @@ public class Hero : FightEntity {
     protected override void OnHurt () {
         GameEntry.Sound.PlaySound (Constant.Sound.HURT_SOUND_ID);
 
-        /* 累积愤怒值 */
+        /* 累积魔法值 */
         this.heroData.AddMP (1);
 
         /* 发送刷新属性消息 */
@@ -137,27 +127,12 @@ public class Hero : FightEntity {
         return new LeftJoystickMoveController (FindObjectOfType<LeftJoystick> ());
     }
 
+    protected override void OnFireWeapon() {
+        SendRefreshPropEvent();
+    }
+
     public override ImpactData GetImpactData () {
         return new ImpactData (heroData.Camp, heroData.HP, 0, heroData.Def);
-    }
-
-    /// <summary>
-    /// 向前移动
-    /// </summary>
-    /// <param name="distance"></param>
-    public void Forward (float distance) {
-        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * heroData.MoveSpeed;
-
-        CachedTransform.position = PositionUtility.GetAjustPositionWithMap (nextPos);
-    }
-
-    /// <summary>
-    /// 是否在攻击范围内
-    /// </summary>
-    /// <param name="distance"></param>
-    /// <returns></returns>
-    public bool CheckInAtkRange (float distance) {
-        return distance <= heroData.AtkRange;
     }
 
     /// <summary>
@@ -182,37 +157,6 @@ public class Hero : FightEntity {
     }
 
     /// <summary>
-    /// 选择指定的武器开火
-    /// </summary>
-    /// <param name="attackType"></param>
-    /// <param name="weaponID"></param>
-    public void FireWeapon (WeaponAttackType attackType, int weaponID) {
-        Weapon weapon = null;
-        switch (attackType) {
-            case WeaponAttackType.手动触发:
-                weapon = manualWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
-                break;
-            case WeaponAttackType.自动触发:
-                weapon = autoWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
-                break;
-            case WeaponAttackType.技能触发:
-                weapon = skillWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
-                break;
-        }
-
-        if (weapon != null) {
-            if (weapon.CostMP > 0 && heroData.MP < weapon.CostMP) {
-                return;
-            }
-
-            heroData.CostMP (weapon.CostMP);
-            weapon.Attack (heroData.Atk);
-
-            SendRefreshPropEvent ();
-        }
-    }
-
-    /// <summary>
     /// 接受伤害
     /// </summary>
     /// <param name="damageHP"></param>
@@ -234,14 +178,14 @@ public class Hero : FightEntity {
     /// 播放拖尾效果
     /// </summary>
     public void PlayTrailEffect () {
-        weaponTrailController.PlayTrailEffect();
+        weaponTrailController.PlayTrailEffect ();
     }
 
     /// <summary>
     /// 清除拖尾效果
     /// </summary>
     public void ClearTrialEffect () {
-        weaponTrailController.ClearTrialEffect();
+        weaponTrailController.ClearTrialEffect ();
     }
 
     public HeroData HeroData {
@@ -256,6 +200,22 @@ public class Hero : FightEntity {
     public void SendRefreshPropEvent () {
         GameEntry.Event.Fire (this,
             ReferencePool.Acquire<RefreshHeroPropsEventArgs> ().Fill (this.heroData));
+    }
+
+    /// <summary>
+    /// 吸收怪物属性，加强英雄属性
+    /// </summary>
+    /// <param name="data"></param>
+    private void PowerUp (MonsterData data) {
+        int atkPowerUp = data.Atk / 5;
+        int defPowerUp = data.Def / 6;
+        int hpPowerUp = data.HP / 10;
+
+        atkPowerUp = atkPowerUp > 0 ? atkPowerUp : 1;
+        defPowerUp = defPowerUp > 0 ? defPowerUp : 0;
+        hpPowerUp = hpPowerUp > 0 ? hpPowerUp : 1;
+
+        this.heroData.PowerUp (atkPowerUp, defPowerUp, hpPowerUp);
     }
 
     #region 事件消息
@@ -285,15 +245,7 @@ public class Hero : FightEntity {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
 
             /* 加强英雄属性 */
-            int atkPowerUp = data.Atk / 5;
-            int defPowerUp = data.Def / 6;
-            int hpPowerUp = data.HP / 10;
-
-            atkPowerUp = atkPowerUp > 0 ? atkPowerUp : 1;
-            defPowerUp = defPowerUp > 0 ? defPowerUp : 0;
-            hpPowerUp = hpPowerUp > 0 ? hpPowerUp : 1;
-
-            this.heroData.PowerUp (atkPowerUp, defPowerUp, hpPowerUp);
+            PowerUp (data);
 
             /* 刷新血量条 */
             RefreshHPBar ();

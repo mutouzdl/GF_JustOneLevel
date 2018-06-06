@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameFramework;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -40,12 +41,53 @@ public abstract class FightEntity : Entity {
     /// <returns></returns>
     protected List<Weapon> skillWeapons = new List<Weapon> ();
 
+    protected override void OnInit (object userData) {
+        base.OnInit (userData);
+        CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
+    }
 
-    /// <summary>
-    /// 接受伤害
-    /// </summary>
-    /// <param name="damageHP"></param>
-    public virtual void ApplyDamage (int damageHP) { }
+    protected override void OnShow (object userData) {
+        base.OnShow (userData);
+
+        fightEntityData = userData as FightEntityData;
+        if (fightEntityData == null) {
+            Log.Error ("Targetable object data is invalid.");
+            return;
+        }
+
+        CachedTransform.localScale = Vector3.one;
+
+        /* 附加血量条 */
+        PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);
+        EntityExtension.ShowPowerBar (typeof (PowerBar), "PowerBarGroup", hpBarData);
+
+    }
+
+    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
+        base.OnAttached (childEntity, parentTransform, userData);
+
+        if (childEntity is PowerBar) {
+            hpBar = (PowerBar) childEntity;
+            hpBar.UpdatePower (fightEntityData.HP, fightEntityData.MaxHP);
+            return;
+        } else if (childEntity is Weapon) {
+            WeaponData weaponData = (WeaponData) userData;
+            Weapon weapon = (Weapon) childEntity;
+
+            switch (weaponData.AttackType) {
+                case WeaponAttackType.手动触发:
+                    manualWeapons.Add (weapon);
+                    break;
+                case WeaponAttackType.自动触发:
+                    autoWeapons.Add (weapon);
+                    break;
+                case WeaponAttackType.技能触发:
+                    skillWeapons.Add (weapon);
+                    break;
+            }
+            return;
+        }
+    }
 
     /// <summary>
     /// 真正执行伤害/加血逻辑
@@ -124,6 +166,63 @@ public abstract class FightEntity : Entity {
     }
 
     /// <summary>
+    /// 向前移动
+    /// </summary>
+    /// <param name="distance"></param>
+    public void Forward (float distance) {
+        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * fightEntityData.MoveSpeed;
+
+        CachedTransform.position = PositionUtility.GetAjustPositionWithMap (nextPos);
+    }
+
+    /// <summary>
+    /// 是否在攻击范围内
+    /// </summary>
+    /// <param name="distance"></param>
+    /// <returns></returns>
+    public bool CheckInAtkRange (float distance) {
+        return distance <= fightEntityData.AtkRange;
+    }
+
+    /// <summary>
+    /// 选择指定的武器开火
+    /// </summary>
+    /// <param name="attackType"></param>
+    /// <param name="weaponID"></param>
+    public void FireWeapon (WeaponAttackType attackType, int weaponID) {
+        Weapon weapon = null;
+        switch (attackType) {
+            case WeaponAttackType.手动触发:
+                weapon = manualWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
+                break;
+            case WeaponAttackType.自动触发:
+                weapon = autoWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
+                break;
+            case WeaponAttackType.技能触发:
+                weapon = skillWeapons.Where (w => w.GetTypeId () == weaponID).SingleOrDefault ();
+                break;
+        }
+
+        if (weapon != null) {
+            if (weapon.CostMP > 0 && fightEntityData.MP < weapon.CostMP) {
+                return;
+            }
+
+            fightEntityData.CostMP (weapon.CostMP);
+            weapon.Attack (fightEntityData.Atk);
+
+            OnFireWeapon ();
+        }
+    }
+
+    protected void InitWeapon () {
+        List<WeaponData> weaponDatas = fightEntityData.GetWeaponDatas ();
+        for (int i = 0; i < weaponDatas.Count; i++) {
+            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
+        }
+    }
+
+    /// <summary>
     /// 更新血量条
     /// </summary>
     protected void RefreshHPBar () {
@@ -136,55 +235,6 @@ public abstract class FightEntity : Entity {
         cachedAnimator.SetBool ("IsHurting", false);
         cachedAnimator.SetBool ("IsDead", false);
     }
-
-    protected override void OnInit (object userData) {
-        base.OnInit (userData);
-        CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
-    }
-
-    protected override void OnShow (object userData) {
-        base.OnShow (userData);
-
-        fightEntityData = userData as FightEntityData;
-        if (fightEntityData == null) {
-            Log.Error ("Targetable object data is invalid.");
-            return;
-        }
-
-        CachedTransform.localScale = Vector3.one;
-
-        /* 附加血量条 */
-        PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);
-        EntityExtension.ShowPowerBar (typeof (PowerBar), "PowerBarGroup", hpBarData);
-
-    }
-
-    protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
-        base.OnAttached (childEntity, parentTransform, userData);
-
-        if (childEntity is PowerBar) {
-            hpBar = (PowerBar) childEntity;
-            hpBar.UpdatePower (fightEntityData.HP, fightEntityData.MaxHP);
-            return;
-        } else if (childEntity is Weapon) {
-            WeaponData weaponData = (WeaponData) userData;
-            Weapon weapon = (Weapon) childEntity;
-
-            switch (weaponData.AttackType) {
-                case WeaponAttackType.手动触发:
-                    manualWeapons.Add (weapon);
-                    break;
-                case WeaponAttackType.自动触发:
-                    autoWeapons.Add (weapon);
-                    break;
-                case WeaponAttackType.技能触发:
-                    skillWeapons.Add (weapon);
-                    break;
-            }
-            return;
-        }
-    }
-
     private void OnTriggerEnter (Collider other) {
         Entity entity = other.gameObject.GetComponent<Entity> ();
         if (entity == null) {
@@ -204,6 +254,12 @@ public abstract class FightEntity : Entity {
     #region 虚函数
 
     /// <summary>
+    /// 接受伤害
+    /// </summary>
+    /// <param name="damageHP"></param>
+    public virtual void ApplyDamage (int damageHP) { }
+
+    /// <summary>
     /// 当子类需要在特殊情况下才能创建移动控制器时，可以重写该函数
     /// </summary>
     /// <returns></returns>
@@ -217,6 +273,8 @@ public abstract class FightEntity : Entity {
     protected virtual void OnDead () {
         // GameEntry.Entity.HideEntity (this.Entity);
     }
+
+    protected virtual void OnFireWeapon () { }
 
     #endregion
 

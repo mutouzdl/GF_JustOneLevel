@@ -12,11 +12,53 @@ public class FightEntityData : EntityData {
     }
 
     /// <summary>
+    /// 增加MP
+    /// </summary>
+    /// <param name="value"></param>
+    public void AddMP (int value) {
+        this.MP += value;
+
+        if (this.MP > this.MaxMP) {
+            this.MP = this.MaxMP;
+        }
+    }
+
+    /// <summary>
+    /// 消耗MP
+    /// </summary>
+    /// <param name="value"></param>
+    public void CostMP (int value) {
+        this.MP -= value;
+
+        if (this.MP < 0) {
+            this.MP = 0;
+        }
+    }
+
+    /// <summary>
     /// 获取武器数据列表
     /// </summary>
     /// <returns></returns>
     public List<WeaponData> GetWeaponDatas() {
         return weaponDatas;
+    }
+
+    /// <summary>
+    /// 魔法值
+    /// </summary>
+    /// <returns></returns>
+    public int MP {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 最大魔法值
+    /// </summary>
+    /// <returns></returns>
+    public int MaxMP {
+        get;
+        protected set;
     }
 
     /// <summary>

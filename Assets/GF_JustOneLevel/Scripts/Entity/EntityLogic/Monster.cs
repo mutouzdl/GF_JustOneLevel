@@ -74,13 +74,6 @@ public class Monster : FightEntity {
         monsterActionFsm.Start<MonsterIdleState> ();
     }
 
-    private void InitWeapon () {
-        List<WeaponData> weaponDatas = monsterData.GetWeaponDatas ();
-        for (int i = 0; i < weaponDatas.Count; i++) {
-            EntityExtension.ShowWeapon (typeof (Weapon), "WeaponGroup", weaponDatas[i]);
-        }
-    }
-
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
     }
@@ -105,25 +98,6 @@ public class Monster : FightEntity {
     }
 
     /// <summary>
-    /// 向前移动
-    /// </summary>
-    /// <param name="distance"></param>
-    public void Forward (float distance) {
-        Vector3 nextPos = CachedTransform.position + CachedTransform.forward * distance * monsterData.MoveSpeed;
-
-        CachedTransform.position = PositionUtility.GetAjustPositionWithMap (nextPos);
-    }
-
-    /// <summary>
-    /// 是否在攻击范围内
-    /// </summary>
-    /// <param name="distance"></param>
-    /// <returns></returns>
-    public bool CheckInAtkRange (float distance) {
-        return distance <= monsterData.AtkRange;
-    }
-
-    /// <summary>
     /// 是否在追踪范围内
     /// </summary>
     /// <param name="distance"></param>
@@ -139,7 +113,6 @@ public class Monster : FightEntity {
     public void PerformAttack (FightEntity aimEntity) {
         IsAtkCDing = true;
         monsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
-        // aimEntity.ApplyDamage (m_MonsterData.Atk);
 
         foreach (Weapon weapon in manualWeapons) {
             weapon.Attack (monsterData.Atk);
@@ -153,7 +126,6 @@ public class Monster : FightEntity {
     public override void ApplyDamage (int damageHP) {
         monsterActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
     }
-
 
     /// <summary>
     /// 锁定目标

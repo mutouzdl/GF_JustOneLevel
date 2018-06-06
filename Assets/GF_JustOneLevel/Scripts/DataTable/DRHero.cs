@@ -6,7 +6,7 @@ using GameFramework.DataTable;
 /// </summary>
 public class DRHero : DREntity {
     /// <summary>
-    /// 愤怒值
+    /// 魔法值
     /// </summary>
     /// <returns></returns>
     public int MP {
