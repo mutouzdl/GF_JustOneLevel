@@ -99,12 +99,6 @@ public class Hero : TargetableObject {
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
-
-        /* 旋转镜头 */
-        Vector3 inputVec = MoveController.GetInput ();
-        if (inputVec.x != 0) {
-            transform.Rotate (new Vector3 (0, inputVec.x * Time.deltaTime * heroData.RotateSpeed, 0));
-        }
     }
 
     private float t = 0.033f;

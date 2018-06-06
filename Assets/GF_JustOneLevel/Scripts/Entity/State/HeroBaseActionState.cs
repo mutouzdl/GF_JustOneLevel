@@ -4,7 +4,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class HeroBaseActionState : FsmState<Hero> {
+public class HeroBaseActionState : HeroBaseState {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>

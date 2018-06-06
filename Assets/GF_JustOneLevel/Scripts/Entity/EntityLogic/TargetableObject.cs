@@ -144,6 +144,14 @@ public abstract class TargetableObject : Entity {
     }
 
     /// <summary>
+    /// 转身
+    /// </summary>
+    /// <param name="destVec">目标位置</param>
+    public void Rotate (Vector3 destVec) {
+        CachedTransform.Rotate (destVec);
+    }
+
+    /// <summary>
     /// 更新血量条
     /// </summary>
     protected void RefreshHPBar () {

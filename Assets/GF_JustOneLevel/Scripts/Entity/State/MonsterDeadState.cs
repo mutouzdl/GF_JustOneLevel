@@ -3,7 +3,7 @@ using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class MonsterDeadState : FsmState<Monster> {
+public class MonsterDeadState : MonsterBaseState {
     private float deadTimeCounter = 0;
 
     /// <summary>
@@ -11,6 +11,7 @@ public class MonsterDeadState : FsmState<Monster> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnInit (IFsm<Monster> fsm) { 
+        base.OnInit(fsm);
     }
 
     /// <summary>
@@ -18,6 +19,7 @@ public class MonsterDeadState : FsmState<Monster> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Monster> fsm) {
+        base.OnEnter(fsm);
         deadTimeCounter = 0;
 
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.dead);
@@ -30,6 +32,7 @@ public class MonsterDeadState : FsmState<Monster> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
         deadTimeCounter += elapseSeconds;
 
         if (deadTimeCounter > 2) {
@@ -43,6 +46,7 @@ public class MonsterDeadState : FsmState<Monster> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Monster> fsm, bool isShutdown) {
+        base.OnLeave(fsm, isShutdown);
     }
 
     /// <summary>

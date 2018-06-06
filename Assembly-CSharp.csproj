@@ -117,6 +117,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroAtkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroBaseActionState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroBaseState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroCDIdleState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroDeadState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\HeroHurtState.cs" />
@@ -127,6 +128,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterAtkCDState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterAtkState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterBaseActionState.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterBaseState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterCDIdleState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterDeadState.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\State\MonsterHurtState.cs" />

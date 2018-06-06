@@ -41,16 +41,12 @@ public class MonsterWalkState : MonsterSeekAimState {
 
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
 
-        // 移动
         if (inputVec.y != 0) {
+            // 移动
             fsm.Owner.Forward (inputVec.y * elapseSeconds);
         } else {
+            // 站立
             ChangeState<MonsterIdleState> (fsm);
-        }
-
-        // 转身
-        if (inputVec.x != 0) {
-            fsm.Owner.Rotate (new Vector3 (0, inputVec.x, 0));
         }
     }
 

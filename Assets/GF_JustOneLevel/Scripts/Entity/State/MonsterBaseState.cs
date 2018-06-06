@@ -1,8 +1,10 @@
+using GameFramework;
 using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
-public class MonsterCDIdleState : MonsterBaseState {
+public class MonsterBaseState : FsmState<Monster> {
     /// <summary>
     /// 有限状态机状态初始化时调用。
     /// </summary>
@@ -17,7 +19,6 @@ public class MonsterCDIdleState : MonsterBaseState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Monster> fsm) {
         base.OnEnter(fsm);
-        SubscribeEvent(MonsterAttackEventArgs.EventId, OnMonsterAttackEvent);
     }
 
     /// <summary>
@@ -28,6 +29,18 @@ public class MonsterCDIdleState : MonsterBaseState {
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+
+        if (fsm.Owner.IsDead) {
+            return;
+        }        
+
+        /* 转身 */
+        Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
+        if (inputVec.x != 0) {
+            fsm.Owner.Rotate (new Vector3 (
+                0, inputVec.x * Time.deltaTime * fsm.Owner.MonsterData.RotateSpeed, 0)
+                );
+        }
     }
 
     /// <summary>
@@ -37,7 +50,6 @@ public class MonsterCDIdleState : MonsterBaseState {
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Monster> fsm, bool isShutdown) {
         base.OnLeave(fsm, isShutdown);
-        UnsubscribeEvent(MonsterAttackEventArgs.EventId, OnMonsterAttackEvent);
     }
 
     /// <summary>
@@ -46,10 +58,5 @@ public class MonsterCDIdleState : MonsterBaseState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnDestroy (IFsm<Monster> fsm) {
         base.OnDestroy (fsm);
-        UnsubscribeEvent(MonsterAttackEventArgs.EventId, OnMonsterAttackEvent);
-    }
-
-    private void OnMonsterAttackEvent(IFsm<Monster> fsm, object sender, object userData) {
-        ChangeState<MonsterAtkCDState> (fsm);
     }
 }

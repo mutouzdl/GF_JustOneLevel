@@ -119,14 +119,6 @@ public class Monster : TargetableObject {
     }
 
     /// <summary>
-    /// 转身
-    /// </summary>
-    /// <param name="destVec">目标位置</param>
-    public void Rotate (Vector3 destVec) {
-        CachedTransform.Rotate (destVec);
-    }
-
-    /// <summary>
     /// 是否在攻击范围内
     /// </summary>
     /// <param name="distance"></param>
