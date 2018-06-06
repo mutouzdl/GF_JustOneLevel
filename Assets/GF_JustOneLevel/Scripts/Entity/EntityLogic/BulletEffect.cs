@@ -124,7 +124,7 @@ public class BulletEffect : Entity {
         }
         // shootRay是碰撞射线，用于碰撞检测。1000是随便设的，让碰撞检测的射线足够长
         if (Physics.Raycast (shootRay, out shootHit, 1000)) {
-            TargetableObject entity = shootHit.collider.GetComponent<TargetableObject>();
+            FightEntity entity = shootHit.collider.GetComponent<FightEntity>();
             if (entity != null) {
                 entity.ApplyDamage(bulletData.Attack);
             }

@@ -6,7 +6,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class Monster : TargetableObject {
+public class Monster : FightEntity {
     [SerializeField]
     private MonsterData monsterData = null;
 
@@ -32,7 +32,7 @@ public class Monster : TargetableObject {
     /// 锁定的目标
     /// </summary>
     /// <returns></returns>
-    public TargetableObject LockingAim { get; set; }
+    public FightEntity LockingAim { get; set; }
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
@@ -140,7 +140,7 @@ public class Monster : TargetableObject {
     /// 执行攻击
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
-    public void PerformAttack (TargetableObject aimEntity) {
+    public void PerformAttack (FightEntity aimEntity) {
         isAtkCDing = true;
         monsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
         // aimEntity.ApplyDamage (m_MonsterData.Atk);
@@ -177,7 +177,7 @@ public class Monster : TargetableObject {
     /// 锁定目标
     /// </summary>
     /// <param name="aim"></param>
-    public void LockAim (TargetableObject aim) {
+    public void LockAim (FightEntity aim) {
         this.LockingAim = aim;
         this.IsLockingAim = true;
     }

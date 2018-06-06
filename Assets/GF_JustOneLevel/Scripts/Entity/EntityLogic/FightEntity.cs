@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using GameFramework;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -7,9 +7,9 @@ using UnityGameFramework.Runtime;
 /// 可作为目标的实体类。
 /// 参考来源：https://github.com/EllanJiang/StarForce
 /// </summary>
-public abstract class TargetableObject : Entity {
+public abstract class FightEntity : Entity {
     [SerializeField]
-    private TargetableObjectData targetableObjectData = null;
+    private FightEntityData fightEntityData = null;
 
     /// <summary>
     /// 血量条
@@ -40,9 +40,10 @@ public abstract class TargetableObject : Entity {
     /// <returns></returns>
     protected List<Weapon> skillWeapons = new List<Weapon> ();
 
+
     public bool IsDead {
         get {
-            return targetableObjectData.HP <= 0;
+            return fightEntityData.HP <= 0;
         }
     }
 
@@ -86,31 +87,31 @@ public abstract class TargetableObject : Entity {
         // 按百分比改变当前血量
         if ((damageHP > 0 && damageHP < 1) || (damageHP < 0 && damageHP > -1)) {
             if (effectFollowMaxHP) {
-                changeHP = (int) (targetableObjectData.MaxHP * damageHP);
+                changeHP = (int) (fightEntityData.MaxHP * damageHP);
             }
             else {
-                changeHP = (int) (targetableObjectData.HP * damageHP);
+                changeHP = (int) (fightEntityData.HP * damageHP);
             }
         } else {
             changeHP = (int) damageHP;
         }
         // 伤害
         if (changeHP > 0) {
-            changeHP -= targetableObjectData.Def;
+            changeHP -= fightEntityData.Def;
 
             if (changeHP < 0) {
                 changeHP = 0;
             }
 
-            targetableObjectData.HP -= changeHP;
+            fightEntityData.HP -= changeHP;
 
             OnHurt ();
         }
         // 加血
         else if (changeHP < 0) {
-            targetableObjectData.HP += -changeHP;
-            if (targetableObjectData.HP > targetableObjectData.MaxHP) {
-                targetableObjectData.HP = targetableObjectData.MaxHP;
+            fightEntityData.HP += -changeHP;
+            if (fightEntityData.HP > fightEntityData.MaxHP) {
+                fightEntityData.HP = fightEntityData.MaxHP;
             }
 
             OnCure ();
@@ -119,7 +120,7 @@ public abstract class TargetableObject : Entity {
         // 更新血量条
         RefreshHPBar ();
 
-        if (targetableObjectData.HP <= 0) {
+        if (fightEntityData.HP <= 0) {
             OnDead ();
         }
     }
@@ -155,7 +156,7 @@ public abstract class TargetableObject : Entity {
     /// 更新血量条
     /// </summary>
     protected void RefreshHPBar () {
-        hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
+        hpBar.UpdatePower (fightEntityData.HP, fightEntityData.MaxHP);
     }
 
     private void ResetAnimation () {
@@ -173,8 +174,8 @@ public abstract class TargetableObject : Entity {
     protected override void OnShow (object userData) {
         base.OnShow (userData);
 
-        targetableObjectData = userData as TargetableObjectData;
-        if (targetableObjectData == null) {
+        fightEntityData = userData as FightEntityData;
+        if (fightEntityData == null) {
             Log.Error ("Targetable object data is invalid.");
             return;
         }
@@ -192,7 +193,7 @@ public abstract class TargetableObject : Entity {
 
         if (childEntity is PowerBar) {
             hpBar = (PowerBar) childEntity;
-            hpBar.UpdatePower (targetableObjectData.HP, targetableObjectData.MaxHP);
+            hpBar.UpdatePower (fightEntityData.HP, fightEntityData.MaxHP);
             return;
         } else if (childEntity is Weapon) {
             WeaponData weaponData = (WeaponData) userData;
@@ -226,7 +227,7 @@ public abstract class TargetableObject : Entity {
             return;
         }
 
-        if (entity is TargetableObject && entity.Id >= Id) {
+        if (entity is FightEntity && entity.Id >= Id) {
             // 碰撞事件由 Id 小的一方处理，避免重复处理
             return;
         }

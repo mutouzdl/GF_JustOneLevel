@@ -50,7 +50,7 @@ public class HeroAtkState : HeroBaseActionState {
         CampType camp = fsm.Owner.GetImpactData().Camp;
         GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
         foreach (GameObject obj in aims) {
-            TargetableObject aim = obj.GetComponent<TargetableObject> ();
+            FightEntity aim = obj.GetComponent<FightEntity> ();
 
             if (aim.IsDead == false
                 && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {

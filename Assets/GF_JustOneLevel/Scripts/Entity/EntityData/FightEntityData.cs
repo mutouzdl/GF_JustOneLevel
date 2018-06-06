@@ -4,10 +4,11 @@ using GameFramework.DataTable;
 using UnityEngine;
 
 [Serializable]
-public class FightEntityData : TargetableObjectData {
+public class FightEntityData : EntityData {
     protected List<WeaponData> weaponDatas = new List<WeaponData> ();
     
-    public FightEntityData (int entityId, int typeId, CampType camp) : base (entityId, typeId, camp) {
+    public FightEntityData (int entityId, int typeId, CampType camp) : base (entityId, typeId) {
+        this.Camp = camp;
     }
 
     /// <summary>
@@ -16,14 +17,6 @@ public class FightEntityData : TargetableObjectData {
     /// <returns></returns>
     public List<WeaponData> GetWeaponDatas() {
         return weaponDatas;
-    }
-
-    /// <summary>
-    /// 最大生命。
-    /// </summary>
-    public override int MaxHP {
-        get;
-        protected set;
     }
 
     /// <summary>
@@ -72,6 +65,47 @@ public class FightEntityData : TargetableObjectData {
     }
 
     public int DeadSoundId {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 角色阵营。
+    /// </summary>
+    public CampType Camp {
+        get;
+        protected set;
+    } = CampType.Unknown;
+
+    /// <summary>
+    /// 当前生命。
+    /// </summary>
+    public int HP {
+        get;
+        set;
+    }
+
+    /// <summary>
+    /// 最大生命。
+    /// </summary>
+    public int MaxHP {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 生命百分比。
+    /// </summary>
+    public float HPRatio {
+        get {
+            return MaxHP > 0 ? (float) HP / MaxHP : 0f;
+        }
+    }
+    
+    /// <summary>
+    /// 防御。
+    /// </summary>
+    public int Def {
         get;
         protected set;
     }

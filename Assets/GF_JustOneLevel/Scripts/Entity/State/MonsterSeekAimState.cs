@@ -34,7 +34,7 @@ public class MonsterSeekAimState : MonsterListenDamageState {
         }
 
         if (fsm.Owner.IsLockingAim) {
-            TargetableObject aim = fsm.Owner.LockingAim;
+            FightEntity aim = fsm.Owner.LockingAim;
             if (aim.IsDead) {
                 ChangeState<MonsterIdleState>(fsm);
                 return;
@@ -63,7 +63,7 @@ public class MonsterSeekAimState : MonsterListenDamageState {
         CampType camp = fsm.Owner.GetImpactData().Camp;
         GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
         foreach (GameObject obj in aims) {
-            TargetableObject aim = obj.GetComponent<TargetableObject> ();
+            FightEntity aim = obj.GetComponent<FightEntity> ();
 
             if (aim.IsDead == false 
                 && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {

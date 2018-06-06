@@ -8,7 +8,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class Hero : TargetableObject {
+public class Hero : FightEntity {
     private HeroData heroData = null;
 
     /// <summary>
@@ -188,7 +188,7 @@ public class Hero : TargetableObject {
     /// 执行攻击
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
-    public void PerformAttack (TargetableObject aimEntity) {
+    public void PerformAttack (FightEntity aimEntity) {
         isAtkCDing = true;
         heroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
 

@@ -79,7 +79,7 @@ public static class AIUtility {
         return (toTransform.position - fromTransform.position).magnitude;
     }
 
-    public static void PerformCollision (TargetableObject entity, Entity other) {
+    public static void PerformCollision (FightEntity entity, Entity other) {
         if (entity == null || other == null) {
             return;
         }
