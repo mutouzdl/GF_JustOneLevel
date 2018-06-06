@@ -12,10 +12,6 @@ public class Hero : FightEntity {
     private HeroData heroData = null;
 
     /// <summary>
-    /// 攻击是否正在冷却
-    /// </summary>
-    private bool isAtkCDing = false;
-    /// <summary>
     /// 状态类状态机：CD空闲、CD
     /// </summary>
     private GameFramework.Fsm.IFsm<Hero> heroStateFsm;
@@ -23,11 +19,11 @@ public class Hero : FightEntity {
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
     private GameFramework.Fsm.IFsm<Hero> heroActionFsm;
-    public WeaponTrail weaponTrail;
+    public WeaponTrialController weaponTrailController;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-        weaponTrail = FindObjectOfType<WeaponTrail> ();
+        weaponTrailController = new WeaponTrialController (FindObjectOfType<WeaponTrail> ());
     }
 
     protected override void OnShow (object userData) {
@@ -38,8 +34,9 @@ public class Hero : FightEntity {
             Log.Error ("Hero data is invalid.");
             return;
         }
-        
-        weaponTrail.SetTime (0.0f, 0, 1);
+
+        weaponTrailController.Reset ();
+
         ResetAtkCD ();
 
         /* 初始化状态机 */
@@ -101,29 +98,8 @@ public class Hero : FightEntity {
         base.OnUpdate (elapseSeconds, realElapseSeconds);
     }
 
-    private float t = 0.033f;
-    private float animationIncrement = 0.003f;
-    private float tempT = 0;
     void LateUpdate () {
-        t = Mathf.Clamp (Time.deltaTime, 0, 0.066f);
-
-        if (t > 0) {
-            while (tempT < t) {
-                tempT += animationIncrement;
-
-                if (weaponTrail.time > 0) {
-                    weaponTrail.Itterate (Time.time - t + tempT);
-                } else {
-                    weaponTrail.ClearTrail ();
-                }
-            }
-
-            tempT -= t;
-
-            if (weaponTrail.time > 0) {
-                weaponTrail.UpdateTrail (Time.time, t);
-            }
-        }
+        weaponTrailController.Update ();
     }
 
     protected override void OnHide (object userData) {
@@ -189,7 +165,7 @@ public class Hero : FightEntity {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (FightEntity aimEntity) {
-        isAtkCDing = true;
+        IsAtkCDing = true;
         heroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
 
         // 发射手动触发类型的武器
@@ -237,45 +213,11 @@ public class Hero : FightEntity {
     }
 
     /// <summary>
-    /// 播放拖尾效果
-    /// </summary>
-    public void PlayTrailEffect () {
-        if (weaponTrail == null) {
-            return;
-        }
-
-        //设置拖尾时长  
-        weaponTrail.SetTime (2.0f, 0.0f, 1.0f);
-
-        //开始进行拖尾  
-        weaponTrail.StartTrail (0.5f, 0.4f);
-    }
-
-    /// <summary>
-    /// 清除拖尾效果
-    /// </summary>
-    public void ClearTrialEffect () {
-        if (weaponTrail == null) {
-            return;
-        }
-
-        //清除拖尾  
-        weaponTrail.ClearTrail ();
-    }
-
-    /// <summary>
     /// 接受伤害
     /// </summary>
     /// <param name="damageHP"></param>
     public override void ApplyDamage (int damageHP) {
         heroActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
-    }
-
-    /// <summary>
-    /// 重置攻击冷却
-    /// </summary>
-    public void ResetAtkCD () {
-        isAtkCDing = false;
     }
 
     /// <summary>
@@ -286,6 +228,20 @@ public class Hero : FightEntity {
 
         /* 发送刷新属性消息 */
         SendRefreshPropEvent ();
+    }
+
+    /// <summary>
+    /// 播放拖尾效果
+    /// </summary>
+    public void PlayTrailEffect () {
+        weaponTrailController.PlayTrailEffect();
+    }
+
+    /// <summary>
+    /// 清除拖尾效果
+    /// </summary>
+    public void ClearTrialEffect () {
+        weaponTrailController.ClearTrialEffect();
     }
 
     public HeroData HeroData {
@@ -308,7 +264,7 @@ public class Hero : FightEntity {
             return;
         }
 
-        if (isAtkCDing == false) {
+        if (IsAtkCDing == false) {
             ClickAttackButtonEventArgs args = (ClickAttackButtonEventArgs) e;
             heroActionFsm.FireEvent (this, ClickAttackButtonEventArgs.EventId, args);
         }

@@ -41,35 +41,6 @@ public abstract class FightEntity : Entity {
     protected List<Weapon> skillWeapons = new List<Weapon> ();
 
 
-    public bool IsDead {
-        get {
-            return fightEntityData.HP <= 0;
-        }
-    }
-
-    /// <summary>
-    /// 移动控制器
-    /// </summary>
-    /// <returns></returns>
-    public IMoveController MoveController {
-        get {
-            if (moveController == null) {
-                moveController = CreateMoveController();
-            }
-            return moveController;
-        }
-    }
-
-    public abstract ImpactData GetImpactData ();
-
-    /// <summary>
-    /// 当子类需要在特殊情况下才能创建移动控制器时，可以重写该函数
-    /// </summary>
-    /// <returns></returns>
-    protected virtual IMoveController CreateMoveController () {
-        return null;
-    }
-
     /// <summary>
     /// 接受伤害
     /// </summary>
@@ -214,13 +185,6 @@ public abstract class FightEntity : Entity {
         }
     }
 
-    protected virtual void OnHurt () { }
-    protected virtual void OnCure () { }
-
-    protected virtual void OnDead () {
-        // GameEntry.Entity.HideEntity (this.Entity);
-    }
-
     private void OnTriggerEnter (Collider other) {
         Entity entity = other.gameObject.GetComponent<Entity> ();
         if (entity == null) {
@@ -234,4 +198,66 @@ public abstract class FightEntity : Entity {
 
         AIUtility.PerformCollision (this, entity);
     }
+
+
+
+    #region 虚函数
+
+    /// <summary>
+    /// 当子类需要在特殊情况下才能创建移动控制器时，可以重写该函数
+    /// </summary>
+    /// <returns></returns>
+    protected virtual IMoveController CreateMoveController () {
+        return null;
+    }
+
+    protected virtual void OnHurt () { }
+    protected virtual void OnCure () { }
+
+    protected virtual void OnDead () {
+        // GameEntry.Entity.HideEntity (this.Entity);
+    }
+
+    #endregion
+
+    #region 公开的属性
+
+    public bool IsDead {
+        get {
+            return fightEntityData.HP <= 0;
+        }
+    }
+
+    /// <summary>
+    /// 移动控制器
+    /// </summary>
+    /// <returns></returns>
+    public IMoveController MoveController {
+        get {
+            if (moveController == null) {
+                moveController = CreateMoveController();
+            }
+            return moveController;
+        }
+    }
+
+    /// <summary>
+    /// 攻击是否正在冷却
+    /// </summary>
+    /// <returns></returns>
+    public bool IsAtkCDing {
+        get;
+        protected set;
+    } = false;
+
+    /// <summary>
+    /// 重置攻击冷却
+    /// </summary>
+    public void ResetAtkCD () {
+        IsAtkCDing = false;
+    }
+
+    public abstract ImpactData GetImpactData ();
+
+    #endregion
 }

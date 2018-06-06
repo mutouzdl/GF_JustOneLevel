@@ -109,18 +109,4 @@ public class FightEntityData : EntityData {
         get;
         protected set;
     }
-
-    private void RefreshData () {
-        // m_MaxHP = 0;
-        // m_Defense = 0;
-        // for (int i = 0; i < m_ArmorDatas.Count; i++)
-        // {
-        //     m_MaxHP += m_ArmorDatas[i].MaxHP;
-        //     m_Defense += m_ArmorDatas[i].Defense;
-        // }
-
-        if (HP > MaxHP) {
-            HP = MaxHP;
-        }
-    }
 }

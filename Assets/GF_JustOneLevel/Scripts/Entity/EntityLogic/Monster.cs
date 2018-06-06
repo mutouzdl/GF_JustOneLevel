@@ -11,10 +11,6 @@ public class Monster : FightEntity {
     private MonsterData monsterData = null;
 
     /// <summary>
-    /// 攻击是否正在冷却
-    /// </summary>
-    private bool isAtkCDing = false;
-    /// <summary>
     /// 状态类状态机：CD空闲、CD
     /// </summary>
     private GameFramework.Fsm.IFsm<Monster> monsterStateFsm;
@@ -141,7 +137,7 @@ public class Monster : FightEntity {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (FightEntity aimEntity) {
-        isAtkCDing = true;
+        IsAtkCDing = true;
         monsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
         // aimEntity.ApplyDamage (m_MonsterData.Atk);
 
@@ -158,20 +154,6 @@ public class Monster : FightEntity {
         monsterActionFsm.FireEvent (this, ApplyDamageEventArgs.EventId, damageHP);
     }
 
-    /// <summary>
-    /// 攻击是否正在冷却
-    /// </summary>
-    /// <returns></returns>
-    public bool IsAtkCDing () {
-        return isAtkCDing;
-    }
-
-    /// <summary>
-    /// 重置攻击冷却
-    /// </summary>
-    public void ResetAtkCD () {
-        isAtkCDing = false;
-    }
 
     /// <summary>
     /// 锁定目标
