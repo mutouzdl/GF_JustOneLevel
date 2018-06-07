@@ -19,10 +19,15 @@
     <String Key="Operate.Back" Value="返回" />
     <String Key="Operate.BombSkill" Value="爆!" />
     <String Key="Operate.Continue" Value="继续" />
+    <String Key="Menu.Title" Value="只有一关" />
     <String Key="Menu.StartButton" Value="开始" />
     <String Key="Menu.SettingButton" Value="设置" />
     <String Key="Menu.AboutButton" Value="关于" />
     <String Key="Menu.QuitButton" Value="退出" />
+    <String Key="Menu.Des" Value="
+    本游戏由笨木头开发：www.benmutou.com
+    开源地址：https://github.com/mutouzdl/GF_JustOneLevel
+    开源协议：Apache License 2.0" />
     <String Key="Dialog.ConfirmButton" Value="确定" />
     <String Key="Dialog.CancelButton" Value="取消" />
     <String Key="Dialog.OtherButton" Value="" />

@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1971786591358300
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829171384183556}
   m_LocalRotation: {x: 0.08669085, y: 0.28367218, z: -0.035760928, w: -0.95432484}
-  m_LocalPosition: {x: 10.998118, y: 0.10416114, z: 12.187906}
+  m_LocalPosition: {x: 10.05, y: 0.35, z: 13.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4561328181936660}
@@ -1265,8 +1265,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.2
-  m_Range: 30
+  m_Intensity: 0.5
+  m_Range: 20
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

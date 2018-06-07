@@ -46,6 +46,7 @@ public class Monster : FightEntity {
         }
 
         IsLockingAim = false;
+        
         ResetAtkCD();
 
         /* 加载武器 */
