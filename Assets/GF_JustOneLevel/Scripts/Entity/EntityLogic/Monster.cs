@@ -18,6 +18,7 @@ public class Monster : FightEntity {
     /// 行动类状态机：空闲、行走、攻击、受伤
     /// </summary>
     private GameFramework.Fsm.IFsm<Monster> monsterActionFsm;
+    private TextMesh msgText = null;
 
     /// <summary>
     /// 是否正在追踪目标
@@ -34,6 +35,7 @@ public class Monster : FightEntity {
         base.OnInit (userData);
 
         moveController = new FoolishAIMoveController ();
+        msgText = FindObjectOfType<TextMesh> ();
     }
 
     protected override void OnShow (object userData) {
@@ -46,16 +48,22 @@ public class Monster : FightEntity {
         }
 
         IsLockingAim = false;
-        
-        ResetAtkCD();
+
+        ResetAtkCD ();
 
         /* 加载武器 */
-        InitWeapon();
+        InitWeapon ();
 
         /* 创建状态机 */
         InitFSM ();
+
+        /* 初始化描述文本 */
+        InitMsgText ();
     }
 
+    /// <summary>
+    /// 初始化状态机
+    /// </summary>
     private void InitFSM () {
         monsterStateFsm = GameEntry.Fsm.CreateFsm<Monster> ("monsterStateFsm" + this.Id, this, new FsmState<Monster>[] {
             new MonsterCDIdleState (),
@@ -73,6 +81,24 @@ public class Monster : FightEntity {
         /* 启动状态机 */
         monsterStateFsm.Start<MonsterCDIdleState> ();
         monsterActionFsm.Start<MonsterIdleState> ();
+    }
+
+    /// <summary>
+    /// 初始化描述文本
+    /// </summary>
+    private void InitMsgText () {
+        if (msgText == null) {
+            return;
+        }
+
+        int percent = (int)((monsterData.PowerPercent - 1) * 100);
+        if (monsterData.PowerPercent > 1) {
+            msgText.text = $"<color=red>Up+{percent}%</color>";
+        } else if (monsterData.PowerPercent < 1) {
+            msgText.text = $"<color=gray>Down{percent}%</color>";
+        } else {
+            msgText.text = "";
+        }
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {

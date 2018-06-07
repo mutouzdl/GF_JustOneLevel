@@ -37,7 +37,6 @@ public class MagicWater : MonoBehaviour {
 
 	void OnTriggerStay (Collider other) {
 		if (isMagicable == true) {
-			Log.Info ("碰撞！");
 			Hero hero = other.gameObject.GetComponent<Hero> ();
 			if (hero != null) {
 				// 改变金币
@@ -66,6 +65,10 @@ public class MagicWater : MonoBehaviour {
 					MonsterData monsterData = new MonsterData (
 						EntityExtension.GenerateSerialId (), createCloneHeroTypeID, CampType.CloneHero, 0);
 					monsterData.Position = transform.position;
+
+					// 避免克隆英雄太弱，根据玩家英雄实时最大血量调整克隆英雄属性
+					float powerPercent = hero.HeroData.MaxHP / monsterData.MaxHP / 100f;
+					monsterData.AjustPower(powerPercent);
 
 					EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 

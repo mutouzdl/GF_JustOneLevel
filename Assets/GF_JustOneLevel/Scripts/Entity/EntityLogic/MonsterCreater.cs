@@ -50,6 +50,9 @@ public class MonsterCreater : Entity {
 					EntityExtension.GenerateSerialId (), monsterCreaterData.MonsterTypeId, camp, monsterCreaterData.MonsterPrize);
 				monsterData.Position = new Vector3 (Utility.Random.GetRandom (5, 25), 0, Utility.Random.GetRandom (5, 25));
 
+				// 调整怪物属性
+				monsterData.AjustPower(monsterCreaterData.PowerPercent);
+
 				EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 
 				createNum++;

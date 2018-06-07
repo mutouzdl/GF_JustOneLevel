@@ -19,6 +19,7 @@ public class MonsterCreaterData : EntityData {
         MaxNum = drMonsterCreater.MaxNum;
         MonsterTypeId = drMonsterCreater.MonsterTypeId;
         MonsterPrize = drMonsterCreater.MonsterPrize;
+        PowerPercent = drMonsterCreater.PowerPercent;
     }
 
     /// <summary>
@@ -87,5 +88,14 @@ public class MonsterCreaterData : EntityData {
     public int MonsterPrize {
         get;
         protected set;
+    }
+
+    /// <summary>
+    /// 强化百分比（正常为1）
+    /// </summary>
+    /// <returns></returns>
+    public float PowerPercent {
+        get;
+        private set;
     }
 }

@@ -143,7 +143,7 @@ public class FightEntityData : EntityData {
             return MaxHP > 0 ? (float) HP / MaxHP : 0f;
         }
     }
-    
+
     /// <summary>
     /// 防御。
     /// </summary>

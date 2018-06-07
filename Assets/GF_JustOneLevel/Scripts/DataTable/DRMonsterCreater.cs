@@ -81,6 +81,15 @@ public class DRMonsterCreater : IDataRow {
         protected set;
     }
 
+    /// <summary>
+    /// 强化百分比（正常为1）
+    /// </summary>
+    /// <returns></returns>
+    public float PowerPercent {
+        get;
+        private set;
+    }
+
     public virtual void ParseDataRow (string dataRowText) {
         string[] text = DataTableExtension.SplitDataRow (dataRowText);
         int index = 0;
@@ -94,6 +103,7 @@ public class DRMonsterCreater : IDataRow {
         MaxNum = int.Parse (text[index++]);
         MonsterTypeId = int.Parse (text[index++]);
         MonsterPrize = int.Parse (text[index++]);
+        PowerPercent = float.Parse(text[index++]);
     }
 
     private void AvoidJIT () {
