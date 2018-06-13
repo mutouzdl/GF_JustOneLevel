@@ -23,16 +23,12 @@ public class UIPlayerMessage : UGuiForm {
     /// </summary>
     private int totalPrize = 0;
 
-    private ProcedureGame procedureGame = null;
-
     /// <summary>
     /// 界面打开。
     /// </summary>
     /// <param name="userData">用户自定义数据。</param>
     protected override void OnOpen (object userData) {
         base.OnOpen (userData);
-
-        procedureGame = userData as ProcedureGame;
 
         RefreshGold ();
 

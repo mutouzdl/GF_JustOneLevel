@@ -51,11 +51,11 @@ public abstract class FightEntity : Entity {
 
         fightEntityData = userData as FightEntityData;
         if (fightEntityData == null) {
-            Log.Error ("Targetable object data is invalid.");
+            Log.Error ("fightEntityData is invalid.");
             return;
         }
 
-        CachedTransform.localScale = Vector3.one;
+        // CachedTransform.localScale = Vector3.one;
 
         /* 附加血量条 */
         PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);

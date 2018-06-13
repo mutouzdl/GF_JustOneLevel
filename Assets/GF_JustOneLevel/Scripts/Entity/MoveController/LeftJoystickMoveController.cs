@@ -10,6 +10,9 @@ public class LeftJoystickMoveController : IMoveController
     
     public Vector3 GetInput()
     {
+        if (joystick == null) {
+            return Vector3.zero;
+        }
         return joystick.GetInputDirection();;
     }
 

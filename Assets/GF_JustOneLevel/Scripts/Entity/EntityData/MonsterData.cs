@@ -14,6 +14,7 @@ public class MonsterData : FightEntityData {
             return;
         }
 
+        Name = drMonster.Name;
         HP = drMonster.HP;
         MaxHP = HP;
         MoveSpeed = drMonster.MoveSpeed;

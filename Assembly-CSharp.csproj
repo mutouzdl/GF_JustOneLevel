@@ -51,6 +51,65 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\Effects\WeaponTrail.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\Entities\BladeMaster.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\MyTest.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\Utility\AnimationController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\MeshContainer.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\Water.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\WaterBase.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Scripts\WaterTile.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\ActivateTrigger.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\AlphaButtonClickMask.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\AutoMoveAndRotate.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\CameraRefocus.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\CurveControlledBob.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\DragRigidbody.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\DynamicShadowSettings.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\EventSystemChecker.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\FollowTarget.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\ForcedReset.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\FOVKick.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\FPSCounter.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\LerpControlledBob.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\ObjectResetter.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\ParticleSystemDestroyer.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\PlatformSpecificContent.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\SimpleActivatorMenu.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\SimpleMouseRotator.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\SmoothFollow.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\TimedObjectActivator.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\TimedObjectDestructor.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\WaypointCircuit.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Utility\WaypointProgressTracker.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\DualJoystickPlayerController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\DualJoystickTouchContoller.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\LeftJoystick.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\LeftJoystickPlayerController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\LeftJoystickTouchContoller.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\RightJoystick.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\RightJoystickPlayerController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\RightJoystickTouchContoller.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\SingleJoystick.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\SingleJoystickPlayerController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\TouchJoysticks\Scripts\SingleJoystickTouchController.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\Example_02\InstanceExample.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.Builtin.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Base\GameEntry.cs" />
@@ -63,6 +122,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRBulletEffect.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DREntity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRHero.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMagicWater.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonsterCreater.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMusic.cs" />
@@ -96,6 +156,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\EntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\FightEntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\HeroData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MargicWaterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterCreaterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\PowerBarData.cs" />
@@ -145,6 +206,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\RefreshPlayerPropsEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\ResurgenceEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Game\SurvivalGame.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Global\GlobalGame.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\LocalizationExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\XmlLocalizationHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureBase.cs" />
@@ -172,21 +234,6 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\PositionUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />
-     <Compile Include="Assets\PocketRPG Trails\Scripts\Effects\WeaponTrail.cs" />
-     <Compile Include="Assets\PocketRPG Trails\Scripts\Entities\BladeMaster.cs" />
-     <Compile Include="Assets\PocketRPG Trails\Scripts\MyTest.cs" />
-     <Compile Include="Assets\PocketRPG Trails\Scripts\Utility\AnimationController.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\DualJoystickPlayerController.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\DualJoystickTouchContoller.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystick.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystickPlayerController.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystickTouchContoller.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\RightJoystick.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\RightJoystickPlayerController.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\RightJoystickTouchContoller.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\SingleJoystick.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\SingleJoystickPlayerController.cs" />
-     <Compile Include="Assets\TouchJoysticks\Scripts\SingleJoystickTouchController.cs" />
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
@@ -194,14 +241,20 @@
      <None Include="Assets\GF_JustOneLevel\Character\Character_Witch_Dragon\ReadMe.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleBuilder.xml" />
      <None Include="Assets\GF_JustOneLevel\Localization\ChineseSimplified\Dictionaries\Default.xml" />
-     <None Include="Assets\SimpleUI\Fonts\Jupiter\LICENSE.txt" />
-     <None Include="Assets\Baker House\Readme.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Fonts\Jupiter\LICENSE.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Baker House\Readme.txt" />
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
-     <None Include="Assets\SimpleUI\Textures and Sprites\SF UI\Background\LICENSE.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildSettings.xml" />
-     <None Include="Assets\SimpleUI\Materials\UI-Default-No-Alpha.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Materials\UI-Default-No-Alpha.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
      <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildInfo.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -763,8 +816,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="UnityGameFramework.Runtime.csproj">
       <Project>{D47F4F3A-6605-F232-66CE-185F37EDE5D6}</Project>      <Name>UnityGameFramework.Runtime</Name>    </ProjectReference>
     <ProjectReference Include="GameFramework.csproj">

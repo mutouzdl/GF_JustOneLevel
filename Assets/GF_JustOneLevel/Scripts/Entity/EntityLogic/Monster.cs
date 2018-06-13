@@ -92,13 +92,15 @@ public class Monster : FightEntity {
         }
 
         int percent = (int)((monsterData.PowerPercent - 1) * 100);
+        string power = "";
         if (monsterData.PowerPercent > 1) {
-            msgText.text = $"<color=red>Up+{percent}%</color>";
-        } else if (monsterData.PowerPercent < 1) {
-            msgText.text = $"<color=gray>Down{percent}%</color>";
-        } else {
-            msgText.text = "";
+            power = $"<color=red>Up+{percent}%</color>";
+        } 
+        else if (monsterData.PowerPercent < 1) {
+            power = $"<color=gray>Down{percent}%</color>";
         }
+
+        msgText.text = $"{monsterData.Name} {power}";
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {

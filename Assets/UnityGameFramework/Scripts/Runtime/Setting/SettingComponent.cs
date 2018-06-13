@@ -55,7 +55,7 @@ namespace UnityGameFramework.Runtime
             Transform transform = settingHelper.transform;
             transform.SetParent(this.transform);
             transform.localScale = Vector3.one;
-
+            
             m_SettingManager.SetSettingHelper(settingHelper);
         }
 

@@ -19,7 +19,9 @@ public class ProcedureCheckVersion : ProcedureBase {
         GameEntry.Event.Subscribe (WebRequestFailureEventArgs.EventId, OnWebRequestFailure);
         GameEntry.Event.Subscribe (ResourceInitCompleteEventArgs.EventId, OnResourceInitComplete);
 
-        RequestVersion ();
+        /* 暂时没有资源更新的功能，直接初始化资源 */
+        // RequestVersion (); 
+        GameEntry.Resource.InitResources ();
     }
 
     protected override void OnLeave (ProcedureOwner procedureOwner, bool isShutdown) {

@@ -9,6 +9,7 @@ TagManager:
   - WeaponTrail
   - Wall
   - Creature
+  - LeftJoystick
   layers:
   - Default
   - TransparentFX

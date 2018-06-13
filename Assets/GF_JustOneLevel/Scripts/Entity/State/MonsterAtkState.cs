@@ -35,6 +35,10 @@ public class MonsterAtkState : MonsterBaseActionState {
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
+        if (GlobalGame.IsPause) {
+            ChangeState<MonsterIdleState> (fsm);
+        }
+
         atkTimeCounter += elapseSeconds;
 
         if (atkTimeCounter > 0.4) {

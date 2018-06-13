@@ -15,6 +15,10 @@ public class MonsterCreater : Entity {
 	private int createNum = 0;
 
 	private float timeCounter = 0;
+	/// <summary>
+	/// 过去的时间
+	/// </summary>
+	private float pastTime = 0;
 
 	protected override void OnInit (object userData) {
 		base.OnInit (userData);
@@ -34,8 +38,14 @@ public class MonsterCreater : Entity {
 		base.OnUpdate (elapseSeconds, realElapseSeconds);
 
 		timeCounter += elapseSeconds;
+		pastTime += elapseSeconds;
 
-		if (timeCounter < monsterCreaterData.Interval) {
+		if (pastTime < monsterCreaterData.StartTime) {
+			return;
+		}
+
+		// 第一个创建的怪物跳过创建间隔
+		if (createNum > 0 && timeCounter < monsterCreaterData.Interval) {
 			return;
 		}
 

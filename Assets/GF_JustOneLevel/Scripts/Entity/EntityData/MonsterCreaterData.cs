@@ -13,6 +13,7 @@ public class MonsterCreaterData : EntityData {
 
         AssetName = drMonsterCreater.AssetName;
         Name = drMonsterCreater.Name;
+        StartTime = drMonsterCreater.StartTime;
         Interval = drMonsterCreater.Interval;
         Probability = drMonsterCreater.Probability;
         PerNum = drMonsterCreater.PerNum;
@@ -44,6 +45,15 @@ public class MonsterCreaterData : EntityData {
     public float Interval {
         get;
         protected set;
+    }
+
+    /// <summary>
+    /// 开始创建时间（秒）
+    /// </summary>
+    /// <returns></returns>
+    public float StartTime {
+        get;
+        private set;
     }
 
     /// <summary>

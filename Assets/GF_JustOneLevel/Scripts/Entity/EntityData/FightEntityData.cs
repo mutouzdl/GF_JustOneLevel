@@ -44,6 +44,15 @@ public class FightEntityData : EntityData {
     }
 
     /// <summary>
+    /// 名字
+    /// </summary>
+    /// <returns></returns>
+    public string Name {
+        get;
+        protected set;
+    }
+
+    /// <summary>
     /// 魔法值
     /// </summary>
     /// <returns></returns>

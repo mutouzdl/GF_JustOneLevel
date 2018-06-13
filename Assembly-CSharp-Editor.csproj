@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Editor\DeviceModelConfigEditorWindow.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Editor\DeviceModelConfigInspector.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Editor\GameFrameworkConfigs.cs" />
@@ -676,12 +677,8 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{BF4A1F1A-C05D-04EF-CA03-583C88603CB9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{FA0AAE6F-76E7-7FC6-A65D-A8907515FF71}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{8EAA36A6-E45D-8755-2AF0-D79301F7039E}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="UnityGameFramework.Runtime.csproj">
       <Project>{D47F4F3A-6605-F232-66CE-185F37EDE5D6}</Project>      <Name>UnityGameFramework.Runtime</Name>    </ProjectReference>
     <ProjectReference Include="GameFramework.csproj">

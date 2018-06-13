@@ -1640,7 +1640,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4284572159
+    rgba: 4294967295
 --- !u!137 &137755083417602600
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

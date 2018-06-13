@@ -1,0 +1,6 @@
+﻿#,Id,AssetName,Delay,AddHPPercent,AddHP,AddAtk,AddGold,CreateCloneHeroTypeID,Position
+#,int,string,float,float,int,int,int,int,string
+#,编号,资源名称,产生效果的间隔,增加血量百分比,增加血量绝对值,增加攻击,增加金币,创建克隆英雄的ID,坐标
+,1,CureWater,3,0.05,1,0,0,0,3|1.5|3
+,2,CloneWater,5,-0.4,-2,0,-20,1000,26|0|3
+,3,EvilWater,1,-0.25,-3,1,0,0,3|1|26

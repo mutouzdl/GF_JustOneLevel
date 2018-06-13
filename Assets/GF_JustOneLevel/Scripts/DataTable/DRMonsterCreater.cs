@@ -30,6 +30,15 @@ public class DRMonsterCreater : IDataRow {
     }
 
     /// <summary>
+    /// 开始创建时间（秒）
+    /// </summary>
+    /// <returns></returns>
+    public float StartTime {
+        get;
+        private set;
+    }
+
+    /// <summary>
     /// 创建间隔（秒）
     /// </summary>
     public float Interval {
@@ -97,6 +106,7 @@ public class DRMonsterCreater : IDataRow {
         Id = int.Parse (text[index++]);
         AssetName = text[index++];
         Name = text[index++];
+        StartTime = float.Parse (text[index++]);
         Interval = float.Parse (text[index++]);
         Probability = int.Parse (text[index++]);
         PerNum = int.Parse (text[index++]);

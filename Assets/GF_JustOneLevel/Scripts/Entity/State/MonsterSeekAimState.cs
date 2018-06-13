@@ -29,7 +29,7 @@ public class MonsterSeekAimState : MonsterListenDamageState {
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
-        if (fsm.Owner.IsAtkCDing) {
+        if (fsm.Owner.IsAtkCDing || GlobalGame.IsPause) {
             return;
         }
 

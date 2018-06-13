@@ -138,7 +138,7 @@ namespace GameFramework.Setting
             {
                 throw new GameFrameworkException("Setting name is invalid.");
             }
-
+            
             return m_SettingHelper.GetBool(settingName, defaultValue);
         }
 

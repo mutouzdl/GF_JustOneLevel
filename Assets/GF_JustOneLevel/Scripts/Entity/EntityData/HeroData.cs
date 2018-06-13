@@ -12,6 +12,7 @@ public class HeroData : FightEntityData {
             return;
         }
 
+        Name = drHero.Name;
         HP = drHero.HP;
         MaxMP = drHero.MP;
         MaxHP = HP;

@@ -23,7 +23,13 @@ public class Hero : FightEntity {
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-        weaponTrailController = new WeaponTrialController (FindObjectOfType<WeaponTrail> ());
+
+        GameObject weaponTrailObj = GameObject.FindGameObjectWithTag ("WeaponTrail");
+        WeaponTrail weaponTrail = weaponTrailObj.GetOrAddComponent<WeaponTrail> ();
+        weaponTrail.height = 0.6f;
+        weaponTrail.time = 0.3f;
+
+        weaponTrailController = new WeaponTrialController (weaponTrail);
     }
 
     protected override void OnShow (object userData) {
@@ -124,11 +130,20 @@ public class Hero : FightEntity {
     }
 
     protected override IMoveController CreateMoveController () {
-        return new LeftJoystickMoveController (FindObjectOfType<LeftJoystick> ());
+        GameObject leftJoystickObj = GameObject.FindGameObjectWithTag ("LeftJoystick");
+
+        if (leftJoystickObj == null) {
+            return null;
+        }
+        
+        LeftJoystick leftJoystick = leftJoystickObj.GetOrAddComponent<LeftJoystick> ();
+        leftJoystick.joystickStaysInFixedPosition = true;
+
+        return new LeftJoystickMoveController (leftJoystick);
     }
 
-    protected override void OnFireWeapon() {
-        SendRefreshPropEvent();
+    protected override void OnFireWeapon () {
+        SendRefreshPropEvent ();
     }
 
     public override ImpactData GetImpactData () {
@@ -140,6 +155,10 @@ public class Hero : FightEntity {
     /// </summary>
     /// <param name="aimEntity">攻击目标</param>
     public void PerformAttack (FightEntity aimEntity) {
+        if (IsDead) {
+            return;
+        }
+
         IsAtkCDing = true;
         heroStateFsm.FireEvent (this, HeroAttackEventArgs.EventId);
 
@@ -172,6 +191,8 @@ public class Hero : FightEntity {
 
         /* 发送刷新属性消息 */
         SendRefreshPropEvent ();
+
+        Time.timeScale = 1;
     }
 
     /// <summary>
@@ -203,10 +224,20 @@ public class Hero : FightEntity {
     }
 
     /// <summary>
+    /// 根据给定的属性，加强英雄
+    /// </summary>
+    /// <param name="atkPowerUp"></param>
+    /// <param name="defPowerUp"></param>
+    /// <param name="hpPowerUp"></param>
+    public void PowerUp (int atkPowerUp, int defPowerUp, int hpPowerUp) {
+        this.heroData.PowerUp (atkPowerUp, defPowerUp, hpPowerUp);
+    }
+
+    /// <summary>
     /// 吸收怪物属性，加强英雄属性
     /// </summary>
     /// <param name="data"></param>
-    private void PowerUp (MonsterData data) {
+    private void PowerUpByMonster (MonsterData data) {
         int atkPowerUp = data.Atk / 5;
         int defPowerUp = data.Def / 6;
         int hpPowerUp = data.HP / 10;
@@ -245,7 +276,7 @@ public class Hero : FightEntity {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
 
             /* 加强英雄属性 */
-            PowerUp (data);
+            PowerUpByMonster (data);
 
             /* 刷新血量条 */
             RefreshHPBar ();
