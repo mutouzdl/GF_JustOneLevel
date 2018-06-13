@@ -31,6 +31,12 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
+        if (fsm.Owner.IsLockingAim) {
+            Entity aim = fsm.Owner.LockingAim;
+            fsm.Owner.transform.LookAt (aim.transform);
+            return;
+        }
+
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
         if (inputVec.y != 0) {
             /* 移动 */

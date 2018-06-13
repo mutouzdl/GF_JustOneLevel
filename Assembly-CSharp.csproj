@@ -226,6 +226,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIDialog.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIFormId.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UILoading.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIMenu.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerMessage.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerOperate.cs" />

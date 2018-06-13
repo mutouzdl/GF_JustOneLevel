@@ -5,3 +5,4 @@
 ,10,玩家操作UI,UIPlayerOperate,Default,false,false
 ,11,玩家信息UI,UIPlayerMessage,Default,false,false
 ,30,全局弹窗,UIDialog,Default,true,true
+,100,加载界面,UILoading,Default,false,true
