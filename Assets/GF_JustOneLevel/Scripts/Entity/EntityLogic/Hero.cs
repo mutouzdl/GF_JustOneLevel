@@ -239,10 +239,10 @@ public class Hero : FightEntity {
     /// <param name="data"></param>
     private void PowerUpByMonster (MonsterData data) {
         int atkPowerUp = data.Atk / 5;
-        int defPowerUp = data.Def / 6;
+        int defPowerUp = data.Def / 10;
         int hpPowerUp = data.HP / 10;
 
-        atkPowerUp = atkPowerUp > 0 ? atkPowerUp : 1;
+        atkPowerUp = atkPowerUp > 0 ? atkPowerUp : 0;
         defPowerUp = defPowerUp > 0 ? defPowerUp : 0;
         hpPowerUp = hpPowerUp > 0 ? hpPowerUp : 1;
 
