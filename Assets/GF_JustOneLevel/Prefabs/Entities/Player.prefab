@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4312578626263754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HPBarPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4935816600728928}
   - component: {fileID: 137277054050681332}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4683137106806942}
   - component: {fileID: 33000491749966346}
   - component: {fileID: 23514557180719018}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: WeaponTrail
   m_TagString: WeaponTrail
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4617197518618458}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Locator_Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4905486687614536}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Arm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4796832764301770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4105640739249614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpVector_Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 20823596033871006}
   - component: {fileID: 124260308980937614}
   - component: {fileID: 45450609109677124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4146231908188880}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4372054682785304}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Spine02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4928994408595894}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_ForeArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4078664091647190}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UpVector_Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4506138570488586}
   - component: {fileID: 33711883143785480}
   - component: {fileID: 23321119829282574}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4243623622628928}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Texture Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4002848844923454}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4974242080162412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4796558668455632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4524711517385598}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Foot_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4431912627886050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Spine01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4737484778523016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FullBodyIK (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4646576080747472}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4679692592496502}
   - component: {fileID: 137166074741696274}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sword02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4211150137940834}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_ForeArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4090614289957794}
   - component: {fileID: 108480852060411940}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4015020973034446}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4929220310724006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Locator_Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4111184419721452}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_UpperLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4923830261433848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FullBodyIK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4356728041297438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Locator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 4607495446440246}
   - component: {fileID: 65912169698222490}
   - component: {fileID: 95553373638069486}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Creature
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4807024897671928}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_UpperLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4105983271010462}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Arm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4313143288906686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Skeleton_Foot_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4053237539804970}
   - component: {fileID: 108414579552599144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4561328181936660}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Group Locator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4816664292752160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4707472145396878}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Goal (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

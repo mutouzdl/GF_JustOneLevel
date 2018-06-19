@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4902440157816268}
   - component: {fileID: 23408483733036380}
   - component: {fileID: 102205111339976346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: msgText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4769366064283434}
   - component: {fileID: 137091136604446890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ModelSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4627356632741382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4950683424282712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slime_Joint02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4460654885992448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HPBarPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4896746563507398}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slime_Joint03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4333704803356186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slime_Joint01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4210021702076582}
   - component: {fileID: 65874329916168052}
   - component: {fileID: 95595453233047304}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Monster1
   m_TagString: Creature
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4773653637290896}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

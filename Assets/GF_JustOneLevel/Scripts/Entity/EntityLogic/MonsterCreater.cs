@@ -32,6 +32,10 @@ public class MonsterCreater : Entity {
 			Log.Error ("MonsterCreater data is invalid.");
 			return;
 		}
+
+		createNum = 0;
+		timeCounter = 0;
+		pastTime = 0;
 	}
 
 	protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {

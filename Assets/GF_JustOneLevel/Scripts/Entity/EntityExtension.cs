@@ -87,6 +87,17 @@ using UnityGameFramework.Runtime;
             GameEntry.Entity.ShowEntity(data.Id, logicType, AssetUtility.GetEntityAsset(drEntity.AssetName), entityGroup, data);
         }
 
+        public static void ShowFlowText(Type logicType, string entityGroup, EntityData data)
+        {
+            if (data == null)
+            {
+                Log.Warning("Data is invalid.");
+                return;
+            }
+
+            GameEntry.Entity.ShowEntity(data.Id, logicType, AssetUtility.GetEntityAsset("FlowText"), entityGroup, data);
+        }
+
         public static void ShowBullet(Type logicType, string entityGroup, EntityData data)
         {
             if (data == null)

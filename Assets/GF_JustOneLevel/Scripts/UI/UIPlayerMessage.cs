@@ -30,6 +30,8 @@ public class UIPlayerMessage : UGuiForm {
     protected override void OnOpen (object userData) {
         base.OnOpen (userData);
 
+        totalPrize = 0;
+        
         RefreshGold ();
 
         /* 订阅事件 */

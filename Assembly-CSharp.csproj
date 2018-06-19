@@ -155,6 +155,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\BulletEffectData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\EntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\FightEntityData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\FlowTextData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\HeroData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MargicWaterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterCreaterData.cs" />
@@ -166,6 +167,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\BulletEffect.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Entity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\FightEntity.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\FlowText.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Hero.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Monster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\MonsterCreater.cs" />
@@ -232,6 +234,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerOperate.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AIUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\AssetUtility.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\ColorUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\PositionUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />
@@ -241,22 +244,26 @@
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />
      <None Include="Assets\GF_JustOneLevel\Character\Character_Witch_Dragon\ReadMe.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleBuilder.xml" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\readme.txt" />
      <None Include="Assets\GF_JustOneLevel\Localization\ChineseSimplified\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Baker House\Readme.txt" />
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween50.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildSettings.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Materials\UI-Default-No-Alpha.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween46.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
      <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildInfo.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween43.xml" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
@@ -457,6 +464,18 @@
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity2018/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Assets/GF_JustOneLevel/ExtensionAsset/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween43">
+ <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Assets/GF_JustOneLevel/ExtensionAsset/DOTween/DOTween43.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween46">
+ <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Assets/GF_JustOneLevel/ExtensionAsset/DOTween/DOTween46.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween50">
+ <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Assets/GF_JustOneLevel/ExtensionAsset/DOTween/DOTween50.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
  <HintPath>C:/Users/mutou/Documents/Unity3D/GF_JustOneLevel/Assets/GF_JustOneLevel/Libraries/LitJson.dll</HintPath>

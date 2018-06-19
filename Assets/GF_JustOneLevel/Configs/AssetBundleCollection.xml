@@ -3,7 +3,9 @@
   <AssetBundleCollection>
     <AssetBundles>
       <AssetBundle Name="DataTables" LoadType="0" Packed="False" />
-      <AssetBundle Name="Localization" LoadType="0" Packed="False" />
+      <AssetBundle Name="Localizarion/en" LoadType="0" Packed="False" />
+      <AssetBundle Name="Localizarion/zh" LoadType="0" Packed="False" />
+      <AssetBundle Name="Material" LoadType="0" Packed="False" />
       <AssetBundle Name="Prefabs" LoadType="0" Packed="False" />
       <AssetBundle Name="Scenes" LoadType="0" Packed="False" />
       <AssetBundle Name="SkyBox" LoadType="0" Packed="False" />
@@ -18,9 +20,11 @@
       <Asset Guid="0e1880cccbb5be6459eb99f01a969fb8" AssetBundleName="DataTables" />
       <Asset Guid="10310274d127b2843a2c250f0065c6c6" AssetBundleName="Sounds" />
       <Asset Guid="13f9733ba444da349be170e978d01bcf" AssetBundleName="Scenes" />
+      <Asset Guid="14869ac0d4433f04db1704e39d03412e" AssetBundleName="Localizarion/en" />
       <Asset Guid="172779250d764a54cb3c58d6d1d05171" AssetBundleName="Prefabs" />
       <Asset Guid="19e2485c6f92d6944ad20466ac77b04c" AssetBundleName="SkyBox" />
       <Asset Guid="1b3d0654baf2b08429ee3eab2a3cf3e0" AssetBundleName="DataTables" />
+      <Asset Guid="207afd1f924a17849a5be4052ca4fced" AssetBundleName="Prefabs" />
       <Asset Guid="26260b7725f0216498a0909da1c4236a" AssetBundleName="DataTables" />
       <Asset Guid="2c466a6bdf3c91940bdb4f3a839a76fb" AssetBundleName="Textures" />
       <Asset Guid="2cb6ff6533d7e22499d23518699289e8" AssetBundleName="Prefabs" />
@@ -35,11 +39,12 @@
       <Asset Guid="4d0391f078db24fac9f5cba3075f9f5d" AssetBundleName="Prefabs" />
       <Asset Guid="4ec86a9a76cede749b640a354d31e068" AssetBundleName="DataTables" />
       <Asset Guid="547e367b5b43c494e90431a6e38e87ac" AssetBundleName="SkyBox" />
+      <Asset Guid="5688d1318608fef4f84f7d511717d8c4" AssetBundleName="Material" />
       <Asset Guid="63458007667ec944b9c8807a037d9584" AssetBundleName="DataTables" />
       <Asset Guid="6569d615e60deb044a3b68eb2dd295fc" AssetBundleName="DataTables" />
       <Asset Guid="6601b262566e8ed48bcd94e544e0fd2d" AssetBundleName="SkyBox" />
       <Asset Guid="6ccf77d7147492e479cae84a1d8db585" AssetBundleName="Sounds" />
-      <Asset Guid="77cbb7c5404c10242ab59953e0746314" AssetBundleName="Localization" />
+      <Asset Guid="77cbb7c5404c10242ab59953e0746314" AssetBundleName="Localizarion/zh" />
       <Asset Guid="7bb0d08559bd4aa4d88de18fe673f3cc" AssetBundleName="DataTables" />
       <Asset Guid="7c750071e9a139c45872b5662f0f3236" AssetBundleName="Prefabs" />
       <Asset Guid="7e077c5370349b247929c95a8b8ce75e" AssetBundleName="SkyBox" />
@@ -51,7 +56,7 @@
       <Asset Guid="95ea649fd36bfd54096f8556db5c71de" AssetBundleName="Prefabs" />
       <Asset Guid="99237d2b95093834faea4dac2cfe3628" AssetBundleName="Scenes" />
       <Asset Guid="9bd59ae7b7fda6f46971cf71d5133495" AssetBundleName="Prefabs" />
-      <Asset Guid="9be2e1e45f4edd74c8764538ad306b78" AssetBundleName="Localization" />
+      <Asset Guid="9be2e1e45f4edd74c8764538ad306b78" AssetBundleName="Localizarion/zh" />
       <Asset Guid="9ddbc6cebc222f340a411e52f757ad63" AssetBundleName="Prefabs" />
       <Asset Guid="a3b25b0ec66a73046b6e4b9820407805" AssetBundleName="DataTables" />
       <Asset Guid="a942f1426e9f8ad41a0d7c1b2d2c6940" AssetBundleName="Prefabs" />
@@ -59,6 +64,7 @@
       <Asset Guid="b175d767752c32045a13acb6b2254a2a" AssetBundleName="Prefabs" />
       <Asset Guid="b2e1927a9cfbd4c03a114b0166c00dce" AssetBundleName="Prefabs" />
       <Asset Guid="b85f12ecc21a98c4992a4a945dccd04f" AssetBundleName="Prefabs" />
+      <Asset Guid="bb5503fe5a25f2f498da035f1f3e58ee" AssetBundleName="Localizarion/en" />
       <Asset Guid="c020269a896f92c4d8b0e1f3c40cdad9" AssetBundleName="Prefabs" />
       <Asset Guid="cce6cd7ea00759943bccc8d5ada0a749" AssetBundleName="Prefabs" />
       <Asset Guid="cde24a2933f42e94caeb9a6f90d2eaf4" AssetBundleName="Prefabs" />
@@ -69,6 +75,7 @@
       <Asset Guid="e4663e1589c76144ba128505b69f27ec" AssetBundleName="Prefabs" />
       <Asset Guid="e5254e67b8570024fa707ca1d8d60317" AssetBundleName="Prefabs" />
       <Asset Guid="e5ff26cb8105f5f438ef0a5a4eaadecc" AssetBundleName="Sounds" />
+      <Asset Guid="e666d34a6d6aaff4696ddf44226419e5" AssetBundleName="Prefabs" />
       <Asset Guid="e880e8f46ad7c1040a57c788f05114eb" AssetBundleName="Prefabs" />
       <Asset Guid="ebd819078b83f244ea6273fd7d5263c2" AssetBundleName="DataTables" />
       <Asset Guid="ed5d48f6d2c29444ca73e9121e9d935a" AssetBundleName="Prefabs" />

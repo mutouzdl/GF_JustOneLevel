@@ -43,7 +43,7 @@ public abstract class FightEntity : Entity {
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-        CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
+        // CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
     }
 
     protected override void OnShow (object userData) {
@@ -101,8 +101,7 @@ public abstract class FightEntity : Entity {
         if ((damageHP > 0 && damageHP < 1) || (damageHP < 0 && damageHP > -1)) {
             if (effectFollowMaxHP) {
                 changeHP = (int) (fightEntityData.MaxHP * damageHP);
-            }
-            else {
+            } else {
                 changeHP = (int) (fightEntityData.HP * damageHP);
             }
         } else {
@@ -129,6 +128,15 @@ public abstract class FightEntity : Entity {
 
             OnCure ();
         }
+
+        FlowTextData flowTextData = new FlowTextData (EntityExtension.GenerateSerialId (), this.Id, -changeHP);
+        flowTextData.Position = this.CachedTransform.position + new Vector3 (0.4f, 1, 0);
+        flowTextData.Rotation = Camera.main.transform.rotation;
+
+        EntityExtension.ShowFlowText (
+            typeof (FlowText),
+            "FlowTextGroup", flowTextData
+        );
 
         // 更新血量条
         RefreshHPBar ();
@@ -249,8 +257,6 @@ public abstract class FightEntity : Entity {
         AIUtility.PerformCollision (this, entity);
     }
 
-
-
     #region 虚函数
 
     /// <summary>
@@ -293,7 +299,7 @@ public abstract class FightEntity : Entity {
     public IMoveController MoveController {
         get {
             if (moveController == null) {
-                moveController = CreateMoveController();
+                moveController = CreateMoveController ();
             }
             return moveController;
         }

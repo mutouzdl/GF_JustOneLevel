@@ -78,7 +78,7 @@ public class BulletEffect : Entity {
     private void InitRayEffect () {
         // 添加线
         lineRenderer = gameObject.GetOrAddComponent<LineRenderer> ();
-        lineRenderer.material = new Material (Shader.Find ("Particles/Additive"));
+        // lineRenderer.material = new Material (Shader.Find ("Particles/Additive"));
         lineRenderer.widthMultiplier = 0.2f;
         lineRenderer.useWorldSpace = true;
 
