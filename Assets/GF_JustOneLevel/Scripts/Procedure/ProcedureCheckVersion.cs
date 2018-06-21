@@ -119,9 +119,9 @@ public class ProcedureCheckVersion : ProcedureBase {
                 Title = GameEntry.Localization.GetString ("ForceUpdate.Title"),
                 Message = GameEntry.Localization.GetString ("ForceUpdate.Message"),
                 ConfirmText = GameEntry.Localization.GetString ("ForceUpdate.UpdateButton"),
-                OnClickConfirm = delegate (object userData) { Application.OpenURL (versionInfo.GameUpdateUrl); },
+                OnClickConfirm = delegate (object userData) { Application.OpenURL (versionInfo.GameUpdateUrl); return true; },
                 CancelText = GameEntry.Localization.GetString ("ForceUpdate.QuitButton"),
-                OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown (ShutdownType.Quit); },
+                OnClickCancel = delegate (object userData) { UnityGameFramework.Runtime.GameEntry.Shutdown (ShutdownType.Quit);  },
             });
 
             return;

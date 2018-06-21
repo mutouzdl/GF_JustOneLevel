@@ -2,13 +2,13 @@
 <UnityGameFramework>
   <AssetBundleBuilder>
     <Settings>
-      <InternalResourceVersion>31</InternalResourceVersion>
+      <InternalResourceVersion>36</InternalResourceVersion>
       <WindowsSelected>True</WindowsSelected>
       <MacOSXSelected>False</MacOSXSelected>
       <IOSSelected>False</IOSSelected>
       <AndroidSelected>True</AndroidSelected>
       <WindowsStoreSelected>False</WindowsStoreSelected>
-      <ZipSelected>True</ZipSelected>
+      <ZipSelected>False</ZipSelected>
       <RecordScatteredDependencyAssetsSelected>False</RecordScatteredDependencyAssetsSelected>
       <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
       <DisableWriteTypeTreeSelected>False</DisableWriteTypeTreeSelected>

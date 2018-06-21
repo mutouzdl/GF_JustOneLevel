@@ -43,6 +43,9 @@ public class Hero : FightEntity {
 
         weaponTrailController.Reset ();
 
+        /* 如果不想一直显示武器效果，可以注释掉下面这行，并且把PlayTrailEffect和ClearTrailEffect里的函数注释放开 */
+        weaponTrailController.PlayTrailEffect();
+
         ResetAtkCD ();
 
         /* 初始化状态机 */
@@ -199,14 +202,16 @@ public class Hero : FightEntity {
     /// 播放拖尾效果
     /// </summary>
     public void PlayTrailEffect () {
-        weaponTrailController.PlayTrailEffect ();
+        /* 英雄在攻击怪物时会调用这个函数，我注释掉是因为我希望武器效果一直存在，这样比较酷 */
+        // weaponTrailController.PlayTrailEffect ();
     }
 
     /// <summary>
     /// 清除拖尾效果
     /// </summary>
     public void ClearTrialEffect () {
-        weaponTrailController.ClearTrialEffect ();
+        /* 英雄在停止攻击时会调用这个函数，我注释掉是因为我希望武器效果一直存在，这样比较酷 */
+        // weaponTrailController.ClearTrialEffect ();
     }
 
     public HeroData HeroData {

@@ -95,11 +95,10 @@ public class ProcedureGame : ProcedureBase {
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
 
         if (gold < Constant.Player.ContinueCostGold) {
-            int? id = 0;
-            id = GameEntry.UI.OpenDialog (new DialogParams () {
+            GameEntry.UI.OpenDialog (new DialogParams () {
                 Title = GameEntry.Localization.GetString ("Alert.OperateFail"),
                 Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
-                OnClickConfirm = (userData) => { GameEntry.UI.CloseDialog(id); },
+                OnClickConfirm = (object userData) => { return true; },
             });
             return;
         }
@@ -125,16 +124,15 @@ public class ProcedureGame : ProcedureBase {
         string des = GameEntry.Localization.GetString ("GameOver.Des");
         string ResurgenceDes = GameEntry.Localization.GetString ("GameOver.ResurgenceDes");
         string message = $"{des}\n<color=red>{ResurgenceDes}</color>";
-        int? id = 0;
 
-        id = GameEntry.UI.OpenDialog (new DialogParams () {
+        GameEntry.UI.OpenDialog (new DialogParams () {
             Mode = DialogParams.DialogMode.双按钮,
             Title = GameEntry.Localization.GetString ("GameOver.Title"),
             Message = message,
             ConfirmText = GameEntry.Localization.GetString("Operate.Continue"),
             CancelText = GameEntry.Localization.GetString("Operate.Back"),
-            OnClickConfirm = (object userData) => { GameEntry.UI.CloseDialog(id); Continue(); },
-            OnClickCancel = (object userData) => { GameEntry.UI.CloseDialog(id); Back(); },
+            OnClickConfirm = (object userData) => { Continue(); return false; },
+            OnClickCancel = (object userData) => { Back(); },
         });
 
         isPause = true;
