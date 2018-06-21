@@ -92,27 +92,13 @@ public static class AIUtility {
                 return;
             }
 
-            int entityDamageHP = CalcDamageHP (bulletImpactData.Attack, entityImpactData.Defense);
-
-            entity.ApplyDamage (entityDamageHP);
+            entity.ApplyDamage (bulletImpactData.Attack);
 
             if (bullet.SubEffectTimes ()) {
                 GameEntry.Entity.HideEntity (bullet.Id);
             }
             return;
         }
-    }
-
-    private static int CalcDamageHP (int attack, int defense) {
-        if (attack <= 0) {
-            return 0;
-        }
-
-        if (defense < 0) {
-            defense = 0;
-        }
-
-        return attack - defense;
     }
 
     private struct CampPair {

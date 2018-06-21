@@ -23,8 +23,8 @@ public class FlowTextData : EntityData {
     /// <param name="entityId"></param>
     /// <param name="ownerId"></param>
     /// <param name="addHP"></param>
-    public FlowTextData (int entityId, int ownerId, int addHP) : base(entityId, 0) {
-        if (addHP >= 0) {
+    public FlowTextData (int entityId, int ownerId, int addHP, bool forceAdd = false) : base(entityId, 0) {
+        if (addHP > 0 || forceAdd) {
             Text = $"+{addHP}";
             Color = "#98FB98";
         }

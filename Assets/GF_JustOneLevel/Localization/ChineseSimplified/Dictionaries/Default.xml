@@ -12,7 +12,7 @@
     <String Key="Message.GoldNotEnough" Value="金币不足" />
     <String Key="GameOver.Title" Value="你好像输了" />
     <String Key="GameOver.Des" Value="放心，你并不是打不赢，你只是单纯的输了。" />
-    <String Key="GameOver.ResurgenceDes" Value="不过，你可以花费500金币续命，要继续吗？" />
+    <String Key="GameOver.ResurgenceDes" Value="不过，你可以花费200金币续命，要继续吗？" />
     <String Key="Property.Atk" Value="攻击" />
     <String Key="Property.Def" Value="防御" />
     <String Key="Property.HP" Value="血量" />

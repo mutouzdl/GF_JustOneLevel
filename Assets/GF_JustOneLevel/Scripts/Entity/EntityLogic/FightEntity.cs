@@ -107,6 +107,8 @@ public abstract class FightEntity : Entity {
         } else {
             changeHP = (int) damageHP;
         }
+
+        bool forceAdd = false;
         // 伤害
         if (changeHP > 0) {
             changeHP -= fightEntityData.Def;
@@ -115,21 +117,26 @@ public abstract class FightEntity : Entity {
                 changeHP = 0;
             }
 
-            fightEntityData.HP -= changeHP;
+            if (changeHP > 0) {
+                fightEntityData.HP -= changeHP;
 
-            OnHurt ();
+                OnHurt ();
+            }
         }
         // 加血
         else if (changeHP < 0) {
-            fightEntityData.HP += -changeHP;
-            if (fightEntityData.HP > fightEntityData.MaxHP) {
-                fightEntityData.HP = fightEntityData.MaxHP;
+            forceAdd = true;
+
+            if (fightEntityData.HP - changeHP > fightEntityData.MaxHP) {
+                changeHP = fightEntityData.HP - fightEntityData.MaxHP;
             }
+
+            fightEntityData.HP += -changeHP;
 
             OnCure ();
         }
 
-        FlowTextData flowTextData = new FlowTextData (EntityExtension.GenerateSerialId (), this.Id, -changeHP);
+        FlowTextData flowTextData = new FlowTextData (EntityExtension.GenerateSerialId (), this.Id, -changeHP, forceAdd);
         flowTextData.Position = this.CachedTransform.position + new Vector3 (0.4f, 1, 0);
         flowTextData.Rotation = Camera.main.transform.rotation;
 

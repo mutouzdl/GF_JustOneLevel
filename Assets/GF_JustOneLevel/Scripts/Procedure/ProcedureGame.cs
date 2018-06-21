@@ -91,7 +91,7 @@ public class ProcedureGame : ProcedureBase {
     /// <summary>
     /// 继续游戏，续命
     /// </summary>
-    public void Continue () {
+    public bool Continue () {
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
 
         if (gold < Constant.Player.ContinueCostGold) {
@@ -100,7 +100,7 @@ public class ProcedureGame : ProcedureBase {
                 Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
                 OnClickConfirm = (object userData) => { return true; },
             });
-            return;
+            return false;
         }
 
         // 扣除金币进行复活
@@ -113,6 +113,8 @@ public class ProcedureGame : ProcedureBase {
         uiPlayerMessage.RefreshGold();
         
         isPause = false;
+
+        return true;
     }
 
     private void GameOver (ProcedureOwner procedureOwner) {
@@ -131,7 +133,7 @@ public class ProcedureGame : ProcedureBase {
             Message = message,
             ConfirmText = GameEntry.Localization.GetString("Operate.Continue"),
             CancelText = GameEntry.Localization.GetString("Operate.Back"),
-            OnClickConfirm = (object userData) => { Continue(); return false; },
+            OnClickConfirm = (object userData) => { return Continue(); },
             OnClickCancel = (object userData) => { Back(); },
         });
 

@@ -128,6 +128,11 @@ public class BulletEffect : Entity {
             if (entity != null) {
                 entity.ApplyDamage(bulletData.Attack);
             }
+            else {
+                isStop = true;
+                hideTime = Time.time + 0.1f;
+                return;
+            }
 
             // 因为线的长度很长（上面乘以了100），碰撞的时候需要将线最后一个坐标重新设置成碰撞点所在坐标
             int preIndex = lineRenderer.positionCount - 1;
@@ -136,7 +141,7 @@ public class BulletEffect : Entity {
             // 达到最大效果次数，停止折射
             if (lineRenderer.positionCount > bulletEffectData.EffectTimes) {
                 isStop = true;
-                hideTime = Time.time + 0.3f;
+                hideTime = Time.time + 0.1f;
                 return;
             }
 
