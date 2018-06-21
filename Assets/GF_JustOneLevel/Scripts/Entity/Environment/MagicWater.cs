@@ -54,10 +54,11 @@ public class MagicWater : Entity {
 				}
 
 				// 改变血量
-				if (magicWaterData.AddHPPercent != 0) {
+				if (magicWaterData.AddHPPercent != 0 
+					&& Mathf.Abs((int)(hero.HeroData.MaxHP * magicWaterData.AddHPPercent)) > Mathf.Abs(magicWaterData.AddHP)) {
 					hero.OnDamage (-magicWaterData.AddHPPercent, true);
 				}
-				if (magicWaterData.AddHP != 0) {
+				else if (magicWaterData.AddHP != 0) {
 					hero.OnDamage (-magicWaterData.AddHP, true);
 				}
 
