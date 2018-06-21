@@ -1,3 +1,4 @@
+using DG.Tweening;
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityGameFramework.Runtime;
 
 public class MonsterHurtState : MonsterBaseActionState {
     private float hurtTimeCounter = 0;
+    private float preHurtTime = 0;  // 上一次受伤的时间
+    private int hurtTimes = 0; // 连续受伤次数
 
     /// <summary>
     /// 有限状态机状态初始化时调用。
@@ -23,10 +26,29 @@ public class MonsterHurtState : MonsterBaseActionState {
 
         hurtTimeCounter = 0;
 
+        // 积累受伤次数
+        if (preHurtTime != 0 && Time.time - preHurtTime < 2.5f) {
+            hurtTimes++;
+        } 
+        else {
+            preHurtTime = 0;
+            hurtTimes = 0;
+        }
+
+        // 累积受伤3次，则向后弹一段距离
+        if (hurtTimes == 3) {
+            fsm.Owner.CachedTransform.DOMove(fsm.Owner.CachedTransform.position - fsm.Owner.CachedTransform.forward * 2, 0.5f);
+            hurtTimes = 0;
+        }
+
+        // 播放动画
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.hurt);
 
+        // 执行受伤逻辑
         int damageHP = fsm.GetData<VarInt> (Constant.EntityData.DamageHP).Value;
         fsm.Owner.OnDamage (damageHP);
+
+        preHurtTime = Time.time;
     }
 
     /// <summary>
