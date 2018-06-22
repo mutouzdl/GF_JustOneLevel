@@ -41,7 +41,6 @@ public class MonsterData : FightEntityData {
         SeekRange = SeekRange * powerPercent;
         AtkSpeed = AtkSpeed - AtkSpeed * (powerPercent - 1);
         Atk = (int) (Atk * powerPercent);
-        Atk = (int) (Atk * powerPercent);
         Def = (int) (Def * powerPercent);
         HP = (int) (HP * powerPercent);
 
