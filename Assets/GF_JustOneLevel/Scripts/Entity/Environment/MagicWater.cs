@@ -40,6 +40,8 @@ public class MagicWater : Entity {
 
 	void OnTriggerStay (Collider other) {
 		if (isMagicable == true) {
+			isMagicable = false;
+			
 			Hero hero = other.gameObject.GetComponent<Hero> ();
 			if (hero != null) {
 				// 改变金币
