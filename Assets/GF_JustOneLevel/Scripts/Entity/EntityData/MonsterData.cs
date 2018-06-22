@@ -45,8 +45,8 @@ public class MonsterData : FightEntityData {
         HP = (int) (HP * powerPercent);
 
         MaxHP = HP;
-        if (AtkSpeed < 0.1f) {
-            AtkSpeed = 0.1f;
+        if (AtkSpeed < 0.5f) {
+            AtkSpeed = 0.5f;
         }
 
         PowerPercent = powerPercent;
