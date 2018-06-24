@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponTrialController {
-	private WeaponTrail weaponTrail;
+	private WeaponTrail weaponTrail = null;
 
 	private float t = 0.033f;
 	private float animationIncrement = 0.003f;
@@ -18,6 +18,10 @@ public class WeaponTrialController {
 	}
 
 	public void Update () {
+		if (weaponTrail == null) {
+			return;
+		}
+		
 		t = Mathf.Clamp (Time.deltaTime, 0, 0.066f);
 
 		if (t > 0) {

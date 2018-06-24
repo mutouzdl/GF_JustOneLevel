@@ -157,7 +157,6 @@ using UnityGameFramework.Runtime;
 
         public static void ShowParticle(Type logicType, string entityGroup, EntityData data)
         {
-            Log.Warning("ShowParticle");
             if (data == null)
             {
                 Log.Warning("Data is invalid.");

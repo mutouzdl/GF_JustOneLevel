@@ -8,8 +8,6 @@ using UnityEngine;
 public class ParticleData : EntityData {
     public ParticleData (int entityId, int typeId, int ownerId) : base (entityId, typeId) {
         this.OwnerId = ownerId;
-
-        Log.Warning("entityId:" + entityId + ", typeId:" + typeId + ", ownerId:" + ownerId);
     }
 
     /// <summary>

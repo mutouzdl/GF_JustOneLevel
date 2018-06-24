@@ -100,7 +100,7 @@ public class Monster : FightEntity {
             power = $"<color=gray>Down{percent}%</color>";
         }
 
-        msgText.text = $"{monsterData.Name} {power}\n攻{monsterData.Atk} 防{monsterData.Def}";
+        msgText.text = $"{monsterData.Name} {power}\n攻{monsterData.Atk}+ 防{monsterData.Def}";
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
