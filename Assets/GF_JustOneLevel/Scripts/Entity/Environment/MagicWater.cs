@@ -1,15 +1,22 @@
 using System.Collections;
 using GameFramework;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 /// <summary>
 /// 带有特殊效果的泉水
 /// </summary>
 public class MagicWater : Entity {
+	private EParticle particle = null;
 	private float nextMagicTime = 0f;
 	private bool isMagicable = false;
 
 	private MagicWaterData magicWaterData = null;
+
+	protected override void OnInit (object userData) {
+		base.OnInit (userData);
+
+	}
 
 	protected override void OnShow (object userData) {
 		base.OnShow (userData);
@@ -36,12 +43,26 @@ public class MagicWater : Entity {
 		}
 	}
 
-	void OnTriggerEnter (Collider other) { }
+	protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
+		base.OnAttached (childEntity, parentTransform, userData);
+
+		if (childEntity is EParticle) {
+			particle = (EParticle) childEntity;
+		}
+	}
+
+	void OnTriggerEnter (Collider other) {
+		Hero hero = other.gameObject.GetComponent<Hero> ();
+		if (hero != null) {
+			ParticleData data = new ParticleData (EntityExtension.GenerateSerialId (), magicWaterData.ParticleTypeID, this.Id);
+			EntityExtension.ShowParticle (typeof (EParticle), "ParticleGroup", data);
+		}
+	}
 
 	void OnTriggerStay (Collider other) {
 		if (isMagicable == true) {
 			isMagicable = false;
-			
+
 			Hero hero = other.gameObject.GetComponent<Hero> ();
 			if (hero != null) {
 				// 改变金币
@@ -56,11 +77,10 @@ public class MagicWater : Entity {
 				}
 
 				// 改变血量
-				if (magicWaterData.AddHPPercent != 0 
-					&& Mathf.Abs((int)(hero.HeroData.MaxHP * magicWaterData.AddHPPercent)) > Mathf.Abs(magicWaterData.AddHP)) {
+				if (magicWaterData.AddHPPercent != 0 &&
+					Mathf.Abs ((int) (hero.HeroData.MaxHP * magicWaterData.AddHPPercent)) > Mathf.Abs (magicWaterData.AddHP)) {
 					hero.OnDamage (-magicWaterData.AddHPPercent, true);
-				}
-				else if (magicWaterData.AddHP != 0) {
+				} else if (magicWaterData.AddHP != 0) {
 					hero.OnDamage (-magicWaterData.AddHP, true);
 				}
 
@@ -87,5 +107,10 @@ public class MagicWater : Entity {
 		}
 	}
 
-	void OnTriggerExit (Collider other) { }
+	void OnTriggerExit (Collider other) {
+		if (particle != null) {
+			GameEntry.Entity.HideEntity (particle.Id);
+			particle = null;
+		}
+	}
 }

@@ -18,6 +18,7 @@ public class MagicWaterData : EntityData {
         AddGold = drMagicWater.AddGold;
         CreateCloneHeroTypeID = drMagicWater.CreateCloneHeroTypeID;
         Position = drMagicWater.Position;
+        ParticleTypeID = drMagicWater.ParticleTypeID;
     }
 
     /// <summary>
@@ -65,6 +66,15 @@ public class MagicWaterData : EntityData {
     /// </summary>
     /// <returns></returns>
     public int CreateCloneHeroTypeID {
+        get;
+        private set;
+    }
+
+    /// <summary>
+    /// 粒子特效ID
+    /// </summary>
+    /// <returns></returns>
+    public int ParticleTypeID {
         get;
         private set;
     }

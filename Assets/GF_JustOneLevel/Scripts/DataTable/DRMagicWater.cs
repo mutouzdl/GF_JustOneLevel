@@ -72,6 +72,15 @@ public class DRMagicWater : IDataRow {
     }
 
     /// <summary>
+    /// 粒子特效ID
+    /// </summary>
+    /// <returns></returns>
+    public int ParticleTypeID {
+        get;
+        private set;
+    }
+
+    /// <summary>
     /// 坐标
     /// </summary>
     /// <returns></returns>
@@ -92,6 +101,7 @@ public class DRMagicWater : IDataRow {
         AddAtk = int.Parse(text[index++]);
         AddGold = int.Parse(text[index++]);
         CreateCloneHeroTypeID = int.Parse(text[index++]);
+        ParticleTypeID = int.Parse(text[index++]);
 
         // 读取坐标
         string[] pos = text[index++].Split('|');

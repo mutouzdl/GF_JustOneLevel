@@ -116,6 +116,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonsterCreater.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMusic.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRParticle.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRPowerBar.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRScene.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRSound.cs" />
@@ -150,12 +151,14 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MargicWaterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterCreaterData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\MonsterData.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\ParticleData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\PowerBarData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityData\WeaponData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Bullet.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\BulletEffect.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Entity.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\EParticle.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\FightEntity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\FlowText.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Entity\EntityLogic\Hero.cs" />
