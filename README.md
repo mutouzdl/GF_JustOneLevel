@@ -40,6 +40,8 @@ Unity3D版本：2018.1
  - [Pocket RPG Weapon Trails](https://assetstore.unity.com/packages/tools/particles-effects/pocket-rpg-weapon-trails-2458)
  - [DOTween](https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676)
  - [Ball Pack](https://assetstore.unity.com/packages/3d/props/ball-pack-446)
+ - [Unity Samples: UI](https://assetstore.unity.com/packages/essentials/unity-samples-ui-25468)
+ 等，有点多，就不继续列出来了。
  
 
 # 特别说明
@@ -51,4 +53,5 @@ Unity3D版本：2018.1
 UI很丑，嗯。
 
 
-未完，待更新
+# License
+Apache License 2.0
