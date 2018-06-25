@@ -13,8 +13,10 @@
       <AssetBundle Name="Textures" LoadType="0" Packed="False" />
     </AssetBundles>
     <Assets>
+      <Asset Guid="03647dc4f093a084ea081412f535918c" AssetBundleName="DataTables" />
       <Asset Guid="03750f96a1dbee840b9897ffe50702c3" AssetBundleName="Sounds" />
       <Asset Guid="0521f4d56581e0d48a12354c7ccd06c0" AssetBundleName="Prefabs" />
+      <Asset Guid="0785f74005ab3cd4691427e4556fd1e2" AssetBundleName="Prefabs" />
       <Asset Guid="0b6041040e2bf544aa054a656cf6e4aa" AssetBundleName="Sounds" />
       <Asset Guid="0d5e639297b1122449fecc07e1aba747" AssetBundleName="Prefabs" />
       <Asset Guid="0e1880cccbb5be6459eb99f01a969fb8" AssetBundleName="DataTables" />
@@ -30,6 +32,7 @@
       <Asset Guid="2cb6ff6533d7e22499d23518699289e8" AssetBundleName="Prefabs" />
       <Asset Guid="2d7451362d99b1d4381879c03c3b1895" AssetBundleName="DataTables" />
       <Asset Guid="36b461210b68aa5469e3ea754f32c5e9" AssetBundleName="Prefabs" />
+      <Asset Guid="37e3e0e0b3dd3164fa94d02ecefd3ad9" AssetBundleName="Prefabs" />
       <Asset Guid="3e010b9a72ff4e3458d6a767dec4ba26" AssetBundleName="Prefabs" />
       <Asset Guid="3ec70a9704f5ef04892af3be30f310df" AssetBundleName="Prefabs" />
       <Asset Guid="40a4b754da565264c8603a782151d967" AssetBundleName="Prefabs" />
@@ -68,6 +71,7 @@
       <Asset Guid="c020269a896f92c4d8b0e1f3c40cdad9" AssetBundleName="Prefabs" />
       <Asset Guid="cce6cd7ea00759943bccc8d5ada0a749" AssetBundleName="Prefabs" />
       <Asset Guid="cde24a2933f42e94caeb9a6f90d2eaf4" AssetBundleName="Prefabs" />
+      <Asset Guid="d1a8b3380d2d49945b700996273fe217" AssetBundleName="Prefabs" />
       <Asset Guid="d821d651d34d91e48ba91ad9fe314308" AssetBundleName="Sounds" />
       <Asset Guid="d972b65a145039840a338a025052a72e" AssetBundleName="DataTables" />
       <Asset Guid="dff189e1bd8ea3f4bbfcd0c70333846a" AssetBundleName="Prefabs" />

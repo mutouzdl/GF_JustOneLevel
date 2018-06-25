@@ -24,7 +24,51 @@ public class HeroAtkState : HeroBaseActionState {
         atkTimeCounter = 0;
 
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.atk);
+    }
 
+    /// <summary>
+    /// 有限状态机状态轮询时调用。
+    /// </summary>
+    /// <param name="fsm">有限状态机引用。</param>
+    /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
+    /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
+    protected override void OnUpdate (IFsm<Hero> fsm, float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
+
+        atkTimeCounter += elapseSeconds;
+
+        if (atkTimeCounter > 0.4) {
+            Attack(fsm);
+            ChangeState<HeroIdleState> (fsm);
+        }
+    }
+
+    /// <summary>
+    /// 有限状态机状态离开时调用。
+    /// </summary>
+    /// <param name="fsm">有限状态机引用。</param>
+    /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
+    protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
+        base.OnLeave (fsm, isShutdown);
+
+        fsm.Owner.ClearTrialEffect ();
+    }
+
+    /// <summary>
+    /// 有限状态机状态销毁时调用。
+    /// </summary>
+    /// <param name="fsm">有限状态机引用。</param>
+    protected override void OnDestroy (IFsm<Hero> fsm) {
+        base.OnDestroy (fsm);
+    }
+
+    
+    /// <summary>
+    /// 执行攻击逻辑
+    /// </summary>
+    /// <param name="fsm"></param>
+    private void Attack(IFsm<Hero> fsm) {
+        
         WeaponAttackType attackType = (WeaponAttackType) fsm.GetData<VarInt> ("AttackType").Value;
 
         switch (attackType) {
@@ -38,7 +82,6 @@ public class HeroAtkState : HeroBaseActionState {
                 SkillAttack (fsm, attackType, weaponID);
                 break;
         }
-
     }
 
     /// <summary>
@@ -71,40 +114,5 @@ public class HeroAtkState : HeroBaseActionState {
     /// <param name="weaponID"></param>
     private void SkillAttack (IFsm<Hero> fsm, WeaponAttackType attackType, int weaponID) {
         fsm.Owner.FireWeapon(attackType, weaponID);
-    }
-
-    /// <summary>
-    /// 有限状态机状态轮询时调用。
-    /// </summary>
-    /// <param name="fsm">有限状态机引用。</param>
-    /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
-    /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
-    protected override void OnUpdate (IFsm<Hero> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
-
-        atkTimeCounter += elapseSeconds;
-
-        if (atkTimeCounter > 0.8) {
-            ChangeState<HeroIdleState> (fsm);
-        }
-    }
-
-    /// <summary>
-    /// 有限状态机状态离开时调用。
-    /// </summary>
-    /// <param name="fsm">有限状态机引用。</param>
-    /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
-    protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
-        base.OnLeave (fsm, isShutdown);
-
-        fsm.Owner.ClearTrialEffect ();
-    }
-
-    /// <summary>
-    /// 有限状态机状态销毁时调用。
-    /// </summary>
-    /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnDestroy (IFsm<Hero> fsm) {
-        base.OnDestroy (fsm);
     }
 }
