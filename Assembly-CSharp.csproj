@@ -233,7 +233,7 @@
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />
-     <None Include="Assets\GF_JustOneLevel\Character\Character_Witch_Dragon\ReadMe.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\Character_Witch_Dragon\ReadMe.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleBuilder.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\readme.txt" />
      <None Include="Assets\GF_JustOneLevel\Localization\ChineseSimplified\Dictionaries\Default.xml" />
@@ -241,7 +241,6 @@
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween50.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
-     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildSettings.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Materials\UI-Default-No-Alpha.shader" />
