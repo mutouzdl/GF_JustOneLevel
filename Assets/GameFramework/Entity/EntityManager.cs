@@ -486,7 +486,19 @@ namespace GameFramework.Entity
         /// <param name="entityGroupName">实体组名称。</param>
         public void ShowEntity(int entityId, string entityAssetName, string entityGroupName)
         {
-            ShowEntity(entityId, entityAssetName, entityGroupName, null);
+            ShowEntity(entityId, entityAssetName, entityGroupName, Constant.DefaultPriority, null);
+        }
+
+        /// <summary>
+        /// 显示实体。
+        /// </summary>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="priority">加载实体资源的优先级。</param>
+        public void ShowEntity(int entityId, string entityAssetName, string entityGroupName, int priority)
+        {
+            ShowEntity(entityId, entityAssetName, entityGroupName, priority, null);
         }
 
         /// <summary>
@@ -497,6 +509,19 @@ namespace GameFramework.Entity
         /// <param name="entityGroupName">实体组名称。</param>
         /// <param name="userData">用户自定义数据。</param>
         public void ShowEntity(int entityId, string entityAssetName, string entityGroupName, object userData)
+        {
+            ShowEntity(entityId, entityAssetName, entityGroupName, Constant.DefaultPriority, userData);
+        }
+
+        /// <summary>
+        /// 显示实体。
+        /// </summary>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="priority">加载实体资源的优先级。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void ShowEntity(int entityId, string entityAssetName, string entityGroupName, int priority, object userData)
         {
             if (m_ResourceManager == null)
             {
@@ -539,7 +564,7 @@ namespace GameFramework.Entity
             {
                 int serialId = m_Serial++;
                 m_EntitiesBeingLoaded.Add(entityId, serialId);
-                m_ResourceManager.LoadAsset(entityAssetName, m_LoadAssetCallbacks, new ShowEntityInfo(serialId, entityId, entityGroup, userData));
+                m_ResourceManager.LoadAsset(entityAssetName, priority, m_LoadAssetCallbacks, new ShowEntityInfo(serialId, entityId, entityGroup, userData));
                 return;
             }
 
@@ -725,6 +750,11 @@ namespace GameFramework.Entity
         /// <param name="userData">用户自定义数据。</param>
         public void AttachEntity(int childEntityId, int parentEntityId, object userData)
         {
+            if (childEntityId == parentEntityId)
+            {
+                throw new GameFrameworkException(string.Format("Can not attach entity when child entity id equals to parent entity id '{0}'.", parentEntityId.ToString()));
+            }
+
             EntityInfo childEntityInfo = GetEntityInfo(childEntityId);
             if (childEntityInfo == null)
             {
@@ -955,48 +985,6 @@ namespace GameFramework.Entity
             }
 
             DetachChildEntities(parentEntity.Id, userData);
-        }
-
-        /// <summary>
-        /// 设置实体实例是否被加锁。
-        /// </summary>
-        /// <param name="entity">实体。</param>
-        /// <param name="locked">实体实例是否被加锁。</param>
-        public void SetInstanceLocked(IEntity entity, bool locked)
-        {
-            if (entity == null)
-            {
-                throw new GameFrameworkException("Entity is invalid.");
-            }
-
-            EntityGroup entityGroup = (EntityGroup)entity.EntityGroup;
-            if (entityGroup == null)
-            {
-                throw new GameFrameworkException("Entity group is invalid.");
-            }
-
-            entityGroup.SetInstanceLocked(entity, locked);
-        }
-
-        /// <summary>
-        /// 设置实体实例的优先级。
-        /// </summary>
-        /// <param name="entity">实体。</param>
-        /// <param name="priority">实体实例优先级。</param>
-        public void SetInstancePriority(IEntity entity, int priority)
-        {
-            if (entity == null)
-            {
-                throw new GameFrameworkException("Entity is invalid.");
-            }
-
-            EntityGroup entityGroup = (EntityGroup)entity.EntityGroup;
-            if (entityGroup == null)
-            {
-                throw new GameFrameworkException("Entity group is invalid.");
-            }
-
-            entityGroup.SetInstancePriority(entity, priority);
         }
 
         /// <summary>

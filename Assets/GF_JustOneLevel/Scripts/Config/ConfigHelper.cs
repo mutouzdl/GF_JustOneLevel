@@ -81,7 +81,7 @@ public class ConfigHelper : ConfigHelperBase {
     /// <param name="configAsset">配置资源。</param>
     /// <param name="userData">用户自定义数据。</param>
     /// <returns>加载是否成功。</returns>
-    public override bool LoadConfig (string configName, object configAsset, object userData) {
+    protected override bool LoadConfig (string configName, object configAsset, object userData) {
         TextAsset textAsset = configAsset as TextAsset;
         if (textAsset == null) {
             Log.Warning ("Config asset '{0}' is invalid.", configName);

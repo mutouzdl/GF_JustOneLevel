@@ -221,6 +221,15 @@ namespace GameFramework.UI
         /// </summary>
         /// <param name="uiFormAssetName">界面资源名称。</param>
         /// <param name="uiGroupName">界面组名称。</param>
+        /// <param name="priority">加载界面资源的优先级。</param>
+        /// <returns>界面的序列编号。</returns>
+        int OpenUIForm(string uiFormAssetName, string uiGroupName, int priority);
+
+        /// <summary>
+        /// 打开界面。
+        /// </summary>
+        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiGroupName">界面组名称。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <returns>界面的序列编号。</returns>
         int OpenUIForm(string uiFormAssetName, string uiGroupName, bool pauseCoveredUIForm);
@@ -239,10 +248,41 @@ namespace GameFramework.UI
         /// </summary>
         /// <param name="uiFormAssetName">界面资源名称。</param>
         /// <param name="uiGroupName">界面组名称。</param>
+        /// <param name="priority">加载界面资源的优先级。</param>
+        /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
+        /// <returns>界面的序列编号。</returns>
+        int OpenUIForm(string uiFormAssetName, string uiGroupName, int priority, bool pauseCoveredUIForm);
+
+        /// <summary>
+        /// 打开界面。
+        /// </summary>
+        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiGroupName">界面组名称。</param>
+        /// <param name="priority">加载界面资源的优先级。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        /// <returns>界面的序列编号。</returns>
+        int OpenUIForm(string uiFormAssetName, string uiGroupName, int priority, object userData);
+
+        /// <summary>
+        /// 打开界面。
+        /// </summary>
+        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiGroupName">界面组名称。</param>
         /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <returns>界面的序列编号。</returns>
         int OpenUIForm(string uiFormAssetName, string uiGroupName, bool pauseCoveredUIForm, object userData);
+
+        /// <summary>
+        /// 打开界面。
+        /// </summary>
+        /// <param name="uiFormAssetName">界面资源名称。</param>
+        /// <param name="uiGroupName">界面组名称。</param>
+        /// <param name="priority">加载界面资源的优先级。</param>
+        /// <param name="pauseCoveredUIForm">是否暂停被覆盖的界面。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        /// <returns>界面的序列编号。</returns>
+        int OpenUIForm(string uiFormAssetName, string uiGroupName, int priority, bool pauseCoveredUIForm, object userData);
 
         /// <summary>
         /// 关闭界面。
@@ -300,17 +340,17 @@ namespace GameFramework.UI
         void RefocusUIForm(IUIForm uiForm, object userData);
 
         /// <summary>
-        /// 设置界面是否被加锁。
+        /// 设置界面实例是否被加锁。
         /// </summary>
-        /// <param name="uiForm">要设置是否被加锁的界面。</param>
-        /// <param name="locked">界面是否被加锁。</param>
-        void SetUIFormLocked(IUIForm uiForm, bool locked);
+        /// <param name="uiFormInstance">要设置是否被加锁的界面实例。</param>
+        /// <param name="locked">界面实例是否被加锁。</param>
+        void SetUIFormInstanceLocked(object uiFormInstance, bool locked);
 
         /// <summary>
-        /// 设置界面的优先级。
+        /// 设置界面实例的优先级。
         /// </summary>
-        /// <param name="uiForm">要设置优先级的界面。</param>
-        /// <param name="priority">界面优先级。</param>
-        void SetUIFormPriority(IUIForm uiForm, int priority);
+        /// <param name="uiFormInstance">要设置优先级的界面实例。</param>
+        /// <param name="priority">界面实例优先级。</param>
+        void SetUIFormInstancePriority(object uiFormInstance, int priority);
     }
 }

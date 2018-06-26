@@ -43,9 +43,9 @@ namespace GameFramework.Setting
         }
 
         /// <summary>
-        /// 设置配置管理器辅助器。
+        /// 设置配置辅助器。
         /// </summary>
-        /// <param name="settingHelper">配置管理器辅助器。</param>
+        /// <param name="settingHelper">配置辅助器。</param>
         public void SetSettingHelper(ISettingHelper settingHelper)
         {
             if (settingHelper == null)
@@ -138,7 +138,7 @@ namespace GameFramework.Setting
             {
                 throw new GameFrameworkException("Setting name is invalid.");
             }
-            
+
             return m_SettingHelper.GetBool(settingName, defaultValue);
         }
 
