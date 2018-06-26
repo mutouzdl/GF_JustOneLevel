@@ -2,11 +2,11 @@
 <UnityGameFramework>
   <AssetBundleBuilder>
     <Settings>
-      <InternalResourceVersion>46</InternalResourceVersion>
+      <InternalResourceVersion>47</InternalResourceVersion>
       <WindowsSelected>True</WindowsSelected>
       <MacOSXSelected>False</MacOSXSelected>
       <IOSSelected>False</IOSSelected>
-      <AndroidSelected>False</AndroidSelected>
+      <AndroidSelected>True</AndroidSelected>
       <WindowsStoreSelected>False</WindowsStoreSelected>
       <ZipSelected>False</ZipSelected>
       <RecordScatteredDependencyAssetsSelected>False</RecordScatteredDependencyAssetsSelected>
