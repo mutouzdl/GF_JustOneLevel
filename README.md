@@ -8,7 +8,8 @@
 没想到距今已经三年了，而我的Unity3D水平依旧没有长进，十分对得起业余的称号。
 
 # 版本
-GameFramework版本：3.1.2
+GameFramework版本：3.1.3
+
 Unity3D版本：2018.1
 
 # 主要玩法
