@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4562607354462132}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing05_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4549897016865400}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing02B_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4522479944607932}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Mouse_Under
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4499363777423096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Mouse_Under (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4020534454772936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing04B_End_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4491614341496176}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4212131091782720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg04_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4855872532951846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4514397332457010}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing02B_End_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4199610374465358}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing03_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4409203803553534}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: eff_fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4587131927898388}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg04_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4798462440372524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm04_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4326521789253428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Spine02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,9 +231,9 @@ GameObject:
   - component: {fileID: 4584507589381168}
   - component: {fileID: 95348027255345550}
   - component: {fileID: 65402465704403668}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Monster2
-  m_TagString: Monster
+  m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4582775136934872}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing04B_End_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4415787078708048}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm04_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4569882647165778}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4209828964657332}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4786530241654936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing03B_End_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4183211413839228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Mouse_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4530687475752170}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Spine01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4468288582753476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 33423779719741248}
   - component: {fileID: 64830578005193252}
   - component: {fileID: 23637026120355556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4734357802227252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4288961295456778}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,8 +414,25 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4396106514703222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing03B_End_L
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1399162644485126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4712351286659788}
+  - component: {fileID: 23244301715553776}
+  - component: {fileID: 102963467768195312}
+  m_Layer: 9
+  m_Name: msgText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +446,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4386420672730738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing05_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +461,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4705420104011604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing03B_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +476,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4845891230934504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +491,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4278332510985730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg05_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +506,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4889583969601666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +521,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4244921699399326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +536,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4588791860680892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Tail04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +551,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4693836013354858}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing03B_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +566,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4067443558362190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Spine03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +581,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4237132088911410}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Tail05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +596,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4829109371353236}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4586963814171882}
   - component: {fileID: 137813450164859352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +627,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4709237447105618}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm03_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +642,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4732466527803210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Tail02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +657,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4552170432810892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +672,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4479975635045658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing04_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +687,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4159589745055654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +702,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4689996250367790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Tail03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +717,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4596369418834080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing03_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +732,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4002055089238844}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Mouse_Top (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +747,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4579703298375110}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing02B_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +762,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4982473045108936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg03_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +777,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4822325921759370}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg05_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +792,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4641025485575870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +807,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4231579699557748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HPBarPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +822,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4678856810663710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing04B_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +837,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4310552993914214}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +852,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4877731640356252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Tail01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +867,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4773935176773490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +882,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4674090990531978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing04_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +897,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4918518615680776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Arm03_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +912,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4444734283320444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing02B_End_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +927,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4739473865209896}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Wing04B_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +942,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4995706153042676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skeleton_Leg03_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1403,6 +1420,7 @@ Transform:
   - {fileID: 4491614341496176}
   - {fileID: 4231579699557748}
   - {fileID: 4159589745055654}
+  - {fileID: 4712351286659788}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1561,6 +1579,19 @@ Transform:
   m_Father: {fileID: 4829109371353236}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4712351286659788
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399162644485126}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4584507589381168}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4732466527803210
 Transform:
   m_ObjectHideFlags: 1
@@ -1785,6 +1816,41 @@ Transform:
   m_Father: {fileID: 4288961295456778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23244301715553776
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399162644485126}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23637026120355556
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1871,6 +1937,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!102 &102963467768195312
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399162644485126}
+  m_Text: UP+5%
+  m_OffsetZ: 0
+  m_CharacterSize: 0.05
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 40
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
 --- !u!137 &137813450164859352
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

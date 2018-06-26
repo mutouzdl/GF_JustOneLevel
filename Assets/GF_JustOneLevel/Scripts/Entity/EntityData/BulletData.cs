@@ -4,15 +4,7 @@ using UnityEngine;
 
 [Serializable]
 public class BulletData : EntityData {
-    private int aimEntityID = 0;
-
-    private CampType ownerCamp = CampType.Unknown;
-
-    private int attack = 0;
-
-    private float speed = 0f;
-
-    public BulletData (int entityId, int typeId, int aimEntityID,
+    public BulletData (int entityId, int typeId, Vector3 forward,
         CampType ownerCamp, int attack, float speed) : base (entityId, typeId) {
         IDataTable<DRBullet> dtBullet = GameEntry.DataTable.GetDataTable<DRBullet> ();
         DRBullet drBullet = dtBullet.GetDataRow (TypeId);
@@ -22,38 +14,34 @@ public class BulletData : EntityData {
 
         EffectId = drBullet.EffectId;
 
-        this.aimEntityID = aimEntityID;
-        this.ownerCamp = ownerCamp;
-        this.attack = attack;
-        this.speed = speed;
+        this.Forward = forward;
+        this.OwnerCamp = ownerCamp;
+        this.Attack = attack;
+        this.Speed = speed;
     }
 
     public int EffectId {
         get;
         private set;
-    }
+    } = 0;
 
-    public int AimEntityID {
-        get {
-            return aimEntityID;
-        }
+    public Vector3 Forward {
+        get;
+        private set;
     }
 
     public CampType OwnerCamp {
-        get {
-            return ownerCamp;
-        }
-    }
+        get;
+        private set;
+    } = CampType.Unknown;
 
     public int Attack {
-        get {
-            return attack;
-        }
-    }
+        get;
+        private set;
+    } = 0;
 
     public float Speed {
-        get {
-            return speed;
-        }
-    }
+        get;
+        private set;
+    } = 0;
 }

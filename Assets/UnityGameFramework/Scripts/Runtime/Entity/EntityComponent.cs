@@ -21,6 +21,8 @@ namespace UnityGameFramework.Runtime
     [AddComponentMenu("Game Framework/Entity")]
     public sealed partial class EntityComponent : GameFrameworkComponent
     {
+        private const int DefaultPriority = 0;
+
         private IEntityManager m_EntityManager = null;
         private EventComponent m_EventComponent = null;
 
@@ -329,7 +331,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="entityGroupName">实体组名称。</param>
         public void ShowEntity<T>(int entityId, string entityAssetName, string entityGroupName) where T : EntityLogic
         {
-            ShowEntity(entityId, typeof(T), entityAssetName, entityGroupName, null);
+            ShowEntity(entityId, typeof(T), entityAssetName, entityGroupName, DefaultPriority, null);
         }
 
         /// <summary>
@@ -341,7 +343,33 @@ namespace UnityGameFramework.Runtime
         /// <param name="entityGroupName">实体组名称。</param>
         public void ShowEntity(int entityId, Type entityLogicType, string entityAssetName, string entityGroupName)
         {
-            ShowEntity(entityId, entityLogicType, entityAssetName, entityGroupName, null);
+            ShowEntity(entityId, entityLogicType, entityAssetName, entityGroupName, DefaultPriority, null);
+        }
+
+        /// <summary>
+        /// 显示实体。
+        /// </summary>
+        /// <typeparam name="T">实体逻辑类型。</typeparam>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="priority">加载实体资源的优先级。</param>
+        public void ShowEntity<T>(int entityId, string entityAssetName, string entityGroupName, int priority) where T : EntityLogic
+        {
+            ShowEntity(entityId, typeof(T), entityAssetName, entityGroupName, priority, null);
+        }
+
+        /// <summary>
+        /// 显示实体。
+        /// </summary>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityLogicType">实体逻辑类型。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="priority">加载实体资源的优先级。</param>
+        public void ShowEntity(int entityId, Type entityLogicType, string entityAssetName, string entityGroupName, int priority)
+        {
+            ShowEntity(entityId, entityLogicType, entityAssetName, entityGroupName, priority, null);
         }
 
         /// <summary>
@@ -354,7 +382,7 @@ namespace UnityGameFramework.Runtime
         /// <param name="userData">用户自定义数据。</param>
         public void ShowEntity<T>(int entityId, string entityAssetName, string entityGroupName, object userData) where T : EntityLogic
         {
-            ShowEntity(entityId, typeof(T), entityAssetName, entityGroupName, userData);
+            ShowEntity(entityId, typeof(T), entityAssetName, entityGroupName, DefaultPriority, userData);
         }
 
         /// <summary>
@@ -367,13 +395,41 @@ namespace UnityGameFramework.Runtime
         /// <param name="userData">用户自定义数据。</param>
         public void ShowEntity(int entityId, Type entityLogicType, string entityAssetName, string entityGroupName, object userData)
         {
+            ShowEntity(entityId, entityLogicType, entityAssetName, entityGroupName, DefaultPriority, userData);
+        }
+
+        /// <summary>
+        /// 显示实体。
+        /// </summary>
+        /// <typeparam name="T">实体逻辑类型。</typeparam>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="priority">加载实体资源的优先级。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void ShowEntity<T>(int entityId, string entityAssetName, string entityGroupName, int priority, object userData) where T : EntityLogic
+        {
+            ShowEntity(entityId, typeof(T), entityAssetName, entityGroupName, priority, userData);
+        }
+
+        /// <summary>
+        /// 显示实体。
+        /// </summary>
+        /// <param name="entityId">实体编号。</param>
+        /// <param name="entityLogicType">实体逻辑类型。</param>
+        /// <param name="entityAssetName">实体资源名称。</param>
+        /// <param name="entityGroupName">实体组名称。</param>
+        /// <param name="priority">加载实体资源的优先级。</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public void ShowEntity(int entityId, Type entityLogicType, string entityAssetName, string entityGroupName, int priority, object userData)
+        {
             if (entityLogicType == null)
             {
                 Log.Error("Entity type is invalid.");
                 return;
             }
 
-            m_EntityManager.ShowEntity(entityId, entityAssetName, entityGroupName, new ShowEntityInfo(entityLogicType, userData));
+            m_EntityManager.ShowEntity(entityId, entityAssetName, entityGroupName, priority, new ShowEntityInfo(entityLogicType, userData));
         }
 
         /// <summary>
@@ -882,23 +938,49 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 设置实体实例是否被加锁。
+        /// 设置实体是否被加锁。
         /// </summary>
         /// <param name="entity">实体。</param>
-        /// <param name="locked">实体实例是否被加锁。</param>
-        public void SetInstanceLocked(Entity entity, bool locked)
+        /// <param name="locked">实体是否被加锁。</param>
+        public void SetEntityInstanceLocked(Entity entity, bool locked)
         {
-            m_EntityManager.SetInstanceLocked(entity, locked);
+            if (entity == null)
+            {
+                Log.Warning("Entity is invalid.");
+                return;
+            }
+
+            IEntityGroup entityGroup = entity.EntityGroup;
+            if (entityGroup == null)
+            {
+                Log.Warning("Entity group is invalid.");
+                return;
+            }
+
+            entityGroup.SetEntityInstanceLocked(entity.gameObject, locked);
         }
 
         /// <summary>
-        /// 设置实体实例的优先级。
+        /// 设置实体的优先级。
         /// </summary>
         /// <param name="entity">实体。</param>
-        /// <param name="priority">实体实例优先级。</param>
+        /// <param name="priority">实体优先级。</param>
         public void SetInstancePriority(Entity entity, int priority)
         {
-            m_EntityManager.SetInstancePriority(entity, priority);
+            if (entity == null)
+            {
+                Log.Warning("Entity is invalid.");
+                return;
+            }
+
+            IEntityGroup entityGroup = entity.EntityGroup;
+            if (entityGroup == null)
+            {
+                Log.Warning("Entity group is invalid.");
+                return;
+            }
+
+            entityGroup.SetEntityInstancePriority(entity.gameObject, priority);
         }
 
         private void OnShowEntitySuccess(object sender, GameFramework.Entity.ShowEntitySuccessEventArgs e)
@@ -911,7 +993,7 @@ namespace UnityGameFramework.Runtime
 
         private void OnShowEntityFailure(object sender, GameFramework.Entity.ShowEntityFailureEventArgs e)
         {
-            Log.Warning("Show entity failure, entity id '{0}', asset name '{1}', entity group name '{2}', error message '{3}'.", e.EntityId.ToString(), e.EntityAssetName, e.EntityGroupName, e.ErrorMessage);
+            Log.Error("Show entity failure, entity id '{0}', asset name '{1}', entity group name '{2}', error message '{3}'.", e.EntityId.ToString(), e.EntityAssetName, e.EntityGroupName, e.ErrorMessage);
             if (m_EnableShowEntityFailureEvent)
             {
                 m_EventComponent.Fire(this, ReferencePool.Acquire<ShowEntityFailureEventArgs>().Fill(e));

@@ -12,8 +12,11 @@ public class HeroData : FightEntityData {
             return;
         }
 
+        Name = drHero.Name;
         HP = drHero.HP;
+        MaxMP = drHero.MP;
         MaxHP = HP;
+        MP = 0;
         MoveSpeed = drHero.MoveSpeed;
         RotateSpeed = drHero.RotateSpeed;
         Atk = drHero.Atk;
@@ -29,19 +32,17 @@ public class HeroData : FightEntityData {
     /// <summary>
     /// 根据给定的属性，加强英雄
     /// </summary>
-    /// <param name="atk"></param>
-    /// <param name="def"></param>
-    /// <param name="hp"></param>
-    public void PowerUp (int atk, int def, int hp) {
-        int atkPowerUp = atk / 2;
-        int defPowerUp = def / 6;
-        int hpPowerUp = hp / 4;
+    /// <param name="atkPowerUp"></param>
+    /// <param name="defPowerUp"></param>
+    /// <param name="hpPowerUp"></param>
+    public void PowerUp (int atkPowerUp, int defPowerUp, int hpPowerUp) {
+        this.Atk += atkPowerUp;
+        this.Def += defPowerUp;
 
-        this.Atk += atkPowerUp > 0 ? atkPowerUp : 1;
-        this.Def += defPowerUp > 0 ? defPowerUp : 1;
-        this.MaxHP += hpPowerUp > 0 ? hpPowerUp : 1;
-
-        this.HP = this.MaxHP;
+        if (hpPowerUp != 0) {
+            this.MaxHP += hpPowerUp;
+            this.HP = this.MaxHP;
+        }
     }
 
     private void RefreshData () {

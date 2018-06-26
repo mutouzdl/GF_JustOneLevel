@@ -8,6 +8,10 @@ using UnityGameFramework.Runtime;
 public class Bullet : Entity {
     private BulletData bulletData = null;
     private BulletEffect bulletEffect = null;
+    /// <summary>
+    /// 剩余可产生效果次数
+    /// </summary>
+    private int leftEffectTimes = 1;
 
     public ImpactData GetImpactData () {
         return new ImpactData (bulletData.OwnerCamp, 0, bulletData.Attack, 0);
@@ -27,7 +31,9 @@ public class Bullet : Entity {
             return;
         }
 
-        CachedTransform.LookAt(GameEntry.Entity.GetEntity(bulletData.AimEntityID).transform);
+        leftEffectTimes = 1;
+
+        CachedTransform.forward = bulletData.Forward;
 
         // 让子弹保持水平
         CachedTransform.forward = new Vector3(
@@ -58,6 +64,21 @@ public class Bullet : Entity {
         if (childEntity is BulletEffect) {
             bulletEffect = (BulletEffect) childEntity;
             bulletEffect.SetBulletData(this.bulletData);
+            leftEffectTimes = bulletEffect.EffectTimes;
         }
+    }
+
+    /// <summary>
+    /// 减少可产生效果次数
+    /// </summary>
+    /// <returns>如果返回true，代表该子弹不能继续产生效果，需要隐藏</returns>
+    public bool SubEffectTimes () {
+        leftEffectTimes--;
+
+        if (leftEffectTimes <= 0) {
+            return true;
+        }
+
+        return false;
     }
 }

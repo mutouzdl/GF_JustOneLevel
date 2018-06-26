@@ -24,9 +24,9 @@ public class UIDialog : UGuiForm {
     private DialogParams.DialogMode dialogMode = DialogParams.DialogMode.单按钮;
     private bool pauseGame = false;
     private object userData = null;
-    private GameFrameworkAction<object> onClickConfirm = null;
+    private GameFrameworkFunc<object, bool> onClickConfirm = null;
     private GameFrameworkAction<object> onClickCancel = null;
-    private GameFrameworkAction<object> onClickOther = null;
+    private GameFrameworkFunc<object, bool> onClickOther = null;
 
     public DialogParams.DialogMode DialogMode {
         get {
@@ -47,26 +47,26 @@ public class UIDialog : UGuiForm {
     }
 
     public void OnConfirmButtonClick () {
-        Close ();
-
         if (onClickConfirm != null) {
-            onClickConfirm (userData);
+            if (onClickConfirm (userData)) {
+                Close();
+            }
         }
     }
 
     public void OnCancelButtonClick () {
-        Close ();
-
         if (onClickCancel != null) {
             onClickCancel (userData);
         }
+
+        Close(true);
     }
 
     public void OnOtherButtonClick () {
-        Close ();
-
         if (onClickOther != null) {
-            onClickOther (userData);
+            if (onClickOther (userData)) {
+                Close();
+            }
         }
     }
 

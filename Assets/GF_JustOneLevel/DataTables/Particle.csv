@@ -1,0 +1,6 @@
+﻿#,Id,Des,AssetName
+#,int,,string
+#,编号,备注,资源名称
+,1,治愈泉粒子特效,CureWaterParticle
+,2,恶魔泉粒子特效,EvilWaterParticle
+,3,子孙泉粒子特效,CloneWaterParticle

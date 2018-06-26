@@ -12,7 +12,10 @@ public static class AIUtility {
 
     static AIUtility () {
         campPairToRelation.Add (new CampPair (CampType.Player, CampType.Player), RelationType.Friendly);
+        campPairToRelation.Add (new CampPair (CampType.Player, CampType.CloneHero), RelationType.Friendly);
+        campPairToRelation.Add (new CampPair (CampType.CloneHero, CampType.CloneHero), RelationType.Friendly);
         campPairToRelation.Add (new CampPair (CampType.Player, CampType.Enemy), RelationType.Hostile);
+        campPairToRelation.Add (new CampPair (CampType.CloneHero, CampType.Enemy), RelationType.Hostile);
         campPairToRelation.Add (new CampPair (CampType.Enemy, CampType.Enemy), RelationType.Friendly);
     }
 
@@ -76,7 +79,7 @@ public static class AIUtility {
         return (toTransform.position - fromTransform.position).magnitude;
     }
 
-    public static void PerformCollision (TargetableObject entity, Entity other) {
+    public static void PerformCollision (FightEntity entity, Entity other) {
         if (entity == null || other == null) {
             return;
         }
@@ -89,24 +92,13 @@ public static class AIUtility {
                 return;
             }
 
-            int entityDamageHP = CalcDamageHP (bulletImpactData.Attack, entityImpactData.Defense);
+            entity.ApplyDamage (bulletImpactData.Attack);
 
-            entity.ApplyDamage (entityDamageHP);
-            GameEntry.Entity.HideEntity (bullet.Id);
+            if (bullet.SubEffectTimes ()) {
+                GameEntry.Entity.HideEntity (bullet.Id);
+            }
             return;
         }
-    }
-
-    private static int CalcDamageHP (int attack, int defense) {
-        if (attack <= 0) {
-            return 0;
-        }
-
-        if (defense < 0) {
-            defense = 0;
-        }
-
-        return attack - defense;
     }
 
     private struct CampPair {

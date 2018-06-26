@@ -1,29 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Dictionaries>
   <Dictionary Language="English">
-    <String Key="Game.Name" Value="STAR FORCE" />
-    <String Key="Game.Description" Value="Game Framework Demo Program" />
+    <String Key="Game.Name" Value="JustOneLevel" />
+    <String Key="Game.Description" Value="Game Framework single player game" />
     <String Key="Game.Website" Value="http://GameFramework.cn/" />
-    <String Key="Game.Summary" Value="This project is a demo game made with Game Framework. It's intended to demonstrate how this game framework should be used for developers' reference." />
-    <String Key="Game.Introduction" Value="Game Framework is literally a game framework, based on Unity 5.3+ game engine. It encapsulates commonly used game modules during development, and, to a large degree, standardises the process, enhances the development speed and ensures the product quality." />
-    <String Key="Menu.StartButton" Value="START" />
-    <String Key="Menu.SettingButton" Value="SETTINGS" />
-    <String Key="Menu.AboutButton" Value="ABOUT" />
-    <String Key="Menu.QuitButton" Value="QUIT" />
-    <String Key="Dialog.ConfirmButton" Value="OK" />
-    <String Key="Dialog.CancelButton" Value="CANCEL" />
+    <String Key="Symbol.Colon" Value="：" />
+    <String Key="Alert.OperateFail" Value="operate failure" />
+    <String Key="Message.Prize" Value="Prize" />
+    <String Key="Message.Gold" Value="Gold" />
+    <String Key="Message.Loading" Value="loading..." />
+    <String Key="Message.GoldNotEnough" Value="Gold Not Enough" />
+    <String Key="GameOver.Title" Value="you are dead" />
+    <String Key="GameOver.Des" Value="you are not too weak, but just failed" />
+    <String Key="GameOver.ResurgenceDes" Value="you can cost 200 gold to continue" />
+    <String Key="Property.Atk" Value="Atk" />
+    <String Key="Property.Def" Value="Def" />
+    <String Key="Property.HP" Value="HP" />
+    <String Key="Property.MP" Value="MP" />
+    <String Key="Operate.Back" Value="Back" />
+    <String Key="Operate.BombSkill" Value="BombSkill!" />
+    <String Key="Operate.Continue" Value="Continue" />
+    <String Key="Menu.Title" Value="Just One Level" />
+    <String Key="Menu.StartButton" Value="Start" />
+    <String Key="Menu.SettingButton" Value="Config" />
+    <String Key="Menu.AboutButton" Value="About" />
+    <String Key="Menu.QuitButton" Value="Quit" />
+    <String Key="Menu.Des" Value="
+    Develop By：www.benmutou.com
+    GitHub：https://github.com/mutouzdl/GF_JustOneLevel
+    Open source licenses：Apache License 2.0" />
+    <String Key="Dialog.ConfirmButton" Value="Confirm" />
+    <String Key="Dialog.CancelButton" Value="Cancel" />
     <String Key="Dialog.OtherButton" Value="" />
-    <String Key="ForceUpdate.Title" Value="OUT OF DATE" />
-    <String Key="ForceUpdate.Message" Value="The current game version is out-of-date. Would you like to go for update now?" />
-    <String Key="ForceUpdate.UpdateButton" Value="UPDATE" />
-    <String Key="ForceUpdate.QuitButton" Value="QUIT" />
-    <String Key="AskQuitGame.Title" Value="CONFIRM TO QUIT" />
-    <String Key="AskQuitGame.Message" Value="Are you sure to quit the game?" />
-    <String Key="Setting.Title" Value="SETTINGS" />
-    <String Key="Setting.Music" Value="Music" />
-    <String Key="Setting.Sound" Value="Sound FX" />
-    <String Key="Setting.UISound" Value="UI Sound FX" />
-    <String Key="Setting.Language" Value="Language" />
-    <String Key="Setting.LanguageTips" Value="Language change demands restarting." />
+    <String Key="ForceUpdate.Title" Value="强制更新" />
+    <String Key="ForceUpdate.Message" Value="当前游戏版本过旧，是否前往更新？" />
+    <String Key="ForceUpdate.UpdateButton" Value="更新" />
+    <String Key="ForceUpdate.QuitButton" Value="退出" />
+    <String Key="AskQuitGame.Title" Value="确认退出" />
+    <String Key="AskQuitGame.Message" Value="是否确认退出游戏？" />
+    <String Key="Setting.Title" Value="设置" />
+    <String Key="Setting.Music" Value="音乐" />
+    <String Key="Setting.Sound" Value="音效" />
+    <String Key="Setting.UISound" Value="界面音效" />
+    <String Key="Setting.Language" Value="语言" />
+    <String Key="Setting.LanguageTips" Value="更改语言需要重启游戏" />
   </Dictionary>
 </Dictionaries>

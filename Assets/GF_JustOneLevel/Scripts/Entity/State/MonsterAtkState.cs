@@ -3,7 +3,7 @@ using GameFramework.Fsm;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class MonsterAtkState : MonsterBaseActionState {
+public class MonsterAtkState : MonsterListenDamageState {
     private float atkTimeCounter = 0;
 
     /// <summary>
@@ -35,15 +35,19 @@ public class MonsterAtkState : MonsterBaseActionState {
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
+        if (GlobalGame.IsPause) {
+            ChangeState<MonsterIdleState> (fsm);
+        }
+
         atkTimeCounter += elapseSeconds;
 
-        if (atkTimeCounter > 0.4) {
+        if (atkTimeCounter > 0.2) {
             int lockAimID = fsm.GetData<VarInt> (Constant.EntityData.LockAimID).Value;
-            Hero hero = (Hero) GameEntry.Entity.GetEntity (lockAimID).Logic;
+            FightEntity aim = (FightEntity) GameEntry.Entity.GetEntity (lockAimID).Logic;
 
-            if (hero.IsDead == false) {
-                fsm.Owner.transform.LookAt (hero.transform);
-                fsm.Owner.PerformAttack (hero);
+            if (aim.IsDead == false) {
+                fsm.Owner.transform.LookAt (aim.transform);
+                fsm.Owner.PerformAttack (aim);
             }
             ChangeState<MonsterIdleState> (fsm);
         }

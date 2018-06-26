@@ -3,8 +3,6 @@ using GameFramework.Fsm;
 using UnityEngine;
 
 public class MonsterWalkState : MonsterSeekAimState {
-    private float rotateTimeCounter = 0;
-    private float idleTimeCounter = 0;
 
     /// <summary>
     /// 有限状态机状态初始化时调用。
@@ -36,35 +34,25 @@ public class MonsterWalkState : MonsterSeekAimState {
         if (fsm.Owner.IsLockingAim) {
             Entity aim = fsm.Owner.LockingAim;
             fsm.Owner.transform.LookAt (aim.transform);
-            fsm.Owner.Forward (elapseSeconds);
+
+            // 除非敌人离开了自己的攻击范围，否则，在锁定目标的过程中，不进行移动（避免不断和敌人靠近，直至重合）
+            float distance = AIUtility.GetDistance (fsm.Owner, aim);
+            if (fsm.Owner.CheckInAtkRange (distance) == false) {
+                fsm.Owner.Forward (elapseSeconds);
+            }
 
             return;
         }
 
-        idleTimeCounter += elapseSeconds;
-        rotateTimeCounter += elapseSeconds;
+        Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
 
-        // 移动
-        fsm.Owner.Forward (elapseSeconds);
-
-        // 随机转身
-        if (rotateTimeCounter > 5) {
-            rotateTimeCounter = 0;
-            if (Utility.Random.GetRandom (100) <= 80) {
-                fsm.Owner.Rotate (new Vector3 (0, Utility.Random.GetRandom (-180, 180), 0));
-            }
+        if (inputVec.y != 0) {
+            // 移动
+            fsm.Owner.Forward (inputVec.y * elapseSeconds);
+        } else {
+            // 站立
+            ChangeState<MonsterIdleState> (fsm);
         }
-
-        // 随机站立
-        if (idleTimeCounter > 5) {
-            idleTimeCounter = 0;
-
-            if (Utility.Random.GetRandom (100) <= 10) {
-                ChangeState<MonsterIdleState> (fsm);
-            }
-        }
-
-        // 碰到障碍物停止（暂无）
     }
 
     /// <summary>

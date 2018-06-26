@@ -78,7 +78,7 @@ public class BulletEffect : Entity {
     private void InitRayEffect () {
         // 添加线
         lineRenderer = gameObject.GetOrAddComponent<LineRenderer> ();
-        lineRenderer.material = new Material (Shader.Find ("Particles/Additive"));
+        // lineRenderer.material = new Material (Shader.Find ("Particles/Additive"));
         lineRenderer.widthMultiplier = 0.2f;
         lineRenderer.useWorldSpace = true;
 
@@ -122,11 +122,16 @@ public class BulletEffect : Entity {
             }
             return;
         }
-        // shootRay是碰撞射线，用于碰撞检测。1000也是随便设的，让碰撞检测的射线足够长
-        if (Physics.Raycast (shootRay, out shootHit, 10000)) {
-            TargetableObject entity = shootHit.collider.GetComponent<TargetableObject>();
+        // shootRay是碰撞射线，用于碰撞检测。1000是随便设的，让碰撞检测的射线足够长
+        if (Physics.Raycast (shootRay, out shootHit, 1000)) {
+            FightEntity entity = shootHit.collider.GetComponent<FightEntity>();
             if (entity != null) {
                 entity.ApplyDamage(bulletData.Attack);
+            }
+            else {
+                isStop = true;
+                hideTime = Time.time + 0.1f;
+                return;
             }
 
             // 因为线的长度很长（上面乘以了100），碰撞的时候需要将线最后一个坐标重新设置成碰撞点所在坐标
@@ -136,7 +141,7 @@ public class BulletEffect : Entity {
             // 达到最大效果次数，停止折射
             if (lineRenderer.positionCount > bulletEffectData.EffectTimes) {
                 isStop = true;
-                hideTime = Time.time + 0.3f;
+                hideTime = Time.time + 0.1f;
                 return;
             }
 
@@ -155,5 +160,15 @@ public class BulletEffect : Entity {
 
     public void SetBulletData(BulletData bulletData) {
         this.bulletData = bulletData;
+    }
+
+    /// <summary>
+    /// 可产生效果次数
+    /// </summary>
+    /// <returns></returns>
+    public int EffectTimes {
+        get {
+            return bulletEffectData.EffectTimes;
+        }
     }
 }

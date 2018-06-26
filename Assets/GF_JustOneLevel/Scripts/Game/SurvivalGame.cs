@@ -5,11 +5,6 @@ using UnityEngine;
 using UnityGameFramework.Runtime;
 
 public class SurvivalGame {
-    public bool GameOver {
-        get;
-        protected set;
-    }
-
     private Hero m_Hero = null;
 
     public void Initialize () {
@@ -18,10 +13,27 @@ public class SurvivalGame {
         GameEntry.Event.Subscribe (ShowEntityFailureEventArgs.EventId, OnShowEntityFailure);
         GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
 
+        GlobalGame.IsPause = false;
+        m_Hero = null;
+    }
+
+    /// <summary>
+    /// 创建生物
+    /// </summary>
+    public void CreateCreatures () {
         // 创建主角
         HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
-        heroData.Position = new Vector3 (3, 0, 3);
+        heroData.Position = new Vector3 (15, 0, 15);
         EntityExtension.ShowHero (typeof (Hero), "PlayerGroup", heroData);
+
+        // 创建魔力泉
+        IDataTable<DRMagicWater> dtMagicWater = GameEntry.DataTable.GetDataTable<DRMagicWater> ();
+        DRMagicWater[] magicWaters = dtMagicWater.GetAllDataRows ();
+
+        foreach (DRMagicWater magicWater in magicWaters) {
+            MagicWaterData magicWaterData = new MagicWaterData (EntityExtension.GenerateSerialId (), magicWater.Id);
+            EntityExtension.ShowMagicWater (typeof (MagicWater), "MagicWaterGroup", magicWaterData);
+        }
 
         // 创建怪物生成器
         IDataTable<DRMonsterCreater> dtMonsterCreater = GameEntry.DataTable.GetDataTable<DRMonsterCreater> ();
@@ -33,8 +45,6 @@ public class SurvivalGame {
             EntityExtension.ShowMonsterCreater (typeof (MonsterCreater), "MonsterCreaterGroup", monsterCreaterData);
         }
 
-        GameOver = false;
-        m_Hero = null;
     }
 
     public void Shutdown () {
@@ -45,7 +55,7 @@ public class SurvivalGame {
 
     public void Update (float elapseSeconds, float realElapseSeconds) {
         if (m_Hero != null && m_Hero.IsDead) {
-            GameOver = true;
+            GlobalGame.IsPause = true;
             return;
         }
     }
@@ -62,7 +72,7 @@ public class SurvivalGame {
         Log.Warning ("Show entity failure with error message '{0}'.", ne.ErrorMessage);
     }
 
-    private void OnResurgenceEvent(object sender, GameEventArgs e) {
-        GameOver = false;
+    private void OnResurgenceEvent (object sender, GameEventArgs e) {
+        GlobalGame.IsPause = false;
     }
 }

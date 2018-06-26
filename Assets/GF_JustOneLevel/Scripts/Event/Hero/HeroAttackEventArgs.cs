@@ -20,17 +20,8 @@ public sealed class HeroAttackEventArgs : GameEventArgs {
     }
 
     /// <summary>
-    /// 获取用户自定义数据。
-    /// </summary>
-    public object UserData {
-        get;
-        private set;
-    }
-
-    /// <summary>
     /// 清理事件。
     /// </summary>
     public override void Clear () {
-        UserData = default (object);
     }
 }

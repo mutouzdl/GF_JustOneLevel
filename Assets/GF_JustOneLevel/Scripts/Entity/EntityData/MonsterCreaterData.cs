@@ -13,11 +13,14 @@ public class MonsterCreaterData : EntityData {
 
         AssetName = drMonsterCreater.AssetName;
         Name = drMonsterCreater.Name;
+        StartTime = drMonsterCreater.StartTime;
         Interval = drMonsterCreater.Interval;
         Probability = drMonsterCreater.Probability;
         PerNum = drMonsterCreater.PerNum;
         MaxNum = drMonsterCreater.MaxNum;
+        MonsterTypeId = drMonsterCreater.MonsterTypeId;
         MonsterPrize = drMonsterCreater.MonsterPrize;
+        PowerPercent = drMonsterCreater.PowerPercent;
     }
 
     /// <summary>
@@ -42,6 +45,15 @@ public class MonsterCreaterData : EntityData {
     public float Interval {
         get;
         protected set;
+    }
+
+    /// <summary>
+    /// 开始创建时间（秒）
+    /// </summary>
+    /// <returns></returns>
+    public float StartTime {
+        get;
+        private set;
     }
 
     /// <summary>
@@ -86,5 +98,14 @@ public class MonsterCreaterData : EntityData {
     public int MonsterPrize {
         get;
         protected set;
+    }
+
+    /// <summary>
+    /// 强化百分比（正常为1）
+    /// </summary>
+    /// <returns></returns>
+    public float PowerPercent {
+        get;
+        private set;
     }
 }

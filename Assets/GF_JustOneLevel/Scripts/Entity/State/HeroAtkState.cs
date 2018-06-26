@@ -1,6 +1,7 @@
 using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
+using UnityGameFramework.Runtime;
 
 public class HeroAtkState : HeroBaseActionState {
     private float atkTimeCounter = 0;
@@ -23,21 +24,6 @@ public class HeroAtkState : HeroBaseActionState {
         atkTimeCounter = 0;
 
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.atk);
-
-        /* 判断是否有怪物进入攻击范围 */
-        GameObject[] monsters = GameObject.FindGameObjectsWithTag ("Monster");
-        foreach (GameObject obj in monsters) {
-            TargetableObject monster = obj.GetComponent<TargetableObject> ();
-
-            if (monster.IsDead == false) {
-                float distance = AIUtility.GetDistance (fsm.Owner, monster);
-
-                if (fsm.Owner.CheckInAtkRange (distance)) {
-                    fsm.Owner.PlayTrailEffect();
-                    fsm.Owner.PerformAttack (monster);
-                }
-            }
-        }
     }
 
     /// <summary>
@@ -51,7 +37,8 @@ public class HeroAtkState : HeroBaseActionState {
 
         atkTimeCounter += elapseSeconds;
 
-        if (atkTimeCounter > 0.8) {
+        if (atkTimeCounter > 0.4) {
+            Attack(fsm);
             ChangeState<HeroIdleState> (fsm);
         }
     }
@@ -64,7 +51,7 @@ public class HeroAtkState : HeroBaseActionState {
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
         base.OnLeave (fsm, isShutdown);
 
-        fsm.Owner.ClearTrialEffect();
+        fsm.Owner.ClearTrialEffect ();
     }
 
     /// <summary>
@@ -73,5 +60,59 @@ public class HeroAtkState : HeroBaseActionState {
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnDestroy (IFsm<Hero> fsm) {
         base.OnDestroy (fsm);
+    }
+
+    
+    /// <summary>
+    /// 执行攻击逻辑
+    /// </summary>
+    /// <param name="fsm"></param>
+    private void Attack(IFsm<Hero> fsm) {
+        
+        WeaponAttackType attackType = (WeaponAttackType) fsm.GetData<VarInt> ("AttackType").Value;
+
+        switch (attackType) {
+            case WeaponAttackType.手动触发:
+                ManualAttack (fsm);
+                break;
+            case WeaponAttackType.自动触发:
+                break;
+            case WeaponAttackType.技能触发:
+                int weaponID = fsm.GetData<VarInt> ("WeaponID").Value;
+                SkillAttack (fsm, attackType, weaponID);
+                break;
+        }
+    }
+
+    /// <summary>
+    ///  手动攻击
+    /// </summary>
+    /// <param name="fsm"></param>
+    private void ManualAttack (IFsm<Hero> fsm) {
+        /* 判断是否有敌人进入攻击范围 */
+        CampType camp = fsm.Owner.GetImpactData().Camp;
+        GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
+        foreach (GameObject obj in aims) {
+            FightEntity aim = obj.GetComponent<FightEntity> ();
+
+            if (aim.IsDead == false
+                && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {
+                float distance = AIUtility.GetDistance (fsm.Owner, aim);
+
+                if (fsm.Owner.CheckInAtkRange (distance)) {
+                    fsm.Owner.PlayTrailEffect ();
+                    fsm.Owner.PerformAttack (aim);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 技能攻击
+    /// </summary>
+    /// <param name="fsm"></param>
+    /// <param name="weaponID"></param>
+    private void SkillAttack (IFsm<Hero> fsm, WeaponAttackType attackType, int weaponID) {
+        fsm.Owner.FireWeapon(attackType, weaponID);
     }
 }

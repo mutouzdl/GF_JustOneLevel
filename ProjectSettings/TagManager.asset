@@ -8,6 +8,8 @@ TagManager:
   - Hero
   - WeaponTrail
   - Wall
+  - Creature
+  - LeftJoystick
   layers:
   - Default
   - TransparentFX
@@ -18,12 +20,12 @@ TagManager:
   - 
   - 
   - Targetable Object
+  - Monster
+  - Hero
+  - Ground
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - FlowText
   - 
   - 
   - 

@@ -15,13 +15,13 @@ public class UIPlayerMessage : UGuiForm {
     private Text defText = null;
     [SerializeField]
     private Text hpText = null;
+    [SerializeField]
+    private Text mpText = null;
 
     /// <summary>
     /// 累计获得奖励
     /// </summary>
     private int totalPrize = 0;
-
-    private ProcedureGame procedureGame = null;
 
     /// <summary>
     /// 界面打开。
@@ -30,13 +30,14 @@ public class UIPlayerMessage : UGuiForm {
     protected override void OnOpen (object userData) {
         base.OnOpen (userData);
 
-        procedureGame = userData as ProcedureGame;
-
+        totalPrize = 0;
+        
         RefreshGold ();
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+        GameEntry.Event.Subscribe (RefreshGoldEventArgs.EventId, OnRefreshGoldProps);
     }
 
     /// <summary>
@@ -49,9 +50,13 @@ public class UIPlayerMessage : UGuiForm {
         /* 取消订阅事件 */
         GameEntry.Event.Unsubscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Unsubscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
+        GameEntry.Event.Unsubscribe (RefreshGoldEventArgs.EventId, OnRefreshGoldProps);
     }
 
-    private void RefreshGold () {
+    /// <summary>
+    /// 刷新金币信息
+    /// </summary>
+    public void RefreshGold () {
         prizeText.text = totalPrize.ToString ();
         goldText.text = GameEntry.Setting.GetInt (Constant.Player.Gold).ToString ();
     }
@@ -77,5 +82,10 @@ public class UIPlayerMessage : UGuiForm {
         atkText.text = eventArgs.HeroData.Atk.ToString ();
         defText.text = eventArgs.HeroData.Def.ToString ();
         hpText.text = eventArgs.HeroData.HP.ToString ();
+        mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
+    }
+
+    private void OnRefreshGoldProps (object sender, GameEventArgs e) {
+        RefreshGold();
     }
 }

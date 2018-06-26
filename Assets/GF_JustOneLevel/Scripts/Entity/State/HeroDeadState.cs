@@ -3,7 +3,7 @@ using GameFramework.Event;
 using GameFramework.Fsm;
 using UnityEngine;
 
-public class HeroDeadState : FsmState<Hero> {
+public class HeroDeadState : HeroBaseState {
     private float deadTimeCounter = 0;
     
 
@@ -12,6 +12,7 @@ public class HeroDeadState : FsmState<Hero> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnInit (IFsm<Hero> fsm) { 
+        base.OnInit(fsm);
     }
 
     /// <summary>
@@ -19,6 +20,7 @@ public class HeroDeadState : FsmState<Hero> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Hero> fsm) {
+        base.OnEnter(fsm);
         SubscribeEvent(ResurgenceEventArgs.EventId, OnResurgenceEvent);
 
         deadTimeCounter = 0;
@@ -33,6 +35,7 @@ public class HeroDeadState : FsmState<Hero> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<Hero> fsm, float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
         deadTimeCounter += elapseSeconds;
 
         if (deadTimeCounter > 2) {
@@ -46,6 +49,7 @@ public class HeroDeadState : FsmState<Hero> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
+        base.OnLeave(fsm, isShutdown);
         UnsubscribeEvent(ResurgenceEventArgs.EventId, OnResurgenceEvent);
     }
 

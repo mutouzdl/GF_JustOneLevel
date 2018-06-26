@@ -15,6 +15,10 @@ public class MonsterCreater : Entity {
 	private int createNum = 0;
 
 	private float timeCounter = 0;
+	/// <summary>
+	/// 过去的时间
+	/// </summary>
+	private float pastTime = 0;
 
 	protected override void OnInit (object userData) {
 		base.OnInit (userData);
@@ -28,14 +32,24 @@ public class MonsterCreater : Entity {
 			Log.Error ("MonsterCreater data is invalid.");
 			return;
 		}
+
+		createNum = 0;
+		timeCounter = 0;
+		pastTime = 0;
 	}
 
 	protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
 		base.OnUpdate (elapseSeconds, realElapseSeconds);
 
 		timeCounter += elapseSeconds;
+		pastTime += elapseSeconds;
 
-		if (timeCounter < monsterCreaterData.Interval) {
+		if (pastTime < monsterCreaterData.StartTime) {
+			return;
+		}
+
+		// 第一个创建的怪物跳过创建间隔
+		if (createNum > 0 && timeCounter < monsterCreaterData.Interval) {
 			return;
 		}
 
@@ -44,9 +58,15 @@ public class MonsterCreater : Entity {
 		// 创建怪物
 		if (Utility.Random.GetRandom (100) < monsterCreaterData.Probability) {
 			for (int i = 0; i < monsterCreaterData.PerNum; i++) {
+				CampType camp = CampType.Enemy;
+
 				MonsterData monsterData = new MonsterData (
-					EntityExtension.GenerateSerialId (), monsterCreaterData.TypeId, CampType.Enemy, monsterCreaterData.MonsterPrize);
+					EntityExtension.GenerateSerialId (), monsterCreaterData.MonsterTypeId, camp, monsterCreaterData.MonsterPrize);
 				monsterData.Position = new Vector3 (Utility.Random.GetRandom (5, 25), 0, Utility.Random.GetRandom (5, 25));
+
+				// 调整怪物属性
+				monsterData.AjustPower(monsterCreaterData.PowerPercent);
+
 				EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 
 				createNum++;

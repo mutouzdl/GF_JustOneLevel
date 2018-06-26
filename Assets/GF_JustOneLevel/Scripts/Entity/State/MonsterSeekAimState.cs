@@ -29,12 +29,12 @@ public class MonsterSeekAimState : MonsterListenDamageState {
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
-        if (fsm.Owner.IsAtkCDing ()) {
+        if (fsm.Owner.IsAtkCDing || GlobalGame.IsPause) {
             return;
         }
 
         if (fsm.Owner.IsLockingAim) {
-            TargetableObject aim = fsm.Owner.LockingAim;
+            FightEntity aim = fsm.Owner.LockingAim;
             if (aim.IsDead) {
                 ChangeState<MonsterIdleState>(fsm);
                 return;
@@ -45,7 +45,6 @@ public class MonsterSeekAimState : MonsterListenDamageState {
             /* 进入攻击范围，直接攻击 */
             if (fsm.Owner.CheckInAtkRange (distance)) {
                 fsm.SetData<VarInt> (Constant.EntityData.LockAimID, aim.Entity.Id);
-                Log.Info("进入攻击范围，直接攻击");
                 ChangeState<MonsterAtkState> (fsm);
             }
             /* 在视线范围内，则继续移动 */
@@ -60,23 +59,25 @@ public class MonsterSeekAimState : MonsterListenDamageState {
             return;
         }
 
-        /* 判断是否有英雄进入追踪或攻击范围 */
-        GameObject[] heros = GameObject.FindGameObjectsWithTag ("Hero");
-        foreach (GameObject obj in heros) {
-            TargetableObject hero = obj.GetComponent<TargetableObject> ();
+        /* 判断是否有敌人进入追踪或攻击范围 */
+        CampType camp = fsm.Owner.GetImpactData().Camp;
+        GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
+        foreach (GameObject obj in aims) {
+            FightEntity aim = obj.GetComponent<FightEntity> ();
 
-            if (hero.IsDead == false) {
-                float distance = AIUtility.GetDistance (fsm.Owner, hero);
+            if (aim.IsDead == false 
+                && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {
+                float distance = AIUtility.GetDistance (fsm.Owner, aim);
 
                 /* 进入攻击范围，直接攻击 */
                 if (fsm.Owner.CheckInAtkRange (distance)) {
-                    fsm.SetData<VarInt> (Constant.EntityData.LockAimID, hero.Entity.Id);
+                    fsm.SetData<VarInt> (Constant.EntityData.LockAimID, aim.Entity.Id);
                     ChangeState<MonsterAtkState> (fsm);
                     break;
                 }
                 /* 进入追踪范围，向目标移动 */
                 else if (fsm.Owner.CheckInSeekRange (distance)) {
-                    fsm.Owner.LockAim(hero);
+                    fsm.Owner.LockAim(aim);
                     ChangeState<MonsterWalkState>(fsm);
                     break;
                 }

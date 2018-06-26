@@ -71,7 +71,7 @@ public class ProcedureGame : ProcedureBase {
         }
 
         if (survivalGame != null) {
-            if (!survivalGame.GameOver) {
+            if (!GlobalGame.IsPause) {
                 survivalGame.Update (elapseSeconds, realElapseSeconds);
             } else {
                 GameOver (procedureOwner);
@@ -91,26 +91,30 @@ public class ProcedureGame : ProcedureBase {
     /// <summary>
     /// 继续游戏，续命
     /// </summary>
-    public void Continue () {
+    public bool Continue () {
         int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
 
-        if (gold < 500) {
-            int? id = 0;
-            id = GameEntry.UI.OpenDialog (new DialogParams () {
+        if (gold < Constant.Player.ContinueCostGold) {
+            GameEntry.UI.OpenDialog (new DialogParams () {
                 Title = GameEntry.Localization.GetString ("Alert.OperateFail"),
                 Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
-                OnClickConfirm = (object userData) => { GameEntry.UI.CloseDialog(id); },
+                OnClickConfirm = (object userData) => { return true; },
             });
-            return;
+            return false;
         }
 
         // 扣除金币进行复活
-        GameEntry.Setting.SetInt (Constant.Player.Gold, gold - 500);
+        GameEntry.Setting.SetInt (Constant.Player.Gold, gold - Constant.Player.ContinueCostGold);
 
         // 发送复活消息
         GameEntry.Event.Fire (this, new ResurgenceEventArgs ());
 
+        // 刷新金币信息
+        uiPlayerMessage.RefreshGold();
+        
         isPause = false;
+
+        return true;
     }
 
     private void GameOver (ProcedureOwner procedureOwner) {
@@ -122,13 +126,14 @@ public class ProcedureGame : ProcedureBase {
         string des = GameEntry.Localization.GetString ("GameOver.Des");
         string ResurgenceDes = GameEntry.Localization.GetString ("GameOver.ResurgenceDes");
         string message = $"{des}\n<color=red>{ResurgenceDes}</color>";
+
         GameEntry.UI.OpenDialog (new DialogParams () {
             Mode = DialogParams.DialogMode.双按钮,
             Title = GameEntry.Localization.GetString ("GameOver.Title"),
             Message = message,
             ConfirmText = GameEntry.Localization.GetString("Operate.Continue"),
             CancelText = GameEntry.Localization.GetString("Operate.Back"),
-            OnClickConfirm = (object userData) => { Continue(); },
+            OnClickConfirm = (object userData) => { return Continue(); },
             OnClickCancel = (object userData) => { Back(); },
         });
 
@@ -140,6 +145,9 @@ public class ProcedureGame : ProcedureBase {
 
         if (ne.UIForm.Logic is UIPlayerOperate) {
             uiPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
+
+            // 英雄对象依赖于操作界面的某个对象，所以需要先创建操作界面再创建英雄
+            survivalGame.CreateCreatures();
         } else if (ne.UIForm.Logic is UIPlayerMessage) {
             uiPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
         }

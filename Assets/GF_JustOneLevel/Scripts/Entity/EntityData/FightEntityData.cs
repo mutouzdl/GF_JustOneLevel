@@ -4,10 +4,35 @@ using GameFramework.DataTable;
 using UnityEngine;
 
 [Serializable]
-public class FightEntityData : TargetableObjectData {
+public class FightEntityData : EntityData {
     protected List<WeaponData> weaponDatas = new List<WeaponData> ();
     
-    public FightEntityData (int entityId, int typeId, CampType camp) : base (entityId, typeId, camp) {
+    public FightEntityData (int entityId, int typeId, CampType camp) : base (entityId, typeId) {
+        this.Camp = camp;
+    }
+
+    /// <summary>
+    /// 增加MP
+    /// </summary>
+    /// <param name="value"></param>
+    public void AddMP (int value) {
+        this.MP += value;
+
+        if (this.MP > this.MaxMP) {
+            this.MP = this.MaxMP;
+        }
+    }
+
+    /// <summary>
+    /// 消耗MP
+    /// </summary>
+    /// <param name="value"></param>
+    public void CostMP (int value) {
+        this.MP -= value;
+
+        if (this.MP < 0) {
+            this.MP = 0;
+        }
     }
 
     /// <summary>
@@ -19,9 +44,28 @@ public class FightEntityData : TargetableObjectData {
     }
 
     /// <summary>
-    /// 最大生命。
+    /// 名字
     /// </summary>
-    public override int MaxHP {
+    /// <returns></returns>
+    public string Name {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 魔法值
+    /// </summary>
+    /// <returns></returns>
+    public int MP {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 最大魔法值
+    /// </summary>
+    /// <returns></returns>
+    public int MaxMP {
         get;
         protected set;
     }
@@ -76,17 +120,44 @@ public class FightEntityData : TargetableObjectData {
         protected set;
     }
 
-    private void RefreshData () {
-        // m_MaxHP = 0;
-        // m_Defense = 0;
-        // for (int i = 0; i < m_ArmorDatas.Count; i++)
-        // {
-        //     m_MaxHP += m_ArmorDatas[i].MaxHP;
-        //     m_Defense += m_ArmorDatas[i].Defense;
-        // }
+    /// <summary>
+    /// 角色阵营。
+    /// </summary>
+    public CampType Camp {
+        get;
+        protected set;
+    } = CampType.Unknown;
 
-        if (HP > MaxHP) {
-            HP = MaxHP;
+    /// <summary>
+    /// 当前生命。
+    /// </summary>
+    public int HP {
+        get;
+        set;
+    }
+
+    /// <summary>
+    /// 最大生命。
+    /// </summary>
+    public int MaxHP {
+        get;
+        protected set;
+    }
+
+    /// <summary>
+    /// 生命百分比。
+    /// </summary>
+    public float HPRatio {
+        get {
+            return MaxHP > 0 ? (float) HP / MaxHP : 0f;
         }
+    }
+
+    /// <summary>
+    /// 防御。
+    /// </summary>
+    public int Def {
+        get;
+        protected set;
     }
 }

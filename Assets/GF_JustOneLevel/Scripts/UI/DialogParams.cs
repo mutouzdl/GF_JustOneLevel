@@ -54,7 +54,7 @@ public class DialogParams {
     /// <summary>
     /// 确定按钮回调。
     /// </summary>
-    public GameFrameworkAction<object> OnClickConfirm {
+    public GameFrameworkFunc<object, bool> OnClickConfirm {
         get;
         set;
     }
@@ -86,7 +86,7 @@ public class DialogParams {
     /// <summary>
     /// 其它按钮回调。
     /// </summary>
-    public GameFrameworkAction<object> OnClickOther {
+    public GameFrameworkFunc<object, bool> OnClickOther {
         get;
         set;
     }

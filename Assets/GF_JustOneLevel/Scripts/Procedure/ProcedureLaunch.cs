@@ -1,5 +1,6 @@
 ﻿using System;
 using GameFramework;
+using GameFramework.Event;
 using GameFramework.Localization;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -27,6 +28,11 @@ public class ProcedureLaunch : ProcedureBase {
 		// 默认字典：加载默认字典文件 Assets/GF_JustOneLevel/Configs/DefaultDictionary.xml。
 		// 此字典文件记录了资源更新前使用的各种语言的字符串，会随 App 一起发布，故不可更新。
 		GameEntry.BuiltinData.InitDefaultDictionary ();
+	}
+
+	protected override void OnLeave (ProcedureOwner procedureOwner, bool isShutdown) {
+		base.OnLeave (procedureOwner, isShutdown);
+
 	}
 
 	protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {

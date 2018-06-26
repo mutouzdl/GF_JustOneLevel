@@ -1,6 +1,7 @@
 ﻿using GameFramework;
 using GameFramework.DataTable;
 using GameFramework.Event;
+using UnityEngine;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
@@ -10,16 +11,19 @@ using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedure
 public partial class ProcedureChangeScene : ProcedureBase {
     private bool isChangeSceneComplete = false;
     private int backgroundMusicId = 0;
+    private int? uiLoadingID = null;
+    private float changeSceneDelayTime = 0; // 延迟切换场景时间记录
 
     protected override void OnEnter (ProcedureOwner procedureOwner) {
         base.OnEnter (procedureOwner);
-
-        isChangeSceneComplete = false;
 
         GameEntry.Event.Subscribe (LoadSceneSuccessEventArgs.EventId, OnLoadSceneSuccess);
         GameEntry.Event.Subscribe (LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
         GameEntry.Event.Subscribe (LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
         GameEntry.Event.Subscribe (LoadSceneDependencyAssetEventArgs.EventId, OnLoadSceneDependencyAsset);
+
+        changeSceneDelayTime = 0;
+        isChangeSceneComplete = false;
 
         // 停止所有声音
         GameEntry.Sound.StopAllLoadingSounds ();
@@ -37,6 +41,9 @@ public partial class ProcedureChangeScene : ProcedureBase {
 
         // 还原游戏速度
         GameEntry.Base.ResetNormalGameSpeed ();
+       
+        // 打开LoadingUI
+        uiLoadingID = GameEntry.UI.OpenUIForm(UIFormId.Loading, this);
 
         int sceneId = procedureOwner.GetData<VarInt> (Constant.ProcedureData.NextSceneId).Value;
         IDataTable<DRScene> dtScene = GameEntry.DataTable.GetDataTable<DRScene> ();
@@ -62,9 +69,15 @@ public partial class ProcedureChangeScene : ProcedureBase {
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (procedureOwner, elapseSeconds, realElapseSeconds);
 
+        changeSceneDelayTime += Time.deltaTime;
         if (!isChangeSceneComplete) {
             return;
         }
+
+        if (changeSceneDelayTime < 0.6f) {
+            return;
+        }
+
         int sceneId = procedureOwner.GetData<VarInt> (Constant.ProcedureData.NextSceneId).Value;
 
         if (sceneId == GameEntry.Config.GetInt("Scene.Game")) {
@@ -73,11 +86,10 @@ public partial class ProcedureChangeScene : ProcedureBase {
         else if (sceneId == GameEntry.Config.GetInt("Scene.Menu")) {
             ChangeState<ProcedureMenu>(procedureOwner);
         }
-        // if (m_ChangeToMenu) {
-        //     ChangeState<ProcedureMenu> (procedureOwner);
-        // } else {
-        //     ChangeState<ProcedureMain> (procedureOwner);
-        // }
+
+        if (uiLoadingID != null) {
+            GameEntry.UI.CloseUIForm((int)uiLoadingID);
+        }
     }
 
     private void OnLoadSceneSuccess (object sender, GameEventArgs e) {

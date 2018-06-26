@@ -3,7 +3,6 @@ using GameFramework.Fsm;
 using UnityEngine;
 
 public class MonsterIdleState : MonsterSeekAimState {
-    private float forwardTimeCounter = 0;
 
     /// <summary>
     /// 有限状态机状态初始化时调用。
@@ -32,17 +31,17 @@ public class MonsterIdleState : MonsterSeekAimState {
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
-        forwardTimeCounter += elapseSeconds;
-
-        // 随机移动
-        if(forwardTimeCounter > 7) {
-            forwardTimeCounter = 0;
-            
-            if (Utility.Random.GetRandom(100) < 40) {
-                ChangeState<MonsterWalkState>(fsm);
-            }
+        if (fsm.Owner.IsLockingAim) {
+            Entity aim = fsm.Owner.LockingAim;
+            fsm.Owner.transform.LookAt (aim.transform);
+            return;
         }
-        
+
+        Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
+        if (inputVec.y != 0) {
+            /* 移动 */
+            ChangeState<MonsterWalkState> (fsm);
+        }
     }
 
     /// <summary>

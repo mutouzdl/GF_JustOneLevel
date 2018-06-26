@@ -1,3 +1,4 @@
+using GameFramework;
 using GameFramework.Fsm;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class HeroWalkState : HeroListenAttackState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnInit (IFsm<Hero> fsm) {
-        base.OnInit(fsm);
+        base.OnInit (fsm);
     }
 
     /// <summary>
@@ -15,7 +16,7 @@ public class HeroWalkState : HeroListenAttackState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Hero> fsm) {
-        base.OnEnter(fsm);
+        base.OnEnter (fsm);
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.walk);
     }
 
@@ -26,15 +27,15 @@ public class HeroWalkState : HeroListenAttackState {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<Hero> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
-        float inputVertical = Input.GetAxis ("Vertical");
-        if (inputVertical != 0) {
+        Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
+        if (inputVec.y != 0) {
             /* 移动 */
-            fsm.Owner.Forward(elapseSeconds * inputVertical);
+            fsm.Owner.Forward (elapseSeconds * inputVec.y);
         } else {
             /* 站立 */
-            ChangeState<HeroIdleState>(fsm);
+            ChangeState<HeroIdleState> (fsm);
         }
     }
 
@@ -44,7 +45,7 @@ public class HeroWalkState : HeroListenAttackState {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Hero> fsm, bool isShutdown) {
-        base.OnLeave(fsm, isShutdown);
+        base.OnLeave (fsm, isShutdown);
     }
 
     /// <summary>
