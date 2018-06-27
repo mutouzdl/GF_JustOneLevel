@@ -72,5 +72,9 @@ UI很丑，嗯。
 [GF_JustOneLevel食用指南001：下载、运行](http://www.benmutou.com/archives/2660)
 [GF_JustOneLevel食用指南002：主要功能](http://www.benmutou.com/archives/2662)
 
+# 未完成的事情
+目前只测试了PC版和Android版，iOS没有验证，因为木头个人是安卓粉，同时也因为精力不足，所以一直以来只关注Android，iOS没有环境验证。
+期待大家能帮我验证打包iOS后是否有问题，欢迎Pull Request！
+
 # License
 Apache License 2.0
