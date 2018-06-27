@@ -40,7 +40,7 @@ public class BulletEffect : Entity {
             Log.Error ("BulletEffect data is invalid.");
             return;
         }
-        Log.Info("BulletEffect OnShow");
+        
         isStop = false;
         GameEntry.Entity.AttachEntity (Entity, bulletEffectData.OwnerId, AttachPoint);
     }

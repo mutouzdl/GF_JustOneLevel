@@ -36,10 +36,10 @@ public class Bullet : Entity {
         CachedTransform.forward = bulletData.Forward;
 
         // 让子弹保持水平
-        CachedTransform.forward = new Vector3(
-            CachedTransform.forward.x,
-            0,
-            CachedTransform.forward.z);
+        // CachedTransform.forward = new Vector3(
+        //     CachedTransform.forward.x,
+        //     1,
+        //     CachedTransform.forward.z);
 
         if (bulletData.EffectId > 0) {
             BulletEffectData bulletEffectData = new BulletEffectData (EntityExtension.GenerateSerialId (), bulletData.EffectId, Id);

@@ -43,15 +43,16 @@ public class UIPlayerOperate : UGuiForm {
 
         for (int i = 0; i < weaponDatas.Count; i++) {
             WeaponData weaponData = weaponDatas[i];
+            string buttonText = $"{weaponData.Name}({weaponData.CostMP}MP)";
 
             switch (weaponDatas[i].AttackType) {
                 case WeaponAttackType.手动触发:
-                    CreateButton(attackButtonParent, weaponData.Name, OnAtkClick);
+                    CreateButton(attackButtonParent, buttonText, OnAtkClick);
                     break;
                 case WeaponAttackType.自动触发:
                     break;
                 case WeaponAttackType.技能触发:
-                    CreateButton(skillButtonParent, weaponData.Name, () => {
+                    CreateButton(skillButtonParent, buttonText, () => {
                         OnSkillClick (weaponData);
                     });
                     break;
