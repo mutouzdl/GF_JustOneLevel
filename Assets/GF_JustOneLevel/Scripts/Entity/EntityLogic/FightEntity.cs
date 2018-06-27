@@ -41,6 +41,11 @@ public abstract class FightEntity : Entity {
     /// <returns></returns>
     protected List<Weapon> skillWeapons = new List<Weapon> ();
 
+    /// <summary>
+    /// 自动武器发射间隔计时器
+    /// </summary>
+    private float autoWeaponsFireTimeCounter = 0;
+
     protected override void OnInit (object userData) {
         base.OnInit (userData);
         // CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
@@ -57,10 +62,31 @@ public abstract class FightEntity : Entity {
 
         // CachedTransform.localScale = Vector3.one;
 
+        autoWeaponsFireTimeCounter = 0;
+        manualWeapons.Clear();
+        autoWeapons.Clear();
+        skillWeapons.Clear();
+
         /* 附加血量条 */
         PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);
         EntityExtension.ShowPowerBar (typeof (PowerBar), "PowerBarGroup", hpBarData);
+    }
 
+    protected override void OnUpdate(float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate(elapseSeconds, realElapseSeconds);
+
+        if (IsDead) {
+            return;
+        }
+
+        autoWeaponsFireTimeCounter += elapseSeconds;
+        if (autoWeaponsFireTimeCounter >= fightEntityData.AtkSpeed) {
+            autoWeaponsFireTimeCounter = 0;
+
+            foreach(Weapon weapon in autoWeapons) {
+                weapon.Attack(fightEntityData.Atk);
+            }
+        }
     }
 
     protected override void OnAttached (EntityLogic childEntity, Transform parentTransform, object userData) {
