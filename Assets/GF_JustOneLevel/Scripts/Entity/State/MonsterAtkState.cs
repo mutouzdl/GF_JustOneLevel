@@ -47,7 +47,7 @@ public class MonsterAtkState : MonsterListenDamageState {
 
             if (aim.IsDead == false) {
                 fsm.Owner.transform.LookAt (aim.transform);
-                fsm.Owner.PerformAttack (aim);
+                fsm.Owner.PerformAttack ();
             }
             ChangeState<MonsterIdleState> (fsm);
         }

@@ -138,8 +138,7 @@ public class Monster : FightEntity {
     /// <summary>
     /// 执行攻击
     /// </summary>
-    /// <param name="aimEntity">攻击目标</param>
-    public void PerformAttack (FightEntity aimEntity) {
+    public void PerformAttack () {
         IsAtkCDing = true;
         monsterStateFsm.FireEvent (this, MonsterAttackEventArgs.EventId);
 

@@ -81,7 +81,7 @@ public class UIPlayerMessage : UGuiForm {
 
         atkText.text = eventArgs.HeroData.Atk.ToString ();
         defText.text = eventArgs.HeroData.Def.ToString ();
-        hpText.text = eventArgs.HeroData.HP.ToString ();
+        hpText.text = $"{eventArgs.HeroData.HP}/{eventArgs.HeroData.MaxHP}";
         mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
     }
 
