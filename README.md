@@ -47,7 +47,7 @@ Unity3D版本：2018.1
  - [Unity Samples: UI](https://assetstore.unity.com/packages/essentials/unity-samples-ui-25468)
  等，有点多，就不继续列出来了。
  
- # 主要功能（详细描述请看[GF_JustOneLevel食用指南002：主要功能](http://www.benmutou.com/archives/2662)）
+ # 主要功能
   - 场景切换
   - 从配置文件读取并加载实体
   - 状态机
@@ -57,7 +57,8 @@ Unity3D版本：2018.1
   - 魔力泉
   - 移动控制器
   - 其它：对话确认框、死亡后花金币续命、杀死怪物后吸收怪物部分属性、怪物在短时间内受到三次攻击后会往后弹一段距离
- 
+
+ （详细描述请看[GF_JustOneLevel食用指南002：主要功能](http://www.benmutou.com/archives/2662)）
 
 # 特别说明
 由于是为了学习GameFramework框架，所以很多套路是参照StarForce项目来的，甚至有些类都是直接拿来改改就用。
