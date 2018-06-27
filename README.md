@@ -70,6 +70,7 @@ UI很丑，嗯。
 
 # 食用指南
 [GF_JustOneLevel食用指南001：下载、运行](http://www.benmutou.com/archives/2660)
+
 [GF_JustOneLevel食用指南002：主要功能](http://www.benmutou.com/archives/2662)
 
 # 未完成的事情
