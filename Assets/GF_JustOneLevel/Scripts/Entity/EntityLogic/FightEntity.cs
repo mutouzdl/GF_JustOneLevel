@@ -63,17 +63,17 @@ public abstract class FightEntity : Entity {
         // CachedTransform.localScale = Vector3.one;
 
         autoWeaponsFireTimeCounter = 0;
-        manualWeapons.Clear();
-        autoWeapons.Clear();
-        skillWeapons.Clear();
+        manualWeapons.Clear ();
+        autoWeapons.Clear ();
+        skillWeapons.Clear ();
 
         /* 附加血量条 */
         PowerBarData hpBarData = new PowerBarData (EntityExtension.GenerateSerialId (), 1, this.Id, CampType.Player);
         EntityExtension.ShowPowerBar (typeof (PowerBar), "PowerBarGroup", hpBarData);
     }
 
-    protected override void OnUpdate(float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(elapseSeconds, realElapseSeconds);
+    protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate (elapseSeconds, realElapseSeconds);
 
         if (IsDead) {
             return;
@@ -83,8 +83,8 @@ public abstract class FightEntity : Entity {
         if (autoWeaponsFireTimeCounter >= fightEntityData.AtkSpeed) {
             autoWeaponsFireTimeCounter = 0;
 
-            foreach(Weapon weapon in autoWeapons) {
-                weapon.Attack(fightEntityData.Atk);
+            foreach (Weapon weapon in autoWeapons) {
+                weapon.Attack (fightEntityData.Atk);
             }
         }
     }
@@ -189,7 +189,8 @@ public abstract class FightEntity : Entity {
 
         if (state == FightEntityAnimationState.walk) {
             cachedAnimator.SetBool ("IsWalking", true);
-        } else if (state == FightEntityAnimationState.idle) { } else if (state == FightEntityAnimationState.atk) {
+        } else if (state == FightEntityAnimationState.idle) { 
+        } else if (state == FightEntityAnimationState.atk) {
             cachedAnimator.SetBool ("IsAttacking", true);
         } else if (state == FightEntityAnimationState.hurt) {
             cachedAnimator.SetBool ("IsHurting", true);

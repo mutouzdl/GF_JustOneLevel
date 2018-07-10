@@ -20,8 +20,6 @@ public class UIPlayerOperate : UGuiForm {
     /// <param name="userData"></param>
     protected override void OnInit (object userData) {
         base.OnInit (userData);
-
-        InitWeaponButtons ();
     }
 
     /// <summary>
@@ -32,13 +30,26 @@ public class UIPlayerOperate : UGuiForm {
         base.OnOpen (userData);
 
         procedureGame = userData as ProcedureGame;
+
+        InitWeaponButtons ();
+    }
+
+    protected override void OnClose (object userData) {
+        base.OnClose(userData);
+
+        for (int i = 0; i < attackButtonParent.childCount; i++) {
+            DestroyImmediate (attackButtonParent.GetChild (i).gameObject);
+        }
+        for (int i = 0; i < skillButtonParent.childCount; i++) {
+            DestroyImmediate (skillButtonParent.GetChild (i).gameObject);
+        }
     }
 
     /// <summary>
     /// 根据玩家角色拥有的武器，初始化操作按钮
     /// </summary>
     private void InitWeaponButtons () {
-        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
+        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), PlayerData.CurrentFightHeroID, CampType.Player);
         List<WeaponData> weaponDatas = heroData.GetWeaponDatas ();
 
         for (int i = 0; i < weaponDatas.Count; i++) {
@@ -47,12 +58,12 @@ public class UIPlayerOperate : UGuiForm {
 
             switch (weaponDatas[i].AttackType) {
                 case WeaponAttackType.手动触发:
-                    CreateButton(attackButtonParent, buttonText, OnAtkClick);
+                    CreateButton (attackButtonParent, buttonText, OnAtkClick);
                     break;
                 case WeaponAttackType.自动触发:
                     break;
                 case WeaponAttackType.技能触发:
-                    CreateButton(skillButtonParent, buttonText, () => {
+                    CreateButton (skillButtonParent, buttonText, () => {
                         OnSkillClick (weaponData);
                     });
                     break;

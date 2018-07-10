@@ -43,7 +43,7 @@ public static class AssetUtility {
     }
 
     public static string GetUISpriteAsset (string assetName) {
-        return string.Format ("Assets/GF_JustOneLevel/UI/UISprites/{0}.png", assetName);
+        return string.Format ("Assets/GF_JustOneLevel/Prefabs/UI/UISprites/{0}.prefab", assetName);
     }
 
     public static string GetUISoundAsset (string assetName) {

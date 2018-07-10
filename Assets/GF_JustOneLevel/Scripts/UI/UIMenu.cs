@@ -22,4 +22,13 @@ public class UIMenu : UGuiForm {
             m_ProcedureMenu.StartGame();
         }
     }
+
+    /// <summary>
+    /// 点击英雄商店按钮
+    /// </summary>
+    public void OnHeroShopClick() {
+        if (m_ProcedureMenu != null) {
+            m_ProcedureMenu.ShowHeroShop();
+        }
+    }
 }

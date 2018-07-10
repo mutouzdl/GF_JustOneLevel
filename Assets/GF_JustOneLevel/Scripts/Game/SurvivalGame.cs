@@ -22,7 +22,7 @@ public class SurvivalGame {
     /// </summary>
     public void CreateCreatures () {
         // 创建主角
-        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), 1, CampType.Player);
+        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), PlayerData.CurrentFightHeroID, CampType.Player);
         heroData.Position = new Vector3 (15, 0, 15);
         EntityExtension.ShowHero (typeof (Hero), "PlayerGroup", heroData);
 

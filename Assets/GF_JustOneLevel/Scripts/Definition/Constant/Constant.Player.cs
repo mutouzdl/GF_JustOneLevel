@@ -5,6 +5,7 @@
 public static partial class Constant {
     public static class Player {
         public const string Gold = "Player.Gold";
-        public const int ContinueCostGold = 200;
+        public const string OwnHero = "Player.OwnHero";
+        public const string CurrentFightHero = "Player.CurrentFightHero";
     }
 }

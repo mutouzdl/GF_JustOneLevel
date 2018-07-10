@@ -92,9 +92,9 @@ public class ProcedureGame : ProcedureBase {
     /// 继续游戏，续命
     /// </summary>
     public bool Continue () {
-        int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
+        int gold = PlayerData.Gold;
 
-        if (gold < Constant.Player.ContinueCostGold) {
+        if (gold < GlobalGame.ContinueCostGold) {
             GameEntry.UI.OpenDialog (new DialogParams () {
                 Title = GameEntry.Localization.GetString ("Alert.OperateFail"),
                 Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
@@ -104,7 +104,7 @@ public class ProcedureGame : ProcedureBase {
         }
 
         // 扣除金币进行复活
-        GameEntry.Setting.SetInt (Constant.Player.Gold, gold - Constant.Player.ContinueCostGold);
+        PlayerData.Gold = gold - GlobalGame.ContinueCostGold;
 
         // 发送复活消息
         GameEntry.Event.Fire (this, new ResurgenceEventArgs ());

@@ -67,7 +67,7 @@ public class MagicWater : Entity {
 			if (hero != null) {
 				// 改变金币
 				if (magicWaterData.AddGold != 0) {
-					int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
+					int gold = PlayerData.Gold;
 					if (magicWaterData.AddGold < 0 && gold < Mathf.Abs (magicWaterData.AddGold)) {
 						return;
 					}

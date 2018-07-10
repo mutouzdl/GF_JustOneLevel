@@ -1,4 +1,6 @@
 ﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkRange,Def,AtkSpeed,HP,MP,WeaponIDs
 #,int,string,string,float,float,int,float,int,float,int,int,string
 #,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击范围,防御,攻速（秒）,血量,魔法值,武器ID（可多个，使用_分割）
-,1,Player,玩家,4,35,1,2,0,1,5,10,1_2_3_200
+,1,Player,骑士,4,35,1,2,0,1,5,10,1_2_200
+,2,Player,神射手,5,45,1,5,0,1.5,3,20,3_4
+,3,Player3,武斗家,4,40,2,2,0,0.2,4,5,1
