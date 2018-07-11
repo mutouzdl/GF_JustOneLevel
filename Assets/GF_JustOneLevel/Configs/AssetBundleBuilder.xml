@@ -2,8 +2,8 @@
 <UnityGameFramework>
   <AssetBundleBuilder>
     <Settings>
-      <InternalResourceVersion>47</InternalResourceVersion>
-      <WindowsSelected>True</WindowsSelected>
+      <InternalResourceVersion>50</InternalResourceVersion>
+      <WindowsSelected>False</WindowsSelected>
       <MacOSXSelected>False</MacOSXSelected>
       <IOSSelected>False</IOSSelected>
       <AndroidSelected>True</AndroidSelected>
