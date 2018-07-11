@@ -12,6 +12,14 @@ public class FightEntityData : EntityData {
     }
 
     /// <summary>
+    /// 改变名字
+    /// </summary>
+    /// <param name="name"></param>
+    public void ChangeName (string name) {
+        this.Name = name;
+    }
+
+    /// <summary>
     /// 增加MP
     /// </summary>
     /// <param name="value"></param>

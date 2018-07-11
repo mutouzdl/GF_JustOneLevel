@@ -66,7 +66,7 @@ public class MonsterCreater : Entity {
 
 				// 调整怪物属性
 				monsterData.AjustPower(monsterCreaterData.PowerPercent);
-
+				monsterData.ChangeName(monsterCreaterData.Name);
 				EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
 
 				createNum++;
