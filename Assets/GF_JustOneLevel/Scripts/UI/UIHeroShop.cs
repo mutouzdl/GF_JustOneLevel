@@ -113,6 +113,7 @@ public class UIHeroShop : UGuiForm {
             }
         } else {
             buttonBuy.SetActive (true);
+            buttonFight.SetActive (false);
             string goldText = GameEntry.Localization.GetString ("Message.Gold");
             textPrice.text = $"{drHeroShop.Price}{goldText}";
         }

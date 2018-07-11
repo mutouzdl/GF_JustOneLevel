@@ -59,6 +59,7 @@
       <Asset Guid="7bb0d08559bd4aa4d88de18fe673f3cc" AssetBundleName="DataTables" />
       <Asset Guid="7c750071e9a139c45872b5662f0f3236" AssetBundleName="Prefab/Entities" />
       <Asset Guid="7e077c5370349b247929c95a8b8ce75e" AssetBundleName="SkyBox" />
+      <Asset Guid="819d15506ff2ed248b7e668f045b7d0d" AssetBundleName="Prefab/Entities" />
       <Asset Guid="843225ea0397c8446ae8475b79c87ff1" AssetBundleName="Prefab/UI" />
       <Asset Guid="86175340c384e6d4399edc6b2477cf1b" AssetBundleName="Scenes" />
       <Asset Guid="8d156f0545930a942b2ca6ed792014e9" AssetBundleName="SkyBox" />
@@ -77,6 +78,7 @@
       <Asset Guid="ae3bee6bdd751d9488ff641edb8ef4b4" AssetBundleName="Prefab/UI" />
       <Asset Guid="b175d767752c32045a13acb6b2254a2a" AssetBundleName="Prefab/BulletEffect" />
       <Asset Guid="b85f12ecc21a98c4992a4a945dccd04f" AssetBundleName="Prefab/Entities" />
+      <Asset Guid="ba46ce0d0fdf244459a6ca80d79c5e9d" AssetBundleName="Prefab/Entities" />
       <Asset Guid="bb5503fe5a25f2f498da035f1f3e58ee" AssetBundleName="Localizarion/en" />
       <Asset Guid="c020269a896f92c4d8b0e1f3c40cdad9" AssetBundleName="Prefab/Ball" />
       <Asset Guid="cce6cd7ea00759943bccc8d5ada0a749" AssetBundleName="Prefab/Entities" />
