@@ -89,7 +89,7 @@ public class UIPlayerOperate : UGuiForm {
     /// 点击攻击按钮
     /// </summary>
     public void OnAtkClick () {
-        GameEntry.Event.Fire (this, ReferencePool.Acquire<ClickAttackButtonEventArgs> ());
+        GameEntry.Event.FireNow (this, ReferencePool.Acquire<ClickAttackButtonEventArgs> ());
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public class UIPlayerOperate : UGuiForm {
     public void OnSkillClick (WeaponData data) {
         ClickAttackButtonEventArgs args = ReferencePool.Acquire<ClickAttackButtonEventArgs> ()
             .Fill (data.AttackType, data.TypeId);
-        GameEntry.Event.Fire (this, args);
+        GameEntry.Event.FireNow (this, args);
     }
 
     /// <summary>

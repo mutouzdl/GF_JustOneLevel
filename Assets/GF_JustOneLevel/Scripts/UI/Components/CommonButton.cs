@@ -22,6 +22,11 @@ public class CommonButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         m_CanvasGroup = gameObject.GetOrAddComponent<CanvasGroup> ();
     }
 
+    void Start()
+    {
+        
+    }
+
     private void OnDisable () {
         m_CanvasGroup.alpha = 1f;
     }
