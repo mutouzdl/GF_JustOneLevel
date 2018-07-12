@@ -41,7 +41,7 @@ public class MonsterAtkState : MonsterListenDamageState {
 
         atkTimeCounter += elapseSeconds;
 
-        if (atkTimeCounter > 0.2) {
+        if (atkTimeCounter > fsm.Owner.MonsterData.AtkAnimTime) {
             int lockAimID = fsm.GetData<VarInt> (Constant.EntityData.LockAimID).Value;
             FightEntity aim = (FightEntity) GameEntry.Entity.GetEntity (lockAimID).Logic;
 

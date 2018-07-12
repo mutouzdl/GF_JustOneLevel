@@ -11,7 +11,7 @@
 ,8,MonsterCreater,稀有白猫Lv1,50,55,90,1,10,5,50,1
 ,9,MonsterCreater,稀有白猫Lv2,100,50,70,1,7,5,100,2
 ,10,MonsterCreater,稀有白猫Lv3,200,50,70,1,7,5,150,3
-,11,MonsterCreater,老虎Lv1,300,20,100,1,5,6,20,1
+,11,MonsterCreater,老虎Lv1,0,20,100,1,5,6,20,1
 ,12,MonsterCreater,老虎Lv2,450,20,100,1,5,6,25,1.5
 ,99,MonsterCreater,龙Lv1,600,50,100,1,2,2,40,1
 ,100,MonsterCreater,龙Lv2,800,60,100,1,2,2,50,1.8

@@ -101,6 +101,14 @@ public class FightEntityData : EntityData {
         get;
         protected set;
     }
+    
+    /// <summary>
+    /// 攻击动画时间（秒）
+    /// </summary>
+    public float AtkAnimTime {
+        get;
+        protected set;
+    }
 
     /// <summary>
     /// 攻击范围

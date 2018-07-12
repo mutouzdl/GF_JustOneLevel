@@ -37,7 +37,7 @@ public class HeroAtkState : HeroBaseActionState {
 
         atkTimeCounter += elapseSeconds;
 
-        if (atkTimeCounter > 0.4) {
+        if (atkTimeCounter > fsm.Owner.HeroData.AtkAnimTime) {
             Attack (fsm);
             ChangeState<HeroIdleState> (fsm);
         }
