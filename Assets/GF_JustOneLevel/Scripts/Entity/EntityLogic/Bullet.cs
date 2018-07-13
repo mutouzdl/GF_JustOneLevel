@@ -13,6 +13,11 @@ public class Bullet : Entity {
     /// </summary>
     private int leftEffectTimes = 1;
 
+    /// <summary>
+    /// 速度为0的子弹自动销毁时间记录
+    /// </summary>
+    private float zeroSpeedAutoDestroyTimes = 0;
+
     public ImpactData GetImpactData () {
         return new ImpactData (bulletData.OwnerCamp, 0, bulletData.Attack, 0);
     }
@@ -32,6 +37,7 @@ public class Bullet : Entity {
         }
 
         leftEffectTimes = 1;
+        zeroSpeedAutoDestroyTimes = 0;
 
         CachedTransform.forward = bulletData.Forward;
 
@@ -52,9 +58,17 @@ public class Bullet : Entity {
 
         CachedTransform.Translate (CachedTransform.forward * bulletData.Speed * elapseSeconds, Space.World);
 
+        zeroSpeedAutoDestroyTimes += elapseSeconds;
+
         // 将超出边界的子弹隐藏
         if (PositionUtility.IsOutOfMapBoundary(CachedTransform.position)) {
             GameEntry.Entity.HideEntity(this.Id);
+        }
+        // 对于速度为0的子弹，在0.5秒后自动销毁 
+        else if (bulletData.Speed == 0) {
+            if (zeroSpeedAutoDestroyTimes >= 0.5f) {
+                GameEntry.Entity.HideEntity(this.Id);
+            }
         }
     }
 
