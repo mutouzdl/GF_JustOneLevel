@@ -70,7 +70,7 @@ public class UIPlayerMessage : UGuiForm {
 
             // 保存获得的金币
             int gold = PlayerData.Gold;
-            GameEntry.Setting.SetInt (Constant.Player.Gold, gold + totalPrize);
+            PlayerData.Gold = gold + data.Prize;
 
             RefreshGold ();
         }
