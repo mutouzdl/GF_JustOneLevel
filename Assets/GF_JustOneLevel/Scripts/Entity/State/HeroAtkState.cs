@@ -37,8 +37,8 @@ public class HeroAtkState : HeroBaseActionState {
 
         atkTimeCounter += elapseSeconds;
 
-        if (atkTimeCounter > 0.4) {
-            Attack(fsm);
+        if (atkTimeCounter > fsm.Owner.HeroData.AtkAnimTime) {
+            Attack (fsm);
             ChangeState<HeroIdleState> (fsm);
         }
     }
@@ -62,13 +62,12 @@ public class HeroAtkState : HeroBaseActionState {
         base.OnDestroy (fsm);
     }
 
-    
     /// <summary>
     /// 执行攻击逻辑
     /// </summary>
     /// <param name="fsm"></param>
-    private void Attack(IFsm<Hero> fsm) {
-        
+    private void Attack (IFsm<Hero> fsm) {
+
         WeaponAttackType attackType = (WeaponAttackType) fsm.GetData<VarInt> ("AttackType").Value;
 
         switch (attackType) {
@@ -89,22 +88,8 @@ public class HeroAtkState : HeroBaseActionState {
     /// </summary>
     /// <param name="fsm"></param>
     private void ManualAttack (IFsm<Hero> fsm) {
-        /* 判断是否有敌人进入攻击范围 */
-        CampType camp = fsm.Owner.GetImpactData().Camp;
-        GameObject[] aims = GameObject.FindGameObjectsWithTag ("Creature");
-        foreach (GameObject obj in aims) {
-            FightEntity aim = obj.GetComponent<FightEntity> ();
-
-            if (aim.IsDead == false
-                && AIUtility.GetRelation(aim.GetImpactData().Camp, camp) == RelationType.Hostile) {
-                float distance = AIUtility.GetDistance (fsm.Owner, aim);
-
-                if (fsm.Owner.CheckInAtkRange (distance)) {
-                    fsm.Owner.PlayTrailEffect ();
-                    fsm.Owner.PerformAttack (aim);
-                }
-            }
-        }
+        fsm.Owner.PlayTrailEffect ();
+        fsm.Owner.PerformAttack ();
     }
 
     /// <summary>
@@ -113,6 +98,6 @@ public class HeroAtkState : HeroBaseActionState {
     /// <param name="fsm"></param>
     /// <param name="weaponID"></param>
     private void SkillAttack (IFsm<Hero> fsm, WeaponAttackType attackType, int weaponID) {
-        fsm.Owner.FireWeapon(attackType, weaponID);
+        fsm.Owner.FireWeapon (attackType, weaponID);
     }
 }

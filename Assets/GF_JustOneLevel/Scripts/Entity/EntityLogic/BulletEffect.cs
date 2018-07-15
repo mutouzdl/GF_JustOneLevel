@@ -40,7 +40,7 @@ public class BulletEffect : Entity {
             Log.Error ("BulletEffect data is invalid.");
             return;
         }
-
+        
         isStop = false;
         GameEntry.Entity.AttachEntity (Entity, bulletEffectData.OwnerId, AttachPoint);
     }
@@ -79,21 +79,21 @@ public class BulletEffect : Entity {
         // 添加线
         lineRenderer = gameObject.GetOrAddComponent<LineRenderer> ();
         // lineRenderer.material = new Material (Shader.Find ("Particles/Additive"));
-        lineRenderer.widthMultiplier = 0.2f;
+        lineRenderer.widthMultiplier = 0.1f;
         lineRenderer.useWorldSpace = true;
 
         // 线的样式
-        Color c1 = Color.yellow;
-        Color c2 = Color.red;
-        float alpha = 1.0f;
+        // Color c1 = Color.yellow;
+        // Color c2 = Color.red;
+        // float alpha = 1.0f;
 
-        Gradient gradient = new Gradient ();
-        gradient.SetKeys (
-            new GradientColorKey[] { new GradientColorKey (c1, 0.0f), new GradientColorKey (c2, 1.0f) },
-            new GradientAlphaKey[] { new GradientAlphaKey (alpha, 0.0f), new GradientAlphaKey (alpha, 1.0f) }
-        );
+        // Gradient gradient = new Gradient ();
+        // gradient.SetKeys (
+        //     new GradientColorKey[] { new GradientColorKey (c1, 0.0f), new GradientColorKey (c2, 1.0f) },
+        //     new GradientAlphaKey[] { new GradientAlphaKey (alpha, 0.0f), new GradientAlphaKey (alpha, 1.0f) }
+        // );
 
-        lineRenderer.colorGradient = gradient;
+        // lineRenderer.colorGradient = gradient;
     }
 
     /// <summary>

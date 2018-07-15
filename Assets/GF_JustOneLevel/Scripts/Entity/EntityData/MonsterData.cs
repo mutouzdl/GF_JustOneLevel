@@ -20,6 +20,7 @@ public class MonsterData : FightEntityData {
         MoveSpeed = drMonster.MoveSpeed;
         RotateSpeed = drMonster.RotateSpeed;
         Atk = drMonster.Atk;
+        AtkAnimTime = drMonster.AtkAnimTime;
         AtkRange = drMonster.AtkRange;
         SeekRange = drMonster.SeekRange;
         Def = drMonster.Def;

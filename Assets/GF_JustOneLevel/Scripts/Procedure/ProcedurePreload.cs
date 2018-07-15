@@ -69,6 +69,7 @@ public class ProcedurePreload : ProcedureBase {
         LoadDataTable ("Scene");
         LoadDataTable ("Sound");
         LoadDataTable ("Music");
+        LoadDataTable ("HeroShop");
         LoadDataTable ("UIForm");
         LoadDataTable ("UISound");
 

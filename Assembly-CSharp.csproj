@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Scripts\CameraController.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Scripts\IdleChanger.cs" />
      <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\Effects\WeaponTrail.cs" />
      <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\MyTest.cs" />
      <Compile Include="Assets\GF_JustOneLevel\ExtensionAsset\PocketRPG Trails\Scripts\Utility\AnimationController.cs" />
@@ -111,6 +113,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRBulletEffect.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DREntity.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRHero.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRHeroShop.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMagicWater.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonster.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRMonsterCreater.cs" />
@@ -202,6 +205,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Event\ResurgenceEventArgs.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Game\SurvivalGame.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Global\GlobalGame.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\Global\PlayerData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\LocalizationExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Localization\XmlLocalizationHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureBase.cs" />
@@ -212,15 +216,18 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureMenu.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedurePreload.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Procedure\ProcedureSplash.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\Sound\SoundExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Test\LineRenderTest.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\CommonButton.cs" />
-     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\DialogParams.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\Components\CommonButton.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\Components\FocusButton.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\Components\FocusButtonGroup.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\Components\UIHeroShop_PanelHero.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\Datas\DialogParams.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UGuiForm.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UGuiGroupHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIDialog.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIExtension.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIFormId.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIHeroShop.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UILoading.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIMenu.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerMessage.cs" />
@@ -231,6 +238,9 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\LitJsonHelper.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\PositionUtility.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Utility\WebUtility.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Sound\SoundExtension.cs" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
      <None Include="Assets\GF_JustOneLevel\Localization\English\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleEditor.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\DefaultDictionary.xml" />
@@ -240,14 +250,21 @@
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\readme.txt" />
      <None Include="Assets\GF_JustOneLevel\Localization\ChineseSimplified\Dictionaries\Default.xml" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Fonts\Jupiter\LICENSE.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
      <None Include="Assets\GF_JustOneLevel\DataTables\Scene.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween50.xml" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
      <None Include="Assets\GF_JustOneLevel\Configs\AssetBundleCollection.xml" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildSettings.xml" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\SimpleUI\Materials\UI-Default-No-Alpha.shader" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween46.xml" />
-     <None Include="Assets\GF_JustOneLevel\Particles\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
+     <None Include="Assets\GF_JustOneLevel\ExtensionAsset\Character\FightingUnityChan_FreeAsset\FightingUnityChan_FreeAsset\Models\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
      <None Include="Assets\GF_JustOneLevel\Configs\BuildInfo.txt" />
      <None Include="Assets\GF_JustOneLevel\ExtensionAsset\DOTween\DOTween43.xml" />
  <Reference Include="UnityEditor.StandardEvents">

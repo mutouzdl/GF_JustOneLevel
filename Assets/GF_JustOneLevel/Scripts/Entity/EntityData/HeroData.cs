@@ -20,6 +20,7 @@ public class HeroData : FightEntityData {
         MoveSpeed = drHero.MoveSpeed;
         RotateSpeed = drHero.RotateSpeed;
         Atk = drHero.Atk;
+        AtkAnimTime = drHero.AtkAnimTime;
         AtkRange = drHero.AtkRange;
         Def = drHero.Def;
         AtkSpeed = drHero.AtkSpeed;

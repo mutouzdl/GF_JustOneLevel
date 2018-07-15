@@ -1,0 +1,6 @@
+﻿#,Id,AssetName,Name,Des,Price
+#,int,string,string,string,int
+#,编号,资源名称,英雄名称,英雄描述,价格
+,1,player1Icon,骑士,特点：近战，技能较多，平衡型的英雄,0
+,2,player1Icon,神射手,特点：远程，技能少，攻击高。有人说他长得和骑士一模一样，那都是谣言~！,1500
+,3,player3Icon,武斗家,特点：近战，没有特殊技能，攻击速度极快,5000

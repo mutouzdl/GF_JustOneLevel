@@ -49,8 +49,11 @@ public class UIDialog : UGuiForm {
     public void OnConfirmButtonClick () {
         if (onClickConfirm != null) {
             if (onClickConfirm (userData)) {
-                Close();
+                Close(true);
             }
+        }
+        else {
+            Close();
         }
     }
 
@@ -65,8 +68,11 @@ public class UIDialog : UGuiForm {
     public void OnOtherButtonClick () {
         if (onClickOther != null) {
             if (onClickOther (userData)) {
-                Close();
+                Close(true);
             }
+        }
+        else {
+            Close();
         }
     }
 

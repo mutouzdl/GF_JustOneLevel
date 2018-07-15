@@ -58,7 +58,7 @@ public class UIPlayerMessage : UGuiForm {
     /// </summary>
     public void RefreshGold () {
         prizeText.text = totalPrize.ToString ();
-        goldText.text = GameEntry.Setting.GetInt (Constant.Player.Gold).ToString ();
+        goldText.text = PlayerData.Gold.ToString ();
     }
 
     private void OnDeadEvent (object sender, GameEventArgs e) {
@@ -69,8 +69,8 @@ public class UIPlayerMessage : UGuiForm {
             totalPrize += data.Prize;
 
             // 保存获得的金币
-            int gold = GameEntry.Setting.GetInt (Constant.Player.Gold, 0);
-            GameEntry.Setting.SetInt (Constant.Player.Gold, gold + totalPrize);
+            int gold = PlayerData.Gold;
+            PlayerData.Gold = gold + data.Prize;
 
             RefreshGold ();
         }
@@ -81,7 +81,7 @@ public class UIPlayerMessage : UGuiForm {
 
         atkText.text = eventArgs.HeroData.Atk.ToString ();
         defText.text = eventArgs.HeroData.Def.ToString ();
-        hpText.text = eventArgs.HeroData.HP.ToString ();
+        hpText.text = $"{eventArgs.HeroData.HP}/{eventArgs.HeroData.MaxHP}";
         mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
     }
 

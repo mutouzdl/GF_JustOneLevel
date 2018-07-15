@@ -67,7 +67,7 @@ public class MagicWater : Entity {
 			if (hero != null) {
 				// 改变金币
 				if (magicWaterData.AddGold != 0) {
-					int gold = GameEntry.Setting.GetInt (Constant.Player.Gold);
+					int gold = PlayerData.Gold;
 					if (magicWaterData.AddGold < 0 && gold < Mathf.Abs (magicWaterData.AddGold)) {
 						return;
 					}
@@ -97,7 +97,6 @@ public class MagicWater : Entity {
 
 					// 避免克隆英雄太弱，根据玩家英雄实时最大血量调整克隆英雄属性
 					float powerPercent = hero.HeroData.MaxHP / monsterData.MaxHP / 100f + 1;
-					Log.Info ("powerPercent:" + powerPercent);
 					monsterData.AjustPower (powerPercent);
 
 					EntityExtension.ShowMonster (typeof (Monster), "MonsterGroup", monsterData);
@@ -109,8 +108,12 @@ public class MagicWater : Entity {
 
 	void OnTriggerExit (Collider other) {
 		if (particle != null) {
-			GameEntry.Entity.HideEntity (particle.Id);
-			particle = null;
+			Hero hero = other.gameObject.GetComponent<Hero> ();
+
+			if (hero != null) {
+				GameEntry.Entity.HideEntity (particle.Id);
+				particle = null;
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@ using UnityGameFramework.Runtime;
 
 public class MonsterHurtState : MonsterBaseActionState {
     private float hurtTimeCounter = 0;
-    private float preHurtTime = 0;  // 上一次受伤的时间
+    private float preHurtTime = 0; // 上一次受伤的时间
     private int hurtTimes = 0; // 连续受伤次数
 
     /// <summary>
@@ -29,15 +29,15 @@ public class MonsterHurtState : MonsterBaseActionState {
         // 积累受伤次数
         if (preHurtTime != 0 && Time.time - preHurtTime < 2.5f) {
             hurtTimes++;
-        } 
-        else {
+        } else {
             preHurtTime = 0;
             hurtTimes = 0;
         }
 
         // 累积受伤3次，则向后弹一段距离
         if (hurtTimes == 3) {
-            fsm.Owner.CachedTransform.DOMove(fsm.Owner.CachedTransform.position - fsm.Owner.CachedTransform.forward * 2, 0.5f);
+            Vector3 pos = PositionUtility.GetAjustPositionWithMap (fsm.Owner.CachedTransform.position - fsm.Owner.CachedTransform.forward * 2);
+            fsm.Owner.CachedTransform.DOMove (pos, 0.5f);
             hurtTimes = 0;
         }
 

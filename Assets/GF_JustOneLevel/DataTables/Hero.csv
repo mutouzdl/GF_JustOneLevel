@@ -1,4 +1,6 @@
-﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkRange,Def,AtkSpeed,HP,MP,WeaponIDs,SkillIDs
-#,int,string,string,float,float,int,float,int,float,int,int,string,string
-#,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击范围,防御,攻速（秒）,血量,魔法值,武器ID（可多个，使用_分割）,技能（可多个，使用_分割）
-,1,Player,玩家,4,35,1,2,0,0.5,5,10,1_200,1
+﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkAnimTime,AtkRange,Def,AtkSpeed,HP,MP,WeaponIDs
+#,int,string,string,float,float,int,float,float,int,float,int,int,string
+#,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击动画时间（秒）,攻击范围,防御,攻速（秒）,血量,魔法值,武器ID（可多个，使用_分割）
+,1,Player,骑士,4,35,1,0.4,2,0,0.7,5,10,1_2_200
+,2,Player,神射手,5,45,2,0.4,5,0,1,3,0,3_4
+,3,Player3,武斗家,4,40,1,0.2,2,0,0.2,4,0,1
