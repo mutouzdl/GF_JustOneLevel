@@ -86,7 +86,7 @@ public class MagicWater : Entity {
 
 				// 改变攻击
 				if (magicWaterData.AddAtk != 0) {
-					hero.PowerUp (magicWaterData.AddAtk, 0, 0);
+					hero.PowerUpByAbsValue (0, 0, magicWaterData.AddAtk, 0);
 				}
 
 				// 生成克隆英雄

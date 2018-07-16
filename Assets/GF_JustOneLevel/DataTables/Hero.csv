@@ -1,6 +1,6 @@
-﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkAnimTime,AtkRange,Def,AtkSpeed,HP,MP,WeaponIDs
-#,int,string,string,float,float,int,float,float,int,float,int,int,string
-#,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击动画时间（秒）,攻击范围,防御,攻速（秒）,血量,魔法值,武器ID（可多个，使用_分割）
-,1,Player,骑士,4,35,1,0.4,2,0,0.7,9999,10,1_2_200
-,2,Player,神射手,5,45,2,0.4,5,0,1,3,0,3_4
-,3,Player3,武斗家,4,40,1,0.2,2,0,0.2,4,0,1
+﻿#,Id,AssetName,Name,MoveSpeed,RotateSpeed,Atk,AtkAnimTime,AtkRange,Def,AtkSpeed,HP,MP,WeaponIDs,HPAbsorbPercent,DefAbsorbPercent,AtkAbsorbPercent,AtkSpeedAbsorbPercent,HPMinAbsorb,DefMinAbsorb,AtkMinAbsorb,AtkSpeedMinAbsorb
+#,int,string,string,float,float,int,float,float,int,float,int,int,string,float,float,float,float,int,int,int,int
+#,编号,资源名称,名称,移动速度,旋转速度,攻击,攻击动画时间（秒）,攻击范围,防御,攻速（秒）,血量,魔法值,武器ID（可多个，使用_分割）,血量吸收百分比,防御吸收百分比,攻击吸收百分比,攻速吸收百分比,血量最低吸收值,防御最低吸收值,攻击最低吸收值,攻速最低吸收值
+,1,Player,骑士,4,35,1,0.4,2,0,0.7,9999,10,1_2_200,0.1,0.1,0.2,0,1,0,0,0
+,2,Player,神射手,5,45,2,0.4,5,0,1,3,0,3_4,0.1,0.1,0.1,0.1,0,0,0,0.01
+,3,Player3,武斗家,4,40,1,0.2,2,0,0.2,4,0,1,0.05,0.3,0.1,0,0,1,1,0
