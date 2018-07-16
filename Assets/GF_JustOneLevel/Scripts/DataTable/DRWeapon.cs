@@ -44,6 +44,14 @@ public class DRWeapon : IDataRow {
         get;
         private set;
     }
+    
+    /// <summary>
+    /// 子弹攻击速度。
+    /// </summary>
+    public float AtkSpeed {
+        get;
+        private set;
+    }
 
     /// <summary>
     /// 子弹声音编号。
@@ -90,6 +98,7 @@ public class DRWeapon : IDataRow {
         Attack = int.Parse (text[index++]);
         BulletId = int.Parse (text[index++]);
         BulletSpeed = float.Parse (text[index++]);
+        AtkSpeed = float.Parse (text[index++]);
         BulletSoundId = int.Parse (text[index++]);
         AttackType = int.Parse(text[index++]);
         CostMP = int.Parse(text[index++]);

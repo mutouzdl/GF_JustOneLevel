@@ -26,6 +26,7 @@ public class Weapon : Entity {
             return;
         }
 
+        autoWeaponsFireTimeCounter = 0;
         GameEntry.Entity.AttachEntity (Entity, weaponData.OwnerId, AttachPoint, weaponData);
     }
 
@@ -56,30 +57,50 @@ public class Weapon : Entity {
     }
 
     /// <summary>
-    /// 锁定目标攻击
+    /// 自动武器发射间隔计时器
     /// </summary>
+    private float autoWeaponsFireTimeCounter = 0;
+    /// <summary>
+    /// 尝试进行自动攻击，只有自动类型的武器才能生效
+    /// </summary>
+    /// <param name="elapseSeconds"></param>
     /// <param name="ownerAtk"></param>
-    public void Attack (int ownerAtk) {
-        switch (weaponData.AttackType)
-        {
-            case WeaponAttackType.手动触发:
-                AttackWithAim(ownerAtk);
-            break;
-            case WeaponAttackType.自动触发:
-                AttackWithAim(ownerAtk);
-            break;
-            case WeaponAttackType.技能触发:
-                AttackWithAim(ownerAtk);
-            break;
+    public void TryAutoAttack (float elapseSeconds, int ownerAtk) {
+        if (weaponData.AttackType == WeaponAttackType.自动触发) {
+
+            autoWeaponsFireTimeCounter += elapseSeconds;
+            if (autoWeaponsFireTimeCounter >= weaponData.AtkSpeed) {
+                autoWeaponsFireTimeCounter = 0;
+
+                DoAttack (ownerAtk);
+            }
         }
     }
 
     /// <summary>
-    /// 锁定目标攻击
+    /// 攻击
+    /// </summary>
+    /// <param name="ownerAtk"></param>
+    public void Attack (int ownerAtk) {
+        switch (weaponData.AttackType) {
+            case WeaponAttackType.手动触发:
+                DoAttack (ownerAtk);
+                break;
+            case WeaponAttackType.自动触发:
+                DoAttack (ownerAtk);
+                break;
+            case WeaponAttackType.技能触发:
+                DoAttack (ownerAtk);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 执行攻击
     /// </summary>
     /// <param name="aimEntityID"></param>
     /// <param name="ownerAtk"></param>
-    private void AttackWithAim (int ownerAtk) {
+    private void DoAttack (int ownerAtk) {
         CachedTransform.forward = parentTransform.forward;
 
         BulletData bulletData = new BulletData (

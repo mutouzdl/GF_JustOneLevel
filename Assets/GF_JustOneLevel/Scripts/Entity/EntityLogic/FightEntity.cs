@@ -41,11 +41,6 @@ public abstract class FightEntity : Entity {
     /// <returns></returns>
     protected List<Weapon> skillWeapons = new List<Weapon> ();
 
-    /// <summary>
-    /// 自动武器发射间隔计时器
-    /// </summary>
-    private float autoWeaponsFireTimeCounter = 0;
-
     protected override void OnInit (object userData) {
         base.OnInit (userData);
         // CachedTransform.SetLayerRecursively (Constant.Layer.TargetableObjectLayerId);
@@ -62,7 +57,6 @@ public abstract class FightEntity : Entity {
 
         // CachedTransform.localScale = Vector3.one;
 
-        autoWeaponsFireTimeCounter = 0;
         manualWeapons.Clear ();
         autoWeapons.Clear ();
         skillWeapons.Clear ();
@@ -79,13 +73,9 @@ public abstract class FightEntity : Entity {
             return;
         }
 
-        autoWeaponsFireTimeCounter += elapseSeconds;
-        if (autoWeaponsFireTimeCounter >= fightEntityData.AtkSpeed) {
-            autoWeaponsFireTimeCounter = 0;
-
-            foreach (Weapon weapon in autoWeapons) {
-                weapon.Attack (fightEntityData.Atk);
-            }
+        // 自动类型的武器需要主动调用TryAutoAttack执行攻击逻辑
+        foreach (Weapon weapon in autoWeapons) {
+            weapon.TryAutoAttack (elapseSeconds, fightEntityData.Atk);
         }
     }
 
@@ -189,8 +179,7 @@ public abstract class FightEntity : Entity {
 
         if (state == FightEntityAnimationState.walk) {
             cachedAnimator.SetBool ("IsWalking", true);
-        } else if (state == FightEntityAnimationState.idle) { 
-        } else if (state == FightEntityAnimationState.atk) {
+        } else if (state == FightEntityAnimationState.idle) { } else if (state == FightEntityAnimationState.atk) {
             cachedAnimator.SetBool ("IsAttacking", true);
         } else if (state == FightEntityAnimationState.hurt) {
             cachedAnimator.SetBool ("IsHurting", true);
