@@ -35,7 +35,7 @@ public class Monster : FightEntity {
         base.OnInit (userData);
 
         moveController = new FoolishAIMoveController ();
-        msgText = FindObjectOfType<TextMesh> ();
+        msgText = this.gameObject.GetComponentInChildren<TextMesh>();;
     }
 
     protected override void OnShow (object userData) {
