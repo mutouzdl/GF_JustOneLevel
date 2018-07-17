@@ -14,6 +14,8 @@ public class UIPlayerMessage : UGuiForm {
     [SerializeField]
     private Text defText = null;
     [SerializeField]
+    private Text atkSpeedText = null;
+    [SerializeField]
     private Text hpText = null;
     [SerializeField]
     private Text mpText = null;
@@ -79,8 +81,11 @@ public class UIPlayerMessage : UGuiForm {
     private void OnRefreshHeroProps (object sender, GameEventArgs e) {
         RefreshHeroPropsEventArgs eventArgs = e as RefreshHeroPropsEventArgs;
 
+        string atkSpeedStr = eventArgs.HeroData.AtkSpeed.ToString("F4");
+
         atkText.text = eventArgs.HeroData.Atk.ToString ();
         defText.text = eventArgs.HeroData.Def.ToString ();
+        atkSpeedText.text = $"{atkSpeedStr}s";
         hpText.text = $"{eventArgs.HeroData.HP}/{eventArgs.HeroData.MaxHP}";
         mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
     }

@@ -13,6 +13,6 @@
 ,10,MonsterCreater,稀有白猫Lv3,200,50,60,1,2,5,150,3
 ,11,MonsterCreater,老虎Lv1,400,20,100,1,5,6,20,1
 ,12,MonsterCreater,老虎Lv2,450,20,100,1,5,6,25,1.5
-,99,MonsterCreater,龙Lv1,600,90,100,1,2,2,40,1
-,100,MonsterCreater,龙Lv2,800,100,100,1,2,2,50,1.8
+,99,MonsterCreater,龙Lv1,500,90,100,1,2,2,40,1
+,100,MonsterCreater,龙Lv2,600,100,100,1,2,2,50,1.8
 ,999,MonsterCreater,！！！注意！！！我是作者,1200,5,100,1,2,999,0,1

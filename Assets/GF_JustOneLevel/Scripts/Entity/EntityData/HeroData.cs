@@ -23,6 +23,7 @@ public class HeroData : FightEntityData {
         AtkAnimTime = drHero.AtkAnimTime;
         AtkRange = drHero.AtkRange;
         Def = drHero.Def;
+        AtkSpeed = drHero.AtkSpeed;
         HPAbsorbPercent = drHero.HPAbsorbPercent;
         DefAbsorbPercent = drHero.DefAbsorbPercent;
         AtkAbsorbPercent = drHero.AtkAbsorbPercent;
@@ -44,14 +45,20 @@ public class HeroData : FightEntityData {
         int hpPowerUp = (int) (hp * HPAbsorbPercent);
         int defPowerUp = (int) (def * DefAbsorbPercent);
         int atkPowerUp = (int) (atk * AtkAbsorbPercent);
-        float atkSpeedPowerUp = atkSpeed * AtkSpeedAbsorbPercent;
 
         hpPowerUp = hpPowerUp > HPMinAbsorb ? hpPowerUp : HPMinAbsorb;
         defPowerUp = defPowerUp > DefMinAbsorb ? defPowerUp : DefMinAbsorb;
         atkPowerUp = atkPowerUp > AtkMinAbsorb ? atkPowerUp : AtkMinAbsorb;
-        atkSpeedPowerUp = atkSpeedPowerUp > AtkSpeedMinAbsorb ? atkSpeedPowerUp : AtkSpeedMinAbsorb;
 
-        PowerUpByAbsValue(hpPowerUp, defPowerUp, atkPowerUp, atkSpeedPowerUp);
+        // 攻速提升规则为：(10 - 目标攻速) / 80 * 攻速吸收百分比，如果目标攻速大于10，则不提升
+        float atkSpeedPowerUp = 0;
+
+        if (atkSpeed < 10) {
+            atkSpeedPowerUp = (10 - atkSpeed) / 80 * AtkSpeedAbsorbPercent;
+
+            atkSpeedPowerUp = atkSpeedPowerUp > AtkSpeedMinAbsorb ? atkSpeedPowerUp : AtkSpeedMinAbsorb;
+        }
+        PowerUpByAbsValue (hpPowerUp, defPowerUp, atkPowerUp, atkSpeedPowerUp);
     }
 
     /// <summary>

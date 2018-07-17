@@ -19,6 +19,7 @@
     <String Key="Property.Def" Value="Def" />
     <String Key="Property.HP" Value="HP" />
     <String Key="Property.MP" Value="MP" />
+    <String Key="Property.AtkSpeed" Value="AtkSpeed" />
     <String Key="Operate.Back" Value="Back" />
     <String Key="Operate.BombSkill" Value="BombSkill!" />
     <String Key="Operate.Continue" Value="Continue" />
