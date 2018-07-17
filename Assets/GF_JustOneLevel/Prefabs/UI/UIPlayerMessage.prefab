@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 222144341715149126}
   - component: {fileID: 114452072008276764}
   m_Layer: 5
-  m_Name: PrizeText
+  m_Name: KillCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 222418871199808972}
   - component: {fileID: 114286068670606366}
   m_Layer: 5
-  m_Name: PrizeTitleText
+  m_Name: KillCountTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Message.Prize,Symbol.Colon
+  m_Text: Message.KillCount,Symbol.Colon
 --- !u!114 &114341355217120554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b61de896456dc41a7a578cd6866060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prizeText: {fileID: 114452072008276764}
+  killCountText: {fileID: 114452072008276764}
   goldText: {fileID: 114865009125629580}
   atkText: {fileID: 114863435977556762}
   defText: {fileID: 114841547344549070}
