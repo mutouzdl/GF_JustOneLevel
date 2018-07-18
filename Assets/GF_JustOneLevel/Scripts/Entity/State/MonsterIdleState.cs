@@ -32,9 +32,12 @@ public class MonsterIdleState : MonsterSeekAimState {
         base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
 
         if (fsm.Owner.IsLockingAim) {
-            Entity aim = fsm.Owner.LockingAim;
-            fsm.Owner.transform.LookAt (aim.transform);
-            return;
+            FightEntity aim = fsm.Owner.LockingAim;
+
+            if (aim != null && aim.IsDead == false) {
+                fsm.Owner.transform.LookAt (aim.transform);
+                return;
+            }
         }
 
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
