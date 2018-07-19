@@ -3,7 +3,15 @@ guid: 61566139d5c1f844aaa682fa50106e58
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: WoodenBall
+    100002: //RootNode
+    400000: WoodenBall
+    400002: //RootNode
+    2300000: WoodenBall
+    3300000: WoodenBall
     4300000: WoodenBall
+    7400000: Default Take
+    11100000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1

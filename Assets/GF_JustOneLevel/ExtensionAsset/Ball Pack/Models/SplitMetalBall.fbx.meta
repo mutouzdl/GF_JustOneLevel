@@ -3,7 +3,15 @@ guid: 5ae1b6d4c894f9c449d33837a633a8ec
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: SplitMetalBall
+    100002: //RootNode
+    400000: SplitMetalBall
+    400002: //RootNode
+    2300000: SplitMetalBall
+    3300000: SplitMetalBall
     4300000: SplitMetalBall
+    7400000: Default Take
+    11100000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1

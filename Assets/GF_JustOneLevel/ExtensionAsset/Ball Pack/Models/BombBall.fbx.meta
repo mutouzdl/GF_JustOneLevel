@@ -3,10 +3,26 @@ guid: 38972d9a807375f4fbdbf2e076aa183f
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: BombBall
+    100002: //RootNode
+    100004: BombTop
+    100006: BombWick
+    400000: BombBall
+    400002: //RootNode
+    400004: BombTop
+    400006: BombWick
+    2300000: BombBall
+    2300002: BombTop
+    2300004: BombWick
+    3300000: BombBall
+    3300002: BombTop
+    3300004: BombWick
     4300000: Cylinder
     4300002: BombBall
     4300004: BombTop
     4300006: BombWick
+    7400000: Default Take
+    11100000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
