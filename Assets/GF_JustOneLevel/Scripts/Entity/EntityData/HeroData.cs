@@ -42,9 +42,9 @@ public class HeroData : FightEntityData {
     /// 根据给定的属性及英雄的吸收能力，加强英雄
     /// </summary>
     public void PowerUpByAbsorbPower (int hp, int def, int atk, float atkSpeed) {
-        int hpPowerUp = (int) (hp * HPAbsorbPercent);
-        int defPowerUp = (int) (def * DefAbsorbPercent);
-        int atkPowerUp = (int) (atk * AtkAbsorbPercent);
+        int hpPowerUp = Mathf.FloorToInt (hp * HPAbsorbPercent);
+        int defPowerUp = Mathf.FloorToInt (def * DefAbsorbPercent);
+        int atkPowerUp = Mathf.FloorToInt (atk * AtkAbsorbPercent);
 
         hpPowerUp = hpPowerUp > HPMinAbsorb ? hpPowerUp : HPMinAbsorb;
         defPowerUp = defPowerUp > DefMinAbsorb ? defPowerUp : DefMinAbsorb;

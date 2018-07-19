@@ -602,6 +602,7 @@ PlayerSettings:
     20: MOBILE_INPUT
   platformArchitecture: {}
   scriptingBackend:
+    Android: 0
     Standalone: 0
   il2cppCompilerConfiguration: {}
   incrementalIl2cppBuild: {}
