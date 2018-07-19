@@ -19,6 +19,8 @@ public class UIPlayerMessage : UGuiForm {
     private Text hpText = null;
     [SerializeField]
     private Text mpText = null;
+    [SerializeField]
+    private Text timeText = null;
 
     /// <summary>
     /// 累计获得奖励
@@ -45,6 +47,12 @@ public class UIPlayerMessage : UGuiForm {
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
         GameEntry.Event.Subscribe (RefreshGoldEventArgs.EventId, OnRefreshGoldProps);
+    }
+
+    protected override void OnUpdate(float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate(elapseSeconds, realElapseSeconds);
+
+        timeText.text = $"{GlobalGame.GameTimes.ToString("F0")}s";
     }
 
     /// <summary>

@@ -9,4 +9,9 @@ public class GlobalGame {
     /// </summary>
     public const int ContinueCostGold = 200;
 
+    /// <summary>
+    /// 游戏经过的时间
+    /// </summary>
+    public static float GameTimes = 0;
+
 }

@@ -70,6 +70,8 @@ public class ProcedureGame : ProcedureBase {
             return;
         }
 
+        GlobalGame.GameTimes += elapseSeconds;
+
         if (survivalGame != null) {
             if (!GlobalGame.IsPause) {
                 survivalGame.Update (elapseSeconds, realElapseSeconds);
