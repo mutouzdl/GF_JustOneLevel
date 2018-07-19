@@ -130,7 +130,7 @@ public abstract class FightEntity : Entity {
             changeHP -= fightEntityData.Def;
 
             if (changeHP < 0) {
-                changeHP = 0;
+                changeHP = 1;
             }
 
             if (changeHP > 0) {
