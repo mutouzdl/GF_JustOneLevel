@@ -15,6 +15,7 @@ public class WeaponData : AccessoryObjectData {
         Attack = drWeapon.Attack;
         BulletId = drWeapon.BulletId;
         BulletSpeed = drWeapon.BulletSpeed;
+        AtkSpeed = drWeapon.AtkSpeed;
         BulletSoundId = drWeapon.BulletSoundId;
         AttackType = (WeaponAttackType)drWeapon.AttackType;
         CostMP = drWeapon.CostMP;
@@ -40,6 +41,14 @@ public class WeaponData : AccessoryObjectData {
     /// 子弹速度。
     /// </summary>
     public float BulletSpeed {
+        get;
+        private set;
+    } = 0;
+
+    /// <summary>
+    /// 子弹攻击速度。
+    /// </summary>
+    public float AtkSpeed {
         get;
         private set;
     } = 0;

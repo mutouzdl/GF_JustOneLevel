@@ -32,16 +32,19 @@ public class MonsterWalkState : MonsterSeekAimState {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
         if (fsm.Owner.IsLockingAim) {
-            Entity aim = fsm.Owner.LockingAim;
-            fsm.Owner.transform.LookAt (aim.transform);
+            FightEntity aim = fsm.Owner.LockingAim;
 
-            // 除非敌人离开了自己的攻击范围，否则，在锁定目标的过程中，不进行移动（避免不断和敌人靠近，直至重合）
-            float distance = AIUtility.GetDistance (fsm.Owner, aim);
-            if (fsm.Owner.CheckInAtkRange (distance) == false) {
-                fsm.Owner.Forward (elapseSeconds);
+            if (aim != null && aim.IsDead == false) {
+                fsm.Owner.transform.LookAt (aim.transform);
+
+                // 除非敌人离开了自己的攻击范围，否则，在锁定目标的过程中，不进行移动（避免不断和敌人靠近，直至重合）
+                float distance = AIUtility.GetDistance (fsm.Owner, aim);
+                if (fsm.Owner.CheckInAtkRange (distance) == false) {
+                    fsm.Owner.Forward (elapseSeconds);
+                }
+
+                return;
             }
-
-            return;
         }
 
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();

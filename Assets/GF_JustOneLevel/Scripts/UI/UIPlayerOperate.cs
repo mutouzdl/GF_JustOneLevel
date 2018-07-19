@@ -38,10 +38,10 @@ public class UIPlayerOperate : UGuiForm {
         base.OnClose(userData);
 
         for (int i = 0; i < attackButtonParent.childCount; i++) {
-            DestroyImmediate (attackButtonParent.GetChild (i).gameObject);
+            Destroy (attackButtonParent.GetChild (i).gameObject);
         }
         for (int i = 0; i < skillButtonParent.childCount; i++) {
-            DestroyImmediate (skillButtonParent.GetChild (i).gameObject);
+            Destroy (skillButtonParent.GetChild (i).gameObject);
         }
     }
 

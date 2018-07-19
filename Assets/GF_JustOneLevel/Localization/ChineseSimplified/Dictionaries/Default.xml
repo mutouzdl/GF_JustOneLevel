@@ -12,6 +12,7 @@
     <String Key="Message.Loading" Value="加载中..." />
     <String Key="Message.GoldNotEnough" Value="金币不足" />
     <String Key="Message.BuySuccess" Value="购买成功" />
+    <String Key="Message.KillCount" Value="击杀" />
     <String Key="GameOver.Title" Value="你好像输了" />
     <String Key="GameOver.Des" Value="放心，你并不是打不赢，你只是单纯的输了。" />
     <String Key="GameOver.ResurgenceDes" Value="不过，你可以花费200金币续命，要继续吗？" />
@@ -19,6 +20,7 @@
     <String Key="Property.Def" Value="防御" />
     <String Key="Property.HP" Value="血量" />
     <String Key="Property.MP" Value="魔法" />
+    <String Key="Property.AtkSpeed" Value="攻速" />
     <String Key="Operate.Back" Value="返回" />
     <String Key="Operate.BombSkill" Value="爆!" />
     <String Key="Operate.Continue" Value="继续" />

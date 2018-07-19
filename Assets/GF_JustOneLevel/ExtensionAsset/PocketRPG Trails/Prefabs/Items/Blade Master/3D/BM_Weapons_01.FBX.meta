@@ -3,6 +3,128 @@ guid: 7ecb93805cd7741eda56ef80b1f18e1d
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: Weapon_Axe_01
+    100004: Weapon_Axe_02
+    100006: Weapon_Axe_03
+    100008: Weapon_Axe_04
+    100010: Weapon_Axe_05
+    100012: Weapon_Axe_06
+    100014: Weapon_Axe_07
+    100016: Weapon_Axe_08
+    100018: Weapon_Axe_09
+    100020: Weapon_Axe_10
+    100022: Weapon_Axe_11
+    100024: Weapon_Axe_12
+    100026: Weapon_Axe_13
+    100028: Weapon_Axe_14
+    100030: Weapon_Axe_15
+    100032: Weapon_Blade_01
+    100034: Weapon_Blade_02
+    100036: Weapon_Blade_03
+    100038: Weapon_Blade_04
+    100040: Weapon_Blade_05
+    100042: Weapon_Blade_06
+    100044: Weapon_Blade_07
+    100046: Weapon_Blade_08
+    100048: Weapon_Blade_09
+    100050: Weapon_Blade_10
+    100052: Weapon_Blade_11
+    100054: Weapon_Blade_12
+    100056: Weapon_Blade_13
+    100058: Weapon_Blade_14
+    100060: Weapon_Blade_15
+    400000: //RootNode
+    400002: Weapon_Axe_01
+    400004: Weapon_Axe_02
+    400006: Weapon_Axe_03
+    400008: Weapon_Axe_04
+    400010: Weapon_Axe_05
+    400012: Weapon_Axe_06
+    400014: Weapon_Axe_07
+    400016: Weapon_Axe_08
+    400018: Weapon_Axe_09
+    400020: Weapon_Axe_10
+    400022: Weapon_Axe_11
+    400024: Weapon_Axe_12
+    400026: Weapon_Axe_13
+    400028: Weapon_Axe_14
+    400030: Weapon_Axe_15
+    400032: Weapon_Blade_01
+    400034: Weapon_Blade_02
+    400036: Weapon_Blade_03
+    400038: Weapon_Blade_04
+    400040: Weapon_Blade_05
+    400042: Weapon_Blade_06
+    400044: Weapon_Blade_07
+    400046: Weapon_Blade_08
+    400048: Weapon_Blade_09
+    400050: Weapon_Blade_10
+    400052: Weapon_Blade_11
+    400054: Weapon_Blade_12
+    400056: Weapon_Blade_13
+    400058: Weapon_Blade_14
+    400060: Weapon_Blade_15
+    2300000: Weapon_Axe_01
+    2300002: Weapon_Axe_02
+    2300004: Weapon_Axe_03
+    2300006: Weapon_Axe_04
+    2300008: Weapon_Axe_05
+    2300010: Weapon_Axe_06
+    2300012: Weapon_Axe_07
+    2300014: Weapon_Axe_08
+    2300016: Weapon_Axe_09
+    2300018: Weapon_Axe_10
+    2300020: Weapon_Axe_11
+    2300022: Weapon_Axe_12
+    2300024: Weapon_Axe_13
+    2300026: Weapon_Axe_14
+    2300028: Weapon_Axe_15
+    2300030: Weapon_Blade_01
+    2300032: Weapon_Blade_02
+    2300034: Weapon_Blade_03
+    2300036: Weapon_Blade_04
+    2300038: Weapon_Blade_05
+    2300040: Weapon_Blade_06
+    2300042: Weapon_Blade_07
+    2300044: Weapon_Blade_08
+    2300046: Weapon_Blade_09
+    2300048: Weapon_Blade_10
+    2300050: Weapon_Blade_11
+    2300052: Weapon_Blade_12
+    2300054: Weapon_Blade_13
+    2300056: Weapon_Blade_14
+    2300058: Weapon_Blade_15
+    3300000: Weapon_Axe_01
+    3300002: Weapon_Axe_02
+    3300004: Weapon_Axe_03
+    3300006: Weapon_Axe_04
+    3300008: Weapon_Axe_05
+    3300010: Weapon_Axe_06
+    3300012: Weapon_Axe_07
+    3300014: Weapon_Axe_08
+    3300016: Weapon_Axe_09
+    3300018: Weapon_Axe_10
+    3300020: Weapon_Axe_11
+    3300022: Weapon_Axe_12
+    3300024: Weapon_Axe_13
+    3300026: Weapon_Axe_14
+    3300028: Weapon_Axe_15
+    3300030: Weapon_Blade_01
+    3300032: Weapon_Blade_02
+    3300034: Weapon_Blade_03
+    3300036: Weapon_Blade_04
+    3300038: Weapon_Blade_05
+    3300040: Weapon_Blade_06
+    3300042: Weapon_Blade_07
+    3300044: Weapon_Blade_08
+    3300046: Weapon_Blade_09
+    3300048: Weapon_Blade_10
+    3300050: Weapon_Blade_11
+    3300052: Weapon_Blade_12
+    3300054: Weapon_Blade_13
+    3300056: Weapon_Blade_14
+    3300058: Weapon_Blade_15
     4300000: Weapon_Blade_01
     4300002: Weapon_Blade_02
     4300004: Weapon_Blade_03
@@ -33,7 +155,153 @@ ModelImporter:
     4300054: Weapon_Blade_15
     4300056: Weapon_Blade_11
     4300058: Weapon_Blade_12
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: c0e9c945a47461d4ba6a192bc76efd82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: f6d715a90fa9d914facd666f1bb5f184, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 09 - Default
+    second: {fileID: 2100000, guid: b7c7eadb5cc6cd64b9fcea9b47bdb528, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 10 - Default
+    second: {fileID: 2100000, guid: 8b8f05cecb7a5cb47be3947fd180c8e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 11 - Default
+    second: {fileID: 2100000, guid: 533bbd43810726346ac42ec27516c6c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 15 - Default
+    second: {fileID: 2100000, guid: 1f12fd1ccd51b0243b82b6d02304f40c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 16 - Default
+    second: {fileID: 2100000, guid: d52c0f4317ccfb44597b47bf10e3f169, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 17 - Default
+    second: {fileID: 2100000, guid: a717191cf6651494a8060851c18b109e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 18 - Default
+    second: {fileID: 2100000, guid: e74367d69bd7c2b478e996928b6f6d2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 19 - Default
+    second: {fileID: 2100000, guid: 9f70a196b5e2c764392ed7b500cff759, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 20 - Default
+    second: {fileID: 2100000, guid: 7cb2bfe45c1b2b74099f40c13af43792, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 21 - Default
+    second: {fileID: 2100000, guid: 7cb0ae2bcb7519048889f554104f253c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 22 - Default
+    second: {fileID: 2100000, guid: 63589cb2d66d7ae478ed1d09f0b5c972, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 23 - Default
+    second: {fileID: 2100000, guid: 1da8946c42ede5543ad9b2b07e824321, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 24 - Default
+    second: {fileID: 2100000, guid: b510b8781924ef540b372c3499f5a928, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_10
+    second: {fileID: 2100000, guid: ab3491bbd7665c74a9d8778c456576cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_11
+    second: {fileID: 2100000, guid: 93af8deae61dfbc4a8a9758995a9ebf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_12
+    second: {fileID: 2100000, guid: 5b1c0b62fa909394e8bddfe7ccc64019, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_13
+    second: {fileID: 2100000, guid: d7f7f697ac4c32c4fa12bb805c924c0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_14
+    second: {fileID: 2100000, guid: 44123fb8c03fb704b9e3a2aa55345b4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_15
+    second: {fileID: 2100000, guid: 14cd1949f730ab8428bb04922f76869d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_16
+    second: {fileID: 2100000, guid: 8eb9b62f7b5cdaf4097f649440b15319, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_3
+    second: {fileID: 2100000, guid: 4de00537d78060349987db473b13206a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_4
+    second: {fileID: 2100000, guid: 3649f3f33e5254f4eb9c3c6682a6576d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_5
+    second: {fileID: 2100000, guid: d2c4da32e7f87e54582456829cb74962, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_6
+    second: {fileID: 2100000, guid: 755d4ba4b372bdb44b71ad543f407c4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_7
+    second: {fileID: 2100000, guid: 850d40bb95386884b8473896e0e6cedd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_8
+    second: {fileID: 2100000, guid: 47d9d20fe1382674588b0f6279068d8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Standard_9
+    second: {fileID: 2100000, guid: c6aacc2013e89494aaaa80415ec2039b, type: 2}
   materials:
     importMaterials: 1
     materialName: 3

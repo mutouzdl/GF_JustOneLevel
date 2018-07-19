@@ -230,11 +230,8 @@ public class Hero : FightEntity {
     /// <summary>
     /// 根据给定的属性，加强英雄
     /// </summary>
-    /// <param name="atkPowerUp"></param>
-    /// <param name="defPowerUp"></param>
-    /// <param name="hpPowerUp"></param>
-    public void PowerUp (int atkPowerUp, int defPowerUp, int hpPowerUp) {
-        this.heroData.PowerUp (atkPowerUp, defPowerUp, hpPowerUp);
+    public void PowerUpByAbsValue (int hp, int def, int atk, float atkSpeed) {
+        this.heroData.PowerUpByAbsValue (hp, def, atk, atkSpeed);
     }
 
     /// <summary>
@@ -242,15 +239,7 @@ public class Hero : FightEntity {
     /// </summary>
     /// <param name="data"></param>
     private void PowerUpByMonster (MonsterData data) {
-        int atkPowerUp = data.Atk / 5;
-        int defPowerUp = data.Def / 10;
-        int hpPowerUp = data.HP / 10;
-
-        atkPowerUp = atkPowerUp > 0 ? atkPowerUp : 0;
-        defPowerUp = defPowerUp > 0 ? defPowerUp : 0;
-        hpPowerUp = hpPowerUp > 0 ? hpPowerUp : 1;
-
-        this.heroData.PowerUp (atkPowerUp, defPowerUp, hpPowerUp);
+        this.heroData.PowerUpByAbsorbPower (data.HP, data.Def, data.Atk, data.AtkSpeed);
     }
 
     #region 事件消息

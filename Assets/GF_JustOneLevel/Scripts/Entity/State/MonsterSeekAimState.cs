@@ -35,7 +35,7 @@ public class MonsterSeekAimState : MonsterListenDamageState {
 
         if (fsm.Owner.IsLockingAim) {
             FightEntity aim = fsm.Owner.LockingAim;
-            if (aim.IsDead) {
+            if (aim == null || aim.IsDead) {
                 ChangeState<MonsterIdleState>(fsm);
                 return;
             }

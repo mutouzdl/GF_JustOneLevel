@@ -8,7 +8,7 @@ public class RightJoystickPlayerController : MonoBehaviour
     public int rotationSpeed = 8; // rotation speed of the player character
     public Animator animator; // the animator controller of the player character
     private Vector3 rightJoystickInput; // hold the input of the Right Joystick
-    private Rigidbody rigidBody; // rigid body component of the player character
+    // private Rigidbody rigidBody; // rigid body component of the player character
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class RightJoystickPlayerController : MonoBehaviour
         }
         else
         {
-            rigidBody = transform.GetComponent<Rigidbody>();
+            // rigidBody = transform.GetComponent<Rigidbody>();
         }
 
         if (rightJoystick == null)

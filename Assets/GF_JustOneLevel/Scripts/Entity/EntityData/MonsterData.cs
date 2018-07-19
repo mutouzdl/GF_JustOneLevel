@@ -38,7 +38,6 @@ public class MonsterData : FightEntityData {
     /// </summary>
     /// <param name="powerPercent">调整百分比</param>
     public void AjustPower (float powerPercent) {
-        AtkRange = AtkRange * powerPercent;
         SeekRange = SeekRange * powerPercent;
         AtkSpeed = AtkSpeed - AtkSpeed * (powerPercent - 1);
         Atk = (int) (Atk * powerPercent);

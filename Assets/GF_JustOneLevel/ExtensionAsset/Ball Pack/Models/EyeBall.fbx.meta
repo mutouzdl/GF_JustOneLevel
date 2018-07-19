@@ -3,8 +3,16 @@ guid: 5f603b8c73c81724b9bdc1c65764eb4c
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: EyeBall
+    100002: //RootNode
+    400000: EyeBall
+    400002: //RootNode
+    2300000: EyeBall
+    3300000: EyeBall
     4300000: Sphere
     4300002: EyeBall
+    7400000: Default Take
+    11100000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
