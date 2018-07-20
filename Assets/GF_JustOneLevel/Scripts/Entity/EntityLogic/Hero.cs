@@ -20,10 +20,12 @@ public class Hero : FightEntity {
     /// </summary>
     private GameFramework.Fsm.IFsm<Hero> heroActionFsm;
     public WeaponTrialController weaponTrailController;
+    private TextMesh msgText = null;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
+        msgText = this.gameObject.GetComponentInChildren<TextMesh> ();;
         GameObject weaponTrailObj = GameObject.FindGameObjectWithTag ("WeaponTrail");
         WeaponTrail weaponTrail = weaponTrailObj.GetOrAddComponent<WeaponTrail> ();
         weaponTrail.height = 0.6f;
@@ -44,7 +46,7 @@ public class Hero : FightEntity {
         weaponTrailController.Reset ();
 
         /* 如果不想一直显示武器效果，可以注释掉下面这行，并且把PlayTrailEffect和ClearTrailEffect里的函数注释放开 */
-        weaponTrailController.PlayTrailEffect();
+        weaponTrailController.PlayTrailEffect ();
 
         ResetAtkCD ();
 
@@ -53,6 +55,9 @@ public class Hero : FightEntity {
 
         /* 加载武器 */
         InitWeapon ();
+
+        /* 刷新描述文本 */
+        RefreshMsgText();
 
         /* 订阅事件 */
         SubscribeEvent ();
@@ -91,6 +96,17 @@ public class Hero : FightEntity {
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
+    }
+
+    /// <summary>
+    /// 刷新描述文本
+    /// </summary>
+    private void RefreshMsgText () {
+        if (msgText == null) {
+            return;
+        }
+
+        msgText.text = $"{this.heroData.Name}(战力：{this.heroData.GetPower()})";
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -138,7 +154,7 @@ public class Hero : FightEntity {
         if (leftJoystickObj == null) {
             return null;
         }
-        
+
         LeftJoystick leftJoystick = leftJoystickObj.GetOrAddComponent<LeftJoystick> ();
         leftJoystick.joystickStaysInFixedPosition = true;
 
@@ -232,6 +248,7 @@ public class Hero : FightEntity {
     /// </summary>
     public void PowerUpByAbsValue (int hp, int def, int atk, float atkSpeed) {
         this.heroData.PowerUpByAbsValue (hp, def, atk, atkSpeed);
+        this.RefreshMsgText();
     }
 
     /// <summary>
@@ -240,6 +257,7 @@ public class Hero : FightEntity {
     /// <param name="data"></param>
     private void PowerUpByMonster (MonsterData data) {
         this.heroData.PowerUpByAbsorbPower (data.HP, data.Def, data.Atk, data.AtkSpeed);
+        this.RefreshMsgText();
     }
 
     #region 事件消息

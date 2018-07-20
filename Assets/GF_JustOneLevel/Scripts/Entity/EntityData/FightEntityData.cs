@@ -44,6 +44,19 @@ public class FightEntityData : EntityData {
     }
 
     /// <summary>
+    /// 获取战斗力数值
+    /// </summary>
+    /// <returns></returns>
+    public int GetPower () {
+        int hpPower = this.MaxHP / 8;
+        int defPower = this.Def * 2;
+        int atkPower = this.Atk;
+        int atkSpeedPower = (int)(1 / this.AtkSpeed);
+        
+        return hpPower + defPower + atkPower + atkSpeedPower;
+    }
+
+    /// <summary>
     /// 获取武器数据列表
     /// </summary>
     /// <returns></returns>
