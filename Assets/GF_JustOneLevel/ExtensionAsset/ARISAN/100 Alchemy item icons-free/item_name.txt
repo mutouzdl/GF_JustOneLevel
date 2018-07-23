@@ -1,0 +1,100 @@
+1	fire
+2	water
+3	air
+4	tree
+5	light
+6	electric
+7	Hydrogen
+8	ozone
+9	cloud
+10	dust
+11	carbon dioxide
+12	LPG
+13	butane gas
+14	vapor
+15	helium
+16	wind
+17	Alcohol
+18	virus
+19	oil
+20	milk
+21	book
+22	Ash
+23	blood
+24	sulfur
+25	poison
+26	Glass
+27	feather
+28	torch
+29	bomb
+30	sand bricks
+31	mud bricks
+32	ruby
+33	topaz
+34	diamond
+35	tissue
+36	sand
+37	mud
+38	sugar
+39	charcoal
+40	rope
+41	coal
+42	concrete
+43	ice
+44	caramel
+45	gunpowder
+46	tobacco
+47	gold
+48	silver
+49	iron
+50	lead
+51	bone meal
+52	garlic
+53	ginseng
+54	flower
+55	honeycomb
+56	lavender
+57	pearl
+58	obsidian
+59	soul
+60	life
+61	beer
+62	energy
+63	time
+64	potion of focus
+65	healing potion
+66	elixir of power
+67	magic powder
+68	laser
+69	spider web
+70	shining powder
+71	ball
+72	coin
+73	black pearl
+74	aluminum
+75	copper
+76	zinc
+77	sapphire
+78	emerald
+79	amethyst
+80	cell
+81	darkness
+82	sparkling water
+83	egg
+84	soap
+85	butter
+86	Cheese
+87	Salt
+88	mushroom
+89	clover trefoil
+90	four leaf clover
+91	tree roots
+92	stone
+93	love
+94	seed
+95	plasma
+96	pill
+97	battery
+98	soda
+99	apple
+100	ice cream

@@ -48,13 +48,38 @@ public class FightEntityData : EntityData {
     /// </summary>
     /// <returns></returns>
     public int GetPower () {
-        int hpPower = this.MaxHP / 8;
-        int defPower = this.Def * 2;
+        int hpPower = this.MaxHP / 5;
+        int defPower = this.Def * 3;
         int atkPower = this.Atk;
         int atkSpeedPower = (int)(1 / this.AtkSpeed);
+        int moveSpeedPower = (int)this.MoveSpeed;
+        int atkRangePower = (int)(this.AtkRange / 2);
         
-        return hpPower + defPower + atkPower + atkSpeedPower;
+        return hpPower + defPower + atkPower + atkSpeedPower + moveSpeedPower + atkRangePower;
     }
+
+    /// <summary>
+    /// 获取战斗力对应的等级
+    /// </summary>
+    /// <param name="power"></param>
+    /// <returns></returns>
+    public int GetPowerLevel (int power = -1) {
+        if (power < 0) {
+            power = GetPower();
+        }
+
+        if (power < 15) return 0;
+        if (power < 20) return 1;
+        if (power < 35) return 2;
+        if (power < 55) return 3;
+        if (power < 85) return 4;
+        if (power < 105) return 5;
+        if (power < 135) return 6;
+        if (power < 170) return 7;
+        if (power < 230) return 8;
+
+        return 9;
+    }   
 
     /// <summary>
     /// 获取武器数据列表

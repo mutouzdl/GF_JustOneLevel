@@ -106,7 +106,41 @@ public class Hero : FightEntity {
             return;
         }
 
-        msgText.text = $"{this.heroData.Name}(战力：{this.heroData.GetPower()})";
+        int power = this.heroData.GetPower();
+        int powerLevel = this.heroData.GetPowerLevel(power);
+
+        msgText.text = $"{this.heroData.Name}(战力：{power})";
+
+        /* 显示战斗力图标 */
+        GameObject powerRawImagePanelObj = GameObject.FindGameObjectWithTag("PowerRawImagePanel");
+        RectTransform powerRawImagePanel = powerRawImagePanelObj.GetComponent<RectTransform>();
+
+        // 1. 如果图标总数量小于战斗力等级，则新增图标
+        if (powerRawImagePanel.childCount < powerLevel) {
+            GameObject powerRawImage = powerRawImagePanel.GetChild(0).gameObject;
+            for (int i = 0; i < powerLevel - powerRawImagePanel.childCount; i++) {
+                GameObject child = GameObject.Instantiate(powerRawImage);
+                child.transform.SetParent(powerRawImagePanel, false);
+            }
+        }
+
+        // 2. 计算已经显示的图标数量
+        int powerLevelIconCount = 0;
+        for (int i = 0; i < powerRawImagePanel.childCount; i++) {
+            if (powerRawImagePanel.GetChild(i).gameObject.activeSelf) {
+                powerLevelIconCount++;
+            }
+        }
+
+        // 3. 显示图标数量，以达到战斗力等级
+        for (int i = powerLevelIconCount; i < powerLevel; i++) {
+            powerRawImagePanel.GetChild(i).gameObject.SetActive(true);
+        }
+
+        // 4. 隐藏多余的图标
+        for (int i = powerLevel; i < powerRawImagePanel.childCount; i++) {
+            powerRawImagePanel.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
