@@ -32,7 +32,7 @@
     <String Key="HeroShop.SetFight" Value="出战" />
     <String Key="HeroShop.Fight" Value="已出战" />
     <String Key="Menu.Title" Value="只有一关" />
-    <String Key="Menu.StartButton" Value="开始" />
+    <String Key="Menu.StartButton" Value="开始游戏" />
     <String Key="Menu.HeroShop" Value="英雄商店" />
     <String Key="Menu.SettingButton" Value="设置" />
     <String Key="Menu.AboutButton" Value="关于" />
