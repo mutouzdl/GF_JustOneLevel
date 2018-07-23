@@ -16,6 +16,10 @@ public class ProcedureGame : ProcedureBase {
     /// 玩家信息UI
     /// </summary>
     private UIPlayerMessage uiPlayerMessage = null;
+    /// <summary>
+    /// 游戏结束UI
+    /// </summary>
+    private UIGameOver uiGameOver = null;
 
     private bool isPause = false;
 
@@ -63,6 +67,9 @@ public class ProcedureGame : ProcedureBase {
             uiPlayerMessage = null;
         }
 
+        if (uiGameOver != null) {
+            GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
+        }
     }
 
     protected override void OnUpdate (ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds) {
@@ -99,8 +106,8 @@ public class ProcedureGame : ProcedureBase {
         if (gold < GlobalGame.ContinueCostGold) {
             GameEntry.UI.OpenDialog (new DialogParams () {
                 Title = GameEntry.Localization.GetString ("Alert.OperateFail"),
-                Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
-                OnClickConfirm = (object userData) => { return true; },
+                    Message = GameEntry.Localization.GetString ("Message.GoldNotEnough"),
+                    OnClickConfirm = (object userData) => { return true; },
             });
             return false;
         }
@@ -112,8 +119,8 @@ public class ProcedureGame : ProcedureBase {
         GameEntry.Event.Fire (this, new ResurgenceEventArgs ());
 
         // 刷新金币信息
-        uiPlayerMessage.RefreshGold();
-        
+        uiPlayerMessage.RefreshGold ();
+
         isPause = false;
 
         return true;
@@ -125,19 +132,20 @@ public class ProcedureGame : ProcedureBase {
         }
 
         // 打开失败UI
-        string des = GameEntry.Localization.GetString ("GameOver.Des");
-        string ResurgenceDes = GameEntry.Localization.GetString ("GameOver.ResurgenceDes");
-        string message = $"{des}\n<color=red>{ResurgenceDes}</color>";
+        GameEntry.UI.OpenUIForm (UIFormId.GameOver, this);
+        // string des = GameEntry.Localization.GetString ("GameOver.Des");
+        // string ResurgenceDes = GameEntry.Localization.GetString ("GameOver.ResurgenceDes");
+        // string message = $"{des}\n<color=red>{ResurgenceDes}</color>";
 
-        GameEntry.UI.OpenDialog (new DialogParams () {
-            Mode = DialogParams.DialogMode.双按钮,
-            Title = GameEntry.Localization.GetString ("GameOver.Title"),
-            Message = message,
-            ConfirmText = GameEntry.Localization.GetString("Operate.Continue"),
-            CancelText = GameEntry.Localization.GetString("Operate.Back"),
-            OnClickConfirm = (object userData) => { return Continue(); },
-            OnClickCancel = (object userData) => { Back(); },
-        });
+        // GameEntry.UI.OpenDialog (new DialogParams () {
+        //     Mode = DialogParams.DialogMode.双按钮,
+        //     Title = GameEntry.Localization.GetString ("GameOver.Title"),
+        //     Message = message,
+        //     ConfirmText = GameEntry.Localization.GetString("Operate.Continue"),
+        //     CancelText = GameEntry.Localization.GetString("Operate.Back"),
+        //     OnClickConfirm = (object userData) => { return Continue(); },
+        //     OnClickCancel = (object userData) => { Back(); },
+        // });
 
         isPause = true;
     }
@@ -149,9 +157,11 @@ public class ProcedureGame : ProcedureBase {
             uiPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
 
             // 英雄对象依赖于操作界面的某个对象，所以需要先创建操作界面再创建英雄
-            survivalGame.CreateCreatures();
+            survivalGame.CreateCreatures ();
         } else if (ne.UIForm.Logic is UIPlayerMessage) {
             uiPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
+        } else if (ne.UIForm.Logic is UIGameOver) {
+            uiGameOver = (UIGameOver) ne.UIForm.Logic;
         }
     }
 }

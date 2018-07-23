@@ -13,6 +13,8 @@
     <String Key="Message.GoldNotEnough" Value="金币不足" />
     <String Key="Message.BuySuccess" Value="购买成功" />
     <String Key="Message.KillCount" Value="击杀" />
+    <String Key="Message.HoldTime" Value="坚持时间" />
+    <String Key="Message.Time" Value="时间" />
     <String Key="GameOver.Title" Value="你好像输了" />
     <String Key="GameOver.Des" Value="放心，你并不是打不赢，你只是单纯的输了。" />
     <String Key="GameOver.ResurgenceDes" Value="不过，你可以花费200金币续命，要继续吗？" />

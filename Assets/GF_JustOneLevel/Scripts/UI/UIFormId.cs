@@ -7,6 +7,7 @@ public enum UIFormId {
     HeroShop = 2,
     PlayerOperate = 10,
     PlayerMessage = 11,
+    GameOver = 12,
     Dialog = 30,
     Loading = 100,
 }

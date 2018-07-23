@@ -22,14 +22,6 @@ public class UIPlayerMessage : UGuiForm {
     [SerializeField]
     private Text timeText = null;
 
-    /// <summary>
-    /// 累计获得奖励
-    /// </summary>
-    private int totalPrize = 0;
-    /// <summary>
-    /// 击杀数量
-    /// </summary>
-    private int killCount = 0;
 
     /// <summary>
     /// 界面打开。
@@ -38,8 +30,8 @@ public class UIPlayerMessage : UGuiForm {
     protected override void OnOpen (object userData) {
         base.OnOpen (userData);
 
-        totalPrize = 0;
-        killCount = 0;
+        GlobalGame.totalPrize = 0;
+        GlobalGame.killCount = 0;
         
         RefreshGold ();
 
@@ -79,7 +71,7 @@ public class UIPlayerMessage : UGuiForm {
     /// 刷新怪物击杀数量
     /// </summary>
     private void RefreshKillCount () {
-        killCountText.text = killCount.ToString();
+        killCountText.text = GlobalGame.killCount.ToString();
     }
 
     private void OnDeadEvent (object sender, GameEventArgs e) {
@@ -87,7 +79,7 @@ public class UIPlayerMessage : UGuiForm {
 
         if (deadEventArgs.CampType == CampType.Enemy) {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
-            totalPrize += data.Prize;
+            GlobalGame.totalPrize += data.Prize;
 
             // 保存获得的金币
             int gold = PlayerData.Gold;
@@ -96,7 +88,7 @@ public class UIPlayerMessage : UGuiForm {
             RefreshGold ();
 
             // 累积击杀数量
-            killCount++;
+            GlobalGame.killCount++;
             RefreshKillCount();
         }
     }
