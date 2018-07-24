@@ -34,6 +34,11 @@ public class UIPlayerMessage : UGuiForm {
         GlobalGame.killCount = 0;
         
         RefreshGold ();
+        RefreshKillCount();
+
+        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), PlayerData.CurrentFightHeroID, CampType.Player);
+
+        RefreshHeroMsg(heroData);
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
@@ -74,6 +79,20 @@ public class UIPlayerMessage : UGuiForm {
         killCountText.text = GlobalGame.killCount.ToString();
     }
 
+    /// <summary>
+    /// 刷新英雄信息
+    /// </summary>
+    /// <param name="heroData"></param>
+    private void RefreshHeroMsg(HeroData heroData) {
+        string atkSpeedStr = heroData.AtkSpeed.ToString("F4");
+
+        atkText.text = heroData.Atk.ToString ();
+        defText.text = heroData.Def.ToString ();
+        atkSpeedText.text = $"{atkSpeedStr}s";
+        hpText.text = $"{heroData.HP}/{heroData.MaxHP}";
+        mpText.text = $"{heroData.MP}/{heroData.MaxMP}";
+    }
+
     private void OnDeadEvent (object sender, GameEventArgs e) {
         DeadEventArgs deadEventArgs = e as DeadEventArgs;
 
@@ -96,13 +115,7 @@ public class UIPlayerMessage : UGuiForm {
     private void OnRefreshHeroProps (object sender, GameEventArgs e) {
         RefreshHeroPropsEventArgs eventArgs = e as RefreshHeroPropsEventArgs;
 
-        string atkSpeedStr = eventArgs.HeroData.AtkSpeed.ToString("F4");
-
-        atkText.text = eventArgs.HeroData.Atk.ToString ();
-        defText.text = eventArgs.HeroData.Def.ToString ();
-        atkSpeedText.text = $"{atkSpeedStr}s";
-        hpText.text = $"{eventArgs.HeroData.HP}/{eventArgs.HeroData.MaxHP}";
-        mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
+        RefreshHeroMsg(eventArgs.HeroData);
     }
 
     private void OnRefreshGoldProps (object sender, GameEventArgs e) {

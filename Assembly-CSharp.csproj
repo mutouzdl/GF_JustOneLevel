@@ -233,6 +233,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIFormId.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIGameOver.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIHeroShop.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UILeftJoystick.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UILoading.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIMenu.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\UI\UIPlayerMessage.cs" />

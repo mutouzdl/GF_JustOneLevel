@@ -9,8 +9,8 @@ public class MonsterBaseState : FsmState<Monster> {
     /// 有限状态机状态初始化时调用。
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
-    protected override void OnInit (IFsm<Monster> fsm) { 
-        base.OnInit(fsm);
+    protected override void OnInit (IFsm<Monster> fsm) {
+        base.OnInit (fsm);
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ public class MonsterBaseState : FsmState<Monster> {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Monster> fsm) {
-        base.OnEnter(fsm);
+        base.OnEnter (fsm);
     }
 
     /// <summary>
@@ -28,18 +28,21 @@ public class MonsterBaseState : FsmState<Monster> {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
         if (fsm.Owner.IsDead) {
             return;
-        }        
+        }
+        
+        if (fsm.Owner.MoveController == null) {
+            return;
+        }
 
         /* 转身 */
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
         if (inputVec.x != 0) {
             fsm.Owner.Rotate (new Vector3 (
-                0, inputVec.x * Time.deltaTime * fsm.Owner.MonsterData.RotateSpeed, 0)
-                );
+                0, inputVec.x * Time.deltaTime * fsm.Owner.MonsterData.RotateSpeed, 0));
         }
     }
 
@@ -49,7 +52,7 @@ public class MonsterBaseState : FsmState<Monster> {
     /// <param name="fsm">有限状态机引用。</param>
     /// <param name="isShutdown">是否是关闭有限状态机时触发。</param>
     protected override void OnLeave (IFsm<Monster> fsm, bool isShutdown) {
-        base.OnLeave(fsm, isShutdown);
+        base.OnLeave (fsm, isShutdown);
     }
 
     /// <summary>

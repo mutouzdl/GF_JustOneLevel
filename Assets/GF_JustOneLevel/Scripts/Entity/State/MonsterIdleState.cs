@@ -9,7 +9,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnInit (IFsm<Monster> fsm) {
-        base.OnInit(fsm);
+        base.OnInit (fsm);
     }
 
     /// <summary>
@@ -17,7 +17,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     /// </summary>
     /// <param name="fsm">有限状态机引用。</param>
     protected override void OnEnter (IFsm<Monster> fsm) {
-        base.OnEnter(fsm);
+        base.OnEnter (fsm);
 
         fsm.Owner.ChangeAnimation (FightEntityAnimationState.idle);
     }
@@ -29,7 +29,7 @@ public class MonsterIdleState : MonsterSeekAimState {
     /// <param name="elapseSeconds">逻辑流逝时间，以秒为单位。</param>
     /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
     protected override void OnUpdate (IFsm<Monster> fsm, float elapseSeconds, float realElapseSeconds) {
-        base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+        base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
         if (fsm.Owner.IsLockingAim) {
             FightEntity aim = fsm.Owner.LockingAim;
@@ -38,6 +38,10 @@ public class MonsterIdleState : MonsterSeekAimState {
                 fsm.Owner.transform.LookAt (aim.transform);
                 return;
             }
+        }
+        
+        if (fsm.Owner.MoveController == null) {
+            return;
         }
 
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();

@@ -126,7 +126,7 @@ public class ProcedureGame : ProcedureBase {
         if (uiGameOver != null) {
             GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
         }
-        
+
         return true;
     }
 
@@ -159,9 +159,6 @@ public class ProcedureGame : ProcedureBase {
 
         if (ne.UIForm.Logic is UIPlayerOperate) {
             uiPlayerOperate = (UIPlayerOperate) ne.UIForm.Logic;
-
-            // 英雄对象依赖于操作界面的某个对象，所以需要先创建操作界面再创建英雄
-            survivalGame.CreateCreatures ();
         } else if (ne.UIForm.Logic is UIPlayerMessage) {
             uiPlayerMessage = (UIPlayerMessage) ne.UIForm.Logic;
         } else if (ne.UIForm.Logic is UIGameOver) {

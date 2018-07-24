@@ -16,6 +16,8 @@ public class SurvivalGame {
         GlobalGame.GameTimes = 0;
         GlobalGame.IsPause = false;
         m_Hero = null;
+
+        CreateCreatures();
     }
 
     /// <summary>

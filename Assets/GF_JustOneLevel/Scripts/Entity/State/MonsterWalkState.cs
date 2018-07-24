@@ -47,6 +47,10 @@ public class MonsterWalkState : MonsterSeekAimState {
             }
         }
 
+        if (fsm.Owner.MoveController == null) {
+            return;
+        }
+
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
 
         if (inputVec.y != 0) {
