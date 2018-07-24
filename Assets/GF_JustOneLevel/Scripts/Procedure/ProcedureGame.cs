@@ -123,6 +123,10 @@ public class ProcedureGame : ProcedureBase {
 
         isPause = false;
 
+        if (uiGameOver != null) {
+            GameEntry.UI.CloseUIForm (uiGameOver.UIForm);
+        }
+        
         return true;
     }
 
