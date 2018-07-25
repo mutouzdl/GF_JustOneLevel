@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 英雄商店表。
 /// </summary>
-public class DRHeroShop : IDataRow {
+public class DRHeroShop : IDRAssetsRow {
     /// <summary>
     /// 编号。
     /// </summary>

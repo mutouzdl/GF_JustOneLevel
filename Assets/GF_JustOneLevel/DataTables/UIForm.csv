@@ -5,5 +5,6 @@
 ,2,英雄商店UI,UIHeroShop,Default,false,false
 ,10,玩家操作UI,UIPlayerOperate,Default,false,false
 ,11,玩家信息UI,UIPlayerMessage,Default,false,false
+,12,游戏结束UI,UIGameOver,Default,false,true
 ,30,全局弹窗,UIDialog,Default,true,false
 ,100,加载界面,UILoading,Default,false,true

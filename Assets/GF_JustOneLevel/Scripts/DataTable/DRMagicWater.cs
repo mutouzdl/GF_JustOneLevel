@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 魔力泉表。
 /// </summary>
-public class DRMagicWater : IDataRow {
+public class DRMagicWater : IDRAssetsRow {
     /// <summary>
     /// 编号。
     /// </summary>

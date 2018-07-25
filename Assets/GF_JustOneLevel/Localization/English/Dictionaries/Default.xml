@@ -13,6 +13,8 @@
     <String Key="Message.GoldNotEnough" Value="Gold Not Enough" />
     <String Key="Message.BuySuccess" Value="Buy Success" />
     <String Key="Message.KillCount" Value="Kill" />
+    <String Key="Message.HoldTime" Value="HoldTime" />
+    <String Key="Message.Time" Value="Time" />
     <String Key="GameOver.Title" Value="you are dead" />
     <String Key="GameOver.Des" Value="you are not too weak, but just failed" />
     <String Key="GameOver.ResurgenceDes" Value="you can cost 200 gold to continue" />

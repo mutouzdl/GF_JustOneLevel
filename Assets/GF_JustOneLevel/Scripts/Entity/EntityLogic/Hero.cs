@@ -20,10 +20,12 @@ public class Hero : FightEntity {
     /// </summary>
     private GameFramework.Fsm.IFsm<Hero> heroActionFsm;
     public WeaponTrialController weaponTrailController;
+    private TextMesh msgText = null;
 
     protected override void OnInit (object userData) {
         base.OnInit (userData);
 
+        msgText = this.gameObject.GetComponentInChildren<TextMesh> ();;
         GameObject weaponTrailObj = GameObject.FindGameObjectWithTag ("WeaponTrail");
         WeaponTrail weaponTrail = weaponTrailObj.GetOrAddComponent<WeaponTrail> ();
         weaponTrail.height = 0.6f;
@@ -44,7 +46,7 @@ public class Hero : FightEntity {
         weaponTrailController.Reset ();
 
         /* 如果不想一直显示武器效果，可以注释掉下面这行，并且把PlayTrailEffect和ClearTrailEffect里的函数注释放开 */
-        weaponTrailController.PlayTrailEffect();
+        weaponTrailController.PlayTrailEffect ();
 
         ResetAtkCD ();
 
@@ -53,6 +55,9 @@ public class Hero : FightEntity {
 
         /* 加载武器 */
         InitWeapon ();
+
+        /* 刷新描述文本 */
+        RefreshMsgText();
 
         /* 订阅事件 */
         SubscribeEvent ();
@@ -91,6 +96,51 @@ public class Hero : FightEntity {
         GameEntry.Event.Subscribe (ClickAttackButtonEventArgs.EventId, OnClickAttackButton);
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
+    }
+
+    /// <summary>
+    /// 刷新描述文本
+    /// </summary>
+    private void RefreshMsgText () {
+        if (msgText == null) {
+            return;
+        }
+
+        int power = this.heroData.GetPower();
+        int powerLevel = this.heroData.GetPowerLevel(power);
+
+        msgText.text = $"{this.heroData.Name}(战力：{power})";
+
+        /* 显示战斗力图标 */
+        GameObject powerRawImagePanelObj = GameObject.FindGameObjectWithTag("PowerRawImagePanel");
+        RectTransform powerRawImagePanel = powerRawImagePanelObj.GetComponent<RectTransform>();
+
+        // 1. 如果图标总数量小于战斗力等级，则新增图标
+        if (powerRawImagePanel.childCount < powerLevel) {
+            GameObject powerRawImage = powerRawImagePanel.GetChild(0).gameObject;
+            for (int i = 0; i < powerLevel - powerRawImagePanel.childCount; i++) {
+                GameObject child = GameObject.Instantiate(powerRawImage);
+                child.transform.SetParent(powerRawImagePanel, false);
+            }
+        }
+
+        // 2. 计算已经显示的图标数量
+        int powerLevelIconCount = 0;
+        for (int i = 0; i < powerRawImagePanel.childCount; i++) {
+            if (powerRawImagePanel.GetChild(i).gameObject.activeSelf) {
+                powerLevelIconCount++;
+            }
+        }
+
+        // 3. 显示图标数量，以达到战斗力等级
+        for (int i = powerLevelIconCount; i < powerLevel; i++) {
+            powerRawImagePanel.GetChild(i).gameObject.SetActive(true);
+        }
+
+        // 4. 隐藏多余的图标
+        for (int i = powerLevel; i < powerRawImagePanel.childCount; i++) {
+            powerRawImagePanel.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {
@@ -138,7 +188,7 @@ public class Hero : FightEntity {
         if (leftJoystickObj == null) {
             return null;
         }
-        
+
         LeftJoystick leftJoystick = leftJoystickObj.GetOrAddComponent<LeftJoystick> ();
         leftJoystick.joystickStaysInFixedPosition = true;
 
@@ -232,6 +282,7 @@ public class Hero : FightEntity {
     /// </summary>
     public void PowerUpByAbsValue (int hp, int def, int atk, float atkSpeed) {
         this.heroData.PowerUpByAbsValue (hp, def, atk, atkSpeed);
+        this.RefreshMsgText();
     }
 
     /// <summary>
@@ -240,6 +291,7 @@ public class Hero : FightEntity {
     /// <param name="data"></param>
     private void PowerUpByMonster (MonsterData data) {
         this.heroData.PowerUpByAbsorbPower (data.HP, data.Def, data.Atk, data.AtkSpeed);
+        this.RefreshMsgText();
     }
 
     #region 事件消息

@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 武器表。
 /// </summary>
-public class DRWeapon : IDataRow {
+public class DRWeapon : IDRAssetsRow {
     /// <summary>
     /// 武器编号。
     /// </summary>

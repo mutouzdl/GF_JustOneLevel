@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 实体表。
 /// </summary>
-public class DREntity : IDataRow {
+public class DREntity : IDRAssetsRow {
     /// <summary>
     /// 实体编号。
     /// </summary>

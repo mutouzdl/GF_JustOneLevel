@@ -34,6 +34,10 @@ public class HeroBaseState : FsmState<Hero> {
             return;
         }        
 
+        if (fsm.Owner.MoveController == null) {
+            return;
+        }
+        
         /* 转身 */
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
         if (inputVec.x != 0) {

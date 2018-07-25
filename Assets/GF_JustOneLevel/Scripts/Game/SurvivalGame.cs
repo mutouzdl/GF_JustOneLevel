@@ -13,8 +13,11 @@ public class SurvivalGame {
         GameEntry.Event.Subscribe (ShowEntityFailureEventArgs.EventId, OnShowEntityFailure);
         GameEntry.Event.Subscribe (ResurgenceEventArgs.EventId, OnResurgenceEvent);
 
+        GlobalGame.GameTimes = 0;
         GlobalGame.IsPause = false;
         m_Hero = null;
+
+        CreateCreatures();
     }
 
     /// <summary>

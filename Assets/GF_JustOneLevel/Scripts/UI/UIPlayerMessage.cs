@@ -19,15 +19,9 @@ public class UIPlayerMessage : UGuiForm {
     private Text hpText = null;
     [SerializeField]
     private Text mpText = null;
+    [SerializeField]
+    private Text timeText = null;
 
-    /// <summary>
-    /// 累计获得奖励
-    /// </summary>
-    private int totalPrize = 0;
-    /// <summary>
-    /// 击杀数量
-    /// </summary>
-    private int killCount = 0;
 
     /// <summary>
     /// 界面打开。
@@ -36,15 +30,26 @@ public class UIPlayerMessage : UGuiForm {
     protected override void OnOpen (object userData) {
         base.OnOpen (userData);
 
-        totalPrize = 0;
-        killCount = 0;
+        GlobalGame.totalPrize = 0;
+        GlobalGame.killCount = 0;
         
         RefreshGold ();
+        RefreshKillCount();
+
+        HeroData heroData = new HeroData (EntityExtension.GenerateSerialId (), PlayerData.CurrentFightHeroID, CampType.Player);
+
+        RefreshHeroMsg(heroData);
 
         /* 订阅事件 */
         GameEntry.Event.Subscribe (DeadEventArgs.EventId, OnDeadEvent);
         GameEntry.Event.Subscribe (RefreshHeroPropsEventArgs.EventId, OnRefreshHeroProps);
         GameEntry.Event.Subscribe (RefreshGoldEventArgs.EventId, OnRefreshGoldProps);
+    }
+
+    protected override void OnUpdate(float elapseSeconds, float realElapseSeconds) {
+        base.OnUpdate(elapseSeconds, realElapseSeconds);
+
+        timeText.text = $"{GlobalGame.GameTimes.ToString("F0")}s";
     }
 
     /// <summary>
@@ -71,7 +76,21 @@ public class UIPlayerMessage : UGuiForm {
     /// 刷新怪物击杀数量
     /// </summary>
     private void RefreshKillCount () {
-        killCountText.text = killCount.ToString();
+        killCountText.text = GlobalGame.killCount.ToString();
+    }
+
+    /// <summary>
+    /// 刷新英雄信息
+    /// </summary>
+    /// <param name="heroData"></param>
+    private void RefreshHeroMsg(HeroData heroData) {
+        string atkSpeedStr = heroData.AtkSpeed.ToString("F4");
+
+        atkText.text = heroData.Atk.ToString ();
+        defText.text = heroData.Def.ToString ();
+        atkSpeedText.text = $"{atkSpeedStr}s";
+        hpText.text = $"{heroData.HP}/{heroData.MaxHP}";
+        mpText.text = $"{heroData.MP}/{heroData.MaxMP}";
     }
 
     private void OnDeadEvent (object sender, GameEventArgs e) {
@@ -79,7 +98,7 @@ public class UIPlayerMessage : UGuiForm {
 
         if (deadEventArgs.CampType == CampType.Enemy) {
             MonsterData data = (MonsterData) deadEventArgs.EntityData;
-            totalPrize += data.Prize;
+            GlobalGame.totalPrize += data.Prize;
 
             // 保存获得的金币
             int gold = PlayerData.Gold;
@@ -88,7 +107,7 @@ public class UIPlayerMessage : UGuiForm {
             RefreshGold ();
 
             // 累积击杀数量
-            killCount++;
+            GlobalGame.killCount++;
             RefreshKillCount();
         }
     }
@@ -96,13 +115,7 @@ public class UIPlayerMessage : UGuiForm {
     private void OnRefreshHeroProps (object sender, GameEventArgs e) {
         RefreshHeroPropsEventArgs eventArgs = e as RefreshHeroPropsEventArgs;
 
-        string atkSpeedStr = eventArgs.HeroData.AtkSpeed.ToString("F4");
-
-        atkText.text = eventArgs.HeroData.Atk.ToString ();
-        defText.text = eventArgs.HeroData.Def.ToString ();
-        atkSpeedText.text = $"{atkSpeedStr}s";
-        hpText.text = $"{eventArgs.HeroData.HP}/{eventArgs.HeroData.MaxHP}";
-        mpText.text = $"{eventArgs.HeroData.MP}/{eventArgs.HeroData.MaxMP}";
+        RefreshHeroMsg(eventArgs.HeroData);
     }
 
     private void OnRefreshGoldProps (object sender, GameEventArgs e) {

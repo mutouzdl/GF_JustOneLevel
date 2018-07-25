@@ -29,6 +29,10 @@ public class HeroWalkState : HeroListenAttackState {
     protected override void OnUpdate (IFsm<Hero> fsm, float elapseSeconds, float realElapseSeconds) {
         base.OnUpdate (fsm, elapseSeconds, realElapseSeconds);
 
+        if (fsm.Owner.MoveController == null) {
+            return;
+        }
+        
         Vector3 inputVec = fsm.Owner.MoveController.GetInput ();
         if (inputVec.y != 0) {
             /* 移动 */

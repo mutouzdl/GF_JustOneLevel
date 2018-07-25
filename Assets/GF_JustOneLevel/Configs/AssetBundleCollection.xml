@@ -10,6 +10,8 @@
       <AssetBundle Name="Prefab/BulletEffect" LoadType="0" Packed="False" />
       <AssetBundle Name="Prefab/Entities" LoadType="0" Packed="False" />
       <AssetBundle Name="Prefab/UI" LoadType="0" Packed="False" />
+      <AssetBundle Name="Prefabs/UI/PowerCanvas" LoadType="0" Packed="False" />
+      <AssetBundle Name="Prefabs/UI/UIGameOver" LoadType="0" Packed="False" />
       <AssetBundle Name="Scenes" LoadType="0" Packed="False" />
       <AssetBundle Name="SkyBox" LoadType="0" Packed="False" />
       <AssetBundle Name="Sounds" LoadType="0" Packed="False" />
@@ -49,6 +51,7 @@
       <Asset Guid="547e367b5b43c494e90431a6e38e87ac" AssetBundleName="SkyBox" />
       <Asset Guid="552d540b3f59ac44a8136e49a6d5e496" AssetBundleName="Textures" />
       <Asset Guid="5688d1318608fef4f84f7d511717d8c4" AssetBundleName="Material" />
+      <Asset Guid="5ab13fc9dbdab3f42920bc9e41116349" AssetBundleName="Textures" />
       <Asset Guid="63458007667ec944b9c8807a037d9584" AssetBundleName="DataTables" />
       <Asset Guid="6569d615e60deb044a3b68eb2dd295fc" AssetBundleName="DataTables" />
       <Asset Guid="6601b262566e8ed48bcd94e544e0fd2d" AssetBundleName="SkyBox" />
@@ -74,7 +77,9 @@
       <Asset Guid="9de4766489a47c24c92a6fc32555f378" AssetBundleName="Prefab/UI" />
       <Asset Guid="a3b25b0ec66a73046b6e4b9820407805" AssetBundleName="DataTables" />
       <Asset Guid="a7d0d6571edd67649a49d2fe3fd3d646" AssetBundleName="Prefab/UI" />
+      <Asset Guid="a8fe544237e3b374f82a0981e8e458a4" AssetBundleName="Prefabs/UI/PowerCanvas" />
       <Asset Guid="a942f1426e9f8ad41a0d7c1b2d2c6940" AssetBundleName="Prefab/Entities" />
+      <Asset Guid="ada86a9476b511740acce1ae35ce160f" AssetBundleName="Textures" />
       <Asset Guid="ae3bee6bdd751d9488ff641edb8ef4b4" AssetBundleName="Prefab/UI" />
       <Asset Guid="b175d767752c32045a13acb6b2254a2a" AssetBundleName="Prefab/BulletEffect" />
       <Asset Guid="b85f12ecc21a98c4992a4a945dccd04f" AssetBundleName="Prefab/Entities" />
@@ -98,6 +103,7 @@
       <Asset Guid="ee850200e5ee4d94fbecbf6d5fe0ad4c" AssetBundleName="DataTables" />
       <Asset Guid="f0035d6da7d976a4f9e7d23bfa0fe7dc" AssetBundleName="SkyBox" />
       <Asset Guid="f20a8277e0bbaf34dbac6c62fa1abd6e" AssetBundleName="Prefab/UI" />
+      <Asset Guid="f5364b848214e7d4cb2f463b31b3d9e3" AssetBundleName="Prefabs/UI/UIGameOver" />
       <Asset Guid="f6fa8eeb417117e4682b30dc118fa17c" AssetBundleName="Prefab/Entities" />
       <Asset Guid="f904484187809cb4eb1513a65b0e2ca8" AssetBundleName="Prefab/Entities" />
       <Asset Guid="fe24c1d3a8341df488806f47b3a72356" AssetBundleName="SkyBox" />
