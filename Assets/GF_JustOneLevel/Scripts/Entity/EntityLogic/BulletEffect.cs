@@ -42,7 +42,7 @@ public class BulletEffect : Entity {
         }
         
         isStop = false;
-        GameEntry.Entity.AttachEntity (Entity, bulletEffectData.OwnerId, AttachPoint);
+        GameEntry.Entity.AttachEntity (Entity, bulletEffectData.OwnerId, AttachPoint, bulletEffectData);
     }
 
     protected override void OnUpdate (float elapseSeconds, float realElapseSeconds) {

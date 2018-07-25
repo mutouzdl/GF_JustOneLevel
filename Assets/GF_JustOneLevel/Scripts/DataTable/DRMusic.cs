@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 音乐配置表。
 /// </summary>
-public class DRMusic : IDataRow {
+public class DRMusic : IDRAssetsRow {
     /// <summary>
     /// 音乐编号。
     /// </summary>

@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 子弹特效表
 /// </summary>
-public class DRBulletEffect : IDataRow {
+public class DRBulletEffect : IDRAssetsRow {
     /// <summary>
     /// 编号。
     /// </summary>

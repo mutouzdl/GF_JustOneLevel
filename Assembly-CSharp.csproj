@@ -129,6 +129,7 @@
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRUIForm.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRUISound.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\DRWeapon.cs" />
+     <Compile Include="Assets\GF_JustOneLevel\Scripts\DataTable\IDRAssetsRow.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.AssetPriority.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.EntityData.cs" />
      <Compile Include="Assets\GF_JustOneLevel\Scripts\Definition\Constant\Constant.Layer.cs" />

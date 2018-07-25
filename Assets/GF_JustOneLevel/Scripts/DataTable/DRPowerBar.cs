@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 能量条表。
 /// </summary>
-public class DRPowerBar : IDataRow {
+public class DRPowerBar : IDRAssetsRow {
     /// <summary>
     /// 编号。
     /// </summary>

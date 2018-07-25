@@ -5,7 +5,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 场景配置表。
 /// </summary>
-public class DRScene : IDataRow {
+public class DRScene : IDRAssetsRow {
     /// <summary>
     /// 场景编号。
     /// </summary>

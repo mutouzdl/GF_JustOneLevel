@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 怪物生成器表
 /// </summary>
-public class DRMonsterCreater : IDataRow {
+public class DRMonsterCreater : IDRAssetsRow {
     /// <summary>
     /// 编号。
     /// </summary>

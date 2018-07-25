@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 声音配置表。
 /// </summary>
-public class DRSound : IDataRow {
+public class DRSound : IDRAssetsRow {
     /// <summary>
     /// 声音编号。
     /// </summary>

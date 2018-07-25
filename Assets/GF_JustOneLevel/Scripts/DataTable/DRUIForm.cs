@@ -4,7 +4,7 @@ using GameFramework.DataTable;
 /// <summary>
 /// 界面配置表。
 /// </summary>
-public class DRUIForm : IDataRow {
+public class DRUIForm : IDRAssetsRow {
     /// <summary>
     /// 界面编号。
     /// </summary>
